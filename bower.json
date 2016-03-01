@@ -1,6 +1,6 @@
 {
-  "name": "meanjs",
-  "description": "Fullstack JavaScript with MongoDB, Express, AngularJS, and Node.js.",
+  "name": "consultants-and-dragons",
+  "description": "A Full-Stack solution for Consultants and Dragons",
   "homepage": "http://meanjs.org/",
   "license": "MIT",
   "dependencies": {

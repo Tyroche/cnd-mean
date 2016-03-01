@@ -1,10 +1,10 @@
 {
-  "name": "meanjs",
-  "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js.",
+  "name": "consultants-and-dragons",
+  "description": "A Full-Stack solution for Consultants and Dragons",
   "version": "0.4.2",
   "meanjs-version": "0.4.2",
   "private": false,
-  "author": "https://github.com/meanjs/mean/graphs/contributors",
+  "author": "Evan Kirsch",
   "license": "MIT",
   "repository": {
     "type": "git",
