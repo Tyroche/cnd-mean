@@ -11,7 +11,7 @@
   function routeConfig($stateProvider) {
     // Signups state routing
     $stateProvider
-      .state('master', {
+      .state('signups', {
         url: '/signup',
         templateUrl: 'modules/signups/client/views/master.client.view.html',
         controller: 'SignupsController',
