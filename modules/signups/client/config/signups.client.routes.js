@@ -14,7 +14,7 @@
       .state('master', {
         url: '/signup',
         templateUrl: 'modules/signups/client/views/master.client.view.html',
-        controller: 'MasterController',
+        controller: 'SignupsController',
         controllerAs: 'vm'
       });
   }
