@@ -6,7 +6,7 @@ angular.module('wiki').run(['Menus',
     // Set top bar menu items
     Menus.addMenuItem('topbar', {
       title: 'Wiki',
-      state: 'wiki'
+      state: 'wikimain'
     });
   }
 ]);
