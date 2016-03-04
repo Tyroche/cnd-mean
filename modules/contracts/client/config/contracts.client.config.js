@@ -12,6 +12,7 @@
     Menus.addMenuItem('topbar', {
       title: 'Contracts',
       state: 'contracts',
+      position: 100,
       type: 'dropdown',
       roles: ['admin']
     });

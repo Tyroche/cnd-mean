@@ -13,6 +13,7 @@
       title: 'Episodes',
       state: 'episodes',
       type: 'dropdown',
+      position: 3,
       roles: ['admin', 'user']
     });
 

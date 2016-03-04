@@ -8,6 +8,7 @@ angular.module('articles').run(['Menus',
       title: 'Media',
       state: 'articles',
       type: 'dropdown',
+      position: 0,
       roles: ['*']
     });
 
