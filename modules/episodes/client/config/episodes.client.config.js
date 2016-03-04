@@ -13,7 +13,7 @@
       title: 'Episodes',
       state: 'episodes',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['admin', 'user']
     });
 
     // Add the dropdown list item
@@ -26,7 +26,7 @@
     Menus.addSubMenuItem('topbar', 'episodes', {
       title: 'Create Episode',
       state: 'episodes.create',
-      roles: ['user']
+      roles: ['admin']
     });
   }
 })();

@@ -13,7 +13,7 @@
       title: 'Contracts',
       state: 'contracts',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['admin']
     });
 
     // Add the dropdown list item
@@ -25,8 +25,7 @@
     // Add the dropdown create item
     Menus.addSubMenuItem('topbar', 'contracts', {
       title: 'Create Contract',
-      state: 'contracts.create',
-      roles: ['user']
+      state: 'contracts.create'
     });
   }
 })();
