@@ -25,6 +25,10 @@ var CharacterSchema = new Schema({
     type: String,
     default: 'Commoner'
   },
+  race: {
+    type: String,
+    default: 'Human'
+  },
   attributes: {
     strength: { type: Number, default: 10 },
     dexterity: { type: Number, default: 10 },

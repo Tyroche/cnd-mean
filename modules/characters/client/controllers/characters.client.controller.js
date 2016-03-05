@@ -34,6 +34,18 @@
       'Wizard'
     ];
 
+    // Playable Races
+    vm.races = [
+      { race: 'human', description: 'Human' },
+      { race: 'halfelf', description: 'Half Elf' },
+      { race: 'elf', description: 'Elf' },
+      { race: 'dwarf', description: 'Dwarf' },
+      { race: 'gnome', description: 'Gnome' },
+      { race: 'birdman', description: 'Aarakocra' },
+      { race: 'dragonborn', description: 'Erukan (Dragonborn)' },
+      { race: 'titan', description: 'Galadrast (Titan)' }
+    ];
+
     // Remove existing Character
     function remove() {
       if (confirm('Are you sure you want to delete?')) {

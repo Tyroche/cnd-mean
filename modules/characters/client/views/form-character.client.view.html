@@ -9,7 +9,7 @@
       <fieldset>
 
         <div class="row">
-            <div class="form-group col-md-5" show-errors>
+            <div class="form-group col-md-4" show-errors>
               <label class="control-label" for="name">Name</label>
               <input name="name" type="text" ng-model="vm.character.name" id="name" class="form-control" placeholder="Name" required>
               <div ng-messages="vm.form.characterForm.name.$error" role="alert">
@@ -17,10 +17,20 @@
               </div>
             </div>
 
-            <div class="form-group col-md-5 col-md-offset-2" show-errors>
+          <div class="col-md-offset-1 col-md-2">
+            <div class="form-group" show-errors>
+                <label class="control-label" for="race">Race</label><br />
+                <select class="form-control" name="race" ng-model="vm.character.race" required>
+                    <option ng-repeat="c in vm.races" value="{{c.race}}">{{c.description}}</option>
+                </select>
+            </div>
+          </div>
+
+        <div class="col-md-offset-1 col-md-2">
+            <div class="form-group" show-errors>
                 <label class="control-label" for="playableClass">Class</label><br />
-                <select name="playableClass" ng-model="vm.character.playableClass">
-                    <option ng-repeat="c in vm.classes" value="c">{{c}}</option>
+                <select class="form-control" name="playableClass" ng-model="vm.character.playableClass" required>
+                    <option ng-repeat="c in vm.classes" value="{{c}}">{{c}}</option>
                 </select>
             </div>
         </div>
