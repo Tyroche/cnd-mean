@@ -2,22 +2,33 @@
     <link rel="stylesheet" href="modules/characters/client/css/characterCreation.css" />
 
   <div class="page-header">
-    <h1>{{vm.character._id ? 'Edit Character' : 'New Character'}}  {{vm.creationSteps[vm.step].title}}</h1>
+    <h1>{{vm.character._id ? 'Edit Character' : 'Character Creation'}} >> {{vm.creationSteps[vm.step].title}}</h1>
   </div>
   <div class="col-md-12">
-    <form name="vm.form.characterForm" class="form-horizontal" ng-submit="vm.save(vm.form.characterForm.$valid)" novalidate>
+    <form name="vm.form.characterForm" class="form-vertical" ng-submit="vm.save(vm.form.characterForm.$valid)" novalidate>
       <fieldset>
 
         <!-- Subview loaded here  -->
         <div class="col-md-6">
           <div ng-repeat="step in vm.creationSteps" ng-show="vm.step === $index" ng-include="step.template"></div>
         </div>
-        <div class="col-md-5 col-md-offset-1">
-          <div class="row">
+        <div class="col-md-5 col-md-offset-1 well">
+
+          <div class="row" style="height: auto; min-height: 300px">
             <div ng-include="vm.creationSteps[vm.step].help"></div>
+
+            <div ng-show="vm.error" class="text-danger">
+              <strong ng-bind="vm.error"></strong>
+            </div>
           </div>
-          <button type="button" ng-disabled="vm.step === 0" class="btn btn-default" ng-click="vm.previousStep()">Back</button>
-          <button type="button" class="btn btn-default" ng-click="vm.nextStep()">Next</button>
+          <div class="row">
+            <div class="col-sm-3 col-sm-offset-2">
+              <button type="button" ng-disabled="vm.step === 0" class="btn btn-default" ng-click="vm.previousStep()">Back</button>
+            </div>
+            <div class="col-sm-3 col-sm-offset-2">
+              <button type="button" class="btn btn-default" ng-click="vm.nextStep()">Next</button>
+            </div>
+          </div>
 
           <!-- Needs to be CONSISTENTLY in the same place -->
           <div ng-show="(vm.step === 5 && vm.isSpellCaster()) || vm.step === 4 && !vm.isSpellCaster()">
@@ -26,9 +37,7 @@
             </div>
           </div>
         </div>
-        <div ng-show="vm.error" class="text-danger">
-          <strong ng-bind="vm.error"></strong>
-        </div>
+
       </fieldset>
     </form>
   </div>

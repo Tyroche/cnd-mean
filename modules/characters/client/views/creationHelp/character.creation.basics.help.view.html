@@ -1,2 +1,12 @@
 <h3>Essential Information</h3>
 Before we get into the nitty gritty of character creation, pick a character name, race, class, and provide a little information about the character's appearance. when you pick a race or class, information about your selection will appear below.
+
+<div ng-show="vm.character.race">
+  <hr />
+  Information about the <b>{{vm.character.race}}</b>
+</div>
+
+<div ng-show="vm.character.playableClass">
+  <hr />
+  Information about the <b>{{vm.character.playableClass}}</b>
+</div>
