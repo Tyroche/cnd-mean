@@ -22,6 +22,10 @@
     vm.previousStep = previousStep;
     vm.step = 0;
 
+    function init() {
+      updateStep();
+    }
+
     // Playable classes
     vm.classes = [
       'Barbarian',
@@ -51,18 +55,44 @@
       { race: 'titan', description: 'Galadrast (Titan)' }
     ];
 
+    vm.creationSteps = [
+      {
+        title: "Basics",
+        template: "modules/characters/client/views/creationSteps/character.creation.basics.view.html",
+        help:"modules/characters/client/views/creationHelp/character.creation.basics.help.view.html"
+      },
+      {
+        title: "Attributes",
+        template: "modules/characters/client/views/creationSteps/character.creation.attributes.view.html" ,
+        help:"modules/characters/client/views/creationHelp/character.creation.attributes.help.view.html"
+      },
+      {
+        title: "Inventory",
+        template: "modules/characters/client/views/creationSteps/character.creation.inventory.view.html" ,
+        help:"modules/characters/client/views/creationHelp/character.creation.inventory.help.view.html"
+      },
+      {
+        title: "Background",
+        template: "modules/characters/client/views/creationSteps/character.creation.background.view.html" ,
+        help:"modules/characters/client/views/creationHelp/character.creation.background.help.view.html"
+      },
+      {
+        title: "Spells",
+        template: "modules/characters/client/views/creationSteps/character.creation.spells.view.html",
+        help:"modules/characters/client/views/creationHelp/character.creation.spells.help.view.html"
+       }
+    ];
+
     function nextStep() {
       var maxStep = 4;
       if(isSpellCaster()) {
         maxStep = 5;
       }
       vm.step = Math.min(maxStep, vm.step + 1);
-      console.log(vm.step);
     }
 
     function previousStep() {
       vm.step = Math.max(0, vm.step - 1);
-      console.log(vm.step);
     }
 
     function isSpellCaster() {
