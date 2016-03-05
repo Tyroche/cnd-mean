@@ -21,6 +21,10 @@ var CharacterSchema = new Schema({
     default: 1,
     required: 'Level must be specified'
   },
+  playableClass: {
+    type: String,
+    default: 'Commoner'
+  },
   attributes: {
     strength: { type: Number, default: 10 },
     dexterity: { type: Number, default: 10 },

@@ -18,6 +18,22 @@
     vm.remove = remove;
     vm.save = save;
 
+    // Playable classes
+    vm.classes = [
+      'Barbarian',
+      'Bard',
+      'Cleric',
+      'Druid',
+      'Fighter',
+      'Monk',
+      'Paladin',
+      'Ranger',
+      'Rogue',
+      'Sorcerer',
+      'Warlock',
+      'Wizard'
+    ];
+
     // Remove existing Character
     function remove() {
       if (confirm('Are you sure you want to delete?')) {
