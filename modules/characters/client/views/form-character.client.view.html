@@ -9,36 +9,46 @@
       <fieldset>
 
         <!-- Basics -->
-        <div class="row">
-            <div class="form-group col-md-4" show-errors>
-              <label class="control-label" for="name">Name</label>
+        <div class="col-md-6">
+
+        <div class="row" ng-show="vm.step === 0">
+          <div class="row">
+            <div class="form-group col-md-8" show-errors>
+              <label class="control-label" for="name">Character's Name</label>
               <input name="name" type="text" ng-model="vm.character.name" id="name" class="form-control" placeholder="Name" required>
               <div ng-messages="vm.form.characterForm.name.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">Character name is required.</p>
               </div>
             </div>
+          </div>
 
-          <div class="col-md-offset-1 col-md-2">
-            <div class="form-group" show-errors>
-                <label class="control-label" for="race">Race</label><br />
-                <select class="form-control" name="race" ng-model="vm.character.race" required>
-                    <option ng-repeat="c in vm.races" value="{{c.race}}">{{c.description}}</option>
-                </select>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group" show-errors>
+                  <label class="control-label" for="race">Characer's Race</label><br />
+                  <select class="form-control" name="race" ng-model="vm.character.race" required>
+                      <option ng-repeat="c in vm.races" value="{{c.race}}">{{c.description}}</option>
+                  </select>
+              </div>
             </div>
           </div>
 
-        <div class="col-md-offset-1 col-md-2">
-            <div class="form-group" show-errors>
-                <label class="control-label" for="playableClass">Class</label><br />
-                <select class="form-control" name="playableClass" ng-model="vm.character.playableClass" required>
-                    <option ng-repeat="c in vm.classes" value="{{c}}">{{c}}</option>
-                </select>
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group" show-errors>
+                    <label class="control-label" for="playableClass">Character Class</label><br />
+                    <select class="form-control" name="playableClass" ng-model="vm.character.playableClass" required>
+                        <option ng-repeat="c in vm.classes" value="{{c}}">{{c}}</option>
+                    </select>
+                </div>
             </div>
+          </div>
         </div>
 
+
         <!-- Attributes -->
-        <div class="row">
-            <div class="form-group col-md-6">
+        <div class="row" ng-show="vm.step === 1">
+            <div class="form-group row">
                 <h3>Attributes</h3>
                 <div class="col-sm-2 text-center">STR <br />
                     <input name="Strength"
@@ -85,7 +95,7 @@
             </div>
 
             <!-- Proficiencies -->
-            <div class="col-md-6">
+            <div class="row">
                 <h3>Proficiencies</h3>
                 <h4>Saves</h4>
                 <h4>Skills</h4>
@@ -93,48 +103,69 @@
         </div>
 
         <!-- Inventory -->
-        <h3>Inventory</h3>
-
-        <!-- Flavor -->
-        <h3>Descriptions</h3>
-        <h4>Background</h4>
-        <div class="row">
-          <div class="form-group" show-errors>
-            <label class="control-label" for="background.trait">Personality Trait</label>
-            <textarea name="trait" type="text" ng-model="vm.character.background.trait" id="trait" class="form-control" placeholder="Personality Trait"></textarea>
-          </div>
+        <div class="row" ng-show="vm.step === 2">
+          <h3>Inventory</h3>
         </div>
 
-        <div class="row">
-          <div class="form-group" show-errors>
-            <label class="control-label" for="background.ideal">Ideology</label>
-            <textarea name="ideal" type="text" ng-model="vm.character.background.ideal" id="ideal" class="form-control" placeholder="Ideology"></textarea>
+        <div class="row" ng-show="vm.step === 3">
+          <!-- Flavor -->
+          <h3>Descriptions</h3>
+          <h4>Background</h4>
+          <div class="row">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="background.trait">Personality Trait</label>
+              <textarea name="trait" type="text" ng-model="vm.character.background.trait" id="trait" class="form-control" placeholder="Personality Trait"></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="background.ideal">Ideology</label>
+              <textarea name="ideal" type="text" ng-model="vm.character.background.ideal" id="ideal" class="form-control" placeholder="Ideology"></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="background.bond">Bond</label>
+              <textarea name="bond" type="text" ng-model="vm.character.background.bond" id="bond" class="form-control" placeholder="Bond"></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="background.flaw">Character Flaw</label>
+              <textarea name="flaw" type="text" ng-model="vm.character.background.flaw" id="flaw" class="form-control" placeholder="Character Flaw"></textarea>
+            </div>
+          </div>
+
+          <h4>Character History</h4>
+          <div class="row">
+            <div class="form-group" show-errors>
+              <textarea name="backstory" type="text" ng-model="vm.character.background.backstory" id="backstory" class="form-control" placeholder="Character History"></textarea>
+            </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="form-group" show-errors>
-            <label class="control-label" for="background.bond">Bond</label>
-            <textarea name="bond" type="text" ng-model="vm.character.background.bond" id="bond" class="form-control" placeholder="Bond"></textarea>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group" show-errors>
-            <label class="control-label" for="background.flaw">Character Flaw</label>
-            <textarea name="flaw" type="text" ng-model="vm.character.background.flaw" id="flaw" class="form-control" placeholder="Character Flaw"></textarea>
-          </div>
-        </div>
-
-        <h4>Backstory</h4>
 
         <!-- Spells (if applicable) -->
-        <div ng-show="vm.isSpellCaster()">
+        <div class="row" ng-show="vm.step === 4 && vm.isSpellCaster()">
           <h3>Spells</h3>
         </div>
 
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.character._id ? 'Update' : 'Create'}}</button>
+        <!-- Needs to be CONSISTENTLY in the same place -->
+        <div ng-show="(vm.step ===5 && vm.isSpellCaster()) || vm.step === 4 && !vm.isSpellCaster()">
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">{{vm.character._id ? 'Update' : 'Create'}}</button>
+          </div>
+        </div>
+
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+          <div class="row">
+            <h3>Help Area</h3>
+          </div>
+          <button class="btn btn-default" ng-click="vm.previousStep()">Back</button>
+          <button class="btn btn-default" ng-click="vm.nextStep()">Next</button>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>

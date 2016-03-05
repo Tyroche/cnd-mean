@@ -18,6 +18,9 @@
     vm.isSpellCaster = isSpellCaster;
     vm.remove = remove;
     vm.save = save;
+    vm.nextStep = nextStep;
+    vm.previousStep = previousStep;
+    vm.step = 0;
 
     // Playable classes
     vm.classes = [
@@ -47,6 +50,20 @@
       { race: 'dragonborn', description: 'Erukan (Dragonborn)' },
       { race: 'titan', description: 'Galadrast (Titan)' }
     ];
+
+    function nextStep() {
+      var maxStep = 4;
+      if(isSpellCaster()) {
+        maxStep = 5;
+      }
+      vm.step = Math.min(maxStep, vm.step + 1);
+      console.log(vm.step);
+    }
+
+    function previousStep() {
+      vm.step = Math.max(0, vm.step - 1);
+      console.log(vm.step);
+    }
 
     function isSpellCaster() {
       var c = vm.character.playableClass;
