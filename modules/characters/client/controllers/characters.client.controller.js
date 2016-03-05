@@ -15,6 +15,7 @@
     vm.character = character;
     vm.error = null;
     vm.form = {};
+    vm.isSpellCaster = isSpellCaster;
     vm.remove = remove;
     vm.save = save;
 
@@ -42,9 +43,27 @@
       { race: 'dwarf', description: 'Dwarf' },
       { race: 'gnome', description: 'Gnome' },
       { race: 'birdman', description: 'Aarakocra' },
+      { race: 'halforc', description: 'Half Orc' },
       { race: 'dragonborn', description: 'Erukan (Dragonborn)' },
       { race: 'titan', description: 'Galadrast (Titan)' }
     ];
+
+    function isSpellCaster() {
+      var c = vm.character.playableClass;
+      var casters = [
+        'Bard',
+        'Cleric',
+        'Druid',
+        'Paladin',
+        'Ranger',
+        'Sorcerer',
+        'Warlock',
+        'Wizard'
+      ];
+
+      // Need to set up an api or something to do this more nicely
+      return c && casters.indexOf(c) > -1;
+    }
 
     // Remove existing Character
     function remove() {

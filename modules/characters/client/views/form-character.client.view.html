@@ -8,6 +8,7 @@
     <form name="vm.form.characterForm" class="form-horizontal" ng-submit="vm.save(vm.form.characterForm.$valid)" novalidate>
       <fieldset>
 
+        <!-- Basics -->
         <div class="row">
             <div class="form-group col-md-4" show-errors>
               <label class="control-label" for="name">Name</label>
@@ -35,6 +36,7 @@
             </div>
         </div>
 
+        <!-- Attributes -->
         <div class="row">
             <div class="form-group col-md-6">
                 <h3>Attributes</h3>
@@ -81,6 +83,8 @@
                             ng-init="vm.character.attributes.charisma=10">
                 </div>
             </div>
+
+            <!-- Proficiencies -->
             <div class="col-md-6">
                 <h3>Proficiencies</h3>
                 <h4>Saves</h4>
@@ -88,13 +92,18 @@
             </div>
         </div>
 
+        <!-- Inventory -->
         <h3>Inventory</h3>
 
+        <!-- Flavor -->
         <h3>Descriptions</h3>
         <h4>Traits</h4>
         <h4>Backstory</h4>
 
-        <h3>Spells</h3>
+        <!-- Spells (if applicable) -->
+        <div ng-show="vm.isSpellCaster()">
+          <h3>Spells</h3>
+        </div>
 
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.character._id ? 'Update' : 'Create'}}</button>
