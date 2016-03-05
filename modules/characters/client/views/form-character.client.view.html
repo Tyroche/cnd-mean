@@ -97,7 +97,35 @@
 
         <!-- Flavor -->
         <h3>Descriptions</h3>
-        <h4>Traits</h4>
+        <h4>Background</h4>
+        <div class="row">
+          <div class="form-group" show-errors>
+            <label class="control-label" for="background.trait">Personality Trait</label>
+            <textarea name="trait" type="text" ng-model="vm.character.background.trait" id="trait" class="form-control" placeholder="Personality Trait"></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group" show-errors>
+            <label class="control-label" for="background.ideal">Ideology</label>
+            <textarea name="ideal" type="text" ng-model="vm.character.background.ideal" id="ideal" class="form-control" placeholder="Ideology"></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group" show-errors>
+            <label class="control-label" for="background.bond">Bond</label>
+            <textarea name="bond" type="text" ng-model="vm.character.background.bond" id="bond" class="form-control" placeholder="Bond"></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group" show-errors>
+            <label class="control-label" for="background.flaw">Character Flaw</label>
+            <textarea name="flaw" type="text" ng-model="vm.character.background.flaw" id="flaw" class="form-control" placeholder="Character Flaw"></textarea>
+          </div>
+        </div>
+
         <h4>Backstory</h4>
 
         <!-- Spells (if applicable) -->

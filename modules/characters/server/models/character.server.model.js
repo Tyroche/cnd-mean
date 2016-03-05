@@ -49,6 +49,13 @@ var CharacterSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  background: {
+    generalization: { type: String },
+    trait: { type: String },
+    ideal: { type: String },
+    bond: { type: String },
+    flaw: { type: String }
+  },
   player: {
     type: Schema.ObjectId,
     ref: 'User'
