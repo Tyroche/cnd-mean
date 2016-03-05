@@ -1,0 +1,11 @@
+.att-entry {
+    width:100%;
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance:textfield;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}

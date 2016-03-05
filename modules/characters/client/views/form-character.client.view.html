@@ -1,4 +1,6 @@
 <section>
+    <link rel="stylesheet" href="modules/characters/client/css/characterCreation.css" />
+
   <div class="page-header">
     <h1>{{vm.character._id ? 'Edit Character' : 'New Character'}}</h1>
   </div>
@@ -12,6 +14,33 @@
           <div ng-messages="vm.form.characterForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Character name is required.</p>
           </div>
+        </div>
+
+        <div class="row">
+            <h3>Attributes</h3>
+            <div class="form-group col-md-6">
+                <div class="col-sm-2 text-center">STR <br />
+                    <input name="Strength" type="number" ng-model="vm.character.attributes.strength" class="form-control att-entry" required ng-init="vm.character.attributes.strength=10">
+                </div>
+                <div class="col-sm-2 text-center">DEX <br />
+                    <input name="Dexterity" type="number" ng-model="vm.character.attributes.dexterity" class="form-control att-entry" required ng-init="vm.character.attributes.dexterity=10">
+                </div>
+                <div class="col-sm-2 text-center">CON<br />
+                    <input name="Constitution" type="number" ng-model="vm.character.attributes.constitution" class="form-control att-entry" required ng-init="vm.character.attributes.constitution=10">
+                </div>
+                <div class="col-sm-2 text-center">INT<br />
+                    <input name="Intelligence" type="number" ng-model="vm.character.attributes.intelligence" class="form-control att-entry" required ng-init="vm.character.attributes.intelligence=10">
+                </div>
+                <div class="col-sm-2 text-center">WIS<br />
+                    <input name="Wisdom" type="number" ng-model="vm.character.attributes.wisdom" class="form-control att-entry" required ng-init="vm.character.attributes.wisdom=10">
+                </div>
+                <div class="col-sm-2 text-center">CHA<br />
+                    <input name="Charisma" type="number" ng-model="vm.character.attributes.charisma" class="form-control att-entry" required ng-init="vm.character.attributes.charisma=10">
+                </div>
+            </div>
+            <div class="col-md-6">
+                Test
+            </div>
         </div>
 
         <div class="form-group">
