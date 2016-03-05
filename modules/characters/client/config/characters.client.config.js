@@ -27,7 +27,7 @@
     Menus.addSubMenuItem('topbar', 'characters', {
       title: 'Create Character',
       state: 'characters.create',
-      roles: ['admin', 'user']
+      roles: ['admin', 'consultant']
     });
   }
 })();

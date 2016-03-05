@@ -7,7 +7,7 @@ angular.module('chat').run(['Menus',
     Menus.addSubMenuItem('topbar', 'characters', {
       title: 'Guild Chat',
       state: 'chat',
-      roles: ['admin', 'user']
+      roles: ['admin', 'consultant']
     });
   }
 ]);

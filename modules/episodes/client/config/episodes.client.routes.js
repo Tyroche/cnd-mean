@@ -32,7 +32,7 @@
           episodeResolve: newEpisode
         },
         data: {
-          roles: ['user', 'admin'],
+          roles: ['admin'],
           pageTitle : 'Episodes Create'
         }
       })
@@ -45,7 +45,7 @@
           episodeResolve: getEpisode
         },
         data: {
-          roles: ['user', 'admin'],
+          roles: ['admin'],
           pageTitle: 'Edit Episode {{ episodeResolve.name }}'
         }
       })

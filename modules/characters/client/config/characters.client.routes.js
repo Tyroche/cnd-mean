@@ -32,7 +32,7 @@
           characterResolve: newCharacter
         },
         data: {
-          roles: ['user', 'admin'],
+          roles: ['consultant', 'admin'],
           pageTitle : 'Characters Create'
         }
       })
@@ -45,7 +45,7 @@
           characterResolve: getCharacter
         },
         data: {
-          roles: ['user', 'admin'],
+          roles: ['consultant', 'admin'],
           pageTitle: 'Edit Character {{ characterResolve.name }}'
         }
       })

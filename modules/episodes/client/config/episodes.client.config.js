@@ -14,7 +14,7 @@
       state: 'episodes',
       type: 'dropdown',
       position: 3,
-      roles: ['admin', 'user']
+      roles: ['admin', 'consultant']
     });
 
     // Add the dropdown list item

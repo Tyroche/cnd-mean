@@ -21,24 +21,6 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/contracts/:contractId',
       permissions: '*'
     }]
-  }, {
-    roles: ['user'],
-    allows: [{
-      resources: '/api/contracts',
-      permissions: ['get', 'post']
-    }, {
-      resources: '/api/contracts/:contractId',
-      permissions: ['get']
-    }]
-  }, {
-    roles: ['guest'],
-    allows: [{
-      resources: '/api/contracts',
-      permissions: ['get']
-    }, {
-      resources: '/api/contracts/:contractId',
-      permissions: ['get']
-    }]
   }]);
 };
 

@@ -22,19 +22,10 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }]
   }, {
-    roles: ['user'],
+    roles: ['guest', 'user', 'consultant'],
     allows: [{
       resources: '/api/wikis',
       permissions: ['get', 'post']
-    }, {
-      resources: '/api/wikis/:wikiId',
-      permissions: ['get']
-    }]
-  }, {
-    roles: ['guest'],
-    allows: [{
-      resources: '/api/wikis',
-      permissions: ['get']
     }, {
       resources: '/api/wikis/:wikiId',
       permissions: ['get']
