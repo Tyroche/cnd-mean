@@ -9,16 +9,16 @@
 </div>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-5">
     <div class="form-group" show-errors>
         <label class="control-label" for="race">Characer's Race</label><br />
         <select class="form-control" name="race" ng-model="vm.character.race" required>
-            <option ng-repeat="c in vm.races" value="{{c.race}}">{{c.description}}</option>
+            <option ng-repeat="c in vm.races" value="{{c.race}}">{{c.name}}</option>
         </select>
     </div>
   </div>
 
-  <div class="col-md-offset-2 col-md-4">
+  <div class="col-md-offset-1 col-md-4">
       <div class="form-group" show-errors>
           <label class="control-label" for="playableClass">Character Class</label><br />
           <select class="form-control" name="playableClass" ng-model="vm.character.playableClass" required>

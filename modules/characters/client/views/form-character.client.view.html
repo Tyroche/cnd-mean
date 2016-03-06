@@ -26,16 +26,19 @@
               <button type="button" ng-disabled="vm.step === 0" class="btn btn-default" ng-click="vm.previousStep()">Back</button>
             </div>
             <div class="col-sm-3 col-sm-offset-2">
-              <button type="button" class="btn btn-default" ng-click="vm.nextStep()">Next</button>
+              <div ng-show="vm.step !== 4">
+                <button type="button" class="btn btn-default" ng-click="vm.nextStep()">Next</button>
+              </div>
+              <div ng-show="vm.step === 4">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-default">{{vm.character._id ? 'Update' : 'Create'}}</button>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Needs to be CONSISTENTLY in the same place -->
-          <div ng-show="(vm.step === 5 && vm.isSpellCaster()) || vm.step === 4 && !vm.isSpellCaster()">
-            <div class="form-group">
-              <button type="submit" class="btn btn-default">{{vm.character._id ? 'Update' : 'Create'}}</button>
-            </div>
-          </div>
+
         </div>
 
       </fieldset>
