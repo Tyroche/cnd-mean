@@ -16,14 +16,36 @@ var ConfigurationSchema = new Schema({
     required: 'Please fill Configuration name',
     trim: true
   },
-  created: {
-    type: Date,
-    default: Date.now
+  enabled: {
+    type: Boolean,
+    required: 'Enabled/Disabled cannot be ambiguous',
+    default: false
   },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  }
+  maximumSessionSize: {
+    type: Number,
+    required: 'You must specify a maximum Session Size',
+    default: 5
+  },
+  classes: [{
+    name: {
+      type: String,
+      required: 'Class name must be defined'
+    },
+    description: {
+      type: String,
+      required: 'A class description is required'
+    },
+    hitDice: {
+      type: String,
+      required: 'HD must be defined'
+    },
+    skillProficiencies: [{
+      type: String
+    }],
+    saveProficiencies: [{
+      type: String
+    }]
+  }]
 });
 
 mongoose.model('Configuration', ConfigurationSchema);
