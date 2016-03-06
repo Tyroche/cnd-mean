@@ -21,6 +21,7 @@
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
     vm.getClassDescription = getClassDescription;
+    vm.getRaceDescription = getRaceDescription;
     vm.step = 0;
 
     ConfigurationsService.query({ enabled: true }, function(resp) {
@@ -31,19 +32,6 @@
 
       vm.config = resp[0];
     });
-
-    // Playable Races
-    vm.races = [
-      { race: 'human', name: 'Human', description: "" },
-      { race: 'half-elf', name: 'Half Elf', description: "" },
-      { race: 'elf', name: 'Elf', description: "" },
-      { race: 'dwarf', name: 'Dwarf', description: "" },
-      { race: 'gnome', name: 'Gnome', description: "" },
-      { race: 'aarakocra', name: 'Aarakocra', description: "" },
-      { race: 'half-orc', name: 'Half Orc', description: "" },
-      { race: 'dragonborn', name: 'Erukan (Dragonborn)', description: "" },
-      { race: 'titan', name: 'Galadrast (Titan)', description: "" }
-    ];
 
     vm.creationSteps = [
       {
@@ -99,6 +87,23 @@
       // Return the description if a class existss
       if (playableClass[0]) {
         return playableClass[0].description;
+      }
+    }
+
+    function getRaceDescription() {
+      // Check for missing config or missing classes
+      if(!vm.config || !vm.config.races) {
+        return;
+      }
+
+      // Filter through classes to find our selection
+      var race = vm.config.races.filter(function(obj){
+        return obj.name === vm.character.race;
+      });
+
+      // Return the description if a class existss
+      if (race[0]) {
+        return race[0].description;
       }
     }
 

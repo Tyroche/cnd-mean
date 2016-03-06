@@ -3,7 +3,7 @@
 </p>
 
 <div ng-show="vm.character.race">
-  <p>Information about the <b>{{vm.character.race}}</b></p>
+  <p><b>{{vm.character.race}}:</b>  {{vm.getRaceDescription()}}</p>
 </div>
 
 <div ng-show="vm.character.playableClass">

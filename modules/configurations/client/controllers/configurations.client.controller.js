@@ -18,13 +18,20 @@
     vm.remove = remove;
     vm.save = save;
     vm.addClass = addClass;
+    vm.addRace = addRace;
+
+    function addRace() {
+      if(!vm.configuration.races) {
+        vm.configuration.races = [];
+      }
+      vm.configuration.races.push({});
+    }
 
     function addClass() {
       if(!vm.configuration.classes) {
         vm.configuration.classes = [];
       }
       vm.configuration.classes.push({});
-      console.log(vm.configuration.classes);
     }
 
     // Remove existing Configuration

@@ -13,7 +13,7 @@
     <div class="form-group" show-errors>
         <label class="control-label" for="race">Characer's Race</label><br />
         <select class="form-control" name="race" ng-model="vm.character.race" required>
-            <option ng-repeat="c in vm.races" value="{{c.race}}">{{c.name}}</option>
+            <option ng-repeat="c in vm.config.races" value="{{c.name}}">{{c.name}}</option>
         </select>
     </div>
   </div>

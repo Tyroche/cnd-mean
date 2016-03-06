@@ -45,6 +45,23 @@ var ConfigurationSchema = new Schema({
     saveProficiencies: [{
       type: String
     }]
+  }],
+  races: [{
+    name: {
+      type: String,
+      required: 'Race name must be defined'
+    },
+    description: {
+      type: String,
+      required: 'A race description is required'
+    },
+    skillProficiencies: [{
+      type: String
+    }],
+    abilityIncreases: [{
+      ability: { type: String },
+      amount: { type: Number }
+    }]
   }]
 });
 
