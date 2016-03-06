@@ -6,9 +6,9 @@
     .module('characters')
     .controller('CharactersController', CharactersController);
 
-  CharactersController.$inject = ['$scope', '$state', 'Authentication', 'characterResolve'];
+  CharactersController.$inject = ['$scope', '$state', 'Authentication', 'characterResolve', 'ConfigurationsService'];
 
-  function CharactersController ($scope, $state, Authentication, character) {
+  function CharactersController ($scope, $state, Authentication, character, ConfigurationsService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -21,6 +21,15 @@
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
     vm.step = 0;
+
+    ConfigurationsService.query({ enabled: true }, function(resp) {
+      if(!resp[0]) {
+        console.log('ERROR: No Configuration found!!!');
+        return;
+      }
+      
+      vm.config = resp[0];
+    });
 
     // Playable classes
     vm.classes = [
@@ -40,14 +49,14 @@
 
     // Playable Races
     vm.races = [
-      { race: 'human', name: 'Human', description: ""},
-      { race: 'half-elf', name: 'Half Elf', description: ""},
-      { race: 'elf', name: 'Elf', description: ""},
-      { race: 'dwarf', name: 'Dwarf', description: ""},
-      { race: 'gnome', name: 'Gnome', description: ""},
-      { race: 'aarakocra', name: 'Aarakocra', description: ""},
-      { race: 'half-orc', name: 'Half Orc', description: ""},
-      { race: 'dragonborn', name: 'Erukan (Dragonborn)', description: ""},
+      { race: 'human', name: 'Human', description: "" },
+      { race: 'half-elf', name: 'Half Elf', description: "" },
+      { race: 'elf', name: 'Elf', description: "" },
+      { race: 'dwarf', name: 'Dwarf', description: "" },
+      { race: 'gnome', name: 'Gnome', description: "" },
+      { race: 'aarakocra', name: 'Aarakocra', description: "" },
+      { race: 'half-orc', name: 'Half Orc', description: "" },
+      { race: 'dragonborn', name: 'Erukan (Dragonborn)', description: "" },
       { race: 'titan', name: 'Galadrast (Titan)', description: "" }
     ];
 

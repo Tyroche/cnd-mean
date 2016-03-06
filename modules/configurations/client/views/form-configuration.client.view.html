@@ -5,13 +5,37 @@
   <div class="col-md-12">
     <form name="vm.form.configurationForm" class="form-horizontal" ng-submit="vm.save(vm.form.configurationForm.$valid)" novalidate>
       <fieldset>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.configuration.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.configurationForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Configuration name is required.</p>
+
+        <div class="row">
+          <div class="form-group col-sm-7" show-errors>
+            <label class="control-label" for="name">Name</label>
+            <input name="name" type="text" ng-model="vm.configuration.name" id="name" class="form-control" placeholder="Name" required>
+            <div ng-messages="vm.form.configurationForm.name.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Configuration name is required.</p>
+            </div>
+          </div>
+
+          <div class="col-sm-offset-1 col-sm-1 text-center">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="enabled">Enabled</label>
+              <input name="enabled" type="checkbox" ng-model="vm.configuration.enabled" id="enabled"  class="form-control" required>
+              <div ng-messages="vm.form.configurationForm.enabled.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Enabled/Disabled cannot be ambiguous.</p>
+              </div>
+            </div>
           </div>
         </div>
+
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="maximumSessionSize">Maximum Session Size</label>
+          <input name="maximumSessionSize" type="text" ng-model="vm.configuration.maximumSessionSize" id="maximumSessionSize" class="form-control" default="4" required>
+          <div ng-messages="vm.form.configurationForm.maximumSessionSize.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Max Session Size is required.</p>
+          </div>
+        </div>
+
+
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.configuration._id ? 'Update' : 'Create'}}</button>
         </div>
