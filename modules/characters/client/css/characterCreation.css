@@ -9,3 +9,17 @@
     float: none;
     margin: 0 auto;
 }
+
+.well {
+  margin-top: 0;
+  padding-top: 0;
+  padding-left: 32px;
+  padding-right: 32px;
+  text-align: justify;
+}
+
+.well  ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
