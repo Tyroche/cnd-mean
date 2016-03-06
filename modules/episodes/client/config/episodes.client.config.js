@@ -9,13 +9,6 @@
 
   function menuConfig(Menus) {
     // Set top bar menu items
-    Menus.addMenuItem('topbar', {
-      title: 'Episodes',
-      state: 'episodes',
-      type: 'dropdown',
-      position: 3,
-      roles: ['admin', 'consultant']
-    });
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'episodes', {
