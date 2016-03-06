@@ -20,6 +20,7 @@
     vm.save = save;
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
+    vm.getClassDescription = getClassDescription;
     vm.step = 0;
 
     ConfigurationsService.query({ enabled: true }, function(resp) {
@@ -27,25 +28,9 @@
         console.log('ERROR: No Configuration found!!!');
         return;
       }
-      
+
       vm.config = resp[0];
     });
-
-    // Playable classes
-    vm.classes = [
-      'Barbarian',
-      'Bard',
-      'Cleric',
-      'Druid',
-      'Fighter',
-      'Monk',
-      'Paladin',
-      'Ranger',
-      'Rogue',
-      'Sorcerer',
-      'Warlock',
-      'Wizard'
-    ];
 
     // Playable Races
     vm.races = [
@@ -98,6 +83,23 @@
 
     function previousStep() {
       vm.step = Math.max(0, vm.step - 1);
+    }
+
+    function getClassDescription() {
+      // Check for missing config or missing classes
+      if(!vm.config || !vm.config.classes) {
+        return;
+      }
+
+      // Filter through classes to find our selection
+      var playableClass = vm.config.classes.filter(function(obj){
+        return obj.name === vm.character.playableClass;
+      });
+
+      // Return the description if a class existss
+      if (playableClass[0]) {
+        return playableClass[0].description;
+      }
     }
 
     function isSpellCaster() {

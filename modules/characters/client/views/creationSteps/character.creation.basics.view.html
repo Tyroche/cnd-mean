@@ -22,7 +22,7 @@
       <div class="form-group" show-errors>
           <label class="control-label" for="playableClass">Character Class</label><br />
           <select class="form-control" name="playableClass" ng-model="vm.character.playableClass" required>
-              <option ng-repeat="c in vm.classes" value="{{c}}">{{c}}</option>
+              <option ng-repeat="c in vm.config.classes" value="{{c.name}}">{{c.name}}</option>
           </select>
       </div>
   </div>

@@ -17,6 +17,15 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.addClass = addClass;
+
+    function addClass() {
+      if(!vm.configuration.classes) {
+        vm.configuration.classes = [];
+      }
+      vm.configuration.classes.push({});
+      console.log(vm.configuration.classes);
+    }
 
     // Remove existing Configuration
     function remove() {

@@ -36,7 +36,7 @@ var ConfigurationSchema = new Schema({
       required: 'A class description is required'
     },
     hitDice: {
-      type: String,
+      type: Number,
       required: 'HD must be defined'
     },
     skillProficiencies: [{
