@@ -24,13 +24,13 @@
     vm.getRaceDescription = getRaceDescription;
     vm.step = 0;
 
-    ConfigurationsService.query({ enabled: true }, function(resp) {
-      if(!resp[0]) {
+    ConfigurationsService.query({ enabled: true }, function(res) {
+      if (!res[0]) {
         console.log('ERROR: No Configuration found!!!');
         return;
       }
 
-      vm.config = resp[0];
+      vm.config = res[0];
     });
 
     vm.creationSteps = [

@@ -16,6 +16,14 @@ var ContractSchema = new Schema({
     required: 'Please fill Contract name',
     trim: true
   },
+  elected: {
+    type: Boolean,
+    default: false
+  },
+  enabled: {
+    type: Boolean,
+    default: true
+  },
   client: {
     type: String,
     default: '',

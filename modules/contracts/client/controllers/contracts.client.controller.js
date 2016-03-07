@@ -27,13 +27,11 @@
       if(!vm.contract.expectedPlaystyles) {
         vm.contract.expectedPlaystyles = [];
       }
-      vm.contract.expectedPlaystyles.push("");
-      console.log(vm.contract.expectedPlaystyles);
+      vm.contract.expectedPlaystyles.push('');
     }
 
     function removePlaystyle(index) {
       vm.contract.expectedPlaystyles.splice(index, 1);
-      console.log(vm.contract.expectedPlaystyles);
     }
 
     // Add a reward

@@ -6,17 +6,27 @@
     .module('episodes')
     .controller('EpisodesController', EpisodesController);
 
-  EpisodesController.$inject = ['$scope', '$state', 'Authentication', 'episodeResolve'];
+  EpisodesController.$inject = ['$scope', '$state', 'Authentication', 'episodeResolve', 'ConfigurationsService', 'ContractsService'];
 
-  function EpisodesController ($scope, $state, Authentication, episode) {
+  function EpisodesController ($scope, $state, Authentication, episode, ConfigurationsService, ContractsService) {
     var vm = this;
 
     vm.authentication = Authentication;
+    vm.maximumSessionSize = 4;
     vm.episode = episode;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    ConfigurationsService.query({ enabled: true }, function(res) {
+      vm.maximumSessionSize = res[0].maximumSessionSize;
+    });
+
+    ContractsService.query({ elected: false, enabled: true }, function(res) {
+      vm.contracts = res;
+      console.log(vm.contracts);
+    });
 
     // Remove existing Episode
     function remove() {

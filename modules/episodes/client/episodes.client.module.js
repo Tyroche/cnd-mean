@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('episodes');
+  app.registerModule('episodes', ['contracts', 'configurations']);
 })(ApplicationConfiguration);
