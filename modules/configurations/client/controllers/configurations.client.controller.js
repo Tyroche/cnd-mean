@@ -11,6 +11,8 @@
   function ConfigurationsController ($scope, $state, Authentication, configuration) {
     var vm = this;
 
+    $scope.raceHidden = [];
+    $scope.classHidden = [];
     vm.authentication = Authentication;
     vm.configuration = configuration;
     vm.error = null;
@@ -19,11 +21,15 @@
     vm.save = save;
     vm.addClass = addClass;
     vm.addRace = addRace;
+    vm.toggleRaceVisibility = toggleRaceVisibility;
+    vm.toggleClassVisibility = toggleClassVisibility;
+
 
     function addRace() {
       if(!vm.configuration.races) {
         vm.configuration.races = [];
       }
+      $scope.raceHidden.push(true);
       vm.configuration.races.push({});
     }
 
@@ -33,6 +39,14 @@
       }
       vm.configuration.classes.push({});
     }
+
+    function toggleRaceVisibility(index) {
+      $scope.raceHidden[index] = !$scope.raceHidden[index];
+    }
+    function toggleClassVisibility(index) {
+      $scope.classHidden[index] = !$scope.classHidden[index];
+    }
+
 
     // Remove existing Configuration
     function remove() {

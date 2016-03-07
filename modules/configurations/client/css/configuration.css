@@ -1,0 +1,7 @@
+.expanded-entry {
+  display: block;
+}
+
+.collapsed-entry {
+  display: none;
+}

@@ -50,6 +50,7 @@ var CharacterSchema = new Schema({
     default: Date.now
   },
   background: {
+    appearance : { type: String },
     backstory: { type: String },
     generalization: { type: String },
     trait: { type: String },

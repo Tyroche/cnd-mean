@@ -28,12 +28,19 @@ var ContractSchema = new Schema({
     required: 'Details are required',
     trim: true
   },
-  rewards: {
-    type: String,
-    default: '',
-    required: 'Rewards are required',
-    trim: true
-  },
+  rewards: [{
+    unit: {
+      type: String,
+      default: 'riphons',
+      required: 'Units are required'
+    },
+    amount: {
+      type: Number,
+      default: 0,
+      required: 'Reward amount is required'
+    },
+    condition: { type: String }
+  }],
   expectedPlayStyle: [{
     type: String
   }],

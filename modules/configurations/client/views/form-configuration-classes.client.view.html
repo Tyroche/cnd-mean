@@ -1,25 +1,41 @@
 <div class="form-group" show-errors>
-  <label class="control-label" for="classes">Available Classes</label>
+  <h3>Available Classes</h3>
   <button type="button" ng-click="vm.addClass()" class="btn btn-default">Add Class</button>
-  <div ng-repeat="c in vm.configuration.classes">
+  <hr style="padding-bottom: 0px; margin-bottom: 0px;"/>
+  <div ng-repeat="c in vm.configuration.classes"  ng-click="vm.toggleClassVisibility($index)">
+
     <div class="row">
       <div class="col-sm-5">
         <label class="control-label" for="c.name">Name</label>
-        <input name="enabled" type="text" ng-model="c.name" class="form-control" required>
+        <input name="enabled"
+              type="text"
+              ng-model="c.name"
+              class="form-control"
+              ng-click="$event.stopPropagation()"
+              required>
       </div>
+
       <div class="col-sm-offset-1 col-sm-2">
-        <label class="control-label" for="c.hitDice">HD Type</label>
-        <input name="enabled" type="number" ng-model="c.hitDice" class="form-control" required>
+        <div ng-show="!classHidden[$index]">
+          <label class="control-label" for="c.hitDice">HD Type</label>
+          <input name="enabled" type="number" ng-model="c.hitDice" class="form-control" required>
+        </div>
+      </div>
+      <div class="col-sm-offset-2 col-sm-1">
+        <span class="glyphicon {{classHidden[$index] ? 'glyphicon-chevron-down' : 'glyphicon-chevron-left'}}" aria-hidden="true"></span>
       </div>
     </div>
-    <div class="row">
+
+          <div class="row" ng-class="{'collapsed-entry': classHidden[$index], 'expanded-entry': !classHidden[$index] }">
       <div class="col-sm-10">
         <label class="control-label" for="c.description">Class Description</label>
         <textarea name="enabled" ng-model="c.description" class="form-control" required
+          ng-click="$event.stopPropagation()"
           pleaceholder="Enter some information about this class (used in the Help Area for Character Creation)">
         </textarea>
       </div>
     </div>
-    <hr />
+    <hr style="padding-bottom: 0px; margin-bottom: 0px;"/>
+
   </div>
 </div>

@@ -25,9 +25,22 @@
 
         <div class="form-group" show-errors>
           <label class="control-label" for="rewards">Rewards</label>
-          <input name="rewards" type="text" ng-model="vm.contract.rewards" id="rewards" class="form-control" placeholder="Rewards" required>
-          <div ng-messages="vm.form.contractForm.rewards.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Rewards are required.</p>
+          <button type="button" ng-click="vm.addReward()" class="btn btn-default">Add Reward</button>
+          <div ng-repeat="c in vm.contract.rewards">
+            <div class="row">
+              <div class="col-sm-1">
+                <label class="control-label" for="c.amount">Amount</label>
+                <input name="enabled" type="number" ng-model="c.amount" class="form-control" required>
+              </div>
+              <div class="col-sm-4">
+                <label class="control-label" for="c.unit">Unit</label>
+                <input name="enabled" type="text" ng-model="c.unit" class="form-control" required>
+              </div>
+              <div class="col-sm-5">
+                <label class="control-label" for="c.unit">Condition</label>
+                <input name="enabled" type="text" ng-model="c.condition" class="form-control">
+              </div>
+            </div>
           </div>
         </div>
 

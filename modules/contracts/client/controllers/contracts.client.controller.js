@@ -17,6 +17,15 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.addReward = addReward;
+
+    // Add a reward
+    function addReward() {
+      if(!vm.contract.rewards) {
+        vm.contract.rewards = [];
+      }
+      vm.contract.rewards.push({});
+    }
 
     // Remove existing Contract
     function remove() {
