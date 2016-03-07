@@ -1,6 +1,6 @@
 <section>
   <div class="page-header">
-    <h1 data-ng-bind="vm.episode.name"></h1>
+    <h1>Session on {{vm.episode.sessionDate | date: 'MM/dd/yy'}}</h1>
   </div>
   <div class="pull-right"
        data-ng-show="vm.episode.isCurrentUserOwner">

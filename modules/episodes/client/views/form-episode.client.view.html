@@ -5,13 +5,66 @@
   <div class="col-md-12">
     <form name="vm.form.episodeForm" class="form-horizontal" ng-submit="vm.save(vm.form.episodeForm.$valid)" novalidate>
       <fieldset>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.episode.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.episodeForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Episode name is required.</p>
+
+        <div class="row">
+          <div class="col-md-3 form-group" show-errors>
+            <label for="sessionDate">Session Date</label>
+              <p class="input-group">
+                <input datepicker-popup
+                      type="text"
+                      id="sessionDate"
+                      ng-model="vm.episode.sessionDate"
+                      is-open="calendar.opened"
+                      class="form-control">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openCalendar()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </p>
+            </div>
+            <div class="col-md-offset-1 col-md-1">
+              <label for="maxAttendees">Attendees</label>
+              <input type="number"
+                ng-model="vm.episode.maxAttendees"
+                id="maxAttendees"
+                class="form-control att-entry">
+            </div>
+          </div>
+
+        <h3>Contracts</h3>
+        <div class="row">
+          <div class="col-sm-1">
+              <label class="control-label">Enabled</label>
+          </div>
+          <div class="col-sm-4">
+              <label class="control-label">Name</label>
+          </div>
+          <div class="col-sm-3">
+              <label class="control-label">Max Profit</label>
+          </div>
+          <div class="col-sm-3">
+              <label class="control-label">Votes</label>
           </div>
         </div>
+        <br/>
+
+        <div ng-repeat="c in vm.contracts" class="row">
+          <div class="col-sm-1">
+            <input type="checkbox" ng-click="vm.toggleEnabled()" />
+          </div>
+          <div class="col-sm-4">
+            {{c.name}}
+          </div>
+          <div class="col-sm-3">
+            {{ vm.sumRewards(c) }}
+          </div>
+          <div class="col-sm-3">
+            {{c.voters.length}}
+          </div>
+        </div>
+        <hr/>
+
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.episode._id ? 'Update' : 'Create'}}</button>
         </div>

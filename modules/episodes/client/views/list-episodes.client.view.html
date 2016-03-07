@@ -6,14 +6,7 @@
     <a data-ng-repeat="episode in vm.episodes"
        data-ui-sref="episodes.view({ episodeId: episode._id })"
        class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="episode.created | date:'mediumDate'"></span>
-        by
-        <span data-ng-if="episode.user" data-ng-bind="episode.user.displayName"></span>
-        <span data-ng-if="!episode.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" data-ng-bind="episode.name"></h4>
+      <h4 class="list-group-item-heading">Session on {{episode.sessionDate | date: 'MM/dd/yy'}}</h4>
     </a>
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.episodes.$resolved && !vm.episodes.length">

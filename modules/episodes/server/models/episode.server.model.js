@@ -10,20 +10,22 @@ var mongoose = require('mongoose'),
  * Episode Schema
  */
 var EpisodeSchema = new Schema({
-  name: {
-    type: String,
-    default: '',
-    required: 'Please fill Episode name',
-    trim: true
+  maxAttendees: {
+    type: Number,
+    required: 'You must specify the maximum number of attendees'
   },
-  created: {
+  contracts: [{
+    type: Schema.ObjectId,
+    ref: 'Contract'
+  }],
+  sessionDate: {
     type: Date,
     default: Date.now
   },
-  user: {
+  attendees: [{
     type: Schema.ObjectId,
     ref: 'User'
-  }
+  }]
 });
 
 mongoose.model('Episode', EpisodeSchema);
