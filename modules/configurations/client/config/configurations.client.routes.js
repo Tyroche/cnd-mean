@@ -49,6 +49,18 @@
           pageTitle: 'Edit Configuration {{ configurationResolve.name }}'
         }
       })
+      .state('configurations.edit.basics', {
+        url: '/basics',
+        templateUrl: 'modules/configurations/client/views/form-configuration-basics.client.view.html'
+      })
+      .state('configurations.edit.races', {
+        url: '/races',
+        templateUrl: 'modules/configurations/client/views/form-configuration-races.client.view.html'
+      })
+      .state('configurations.edit.classes', {
+        url: '/classes',
+        templateUrl: 'modules/configurations/client/views/form-configuration-classes.client.view.html'
+      })
       .state('configurations.view', {
         url: '/:configurationId',
         templateUrl: 'modules/configurations/client/views/view-configuration.client.view.html',

@@ -1,95 +1,37 @@
 <section>
   <div class="page-header">
-    <h1>{{vm.configuration._id ? 'Edit Configuration' : 'New Configuration'}}</h1>
+    <h1>Manage Campaign Configuration</h1>
   </div>
-  <div class="col-md-12">
-    <form name="vm.form.configurationForm" class="form-horizontal" ng-submit="vm.save(vm.form.configurationForm.$valid)" novalidate>
-      <fieldset>
+  <div class="row">
+    <nav class="col-sm-2 col-md-2">
+      <ul class="nav nav-pills nav-stacked">
+        <li ui-sref-active="inactive">
+          <a ui-sref="configurations.edit.basics">Basics</a>
+        </li>
+        <li ui-sref-active="inactive">
+          <a ui-sref="configurations.edit.races">Races</a>
+        </li>
+        <li ui-sref-active="inactive">
+          <a ui-sref="configurations.edit.classes">Classes</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="col-sm-10 col-md-10 settings-view">
+      <div class="col-md-12">
+      <form name="vm.form.configurationForm" class="form-horizontal" ng-submit="vm.save(vm.form.configurationForm.$valid)" novalidate>
+        <fieldset>
 
-        <div class="row">
-          <div class="form-group col-sm-7" show-errors>
-            <label class="control-label" for="name">Name</label>
-            <input name="name" type="text" ng-model="vm.configuration.name" id="name" class="form-control" placeholder="Name" required>
-            <div ng-messages="vm.form.configurationForm.name.$error" role="alert">
-              <p class="help-block error-text" ng-message="required">Configuration name is required.</p>
-            </div>
+          <div ui-view></div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">{{vm.configuration._id ? 'Update' : 'Create'}}</button>
           </div>
-
-          <div class="col-sm-offset-1 col-sm-1 text-center">
-            <div class="form-group" show-errors>
-              <label class="control-label" for="enabled">Enabled</label>
-              <input name="enabled" type="checkbox" ng-model="vm.configuration.enabled" id="enabled"  class="form-control" required>
-              <div ng-messages="vm.form.configurationForm.enabled.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Enabled/Disabled cannot be ambiguous.</p>
-              </div>
-            </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
           </div>
-        </div>
-
-        <!-- Class Declarations -->
-        <div class="form-group" show-errors>
-          <label class="control-label" for="classes">Available Classes</label>
-          <button type="button" ng-click="vm.addClass()" class="btn btn-default">Add Class</button>
-          <div ng-repeat="c in vm.configuration.classes">
-            <div class="row">
-              <div class="col-sm-5">
-                <label class="control-label" for="c.name">Name</label>
-                <input name="enabled" type="text" ng-model="c.name" class="form-control" required>
-              </div>
-              <div class="col-sm-offset-1 col-sm-2">
-                <label class="control-label" for="c.hitDice">HD Type</label>
-                <input name="enabled" type="number" ng-model="c.hitDice" class="form-control" required>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-10">
-                <label class="control-label" for="c.description">Class Description</label>
-                <textarea name="enabled" ng-model="c.description" class="form-control" required
-                  pleaceholder="Enter some information about this class (used in the Help Area for Character Creation)">
-                </textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Race Declarations -->
-        <div class="form-group" show-errors>
-          <label class="control-label" for="races">Available Races</label>
-          <button type="button" ng-click="vm.addRace()" class="btn btn-default">Add Race</button>
-          <div ng-repeat="c in vm.configuration.races">
-            <div class="row">
-              <div class="col-sm-5">
-                <label class="control-label" for="c.name">Name</label>
-                <input name="enabled" type="text" ng-model="c.name" class="form-control" required>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-10">
-                <label class="control-label" for="c.description">Race Description</label>
-                <textarea name="enabled" ng-model="c.description" class="form-control" required
-                  pleaceholder="Enter some information about this race (used in the Help Area for Character Creation)">
-                </textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group" show-errors>
-          <label class="control-label" for="maximumSessionSize">Maximum Session Size</label>
-          <input name="maximumSessionSize" type="text" ng-model="vm.configuration.maximumSessionSize" id="maximumSessionSize" class="form-control" default="4" required>
-          <div ng-messages="vm.form.configurationForm.maximumSessionSize.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Max Session Size is required.</p>
-          </div>
-        </div>
-
-
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.configuration._id ? 'Update' : 'Create'}}</button>
-        </div>
-        <div ng-show="vm.error" class="text-danger">
-          <strong ng-bind="vm.error"></strong>
-        </div>
-      </fieldset>
-    </form>
+        </fieldset>
+      </form>
+    </div>
+    </div>
   </div>
 </section>
