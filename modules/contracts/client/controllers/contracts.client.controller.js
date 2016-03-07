@@ -24,14 +24,15 @@
 
     // Add a playstyle
     function addPlaystyle() {
-      if(!vm.contract.expectedPlaystyles) {
-        vm.contract.expectedPlaystyles = [];
+      if(!vm.contract.expectedPlayStyles) {
+        vm.contract.expectedPlayStyles = [];
       }
-      vm.contract.expectedPlaystyles.push('');
+      vm.contract.expectedPlayStyles.push("");
+      console.log(vm.contract.expectedPlayStyles);
     }
 
     function removePlaystyle(index) {
-      vm.contract.expectedPlaystyles.splice(index, 1);
+      vm.contract.expectedPlayStyles.splice(index, 1);
     }
 
     // Add a reward
@@ -55,6 +56,8 @@
 
     // Save Contract
     function save(isValid) {
+      console.log(vm.contract.expectedPlayStyles);
+
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.contractForm');
         return false;

@@ -55,10 +55,10 @@
               </button>
             </div>
           </div>
-          <div ng-repeat="c in vm.contract.expectedPlaystyles track by $index">
+          <div ng-repeat="c in vm.contract.expectedPlayStyles track by $index">
             <div class="row">
               <div class="col-sm-5">
-                <input style="margin-top: 6px;" type="text" ng-model="vm.contract.expectedPlaystyles[$index]" class="form-control" required>
+                <input style="margin-top: 6px;" type="text" ng-model="vm.contract.expectedPlayStyles[$index]" class="form-control" required>
               </div>
               <div class="col-sm-1">
                 <button style="margin-top: 6px;" type="button" class="btn btn-default" ng-click="vm.removePlaystyle($index)">

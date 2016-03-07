@@ -49,7 +49,7 @@ var ContractSchema = new Schema({
     },
     condition: { type: String }
   }],
-  expectedPlayStyle: [{
+  expectedPlayStyles: [{
     type: String
   }],
   voters: [{
