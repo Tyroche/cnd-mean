@@ -29,7 +29,7 @@
       if(!vm.configuration.races) {
         vm.configuration.races = [];
       }
-      $scope.raceHidden.push(true);
+      $scope.raceHidden.push(false);
       vm.configuration.races.push({});
     }
 
@@ -37,6 +37,7 @@
       if(!vm.configuration.classes) {
         vm.configuration.classes = [];
       }
+      vm.classHidden.push(false);
       vm.configuration.classes.push({});
     }
 

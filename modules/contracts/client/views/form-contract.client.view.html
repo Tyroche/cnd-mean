@@ -6,33 +6,89 @@
     <form name="vm.form.contractForm" class="form-horizontal" ng-submit="vm.save(vm.form.contractForm.$valid)" novalidate>
       <fieldset>
 
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Contract Name</label>
-          <input name="name" type="text" ng-model="vm.contract.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.contractForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Contract name is required.</p>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="vm.contract.name">Contract Name</label>
+              <input name="name" type="text" ng-model="vm.contract.name" id="name" class="form-control" placeholder="Name" required>
+              <div ng-messages="vm.form.contractForm.name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Contract name is required.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-offset-1 col-md-4">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="vm.contract.client">Client Name</label>
+              <input name="client" type="text" ng-model="vm.contract.client" id="client" class="form-control" placeholder="Client Name" required>
+              <div ng-messages="vm.form.contractForm.client.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Client name is required.</p>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="form-group" show-errors>
-          <label class="control-label" for="details">Contract Details</label>
-          <textarea name="details" type="text" ng-model="vm.contract.details" id="details" class="form-control" placeholder="Details" required>
-          </textarea>
-          <div ng-messages="vm.form.contractForm.details.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Contract Details are required.</p>
+          <div class="row">
+            <div class="col-md-10">
+              <label class="control-label" for="details">Contract Details</label>
+              <textarea name="details" type="text" ng-model="vm.contract.details" id="details" class="form-control" placeholder="Details" required>
+              </textarea>
+              <div ng-messages="vm.form.contractForm.details.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Contract Details are required.</p>
+              </div>
+            </div>
           </div>
         </div>
 
+        <hr />
+
+
+        <!-- Expected Playstyles -->
         <div class="form-group" show-errors>
-          <label class="control-label" for="rewards">Rewards</label>
-          <button type="button" ng-click="vm.addReward()" class="btn btn-default">Add Reward</button>
+          <div class="row">
+            <div class="col-sm-2">
+              <label class="control-label" for="expectedPlaystyles">Expected Playstyles</label>
+            </div>
+            <div class="col-sm-1">
+              <button type="button" ng-click="vm.addPlaystyle()" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+          <div ng-repeat="c in vm.contract.expectedPlaystyles track by $index">
+            <div class="row">
+              <div class="col-sm-5">
+                <input style="margin-top: 6px;" type="text" ng-model="vm.contract.expectedPlaystyles[$index]" class="form-control" required>
+              </div>
+              <div class="col-sm-1">
+                <button style="margin-top: 6px;" type="button" class="btn btn-default" ng-click="vm.removePlaystyle($index)">
+                  <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <!-- Rewards -->
+        <div class="form-group" show-errors>
+          <div class="row">
+            <div class="col-sm-2">
+              <label class="control-label" for="rewards">Rewards</label>
+            </div>
+            <div class="col-sm-1">
+              <button type="button" ng-click="vm.addReward()" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
           <div ng-repeat="c in vm.contract.rewards">
             <div class="row">
               <div class="col-sm-1">
                 <label class="control-label" for="c.amount">Amount</label>
-                <input name="enabled" type="number" ng-model="c.amount" class="form-control" required>
+                <input name="enabled" type="number" ng-model="c.amount" class="form-control att-entry" required>
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-3">
                 <label class="control-label" for="c.unit">Unit</label>
                 <input name="enabled" type="text" ng-model="c.unit" class="form-control" required>
               </div>
@@ -40,9 +96,16 @@
                 <label class="control-label" for="c.unit">Condition</label>
                 <input name="enabled" type="text" ng-model="c.condition" class="form-control">
               </div>
+              <div class="col-sm-1">
+                <br />
+                <button style="margin-top: 6px;" type="button" class="btn btn-default" ng-click="vm.removeReward($index)">
+                  <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
+
 
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.contract._id ? 'Update' : 'Create'}}</button>

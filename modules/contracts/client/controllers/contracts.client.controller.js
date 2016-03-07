@@ -18,6 +18,23 @@
     vm.remove = remove;
     vm.save = save;
     vm.addReward = addReward;
+    vm.removeReward = removeReward;
+    vm.addPlaystyle = addPlaystyle;
+    vm.removePlaystyle = removePlaystyle;
+
+    // Add a playstyle
+    function addPlaystyle() {
+      if(!vm.contract.expectedPlaystyles) {
+        vm.contract.expectedPlaystyles = [];
+      }
+      vm.contract.expectedPlaystyles.push("");
+      console.log(vm.contract.expectedPlaystyles);
+    }
+
+    function removePlaystyle(index) {
+      vm.contract.expectedPlaystyles.splice(index, 1);
+      console.log(vm.contract.expectedPlaystyles);
+    }
 
     // Add a reward
     function addReward() {
@@ -25,6 +42,10 @@
         vm.contract.rewards = [];
       }
       vm.contract.rewards.push({});
+    }
+
+    function removeReward(index) {
+      vm.contract.rewards.splice(index, 1);
     }
 
     // Remove existing Contract
