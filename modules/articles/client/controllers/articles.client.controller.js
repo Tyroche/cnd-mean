@@ -78,6 +78,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 
     // Find existing Article
     $scope.findOne = function () {
+      console.log($stateParams.articleId);
       $scope.article = Articles.get({
         articleId: $stateParams.articleId
       });
