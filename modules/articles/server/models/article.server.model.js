@@ -25,9 +25,9 @@ var ArticleSchema = new Schema({
     default: '',
     trim: true
   },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
+  author: {
+    type: String,
+    default: 'Associated Press'
   }
 });
 
