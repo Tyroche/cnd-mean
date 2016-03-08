@@ -26,6 +26,18 @@ var ConfigurationSchema = new Schema({
     required: 'You must specify a maximum Session Size',
     default: 5
   },
+  currencies: [{
+    relativeValue: {
+      type: Number,
+      required: 'Relative value must be defined',
+      default: 1
+    },
+    unit: {
+      type: String,
+      required: 'The unit (plural) must be defined',
+      default: 'gold'
+    }
+  }],
   classes: [{
     name: {
       type: String,

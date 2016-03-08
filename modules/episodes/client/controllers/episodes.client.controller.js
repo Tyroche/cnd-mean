@@ -43,23 +43,21 @@
 
     // Summarize all monetary rewards for this contract
     function sumRewards(contract) {
-      var sumRewards = 0;
 
-      if (contract.rewards.length == 1) {
-        sumRewards = contract.rewards[0].amount;
-        return "" + sumRewards + " riphons";
+      if (contract.rewards.length === 1) {
+        return "" + contract.rewards[0].amount + " riphons";
       }
 
-      sumRewards = contract.rewards.reduce(function(prev, curr) {
+      var rewards = contract.rewards.reduce(function(prev, curr) {
         // Check to see if curr's unit indicates it's monetary
-        if (curr.unit === 'riphons' || curr.unit === 'Riphons') {
+        if (curr.unit.toLowerCase() === 'riphons') {
           // If prev is an obj, it will have a unit; otherwise it's just a value
           if (!prev.unit) {
             return prev + curr.amount;
           }
 
           // otherwise check to see if it's monetary
-          if (prev.unit === 'riphons' || prev.unit === 'Riphons') {
+          if (prev.unit.toLowerCase() === 'riphons') {
             return prev.amount + curr.amount;
           }
 
@@ -70,7 +68,7 @@
         // Default: Return the amount of the previous if it exists or 0
         return prev.unit ? prev.amount : 0;
       });
-      return "" + sumRewards + " riphons";
+      return "" + rewards + " riphons";
     }
 
     // Remove existing Episode
