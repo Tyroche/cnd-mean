@@ -37,7 +37,7 @@
       if(!vm.configuration.classes) {
         vm.configuration.classes = [];
       }
-      vm.classHidden.push(false);
+      $scope.classHidden.push(false);
       vm.configuration.classes.push({});
     }
 

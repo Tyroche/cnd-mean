@@ -138,6 +138,10 @@
         return false;
       }
 
+      if (!vm.character.player) {
+        vm.character.player = Authentication.user;
+      }
+
       // TODO: move create/update logic to service
       if (vm.character._id) {
         vm.character.$update(successCallback, errorCallback);
