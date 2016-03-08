@@ -5,13 +5,16 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
   function ($scope, $stateParams, $location, Authentication, Articles) {
     $scope.authentication = Authentication;
 
+    $scope.isAdmin = function() {
+      return Authentication.user.roles.indexOf('admin') > -1;
+    };
+
     // Create new Article
     $scope.create = function (isValid) {
       $scope.error = null;
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'articleForm');
-
         return false;
       }
 
