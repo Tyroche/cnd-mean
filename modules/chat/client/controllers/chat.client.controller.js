@@ -19,7 +19,6 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     // Add an event listener to the 'chatMessage' event
     Socket.on('chatMessage', function (message) {
       $scope.messages.unshift(message);
-      console.log(message);
     });
 
     // Do a roll
@@ -41,7 +40,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
       };
 
       Socket.emit('chatMessage', message);
-    };
+    }
 
     // Send a Chat Message
     function sendChat (msg) {
@@ -52,7 +51,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
       // Emit a 'chatMessage' message event
       console.log('Chat ' + msg);
       Socket.emit('chatMessage', message);
-    };
+    }
 
 
     // Create a controller method for sending messages

@@ -1,35 +1,43 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-<div class="row">
-  <div class="form-group" show-errors>
-    <label class="control-label" for="background.trait">Personality Trait</label>
+<div class="row form-group">
+  <label class="control-label" for="background.trait">Personality Trait</label>
+  <p class="input-group" show-errors>
     <input name="trait" type="text" ng-model="vm.character.background.trait" id="trait" class="form-control" placeholder="Personality Trait"></input>
-    <button type="button"><i class="fa fa-random"></i></button>
-  </div>
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ><i class="fa fa-random"></i></button>
+    </span>
+  </p>
 </div>
 
-<div class="row">
-  <div class="form-group" show-errors>
-    <label class="control-label" for="background.ideal">Ideology</label>
+<div class="row form-group">
+  <label class="control-label" for="background.ideal">Ideology</label>
+  <p class="input-group" show-errors>
     <input name="ideal" type="text" ng-model="vm.character.background.ideal" id="ideal" class="form-control" placeholder="Ideology"></input>
-    <button type="button"><i class="fa fa-random"></i></button>
-  </div>
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ><i class="fa fa-random"></i></button>
+    </span>
+  </p>
 </div>
 
-<div class="row">
-  <div class="form-group" show-errors>
-    <label class="control-label" for="background.bond">Bond</label>
+<div class="row form-group">
+  <label class="control-label" for="background.bond">Bond</label>
+  <p class="input-group" show-errors>
     <input name="bond" type="text" ng-model="vm.character.background.bond" id="bond" class="form-control" placeholder="Bond"></input>
-    <button type="button"><i class="fa fa-random"></i></button>
-  </div>
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ><i class="fa fa-random"></i></button>
+    </span>
+  </p>
 </div>
 
-<div class="row">
-  <div class="form-group" show-errors>
-    <label class="control-label" for="background.flaw">Character Flaw</label>
+<div class="row form-group">
+  <label class="control-label" for="background.flaw">Character Flaw</label>
+  <p class="input-group" show-errors>
     <input name="flaw" type="text" ng-model="vm.character.background.flaw" id="flaw" class="form-control" placeholder="Character Flaw"></input>
-    <button type="button"><i class="fa fa-random"></i></button>
-  </div>
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ><i class="fa fa-random"></i></button>
+    </span>
+  </p>
 </div>
 
 <hr />

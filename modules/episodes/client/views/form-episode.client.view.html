@@ -16,13 +16,14 @@
                       ng-model="vm.episode.sessionDate"
                       is-open="calendar.opened"
                       class="form-control">
-                <span class="input-group-btn">
+                <span class="input-group-btn" />
                   <button type="button" class="btn btn-default" ng-click="openCalendar()">
                     <i class="glyphicon glyphicon-calendar"></i>
                   </button>
                 </span>
               </p>
             </div>
+
             <div class="col-md-offset-1 col-md-1">
               <label for="maxAttendees">Attendees</label>
               <input type="number"
@@ -51,7 +52,7 @@
 
         <div ng-repeat="c in vm.contracts" class="row">
           <div class="col-sm-1">
-            <input type="checkbox" ng-click="vm.toggleEnabled()" />
+            <input type="checkbox" ng-model="enabled[$index]"/>
           </div>
           <div class="col-sm-4">
             {{c.name}}

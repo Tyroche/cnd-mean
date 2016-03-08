@@ -12,4 +12,36 @@
     </a>
   </div>
   <p class="lead" data-ng-bind="vm.episode.content"></p>
+
+  <h3 ng-show="vm.episode.contracts.length > 0">Contracts</h3>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-5">
+      <b>Contract Name</b>
+    </div>
+
+    <div class="col-md-offset-1 col-md-2">
+      <b>Max Profit</b>
+    </div>
+
+    <div class="col-md-1">
+      <b>Votes</b>
+    </div>
+  </div>
+
+  <div ng-repeat="contract in vm.formEnabledContracts" class="row">
+  <div class="col-md-1">
+    <button>Vote</button>
+  </div>
+    <div class="col-md-5">
+      {{contract.name}}
+    </div>
+
+    <div class="col-md-offset-1 col-md-2">
+      {{vm.sumRewards(contract)}}
+    </div>
+
+    <div class="col-md-1">
+      {{contract.voters.length}}
+    </div>
+  </div>
 </section>

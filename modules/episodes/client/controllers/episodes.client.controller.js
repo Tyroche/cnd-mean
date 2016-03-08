@@ -14,6 +14,7 @@
     vm.authentication = Authentication;
     vm.maximumSessionSize = 4;
     vm.episode = episode;
+    vm.formEnabledContracts = [];
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
@@ -26,7 +27,6 @@
     };
     $scope.openCalendar = function() {
       $scope.calendar.opened = true;
-      console.log($scope.calendar.opened);
     };
 
     // Get possible configurations
@@ -37,8 +37,17 @@
     });
 
     // Get possible contracts
-    ContractsService.query({ elected: false, enabled: true }, function(res) {
+    ContractsService.query({}, function(res) {
+      // Get All contracts
       vm.contracts = res;
+
+      var contractEnabled = function (obj){
+        return vm.episode.contracts.indexOf(obj._id) > -1;
+      };
+
+      // Match enabled Contracts and figure out which are enabled in scope
+      vm.formEnabledContracts = vm.contracts.filter(contractEnabled);
+      $scope.enabled = vm.contracts.map(contractEnabled);
     });
 
     // Summarize all monetary rewards for this contract
@@ -84,6 +93,11 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.form.episodeForm');
         return false;
       }
+
+      vm.episode.contracts = vm.contracts.filter(function (contract){
+        return $scope.enabled[vm.contracts.indexOf(contract)];
+      });
+
 
       // TODO: move create/update logic to service
       if (vm.episode._id) {
