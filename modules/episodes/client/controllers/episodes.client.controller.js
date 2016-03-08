@@ -20,6 +20,7 @@
     vm.remove = remove;
     vm.save = save;
     vm.sumRewards = sumRewards;
+    vm.getRemainingSlots = getRemainingSlots;
 
     // Calendar stuff
     $scope.calendar = {
@@ -49,6 +50,10 @@
       vm.formEnabledContracts = vm.contracts.filter(contractEnabled);
       $scope.enabled = vm.contracts.map(contractEnabled);
     });
+
+    function getRemainingSlots() {
+      return vm.episode.maxAttendees - vm.episode.attendees.length;
+    }
 
     // Summarize all monetary rewards for this contract
     function sumRewards(contract) {

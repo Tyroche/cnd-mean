@@ -11,37 +11,54 @@
       <i class="glyphicon glyphicon-trash"></i>
     </a>
   </div>
-  <p class="lead" data-ng-bind="vm.episode.content"></p>
-
-  <h3 ng-show="vm.episode.contracts.length > 0">Contracts</h3>
-  <div class="row">
-    <div class="col-md-offset-1 col-md-5">
-      <b>Contract Name</b>
-    </div>
-
-    <div class="col-md-offset-1 col-md-2">
-      <b>Max Profit</b>
-    </div>
-
-    <div class="col-md-1">
-      <b>Votes</b>
+  <div class="form-group">
+    <label class="control-label">Character Selection</label><br />
+    <div class="row">
+      <div class="col-md-4">
+        <select class="form-control">
+            <option>Vorenus Magnus</option>
+            <option>Browr Trowr</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-default">I will attend</button>
+      </div>
     </div>
   </div>
+  <hr>
 
-  <div ng-repeat="contract in vm.formEnabledContracts" class="row">
-  <div class="col-md-1">
-    <button>Vote</button>
+  <h3>Attendees</h3>
+  <div ng-show="!vm.attendees">
+    <p>There are no players signed up currently.</p>
   </div>
-    <div class="col-md-5">
-      {{contract.name}}
+  <div ng-show="vm.attendees">
+    <div ng-repeat="c in vm.attendees">
+      {{c}}
     </div>
+  </div>
+  <p>There are <b>{{vm.getRemainingSlots()}} player slots</b> available for this session.</p>
+  <hr>
 
-    <div class="col-md-offset-1 col-md-2">
-      {{vm.sumRewards(contract)}}
+  <h3>Contracts</h3>
+  <div ng-show="vm.episode.contracts.length > 0">
+    <div ng-repeat="contract in vm.formEnabledContracts" class="well sm-well">
+      <div class="row">
+        <h4 class="col-md-8" ng-bind="contract.name"></h4>
+      </div>
+      <p><i ng-bind="contract.details"></i></p>
+      <div class="row"><b>
+        <div class="col-sm-2">Reward</div>
+        <div class="col-sm-8">Condition</div></b>
+      </div>
+      <div ng-repeat="reward in contract.rewards" class="row">
+        <div class="col-sm-2">{{reward.amount}} {{reward.unit}}</div>
+        <div class="col-sm-8" ng-bind="reward.condition"></div>
+      </div>
+      <br>
+      There are a total of <b>{{contract.voters.length}} votes</b> for this contract.
     </div>
-
-    <div class="col-md-1">
-      {{contract.voters.length}}
-    </div>
+  </div>
+  <div ng-show="!vm.episode.contracts || vm.episode.contracts.length == 0">
+    Contracts have not been assigned for this episode.
   </div>
 </section>

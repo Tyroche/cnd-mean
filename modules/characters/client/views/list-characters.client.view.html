@@ -3,17 +3,23 @@
     <h1>Characters</h1>
   </div>
   <div class="list-group">
+    <div class="row">
+      <div class="col-sm-4"><b>Character Name</b></div>
+      <div class="col-sm-2"><b>Level</b></div>
+      <div class="col-sm-2"><b>Class</b></div>
+      <div class="col-sm-2"><b>Race</b></div>
+      <div class="col-sm-2"><b>Sessions</b></div>
+    </div>
     <a data-ng-repeat="character in vm.characters"
        data-ui-sref="characters.view({ characterId: character._id })"
        class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="character.created | date:'mediumDate'"></span>
-        by
-        <span data-ng-if="character.user" data-ng-bind="character.user.displayName"></span>
-        <span data-ng-if="!character.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" data-ng-bind="character.name"></h4>
+      <div class="row">
+        <div class="col-sm-4"><b ng-bind="character.name"></b></div>
+        <div class="col-sm-2" ng-bind="character.level"></div>
+        <div class="col-sm-2" ng-bind="character.playableClass"></div>
+        <div class="col-sm-2" ng-bind="character.race"></div>
+        <div class="col-sm-2" ng-bind="character.numSessions"></div>
+      </div>
     </a>
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.characters.$resolved && !vm.characters.length">
