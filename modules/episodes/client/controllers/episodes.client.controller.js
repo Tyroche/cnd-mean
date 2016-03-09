@@ -21,8 +21,88 @@
     vm.save = save;
     vm.sumRewards = sumRewards;
     vm.getRemainingSlots = getRemainingSlots;
+    vm.isUserPlaying = isUserPlaying;
+    vm.toggleAttendance = toggleAttendance;
+    vm.voteFor = voteFor;
+    vm.getPlayerVotedContract = getPlayerVotedContract;
 
-    // Calendar stuff
+    //--View Accessible Ops-----------------------------------------------------
+    // Player is in session
+    function isUserPlaying() {
+      return vm.episode.attendees.indexOf(Authentication.user._id) > -1;
+    }
+
+    function getRemainingSlots() {
+      return vm.episode.maxAttendees - vm.episode.attendees.length;
+    }
+
+    function toggleAttendance() {
+      // Prevent non-consultants from enlisting
+      if(Authentication.user.roles.indexOf('consultant') === -1) { return; }
+
+      var attendanceIndex = vm.episode.attendees.indexOf(Authentication.user._id);
+
+      if (attendanceIndex > -1) {
+        vm.episode.attendees.splice(attendanceIndex, 1);
+        return;
+      }
+
+      vm.episode.attendees.push(Authentication.user._id);
+    }
+
+    function voteFor(index) {
+      // Filter out users who are not playing
+      if (!vm.isUserPlaying()) { return; }
+
+      var alreadyVoted = vm.formEnabledContracts.forEach(function(obj) {
+        if (!obj.voters) { return; }
+
+        var voterIndex = obj.voters.indexOf(Authentication.user._id);
+        if (voterIndex > -1) {
+          obj.voters.splice(voterIndex, 1);
+        }
+      });
+
+      if(!vm.formEnabledContracts[index].voters) { vm.formEnabledContracts[index].voters = []; }
+      vm.formEnabledContracts[index].voters.push(Authentication.user._id);
+    }
+
+    function getPlayerVotedContract() {
+      return vm.formEnabledContracts.filter(function (obj) {
+        return obj.voters.indexOf(Authentication.user._id) > -1;
+      })[0];
+    }
+
+    // Summarize all monetary rewards for this contract
+    function sumRewards(contract) {
+
+      if (contract.rewards.length === 1) {
+        return "" + contract.rewards[0].amount + " riphons";
+      }
+
+      var rewards = contract.rewards.reduce(function(prev, curr) {
+        // Check to see if curr's unit indicates it's monetary
+        if (curr.unit.toLowerCase() === 'riphons') {
+          // If prev is an obj, it will have a unit; otherwise it's just a value
+          if (!prev.unit) {
+            return prev + curr.amount;
+          }
+          // otherwise check to see if it's monetary
+          if (prev.unit.toLowerCase() === 'riphons') {
+            return prev.amount + curr.amount;
+          }
+
+          // Otherwise just return the current value
+          return curr.amount;
+        }
+
+        // Default: Return the amount of the previous if it exists or 0
+        return prev.unit ? prev.amount : 0;
+      });
+      return "" + rewards + " riphons";
+    }
+
+    //--CALENDAR----------------------------------------------------------------
     $scope.calendar = {
       opened: false
     };
@@ -30,6 +110,7 @@
       $scope.calendar.opened = true;
     };
 
+    //--DB Ops------------------------------------------------------------------
     // Get possible configurations
     ConfigurationsService.query({ enabled: true }, function(res) {
       if (!vm.episode.maxAttendees || vm.episode.maxAttendees === 0){
@@ -51,40 +132,7 @@
       $scope.enabled = vm.contracts.map(contractEnabled);
     });
 
-    function getRemainingSlots() {
-      return vm.episode.maxAttendees - vm.episode.attendees.length;
-    }
-
-    // Summarize all monetary rewards for this contract
-    function sumRewards(contract) {
-
-      if (contract.rewards.length === 1) {
-        return "" + contract.rewards[0].amount + " riphons";
-      }
-
-      var rewards = contract.rewards.reduce(function(prev, curr) {
-        // Check to see if curr's unit indicates it's monetary
-        if (curr.unit.toLowerCase() === 'riphons') {
-          // If prev is an obj, it will have a unit; otherwise it's just a value
-          if (!prev.unit) {
-            return prev + curr.amount;
-          }
-
-          // otherwise check to see if it's monetary
-          if (prev.unit.toLowerCase() === 'riphons') {
-            return prev.amount + curr.amount;
-          }
-
-          // Otherwise just return the current value
-          return curr.amount;
-        }
-
-        // Default: Return the amount of the previous if it exists or 0
-        return prev.unit ? prev.amount : 0;
-      });
-      return "" + rewards + " riphons";
-    }
-
+    //--CRUD--------------------------------------------------------------------
     // Remove existing Episode
     function remove() {
       if (confirm('Are you sure you want to delete?')) {
