@@ -3,11 +3,24 @@
     <h1>Episodes</h1>
   </div>
   <div class="list-group">
+    <div class="row">
+      <div class="col-sm-3"><b>Date</b></div>
+      <div class="col-sm-5"><b>Contract with Most Votes</b></div>
+      <div class="col-sm-2"><b>Slots Available</b></div>
+    </div>
+
     <a data-ng-repeat="episode in vm.episodes"
        data-ui-sref="episodes.view({ episodeId: episode._id })"
        class="list-group-item">
-      <h4 class="list-group-item-heading">Session on {{episode.sessionDate | date: 'MM/dd/yy'}}</h4>
+       <div class="row">
+        <div class="col-sm-3 list-group-item-heading">
+          <b>Session on {{episode.sessionDate | date: 'MM/dd/yy'}}</b>
+        </div>
+        <div class="col-sm-5" ng-bind="vm.getHighestVotedContract(episode)"></div>
+        <div class="col-sm-2">{{episode.maxAttendees - episode.attendees.length}} slots</div>
+      </div>
     </a>
+
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.episodes.$resolved && !vm.episodes.length">
     No Episodes yet, why don't you <a data-ui-sref="episodes.create">create one</a>?

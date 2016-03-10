@@ -75,7 +75,6 @@
 
     // Summarize all monetary rewards for this contract
     function sumRewards(contract) {
-
       if (contract.rewards.length === 1) {
         return "" + contract.rewards[0].amount + " riphons";
       }
@@ -151,8 +150,6 @@
         return $scope.enabled[vm.contracts.indexOf(contract)];
       });
 
-
-      // TODO: move create/update logic to service
       if (vm.episode._id) {
         vm.episode.$update(successCallback, errorCallback);
       } else {
