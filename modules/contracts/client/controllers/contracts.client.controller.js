@@ -6,9 +6,15 @@
     .module('contracts')
     .controller('ContractsController', ContractsController);
 
-  ContractsController.$inject = ['$scope', '$state', 'Authentication', 'contractResolve'];
+  ContractsController.$inject = [
+      '$scope',
+      '$state',
+      'Authentication',
+      'contractResolve',
+      'PlaystyleContractService',
+      'RewardsContractService'];
 
-  function ContractsController ($scope, $state, Authentication, contract) {
+  function ContractsController ($scope, $state, Authentication, contract, playstyleContractService, rewardsContractService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -20,30 +26,23 @@
     vm.addReward = addReward;
     vm.removeReward = removeReward;
     vm.addPlaystyle = addPlaystyle;
-    vm.removePlaystyle = removePlaystyle;
+    vm.removePlaystyle = removePlaystyle;    
 
     // Add a playstyle
     function addPlaystyle() {
-      if(!vm.contract.expectedPlayStyles) {
-        vm.contract.expectedPlayStyles = [];
-      }
-      vm.contract.expectedPlayStyles.push("");
+      playstyleContractService.addPlaystyle(vm.contract);
     }
 
     function removePlaystyle(index) {
-      vm.contract.expectedPlayStyles.splice(index, 1);
+      playstyleContractService.removePlaystyle(vm.contract, index);
     }
 
     // Add a reward
     function addReward() {
-      if(!vm.contract.rewards) {
-        vm.contract.rewards = [];
-      }
-      vm.contract.rewards.push({});
+      rewardsContractService.addReward(vm.contract);
     }
-
     function removeReward(index) {
-      vm.contract.rewards.splice(index, 1);
+      rewardsContractService.removeReward(vm.contract, index);
     }
 
     // Remove existing Contract
