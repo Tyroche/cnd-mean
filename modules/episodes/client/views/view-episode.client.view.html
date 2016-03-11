@@ -16,16 +16,25 @@
   <div class="form-group">
     <label class="control-label">Character Selection</label><br />
     <div class="row">
-      <div class="col-md-4">
-        <select class="form-control">
-            <option>Vorenus Magnus</option>
-            <option>Browr Trowr</option>
-        </select>
+
+      <div ng-if="vm.episode.isOpen">
+        <div class="col-md-4">
+          <select class="form-control">
+              <option>Vorenus Magnus</option>
+              <option>Browr Trowr</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-default" ng-click="vm.toggleAttendance()">
+            {{ vm.isUserPlaying() ? 'I will not attend' : 'I will attend' }}
+          </button>
+        </div>
       </div>
-      <div class="col-md-3">
-        <button class="btn btn-default" ng-click="vm.toggleAttendance()">
-          {{ vm.isUserPlaying() ? 'I will not attend' : 'I will attend' }}
-        </button>
+
+      <div ng-if="!vm.episode.isOpen">
+        <div class="col-md-10">
+          <p>You cannot sign up for this session because it is locked.</p>
+        </div>
       </div>
     </div>
   </div>

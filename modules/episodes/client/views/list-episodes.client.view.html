@@ -1,11 +1,13 @@
 <section>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
   <div class="page-header">
     <h1>Episodes</h1>
   </div>
   <div class="list-group">
-    <div class="row">
-      <div class="col-sm-3"><b>Date</b></div>
-      <div class="col-sm-5"><b>Contract with Most Votes</b></div>
+    <div class="row" style="margin-left: 2px; margin-right: 2px;">
+      <div class="col-sm-offset-1 col-sm-3"><b>Date</b></div>
+      <div class="col-sm-4"><b>Contract with Most Votes</b></div>
       <div class="col-sm-2"><b>Slots Available</b></div>
     </div>
 
@@ -13,10 +15,14 @@
        data-ui-sref="episodes.view({ episodeId: episode._id })"
        class="list-group-item">
        <div class="row">
+         <div class="col-sm-1 text-center">
+           <i ng-if="episode.isOpen" class="fa fa-exclamation-circle"></i>
+           <i ng-if="!episode.isOpen" class="fa fa-lock"></i>
+         </div>
         <div class="col-sm-3 list-group-item-heading">
           <b>Session on {{episode.sessionDate | date: 'MM/dd/yy'}}</b>
         </div>
-        <div class="col-sm-5" ng-bind="vm.getHighestVotedContract(episode)"></div>
+        <div class="col-sm-4" ng-bind="vm.getHighestVotedContract(episode)"></div>
         <div class="col-sm-2">{{episode.maxAttendees - episode.attendees.length}} slots</div>
       </div>
     </a>

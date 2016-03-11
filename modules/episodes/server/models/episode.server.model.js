@@ -10,6 +10,13 @@ var mongoose = require('mongoose'),
  * Episode Schema
  */
 var EpisodeSchema = new Schema({
+  isOpen: {
+    type: Boolean,
+    default: true
+  },
+  summary: {
+    type: String
+  },
   maxAttendees: {
     type: Number,
     required: 'You must specify the maximum number of attendees'

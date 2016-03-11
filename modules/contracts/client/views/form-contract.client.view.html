@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <hr />
+        <hr>
 
 
         <!-- Expected Playstyles -->
@@ -55,20 +55,23 @@
               </button>
             </div>
           </div>
+          <br>
           <div ng-repeat="c in vm.contract.expectedPlayStyles track by $index">
             <div class="row">
-              <div class="col-sm-5">
-                <input style="margin-top: 6px;" type="text" ng-model="vm.contract.expectedPlayStyles[$index]" class="form-control" required>
-              </div>
-              <div class="col-sm-1">
-                <button style="margin-top: 6px;" type="button" class="btn btn-default" ng-click="vm.removePlaystyle($index)">
-                  <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                </button>
+              <div class="col-sm-6">
+                <p class="input-group" show-errors>
+                <input type="text" ng-model="vm.contract.expectedPlayStyles[$index]" class="form-control" required>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="vm.removePlaystyle($index)">
+                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                  </button>
+                </span>
+              </p>
               </div>
             </div>
           </div>
         </div>
-        <hr />
+        <hr>
 
         <!-- Rewards -->
         <div class="form-group" show-errors>
@@ -97,7 +100,7 @@
                 <input name="enabled" type="text" ng-model="c.condition" class="form-control">
               </div>
               <div class="col-sm-1">
-                <br />
+                <br>
                 <button style="margin-top: 6px;" type="button" class="btn btn-default" ng-click="vm.removeReward($index)">
                   <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                 </button>
