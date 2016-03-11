@@ -6,9 +6,9 @@
   </div>
   <div class="list-group">
     <div class="row" style="margin-left: 2px; margin-right: 2px;">
-      <div class="col-sm-offset-1 col-sm-3"><b>Date</b></div>
-      <div class="col-sm-4"><b>Contract with Most Votes</b></div>
-      <div class="col-sm-2"><b>Slots Available</b></div>
+      <div class="col-sm-offset-1 col-sm-2"><b>Date</b></div>
+      <div class="col-sm-2"><b>Slots Left</b></div>
+      <div class="col-sm-7"><b>Contract with Most Votes</b></div>
     </div>
 
     <a data-ng-repeat="episode in vm.episodes"
@@ -16,14 +16,17 @@
        class="list-group-item">
        <div class="row">
          <div class="col-sm-1 text-center">
-           <i ng-if="episode.isOpen" class="fa fa-exclamation-circle"></i>
-           <i ng-if="!episode.isOpen" class="fa fa-lock"></i>
+           <div popover-trigger="mouseenter" popover-placement="left"
+              popover="{{episode.isOpen ? 'New Episode' : 'Locked Episode'}}">
+             <i ng-if="episode.isOpen" class="fa fa-exclamation-circle"></i>
+             <i ng-if="!episode.isOpen" class="fa fa-lock"></i>
+           </div>
          </div>
-        <div class="col-sm-3 list-group-item-heading">
-          <b>Session on {{episode.sessionDate | date: 'MM/dd/yy'}}</b>
+        <div class="col-sm-2 list-group-item-heading">
+          <b>{{episode.sessionDate | date: 'MM/dd/yy'}}</b>
         </div>
-        <div class="col-sm-4" ng-bind="vm.getHighestVotedContract(episode)"></div>
         <div class="col-sm-2">{{episode.maxAttendees - episode.attendees.length}} slots</div>
+        <div class="col-sm-7" ng-bind="vm.getHighestVotedContract(episode)"></div>
       </div>
     </a>
 

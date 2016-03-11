@@ -92,6 +92,10 @@
 
       var rewards = contract.rewards.reduce(function(prev, curr) {
         if (curr.unit.toLowerCase() === 'riphons') {
+          if (!prev.unit) {
+            return prev + curr.amount;
+          }
+
           if (prev.unit.toLowerCase() === 'riphons') {
             return prev.amount + curr.amount;
           }
