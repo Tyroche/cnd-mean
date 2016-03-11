@@ -28,7 +28,6 @@
         vm.contract.expectedPlayStyles = [];
       }
       vm.contract.expectedPlayStyles.push("");
-      console.log(vm.contract.expectedPlayStyles);
     }
 
     function removePlaystyle(index) {
@@ -56,7 +55,6 @@
 
     // Save Contract
     function save(isValid) {
-      console.log(vm.contract.expectedPlayStyles);
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.contractForm');

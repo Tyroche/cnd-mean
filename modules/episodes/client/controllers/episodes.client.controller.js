@@ -26,6 +26,16 @@
     vm.voteFor = voteFor;
     vm.getPlayerVotedContract = getPlayerVotedContract;
 
+    init();
+    function init() {
+      if (!vm.episode.contracts) { vm.episode.contracts = []; }
+
+      vm.formEnabledContracts.forEach(function(obj) {
+        if (!obj.voters) { obj.voters = []; }
+        if (!obj.rewards) { obj.rewards = []; }
+      });
+    }
+
     //--View Accessible Ops-----------------------------------------------------
     // Player is in session
     function isUserPlaying() {
@@ -55,15 +65,12 @@
       if (!vm.isUserPlaying()) { return; }
 
       var alreadyVoted = vm.formEnabledContracts.forEach(function(obj) {
-        if (!obj.voters) { return; }
-
         var voterIndex = obj.voters.indexOf(Authentication.user._id);
         if (voterIndex > -1) {
           obj.voters.splice(voterIndex, 1);
         }
       });
 
-      if(!vm.formEnabledContracts[index].voters) { vm.formEnabledContracts[index].voters = []; }
       vm.formEnabledContracts[index].voters.push(Authentication.user._id);
     }
 
@@ -75,29 +82,26 @@
 
     // Summarize all monetary rewards for this contract
     function sumRewards(contract) {
+      if (contract.rewards.length === 0) {
+        return "No rewards";
+      }
+
       if (contract.rewards.length === 1) {
         return "" + contract.rewards[0].amount + " riphons";
       }
 
       var rewards = contract.rewards.reduce(function(prev, curr) {
-        // Check to see if curr's unit indicates it's monetary
         if (curr.unit.toLowerCase() === 'riphons') {
-          // If prev is an obj, it will have a unit; otherwise it's just a value
-          if (!prev.unit) {
-            return prev + curr.amount;
-          }
-          // otherwise check to see if it's monetary
           if (prev.unit.toLowerCase() === 'riphons') {
             return prev.amount + curr.amount;
           }
-
-          // Otherwise just return the current value
           return curr.amount;
         }
 
         // Default: Return the amount of the previous if it exists or 0
         return prev.unit ? prev.amount : 0;
       });
+
       return "" + rewards + " riphons";
     }
 
