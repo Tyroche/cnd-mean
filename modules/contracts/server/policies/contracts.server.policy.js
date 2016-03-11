@@ -29,7 +29,7 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get']
     }, {
       resources: '/api/contracts/:contractId',
-      permissions: ['get']
+      permissions: ['put', 'get']
     }]
   }]);
 };

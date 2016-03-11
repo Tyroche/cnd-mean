@@ -6,9 +6,16 @@
     .module('episodes')
     .controller('EpisodesController', EpisodesController);
 
-  EpisodesController.$inject = ['$scope', '$state', 'Authentication', 'episodeResolve', 'ConfigurationsService', 'ContractsService'];
+  EpisodesController.$inject = [
+    '$scope',
+    '$state',
+    'Authentication',
+    'episodeResolve',
+    'ConfigurationsService',
+    'ContractsService',
+    'ContractVotingService'];
 
-  function EpisodesController ($scope, $state, Authentication, episode, ConfigurationsService, ContractsService) {
+  function EpisodesController ($scope, $state, Authentication, episode, ConfigurationsService, ContractsService, contractVotingService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -39,7 +46,7 @@
     //--View Accessible Ops-----------------------------------------------------
     // Player is in session
     function isUserPlaying() {
-      return vm.episode.attendees.indexOf(Authentication.user._id) > -1;
+      return contractVotingService.isUserPlaying(vm.episode, Authentication.user);
     }
 
     function getRemainingSlots() {
@@ -48,36 +55,15 @@
 
     function toggleAttendance() {
       // Prevent non-consultants from enlisting
-      if(Authentication.user.roles.indexOf('consultant') === -1) { return; }
-
-      var attendanceIndex = vm.episode.attendees.indexOf(Authentication.user._id);
-
-      if (attendanceIndex > -1) {
-        vm.episode.attendees.splice(attendanceIndex, 1);
-        return;
-      }
-
-      vm.episode.attendees.push(Authentication.user._id);
+      contractVotingService.toggleAttendance(vm.episode, Authentication.user, vm.formEnabledContracts);
     }
 
     function voteFor(index) {
-      // Filter out users who are not playing
-      if (!vm.isUserPlaying()) { return; }
-
-      var alreadyVoted = vm.formEnabledContracts.forEach(function(obj) {
-        var voterIndex = obj.voters.indexOf(Authentication.user._id);
-        if (voterIndex > -1) {
-          obj.voters.splice(voterIndex, 1);
-        }
-      });
-
-      vm.formEnabledContracts[index].voters.push(Authentication.user._id);
+      contractVotingService.voteForContract(vm.episode, Authentication.user, vm.formEnabledContracts, index);
     }
 
     function getPlayerVotedContract() {
-      return vm.formEnabledContracts.filter(function (obj) {
-        return obj.voters.indexOf(Authentication.user._id) > -1;
-      })[0];
+      return contractVotingService.getVotedContract(vm.formEnabledContracts, Authentication.user);
     }
 
     // Summarize all monetary rewards for this contract

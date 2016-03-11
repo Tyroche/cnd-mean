@@ -25,10 +25,10 @@ exports.invokeRolesPolicies = function () {
     roles: ['consultant'],
     allows: [{
       resources: '/api/episodes',
-      permissions: ['get', 'post']
+      permissions: ['get']
     }, {
       resources: '/api/episodes/:episodeId',
-      permissions: ['get']
+      permissions: ['get', 'put']
     }]
   }, {
     roles: ['user', 'guest'],

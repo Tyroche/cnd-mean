@@ -5,28 +5,21 @@
     .module('episodes')
     .controller('EpisodesListController', EpisodesListController);
 
-  EpisodesListController.$inject = ['EpisodesService'];
+  EpisodesListController.$inject = [
+    'EpisodesService',
+    'ContractsService',
+    'ContractVotingService'
+  ];
 
-  function EpisodesListController(EpisodesService) {
+  function EpisodesListController(EpisodesService, contractsService, votingService) {
     var vm = this;
     vm.getHighestVotedContract = getHighestVotedContract;
 
     vm.episodes = EpisodesService.query();
+    vm.contracts = contractsService.query();
 
     function getHighestVotedContract(episode) {
-      if (!episode.contracts) {
-        return "No contracts yet";
-      }
-
-      if (episode.contracts.filter(function (obj) { return !obj.voters; } ).length > 0) {
-        return "No votes cast";
-      }
-
-      var res = Math.max.apply(Math, episode.contracts.map(function(obj) {
-        return obj.voters.length;
-      }));
-
-      return res;
+      return votingService.getHighestVotedContract(episode, vm.contracts);
     }
   }
 })();

@@ -41,11 +41,11 @@
   <hr>
 
   <h3>Attendees</h3>
-  <div ng-show="!vm.attendees">
+  <div ng-show="!vm.episode.attendees">
     <p>There are no players signed up currently.</p>
   </div>
-  <div ng-show="vm.attendees">
-    <div ng-repeat="c in vm.attendees">
+  <div ng-show="vm.episode.attendees">
+    <div ng-repeat="c in vm.episode.attendees">
       {{c}}
     </div>
   </div>
