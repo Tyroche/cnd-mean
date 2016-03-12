@@ -21,6 +21,16 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/users/:userId',
       permissions: '*'
     }]
+  },
+  {
+    roles: ['consultant'],
+    allows: [{
+      resources: '/api/users',
+      permissions: 'get'
+    }, {
+      resources: '/api/users/:userId',
+      permissions: 'get'
+    }]
   }]);
 };
 

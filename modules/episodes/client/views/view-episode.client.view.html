@@ -41,12 +41,15 @@
   <hr>
 
   <h3>Attendees</h3>
-  <div ng-show="!vm.episode.attendees">
-    <p>There are no players signed up currently.</p>
-  </div>
-  <div ng-show="vm.episode.attendees">
-    <div ng-repeat="c in vm.episode.attendees">
-      {{c}}
+  <div ng-show="!vm.users"><i>Loading...</i></div>
+  <div ng-show="vm.users">
+    <div ng-show="!vm.episode.attendees">
+      <p>There are no players signed up currently.</p>
+    </div>
+    <div ng-show="vm.episode.attendees">
+      <div ng-repeat="c in vm.episode.attendees">
+        {{vm.getUser(c).displayName}}
+      </div>
     </div>
   </div>
   <p>There are <b>{{vm.getRemainingSlots()}} player slots</b> available for this session.</p>

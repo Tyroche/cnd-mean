@@ -13,9 +13,10 @@
     'episodeResolve',
     'ConfigurationsService',
     'ContractsService',
-    'ContractVotingService'];
+    'ContractVotingService',
+    'Admin'];
 
-  function EpisodesController ($scope, $state, Authentication, episode, ConfigurationsService, ContractsService, contractVotingService) {
+  function EpisodesController ($scope, $state, Authentication, episode, ConfigurationsService, ContractsService, contractVotingService, admin) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -32,10 +33,17 @@
     vm.toggleAttendance = toggleAttendance;
     vm.voteFor = voteFor;
     vm.getPlayerVotedContract = getPlayerVotedContract;
+    vm.getUser = getUser;
 
     init();
     function init() {
       if (!vm.episode.contracts) { vm.episode.contracts = []; }
+
+      // How do we trim this down?
+      admin.query({}, function(data) {
+        vm.users = data;
+        console.log(vm.users);
+      });
 
       vm.formEnabledContracts.forEach(function(obj) {
         if (!obj.voters) { obj.voters = []; }
@@ -64,6 +72,14 @@
 
     function getPlayerVotedContract() {
       return contractVotingService.getVotedContract(vm.formEnabledContracts, Authentication.user);
+    }
+
+    function getUser(userId) {
+      if(!vm.users) { return; }
+
+      return vm.users.filter(function(obj) {
+        return obj._id === userId;
+      })[0];
     }
 
     // Summarize all monetary rewards for this contract
