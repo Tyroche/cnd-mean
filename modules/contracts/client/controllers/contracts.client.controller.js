@@ -7,12 +7,12 @@
     .controller('ContractsController', ContractsController);
 
   ContractsController.$inject = [
-      '$scope',
-      '$state',
-      'Authentication',
-      'contractResolve',
-      'PlaystyleContractService',
-      'RewardsContractService'];
+    '$scope',
+    '$state',
+    'Authentication',
+    'contractResolve',
+    'PlaystyleContractService',
+    'RewardsContractService'];
 
   function ContractsController ($scope, $state, Authentication, contract, playstyleContractService, rewardsContractService) {
     var vm = this;
@@ -26,7 +26,7 @@
     vm.addReward = addReward;
     vm.removeReward = removeReward;
     vm.addPlaystyle = addPlaystyle;
-    vm.removePlaystyle = removePlaystyle;    
+    vm.removePlaystyle = removePlaystyle;
 
     // Add a playstyle
     function addPlaystyle() {

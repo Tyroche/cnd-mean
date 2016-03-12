@@ -69,11 +69,11 @@
     // Summarize all monetary rewards for this contract
     function sumRewards(contract) {
       if (contract.rewards.length === 0) {
-        return "No rewards";
+        return 'No rewards';
       }
 
       if (contract.rewards.length === 1) {
-        return "" + contract.rewards[0].amount + " riphons";
+        return '' + contract.rewards[0].amount + ' riphons';
       }
 
       var rewards = contract.rewards.reduce(function(prev, curr) {
@@ -92,7 +92,7 @@
         return prev.unit ? prev.amount : 0;
       });
 
-      return "" + rewards + " riphons";
+      return '' + rewards + ' riphons';
     }
 
     //--CALENDAR----------------------------------------------------------------

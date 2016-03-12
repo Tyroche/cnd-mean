@@ -86,11 +86,11 @@
         });
 
         if (!episodeContracts) {
-          return "No contracts yet";
+          return 'No contracts yet';
         }
 
-        if (episodeContracts.filter(function (obj) { return !obj.voters; } ).length > 0) {
-          return "No votes cast";
+        if (episodeContracts.filter(function (obj) { return !obj.voters; }).length > 0) {
+          return 'No votes cast';
         }
 
         var maximum = episodeContracts.sort(function (a, b) {
@@ -98,7 +98,7 @@
         })[0];
 
         if(!maximum) {
-          return "No votes cast";
+          return 'No votes cast';
         }
 
         return maximum.name;
