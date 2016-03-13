@@ -43,7 +43,6 @@
       // How do we trim this down?
       admin.query({}, function(data) {
         vm.users = data;
-        console.log(vm.users);
       });
 
       vm.formEnabledContracts.forEach(function(obj) {

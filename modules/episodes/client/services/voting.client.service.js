@@ -10,9 +10,19 @@
   ];
 
   function ContractVotingService(contractService) {
+    function find(arr, test, ctx) {
+      var result = null;
+      arr.some(function(el, i) {
+        return test.call(ctx, el, i, arr) ? ((result = el), true): false;
+      });
+      return result;
+    }
+
     // Check to see if a user is playing in an episode
     function isUserPlayingInEpisode(episode, user) {
-      return episode.attendees.indexOf(user._id) > -1;
+      return episode.attendees.some(function(cv) {
+        return cv.user === user._id;
+      });
     }
 
     function isUserAttendancePermitted(user) {
@@ -29,12 +39,12 @@
     }
 
     function disableAttendance(episode, user, character, contracts) {
-      var attendanceIndex = episode.attendees.indexOf({
-        user: user._id,
-        character: character._id
+      var attendees = episode.attendees.filter(function (obj) {
+        return obj.user === user._id;
       });
 
-      if (attendanceIndex > -1) {
+      if (attendees.length > 0) {
+        var attendanceIndex = episode.attendees.indexOf(attendees[0]);
         episode.attendees.splice(attendanceIndex, 1);
         removeVote(contracts, user);
         episode.$update();
