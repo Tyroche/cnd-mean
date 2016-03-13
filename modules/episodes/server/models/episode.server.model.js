@@ -30,8 +30,14 @@ var EpisodeSchema = new Schema({
     default: Date.now
   },
   attendees: [{
-    type: Schema.ObjectId,
-    ref: 'User'
+    user: {
+      type: Schema.ObjectId,
+      ref: 'User'
+    },
+    character: {
+      type: Schema.ObjectId,
+      ref: 'Character'
+    }
   }]
 });
 

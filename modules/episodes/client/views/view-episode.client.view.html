@@ -19,7 +19,7 @@
 
       <div ng-if="vm.episode.isOpen">
         <div class="col-md-4">
-          <select class="form-control">
+          <select class="form-control" ng-model="vm.chosenCharacter">
               <option>Vorenus Magnus</option>
               <option>Browr Trowr</option>
           </select>
@@ -48,7 +48,7 @@
     </div>
     <div ng-show="vm.episode.attendees">
       <div ng-repeat="c in vm.episode.attendees">
-        {{vm.getUser(c).displayName}}
+        {{vm.getUser(c)}}
       </div>
     </div>
   </div>

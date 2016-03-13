@@ -23,6 +23,7 @@
     vm.maximumSessionSize = 4;
     vm.episode = episode;
     vm.formEnabledContracts = [];
+    vm.chosenCharacter = '';
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
@@ -63,7 +64,7 @@
 
     function toggleAttendance() {
       // Prevent non-consultants from enlisting
-      contractVotingService.toggleAttendance(vm.episode, Authentication.user, vm.formEnabledContracts);
+      contractVotingService.toggleAttendance(vm.episode, Authentication.user, vm.chosenCharacter, vm.formEnabledContracts);
     }
 
     function voteFor(index) {
@@ -74,11 +75,11 @@
       return contractVotingService.getVotedContract(vm.formEnabledContracts, Authentication.user);
     }
 
-    function getUser(userId) {
+    function getUser(attendee) {
       if(!vm.users) { return; }
 
       return vm.users.filter(function(obj) {
-        return obj._id === userId;
+        return obj._id === attendee.user;
       })[0];
     }
 

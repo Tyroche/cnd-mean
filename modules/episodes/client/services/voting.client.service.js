@@ -19,14 +19,20 @@
       return user.roles.indexOf('consultant') > -1 || user.roles.indexOf('admin') > -1;
     }
 
-    function enableAttendance(episode, user) {
+    function enableAttendance(episode, user, character ) {
       if(!isUserAttendancePermitted(user)) { return; }
-      episode.attendees.push(user._id);
+      episode.attendees.push({
+        user: user._id,
+        character: character._id
+      });
       episode.$update();
     }
 
-    function disableAttendance(episode, user, contracts) {
-      var attendanceIndex = episode.attendees.indexOf(user._id);
+    function disableAttendance(episode, user, character, contracts) {
+      var attendanceIndex = episode.attendees.indexOf({
+        user: user._id,
+        character: character._id
+      });
 
       if (attendanceIndex > -1) {
         episode.attendees.splice(attendanceIndex, 1);
@@ -62,12 +68,12 @@
         return isUserPlayingInEpisode(episode, user);
       },
 
-      toggleAttendance: function (episode, user, contracts) {
+      toggleAttendance: function (episode, user, character, contracts) {
         if(isUserPlayingInEpisode(episode, user)) {
-          disableAttendance(episode, user, contracts);
+          disableAttendance(episode, user, character, contracts);
           return;
         }
-        enableAttendance(episode, user);
+        enableAttendance(episode, user, character);
       },
 
       voteForContract: function(episode, user, contracts, index) {
