@@ -56,7 +56,7 @@ var ConfigurationSchema = new Schema({
     }],
     saveProficiencies: [{
       type: String
-    }]
+    }],
   }],
   races: [{
     name: {
@@ -67,12 +67,44 @@ var ConfigurationSchema = new Schema({
       type: String,
       required: 'A race description is required'
     },
-    skillProficiencies: [{
+    traits: [{
       type: String
     }],
     abilityIncreases: [{
       ability: { type: String },
       amount: { type: Number }
+    }]
+  }],
+  backgrounds: [{
+    name: {
+      type: String,
+      required: 'Background name must be defined'
+    },
+    description: {
+      type: String,
+      required: 'Background description is required'
+    },
+    traits: [{
+      type: String
+    }],
+    ideals: [{
+      type: String
+    }],
+    bonds: [{
+      type: String
+    }],
+    flaws: [{
+      type: String
+    }],
+    feats: [{
+      name: {
+        type: String,
+        required: 'Feat name is required'
+      },
+      description:  {
+        type: String,
+        required: 'Feat description is required'
+      }
     }]
   }]
 });
