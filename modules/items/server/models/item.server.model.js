@@ -16,14 +16,48 @@ var ItemSchema = new Schema({
     required: 'Please fill Item name',
     trim: true
   },
-  created: {
-    type: Date,
-    default: Date.now
+  description: {
+    type: String,
+    default: '',
+    required: 'Please fill Item description'
   },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  }
+  rarity: {
+    type: String,
+    enum: [
+      'Common',
+      'Uncommon',
+      'Rare',
+      'Very Rare',
+      'Legendary',
+      'Artifact'
+    ]
+  },
+  classification: {
+    type: String,
+    enum: [
+      'Armor',
+      'Kit',
+      'Potion',
+      'Ring',
+      'Scroll',
+      'Staff',
+      'Wand',
+      'Weapon',
+      'Wondrous Item'
+    ]
+  },
+  creator: {
+    type: String,
+    default: ''
+  },
+  value: {
+    type: Number,
+    default: 0,
+    required: 'An item must have a value'
+  },
+  details: [{
+    type: String
+  }]
 });
 
 mongoose.model('Item', ItemSchema);

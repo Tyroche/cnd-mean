@@ -5,19 +5,85 @@
   <div class="col-md-12">
     <form name="vm.form.itemForm" class="form-horizontal" ng-submit="vm.save(vm.form.itemForm.$valid)" novalidate>
       <fieldset>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.item.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.itemForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Item name is required.</p>
+
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="name">Name</label>
+              <input name="name" type="text" ng-model="vm.item.name" id="name" class="form-control" placeholder="Name" required>
+              <div ng-messages="vm.form.itemForm.name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Item name is required.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-offset-1 col-sm-6">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="creator">Creator</label>
+              <input creator="creator" type="text" ng-model="vm.item.creator" id="creator" class="form-control" placeholder="Creator" required>
+              <div ng-messages="vm.form.itemForm.creator.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Item creator is required.</p>
+              </div>
+            </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="value">Value</label>
+              <input name="enabled" type="number" name="value" ng-model="vm.item.value" class="form-control att-entry" required>
+            </div>
+          </div>
+
+          <div class="col-sm-offset-1 col-sm-3">
+            <div class="form-group" show-errors>
+                <label class="control-label" for="rarity">Item Rarity</label>
+                <select class="form-control" name="rarity" ng-model="vm.item.rarity" required>
+                    <option value="Common">Common</option>
+                    <option value="Uncommon">Uncommon</option>
+                    <option value="Rare">Rare</option>
+                    <option value="Very Rare">Very Rare</option>
+                    <option value="Legendary">Legendary</option>
+                    <option value="Artifact">Artifact</option>
+                </select>
+            </div>
+          </div>
+
+          <div class="col-sm-offset-1 col-sm-4">
+            <div class="form-group" show-errors>
+                <label class="control-label" for="classification">Item Classification</label>
+                <select class="form-control" name="classification" ng-model="vm.item.classification" required>
+                    <option value="Armor">Armor</option>
+                    <option value="Kit">Kit</option>
+                    <option value="Potion">Potion</option>
+                    <option value="Ring">Ring</option>
+                    <option value="Scroll">Scroll</option>
+                    <option value="Staff">Staff</option>
+                    <option value="Wand">Wand</option>
+                    <option value="Weapon">Weapon</option>
+                    <option value="Wondrous Item">Wondrous Item</option>
+                </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="description">Item Description</label>
+          <textarea name="description" type="text" ng-model="vm.item.description" id="description" class="form-control" placeholder="Description" required>
+          </textarea>
+          <div ng-messages="vm.form.itemForm.description.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Item Description is required.</p>
+          </div>
+        </div>
+
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.item._id ? 'Update' : 'Create'}}</button>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>
         </div>
+
       </fieldset>
     </form>
   </div>
