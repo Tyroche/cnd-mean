@@ -95,17 +95,17 @@ var ConfigurationSchema = new Schema({
     }],
     flaws: [{
       type: String
-    }],
-    feats: [{
-      name: {
-        type: String,
-        required: 'Feat name is required'
-      },
-      description:  {
-        type: String,
-        required: 'Feat description is required'
-      }
     }]
+  }],
+  feats: [{
+    name: {
+      type: String,
+      required: 'Feat name is required'
+    },
+    description:  {
+      type: String,
+      required: 'Feat description is required'
+    }
   }]
 });
 
