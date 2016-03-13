@@ -10,31 +10,42 @@
   <hr style="padding-bottom: 0px; margin-bottom: 0px;"/>
   <div ng-repeat="c in vm.configuration.races"  ng-click="vm.toggleRaceVisibility($index)">
 
-      <div class="row">
+      <div class="row" ng-show="raceHidden[$index]">
         <div class="col-sm-5">
-          <label class="control-label" for="c.name">Name</label>
-          <input name="enabled"
-                type="text"
-                ng-model="c.name"
-                class="form-control"
-                ng-click="$event.stopPropagation()"
-                required>
+          <i ng-bind="c.name"></i>
         </div>
         <div class="col-sm-offset-5 col-sm-1">
-          <span class="glyphicon {{raceHidden[$index] ? 'glyphicon-chevron-down' : 'glyphicon-chevron-left'}}" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
         </div>
       </div>
 
-      <div class="row" ng-class="{'collapsed-entry': raceHidden[$index], 'expanded-entry': !raceHidden[$index] }">
-        <div class="col-sm-10">
-          <label class="control-label" for="c.description">Race Description</label>
-          <textarea name="enabled" ng-model="c.description" class="form-control" required
-              ng-click="$event.stopPropagation()"
-              pleaceholder="Enter some information about this race (used in the Help Area for Character Creation)">
-          </textarea>
+      <div ng-show="!raceHidden[$index]">
+        <div class="row">
+          <div class="col-sm-5">
+            <label class="control-label" for="c.name">Name</label>
+            <input name="enabled"
+                  type="text"
+                  ng-model="c.name"
+                  class="form-control"
+                  ng-click="$event.stopPropagation()"
+                  required>
+          </div>
+          <div class="col-sm-offset-5 col-sm-1">
+            <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-10">
+            <label class="control-label" for="c.description">Race Description</label>
+            <textarea name="enabled" ng-model="c.description" class="form-control" required
+                ng-click="$event.stopPropagation()"
+                pleaceholder="Enter some information about this race (used in the Help Area for Character Creation)">
+            </textarea>
+          </div>
         </div>
       </div>
-      <hr style="padding-bottom: 0px; margin-bottom: 0px;"/>
+      <hr style="margin-top: 4px; margin-bottom: 4px;"/>
 
   </div>
 </div>
