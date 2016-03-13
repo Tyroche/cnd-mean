@@ -65,12 +65,16 @@
 
       // TODO: move create/update logic to service
       if (vm.configuration._id) {
-        vm.configuration.$update(successCallback, errorCallback);
+        vm.configuration.$update(successfulUpdate, errorCallback);
       } else {
-        vm.configuration.$save(successCallback, errorCallback);
+        vm.configuration.$save(successfulCreate, errorCallback);
       }
 
-      function successCallback(res) {
+      function successfulUpdate(res) {
+        console.log('Successfully saved configuration.');
+      }
+
+      function successfulCreate(res) {
         $state.go('configurations.view', {
           configurationId: res._id
         });

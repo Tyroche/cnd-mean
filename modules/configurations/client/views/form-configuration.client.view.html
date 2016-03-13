@@ -9,13 +9,22 @@
     <nav class="col-sm-2 col-md-2">
       <ul class="nav nav-pills nav-stacked">
         <li ui-sref-active="inactive">
-          <a ui-sref="{{vm.configuration._id ? 'configurations.edit.basics' : 'configurations.create.basics'}}">Basics</a>
+          <a ui-sref="{{vm.configuration._id ? 'configurations.edit.basics' : 'configurations.create.basics'}}">Main</a>
         </li>
         <li ui-sref-active="inactive">
-          <a ui-sref="{{vm.configuration._id ? 'configurations.edit.races' : 'configurations.create.races'}}">Races</a>
+          <a ui-sref="{{vm.configuration._id ? 'configurations.edit.classes' : 'configurations.create.classes'}}">Currencies</a>
+        </li>
+        <li ui-sref-active="inactive">
+          <a ui-sref="{{vm.configuration._id ? 'configurations.edit.classes' : 'configurations.create.classes'}}">Backgrounds</a>
         </li>
         <li ui-sref-active="inactive">
           <a ui-sref="{{vm.configuration._id ? 'configurations.edit.classes' : 'configurations.create.classes'}}">Classes</a>
+        </li>
+        <li ui-sref-active="inactive">
+          <a ui-sref="{{vm.configuration._id ? 'configurations.edit.classes' : 'configurations.create.classes'}}">Feats</a>
+        </li>
+        <li ui-sref-active="inactive">
+          <a ui-sref="{{vm.configuration._id ? 'configurations.edit.races' : 'configurations.create.races'}}">Races</a>
         </li>
       </ul>
     </nav>
