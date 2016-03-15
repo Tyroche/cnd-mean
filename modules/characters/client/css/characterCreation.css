@@ -24,7 +24,12 @@
   list-style-type: none;
 }
 
-.glyphicon:hover {
+.can-select:hover {
   color: #f71;
   cursor: pointer;
+}
+
+.insufficient-funds {
+  color: #aaa;
+  cursor: not-allowed;
 }

@@ -10,13 +10,16 @@
       {{item.name}}
     </div>
     <div class="col-sm-3" ng-bind="item.classification"></div>
-    <div class="col-sm-3">{{item.value}} riphons</div>
+    <div class="col-sm-3">{{item.price}} riphons</div>
     <div class="col-sm-1" ng-click="vm.infoItem = item">
       <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
     </div>
     <div class="col-sm-1" ng-click="vm.toggleItem(item)">
       <span class="glyphicon"
-      ng-class="{'glyphicon-minus-sign': vm.character.items.indexOf(item._id) > -1, 'glyphicon-plus-sign': vm.character.items.indexOf(item._id) === -1}"
+      ng-class="{'glyphicon-minus-sign': vm.character.items.indexOf(item) > -1,
+                 'glyphicon-plus-sign': vm.character.items.indexOf(item) === -1,
+                 'insufficient-funds': vm.character.items.indexOf(item) === -1 && (vm.character.funds - item.price) < 0,
+                 'can-select': (vm.character.funds - item.price) >= 0 || vm.character.items.indexOf(item) > -1}"
       aria-hidden="true"></span>
     </div>
   </div>

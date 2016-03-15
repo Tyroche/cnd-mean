@@ -1,2 +1,29 @@
-<b>{{vm.infoItem.name}}</b>
-<p>{{vm.infoItem.description}}</p>
+<div class="row">
+  Remaining funds: {{vm.character.funds}} ℝ
+</div>
+<br>
+<div ng-if="vm.character.items.length > 0">
+  <div class="row"><b>
+    <div class="col-sm-4">Name</div>
+    <div class="col-sm-4">Type</div>
+    <div class="col-sm-4">Price</div>
+  </b></div>
+  <div style="border-bottom-style: solid; border-top-style: solid; border-width: 2px; border-color: dark-gray;">
+    <div class="row" ng-repeat="item in vm.character.items">
+      <div class="col-sm-4" ng-bind="item.name"></div>
+      <div class="col-sm-4" ng-bind="item.classification"></div>
+      <div class="col-sm-4">{{item.price}} ℝ</div>
+    </div>
+  </div>
+  <div class="row">
+    <i>
+      <div class="col-sm-4">Total</div>
+      <div class="col-sm-4 col-sm-offset-4">{{vm.sumInventoryPrice()}} ℝ</div>
+    </i>
+  </div>
+</div>
+<br>
+<div ng-if="vm.infoItem">
+  <h5>{{vm.infoItem.name}}</h5>
+  <p>{{vm.infoItem.description}}</p>
+</div>

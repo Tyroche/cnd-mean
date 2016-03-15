@@ -49,6 +49,10 @@ var CharacterSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  funds: {
+    type: Number,
+    default: 0
+  },
   items: [{
     type: Schema.ObjectId,
     ref: 'Item'

@@ -13,6 +13,9 @@
 
     vm.authentication = Authentication;
     vm.item = item;
+    item.price = 0;
+    item.rarity = "Common";
+    item.classification = "Weapon";
     vm.error = null;
     vm.form = {};
     vm.remove = remove;

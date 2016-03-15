@@ -30,7 +30,8 @@ var ItemSchema = new Schema({
       'Very Rare',
       'Legendary',
       'Artifact'
-    ]
+    ],
+    default: 'Common'
   },
   classification: {
     type: String,
@@ -50,7 +51,7 @@ var ItemSchema = new Schema({
     type: String,
     default: ''
   },
-  value: {
+  price: {
     type: Number,
     default: 0,
     required: 'An item must have a value'

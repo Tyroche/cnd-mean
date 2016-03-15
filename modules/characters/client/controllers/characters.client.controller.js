@@ -28,15 +28,16 @@
     vm.getClassDescription = getClassDescription;
     vm.getRaceDescription = getRaceDescription;
     vm.toggleItem = toggleItem;
+    vm.sumInventoryPrice = sumInventoryPrice;
     vm.step = 0;
 
     init();
     function init() {
       if (!vm.character._id) {
+        vm.character.funds = 100;
         getItems();
         vm.character.items = [];
       }
-      console.log(vm.character.items);
     }
 
     ConfigurationsService.query({ enabled: true }, function(res) {
@@ -86,6 +87,20 @@
       }
     ];
 
+    function sumInventoryPrice() {
+      if (!vm.character.items || vm.character.items.length === 0) {
+        return 0;
+      }
+
+      if (vm.character.items.length === 1) {
+        return vm.character.items[0].price;
+      }
+
+      return vm.character.items.reduce(function(prev, cur) {
+        return prev.price + cur.price;
+      });
+    }
+
     function nextStep() {
       var maxStep = 5;
       vm.step = Math.min(maxStep, vm.step + 1);
@@ -96,16 +111,20 @@
     }
 
     function addItem(item) {
-      vm.character.items.push(item._id);
+      if(vm.character.funds - item.price >= 0) {
+        vm.character.items.push(item);
+        vm.character.funds -= item.price;
+      }
     }
 
     function removeItem(item) {
-      var ind = vm.character.items.indexOf(item._id);
+      var ind = vm.character.items.indexOf(item);
       vm.character.items.splice(ind, 1);
+      vm.character.funds += item.price;
     }
 
     function toggleItem(item) {
-      if(vm.character.items.indexOf(item._id) > -1){
+      if(vm.character.items.indexOf(item) > -1){
         removeItem(item);
         return;
       }

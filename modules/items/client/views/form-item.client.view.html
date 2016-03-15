@@ -16,23 +16,13 @@
               </div>
             </div>
           </div>
-
-          <div class="col-sm-offset-1 col-sm-6">
-            <div class="form-group" show-errors>
-              <label class="control-label" for="creator">Creator</label>
-              <input creator="creator" type="text" ng-model="vm.item.creator" id="creator" class="form-control" placeholder="Creator">
-              <div ng-messages="vm.form.itemForm.creator.$error" role="alert">
-                <p class="help-block error-text" ng-message="required">Item creator is required.</p>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="row">
           <div class="col-sm-3">
             <div class="form-group" show-errors>
-              <label class="control-label" for="value">Value</label>
-              <input name="enabled" type="number" name="value" ng-model="vm.item.value" class="form-control att-entry" required>
+              <label class="control-label" for="price">Price</label>
+              <input name="enabled" type="number" name="price" ng-model="vm.item.price" class="form-control att-entry" required>
             </div>
           </div>
 
