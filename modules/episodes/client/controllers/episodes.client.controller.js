@@ -13,10 +13,9 @@
     'episodeResolve',
     'ConfigurationsService',
     'ContractsService',
-    'ContractVotingService',
-    'Admin'];
+    'ContractVotingService'];
 
-  function EpisodesController ($scope, $state, Authentication, episode, ConfigurationsService, ContractsService, contractVotingService, admin) {
+  function EpisodesController ($scope, $state, Authentication, episode, ConfigurationsService, ContractsService, contractVotingService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -39,11 +38,6 @@
     init();
     function init() {
       if (!vm.episode.contracts) { vm.episode.contracts = []; }
-
-      // How do we trim this down?
-      admin.query({}, function(data) {
-        vm.users = data;
-      });
 
       vm.formEnabledContracts.forEach(function(obj) {
         if (!obj.voters) { obj.voters = []; }

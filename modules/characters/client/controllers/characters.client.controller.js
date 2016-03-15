@@ -27,8 +27,7 @@
     vm.previousStep = previousStep;
     vm.getClassDescription = getClassDescription;
     vm.getRaceDescription = getRaceDescription;
-    vm.addItem = addItem;
-    vm.removeItem = removeItem;
+    vm.toggleItem = toggleItem;
     vm.step = 0;
 
     init();
@@ -103,6 +102,14 @@
     function removeItem(item) {
       var ind = vm.character.items.indexOf(item._id);
       vm.character.items.splice(ind, 1);
+    }
+
+    function toggleItem(item) {
+      if(vm.character.items.indexOf(item._id) > -1){
+        removeItem(item);
+        return;
+      }
+      addItem(item);
     }
 
     function getClassDescription() {
