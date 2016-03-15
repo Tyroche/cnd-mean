@@ -27,27 +27,37 @@
     vm.previousStep = previousStep;
     vm.getClassDescription = getClassDescription;
     vm.getRaceDescription = getRaceDescription;
+    vm.addItem = addItem;
+    vm.removeItem = removeItem;
     vm.step = 0;
+
+    init();
+    function init() {
+      if (!vm.character._id) {
+        getItems();
+        vm.character.items = [];
+      }
+      console.log(vm.character.items);
+    }
 
     ConfigurationsService.query({ enabled: true }, function(res) {
       if (!res[0]) {
         console.log('ERROR: No Configuration found!!!');
         return;
       }
-
       vm.config = res[0];
     });
 
-
-    itemsService.query({ rarity: 'Common' }, function(res) {
-      if (!res[0]) {
-        console.log('ERROR: No Items found!!!');
-        return;
-      }
-
-      vm.items = res;
-      console.log(vm.items);
-    });
+    function getItems() {
+      // Actually Query now
+      itemsService.query({ rarity: 'Common' }, function(res) {
+        if (!res[0]) {
+          console.log('ERROR: No Items found!!!');
+          return;
+        }
+        vm.items = res;
+      });
+    }
 
     vm.creationSteps = [
       {
@@ -84,6 +94,15 @@
 
     function previousStep() {
       vm.step = Math.max(0, vm.step - 1);
+    }
+
+    function addItem(item) {
+      vm.character.items.push(item._id);
+    }
+
+    function removeItem(item) {
+      var ind = vm.character.items.indexOf(item._id);
+      vm.character.items.splice(ind, 1);
     }
 
     function getClassDescription() {

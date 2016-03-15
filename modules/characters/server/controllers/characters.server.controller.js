@@ -80,7 +80,7 @@ exports.delete = function(req, res) {
 /**
  * List of Characters
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
   Character.find().sort('-created').populate('user', 'displayName').exec(function(err, characters) {
     if (err) {
       return res.status(400).send({
@@ -103,7 +103,7 @@ exports.characterByID = function(req, res, next, id) {
     });
   }
 
-  Character.findById(id).populate('user', 'displayName').exec(function (err, character) {
+  Character.findById(id).populate('user', 'displayName').populate('items').exec(function (err, character) {
     if (err) {
       return next(err);
     } else if (!character) {

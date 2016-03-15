@@ -49,6 +49,10 @@ var CharacterSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  items: [{
+    type: Schema.ObjectId,
+    ref: 'Item'
+  }],
   background: {
     appearance : { type: String },
     backstory: { type: String },
