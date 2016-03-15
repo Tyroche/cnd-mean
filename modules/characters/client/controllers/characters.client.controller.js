@@ -6,16 +6,21 @@
     .module('characters')
     .controller('CharactersController', CharactersController);
 
-  CharactersController.$inject = ['$scope', '$state', 'Authentication', 'characterResolve', 'ConfigurationsService'];
+  CharactersController.$inject = [
+    '$scope',
+    '$state',
+    'Authentication',
+    'characterResolve',
+    'ConfigurationsService',
+    'ItemsService'];
 
-  function CharactersController ($scope, $state, Authentication, character, ConfigurationsService) {
+  function CharactersController ($scope, $state, Authentication, character, ConfigurationsService, itemsService) {
     var vm = this;
 
     vm.authentication = Authentication;
     vm.character = character;
     vm.error = null;
     vm.form = {};
-    vm.isSpellCaster = isSpellCaster;
     vm.remove = remove;
     vm.save = save;
     vm.nextStep = nextStep;
@@ -31,6 +36,17 @@
       }
 
       vm.config = res[0];
+    });
+
+
+    itemsService.query({ rarity: 'Common' }, function(res) {
+      if (!res[0]) {
+        console.log('ERROR: No Items found!!!');
+        return;
+      }
+
+      vm.items = res;
+      console.log(vm.items);
     });
 
     vm.creationSteps = [
@@ -62,10 +78,7 @@
     ];
 
     function nextStep() {
-      var maxStep = 4;
-      if(isSpellCaster()) {
-        maxStep = 5;
-      }
+      var maxStep = 5;
       vm.step = Math.min(maxStep, vm.step + 1);
     }
 
@@ -105,23 +118,6 @@
       if (race[0]) {
         return race[0].description;
       }
-    }
-
-    function isSpellCaster() {
-      var c = vm.character.playableClass;
-      var casters = [
-        'Bard',
-        'Cleric',
-        'Druid',
-        'Paladin',
-        'Ranger',
-        'Sorcerer',
-        'Warlock',
-        'Wizard'
-      ];
-
-      // Need to set up an api or something to do this more nicely
-      return c && casters.indexOf(c) > -1;
     }
 
     // Remove existing Character
