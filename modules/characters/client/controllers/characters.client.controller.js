@@ -30,6 +30,12 @@
     vm.toggleItem = toggleItem;
     vm.sumInventoryPrice = sumInventoryPrice;
     vm.step = 0;
+    vm.points = 27;
+
+    vm.removePoint = removePoint;
+    vm.addPoint = addPoint;
+    vm.toModifier = toModifier;
+
 
     init();
     function init() {
@@ -59,6 +65,42 @@
       });
     }
 
+    function getPointCost(val) {
+      return Math.max(0, (val-13)) + Math.max(0, val-8);
+    }
+
+    function addPoint(att) {
+      // hard cap of 15
+      var maximumRawScore = 15;
+      if (att < maximumRawScore) {
+        var costChange = getPointCost(att+1) - getPointCost(att);
+        if(vm.points >= costChange) {
+          vm.points -= costChange;
+          return att + 1;
+        }
+      }
+      return att;
+    }
+
+    function removePoint(att) {
+      // hard min of 8
+      var minimumRawScore = 8;
+      if (att > minimumRawScore) {
+        var costChange = getPointCost(att) - getPointCost(att - 1);
+        vm.points += costChange;
+        return att - 1;
+      }
+      return att;
+    }
+
+    function toModifier(attVal) {
+      var modifier = Math.floor((attVal-10) / 2);
+      if(modifier > 0) {
+        return "+" + modifier;
+      }
+      return modifier;
+    }
+
     vm.creationSteps = [
       {
         title: 'Basics',
@@ -79,11 +121,6 @@
         title: 'Inventory',
         template: 'modules/characters/client/views/creationSteps/character.creation.inventory.view.html' ,
         help:'modules/characters/client/views/creationHelp/character.creation.inventory.help.view.html'
-      },
-      {
-        title: 'Spells',
-        template: 'modules/characters/client/views/creationSteps/character.creation.spells.view.html',
-        help:'modules/characters/client/views/creationHelp/character.creation.spells.help.view.html'
       }
     ];
 
@@ -102,8 +139,7 @@
     }
 
     function nextStep() {
-      var maxStep = 5;
-      vm.step = Math.min(maxStep, vm.step + 1);
+      vm.step = Math.min(vm.creationSteps.length, vm.step + 1);
     }
 
     function previousStep() {

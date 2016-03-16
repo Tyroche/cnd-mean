@@ -1,10 +1,3 @@
-.att2-entry {
-    width:100%;
-    -webkit-appearance: none;
-    margin: 0;
-    -moz-appearance: textfield;
-}
-
 .col-centered {
     float: none;
     margin: 0 auto;
@@ -32,4 +25,13 @@
 .insufficient-funds {
   color: #aaa;
   cursor: not-allowed;
+}
+
+.tooltip-inner {
+  width: 250px;
+  max-width: 250px;
+}
+
+.att-row {
+  padding-bottom: 4px;
 }

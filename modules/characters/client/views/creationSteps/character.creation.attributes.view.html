@@ -1,52 +1,208 @@
-<div class="form-group row">
-    <h3>Attributes</h3>
-    <div class="col-sm-2 text-center">STR <br />
-        <input name="Strength"
-                type="number"
+<div class="form-group">
+
+  <div class="row">
+    <div class="col-xs-2"><b>Attribute</b></div>
+    <div class="col-xs-4 text-center"><b>Raw Score</b></div>
+    <div class="col-xs-3 text-center"><b>Racial Bonus</b></div>
+    <div class="col-xs-3 text-center"><b>Result</b></div>
+  </div>
+
+    <div class="row att-row">
+      <div class="col-sm-2 hidden-xs" tooltip="Strength measures your character's muscle and physical power">
+        Strength
+      </div>
+      <div class="col-xs-2 visible-xs">STR</div>
+      <div class="col-xs-4 text-center">
+        <div class="input-group" ng-init="vm.character.attributes.strength=8">
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.strength = vm.removePoint(vm.character.attributes.strength)"
+                class="btn btn-default" ><i class="fa fa-minus"></i></button>
+          </span>
+          <input type="number"
                 ng-model="vm.character.attributes.strength"
-                class="form-control att-entry" required
-                ng-init="vm.character.attributes.strength=10">
+                class="text-center att-entry form-control"
+                disabled></input>
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.strength = vm.addPoint(vm.character.attributes.strength)"
+                class="btn btn-default" ><i class="fa fa-plus"></i></button>
+          </span>
+        </div>
+      </div>
+      <div class="col-xs-3 text-center">
+        +1 <input type="checkbox">
+      </div>
+      <div class="col-xs-3 text-center">
+        {{vm.character.attributes.strength}} ({{vm.toModifier(vm.character.attributes.strength)}})
+      </div>
     </div>
-    <div class="col-sm-2 text-center">DEX <br />
-        <input name="Dexterity"
-                type="number"
+
+    <div class="row att-row">
+      <div class="col-sm-2 hidden-xs" tooltip="Dexterity measures agility, reflexes, and balanc">
+        Dexterity
+      </div>
+      <div class="col-xs-2 visible-xs">DEX</div>
+      <div class="col-xs-4 text-center">
+        <div class="input-group" ng-init="vm.character.attributes.dexterity=8">
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.dexterity = vm.removePoint(vm.character.attributes.dexterity)"
+                class="btn btn-default" ><i class="fa fa-minus"></i></button>
+          </span>
+          <input type="number"
                 ng-model="vm.character.attributes.dexterity"
-                class="form-control att-entry" required
-                ng-init="vm.character.attributes.dexterity=10">
+                class="text-center att-entry form-control"
+                disabled></input>
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.dexterity = vm.addPoint(vm.character.attributes.dexterity)"
+                class="btn btn-default" ><i class="fa fa-plus"></i></button>
+          </span>
+        </div>
+      </div>
+      <div class="col-xs-3 text-center">
+        +1 <input type="checkbox">
+      </div>
+      <div class="col-xs-3 text-center">
+        {{vm.character.attributes.dexterity}} ({{vm.toModifier(vm.character.attributes.dexterity)}})
+      </div>
     </div>
-    <div class="col-sm-2 text-center">CON<br />
-        <input name="Constitution"
-                type="number"
+
+    <div class="row att-row">
+      <div class="col-sm-2 hidden-xs" tooltip="Constitution represents your character's health and stamina">
+        Constitution
+      </div>
+      <div class="col-xs-2 visible-xs">CON</div>
+      <div class="col-xs-4 text-center">
+        <div class="input-group" ng-init="vm.character.attributes.constitution=8">
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.constitution = vm.removePoint(vm.character.attributes.constitution)"
+                class="btn btn-default" ><i class="fa fa-minus"></i></button>
+          </span>
+          <input type="number"
                 ng-model="vm.character.attributes.constitution"
-                class="form-control att-entry" required
-                ng-init="vm.character.attributes.constitution=10">
+                class="text-center att-entry form-control"
+                disabled></input>
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.constitution = vm.addPoint(vm.character.attributes.constitution)"
+                class="btn btn-default" ><i class="fa fa-plus"></i></button>
+          </span>
+        </div>
+      </div>
+      <div class="col-xs-3 text-center">
+        +1 <input type="checkbox">
+      </div>
+      <div class="col-xs-3 text-center">
+        {{vm.character.attributes.constitution}} ({{vm.toModifier(vm.character.attributes.constitution)}})
+      </div>
     </div>
-    <div class="col-sm-2 text-center">INT<br />
-        <input name="Intelligence"
-                type="number"
+
+
+    <div class="row att-row">
+      <div class="col-sm-2 hidden-xs" tooltip="Intelligence determines how well your character learns/reasons">
+        Intelligence
+      </div>
+      <div class="col-xs-2 visible-xs">INT</div>
+      <div class="col-xs-4 text-center">
+        <div class="input-group" ng-init="vm.character.attributes.intelligence=8">
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.intelligence = vm.removePoint(vm.character.attributes.intelligence)"
+                class="btn btn-default" ><i class="fa fa-minus"></i></button>
+          </span>
+          <input type="number"
                 ng-model="vm.character.attributes.intelligence"
-                class="form-control att-entry" required
-                ng-init="vm.character.attributes.intelligence=10">
+                class="text-center att-entry form-control"
+                disabled></input>
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.intelligence = vm.addPoint(vm.character.attributes.intelligence)"
+                class="btn btn-default" ><i class="fa fa-plus"></i></button>
+          </span>
+        </div>
+      </div>
+      <div class="col-xs-3 text-center">
+        +1 <input type="checkbox">
+      </div>
+      <div class="col-xs-3 text-center">
+        {{vm.character.attributes.intelligence}} ({{vm.toModifier(vm.character.attributes.intelligence)}})
+      </div>
     </div>
-    <div class="col-sm-2 text-center">WIS<br />
-        <input name="Wisdom"
-                type="number"
+
+    <div class="row att-row">
+      <div class="col-sm-2 hidden-xs" tooltip="Wisdom measures willpower, sense, and intuition">
+        Wisdom
+      </div>
+      <div class="col-xs-2 visible-xs">WIS</div>
+      <div class="col-xs-4 text-center">
+        <div class="input-group" ng-init="vm.character.attributes.wisdom=8">
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.wisdom = vm.removePoint(vm.character.attributes.wisdom)"
+                class="btn btn-default" ><i class="fa fa-minus"></i></button>
+          </span>
+          <input type="number"
                 ng-model="vm.character.attributes.wisdom"
-                class="form-control att-entry" required
-                ng-init="vm.character.attributes.wisdom=10">
+                class="text-center att-entry form-control"
+                disabled></input>
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.wisdom = vm.addPoint(vm.character.attributes.wisdom)"
+                class="btn btn-default" ><i class="fa fa-plus"></i></button>
+          </span>
+        </div>
+      </div>
+      <div class="col-xs-3 text-center">
+        +1 <input type="checkbox">
+      </div>
+      <div class="col-xs-3 text-center">
+        {{vm.character.attributes.wisdom}} ({{vm.toModifier(vm.character.attributes.wisdom)}})
+      </div>
     </div>
-    <div class="col-sm-2 text-center">CHA<br />
-        <input name="Charisma"
-                type="number"
+
+    <div class="row att-row">
+      <div class="col-sm-2 hidden-xs" tooltip="Charisma measures your character's force of personality upon others">
+        Charisma
+      </div>
+      <div class="col-xs-2 visible-xs">CHA</div>
+      <div class="col-xs-4 text-center">
+        <div class="input-group" ng-init="vm.character.attributes.charisma=8">
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.charisma = vm.removePoint(vm.character.attributes.charisma)"
+                class="btn btn-default" ><i class="fa fa-minus"></i></button>
+          </span>
+          <input type="number"
                 ng-model="vm.character.attributes.charisma"
-                class="form-control att-entry" required
-                ng-init="vm.character.attributes.charisma=10">
+                class="text-center att-entry form-control"
+                disabled></input>
+          <span class="input-group-btn">
+            <button type="button"
+                ng-click="vm.character.attributes.charisma = vm.addPoint(vm.character.attributes.charisma)"
+                class="btn btn-default" ><i class="fa fa-plus"></i></button>
+          </span>
+        </div>
+      </div>
+      <div class="col-xs-3 text-center">
+        +1 <input type="checkbox">
+      </div>
+      <div class="col-xs-3 text-center">
+        {{vm.character.attributes.charisma}} ({{vm.toModifier(vm.character.attributes.charisma)}})
+      </div>
     </div>
+
+    <div class="row text-center">
+      <p>You have <b>{{vm.points}}</b> points available.</p>
+    </div>
+
 </div>
 
 <!-- Proficiencies -->
 <div class="row">
-    <h3>Proficiencies</h3>
     <h4>Saves</h4>
+
     <h4>Skills</h4>
 </div>
