@@ -23,7 +23,35 @@
     vm.addRace = addRace;
     vm.toggleRaceVisibility = toggleRaceVisibility;
     vm.toggleClassVisibility = toggleClassVisibility;
+    vm.addSkill = addSkill;
 
+    vm.skillsAvailable = [
+      'Athletics',
+      'Acrobatics',
+      'Sleight of Hand',
+      'Stealth',
+      'Arcana',
+      'History',
+      'Investigation',
+      'Nature',
+      'Religion',
+      'Animal Handling',
+      'Insight',
+      'Medicine',
+      'Perception',
+      'Survival',
+      'Deception',
+      'Intimidation',
+      'Perform',
+      'Persuasion'
+    ];
+
+    function addSkill(skill, c) {
+      if(!c.skillProficiencies) { c.skillProficiencies = []; }
+      if(!c.skillProficiencies.some(function (s) { return s === skill; })) {
+        c.skillProficiencies.push(skill);
+      }
+    }
 
     function addRace() {
       if(!vm.configuration.races) {

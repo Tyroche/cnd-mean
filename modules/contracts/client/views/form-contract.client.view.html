@@ -41,32 +41,38 @@
         </div>
 
         <hr>
-
-
-        <!-- Expected Playstyles -->
-        <div class="form-group" show-errors>
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="control-label" for="expectedPlaystyles">Expected Playstyles</label>
-            </div>
-            <div class="col-sm-1">
-              <button type="button" ng-click="vm.addPlaystyle()" class="btn btn-default">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              </button>
-            </div>
+        <div class="row">
+          <div class="col-sm-offset-2 col-sm-3">
+            <button type="button" ng-click="vm.addPlaystyle()" class="btn btn-default">
+              Add Expected Playstyle
+            </button>
           </div>
-          <br>
+          <div class="col-sm-offset-1 col-sm-3">
+            <button type="button" ng-click="vm.addReward()" class="btn btn-default">
+              Add Reward
+            </button>
+          </div>
+        </div>
+
+
+      <div class="form-group" ng-if="vm.contract.expectedPlayStyles.length > 0" show-errors>
+        <!-- Expected Playstyles -->
+        <div class="row">
+          <div class="col-sm-2">
+            <label class="control-label" for="rewards">Expected Playstyles</label>
+          </div>
+        </div>
           <div ng-repeat="c in vm.contract.expectedPlayStyles track by $index">
             <div class="row">
-              <div class="col-sm-6">
-                <p class="input-group" show-errors>
+              <div class="col-sm-9">
+                <span class="input-group" show-errors>
                 <input type="text" ng-model="vm.contract.expectedPlayStyles[$index]" class="form-control" required>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="vm.removePlaystyle($index)">
-                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   </button>
                 </span>
-              </p>
+              </span>
               </div>
             </div>
           </div>
@@ -74,36 +80,40 @@
         <hr>
 
         <!-- Rewards -->
-        <div class="form-group" show-errors>
+        <div class="form-group" ng-if="vm.contract.rewards.length > 0" show-errors>
           <div class="row">
             <div class="col-sm-2">
-              <label class="control-label" for="rewards">Rewards</label>
+              <h4>Rewards</h4>
             </div>
+          </div>
+          <div class="row">
             <div class="col-sm-1">
-              <button type="button" ng-click="vm.addReward()" class="btn btn-default">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              </button>
+              <label class="control-label">Amount</label>
+            </div>
+            <div class="col-sm-3">
+              <label class="control-label">Unit</label>
+            </div>
+            <div class="col-sm-5">
+              <label class="control-label">Condition</label>
             </div>
           </div>
           <div ng-repeat="c in vm.contract.rewards">
             <div class="row">
               <div class="col-sm-1">
-                <label class="control-label" for="c.amount">Amount</label>
                 <input name="enabled" type="number" ng-model="c.amount" class="form-control att-entry" required>
               </div>
               <div class="col-sm-3">
-                <label class="control-label" for="c.unit">Unit</label>
                 <input name="enabled" type="text" ng-model="c.unit" class="form-control" required>
               </div>
               <div class="col-sm-5">
-                <label class="control-label" for="c.unit">Condition</label>
-                <input name="enabled" type="text" ng-model="c.condition" class="form-control">
-              </div>
-              <div class="col-sm-1">
-                <br>
-                <button style="margin-top: 6px;" type="button" class="btn btn-default" ng-click="vm.removeReward($index)">
-                  <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                </button>
+                <span class="input-group">
+                  <input name="enabled" type="text" ng-model="c.condition" class="form-control">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="vm.removeReward($index)">
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </span>
               </div>
             </div>
           </div>

@@ -52,10 +52,38 @@ var ConfigurationSchema = new Schema({
       required: 'HD must be defined'
     },
     skillProficiencies: [{
-      type: String
+      type: String,
+      enum: [
+        'Athletics',
+        'Acrobatics',
+        'Sleight of Hand',
+        'Stealth',
+        'Arcana',
+        'History',
+        'Investigation',
+        'Nature',
+        'Religion',
+        'Animal Handling',
+        'Insight',
+        'Medicine',
+        'Perception',
+        'Survival',
+        'Deception',
+        'Intimidation',
+        'Perform',
+        'Persuasion'
+      ]
     }],
     saveProficiencies: [{
-      type: String
+      type: String,
+      enum: [
+        'Strength',
+        'Dexterity',
+        'Constitution',
+        'Intelligence',
+        'Wisdom',
+        'Charisma'
+      ]
     }],
   }],
   races: [{
@@ -71,7 +99,18 @@ var ConfigurationSchema = new Schema({
       type: String
     }],
     abilityIncreases: [{
-      ability: { type: String },
+      ability: {
+        type: String,
+        enum: [
+          'Strength',
+          'Dexterity',
+          'Constitution',
+          'Intelligence',
+          'Wisdom',
+          'Charisma',
+          'Choice'
+        ]
+       },
       amount: { type: Number }
     }]
   }],
