@@ -1,10 +1,22 @@
 <section>
-  <div class="page-header">
-    <h1>{{vm.contract._id ? 'Edit Contract' : 'New Contract'}}</h1>
-  </div>
   <div class="col-md-12">
     <form name="vm.form.contractForm" class="form-horizontal" ng-submit="vm.save(vm.form.contractForm.$valid)" novalidate>
       <fieldset>
+        <div class="row">
+          <div class="col-sm-10">
+            <div class="page-header">
+              <h1>{{vm.contract._id ? 'Edit Contract' : 'New Contract'}}</h1>
+            </div>
+            <span style="position: absolute; right: 0; top: 32px;">
+              <button class="btn btn-danger" ui-sref="contracts.list">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+              <button class="btn btn-success" type="submit">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+              </button>
+            </span>
+          </div>
+        </div>
 
         <div class="row">
           <div class="col-md-5">
@@ -40,47 +52,46 @@
           </div>
         </div>
 
-        <hr>
         <div class="row">
-          <div class="col-sm-offset-2 col-sm-3">
+          <div class="col-sm-3">
             <button type="button" ng-click="vm.addPlaystyle()" class="btn btn-default">
               Add Expected Playstyle
             </button>
           </div>
-          <div class="col-sm-offset-1 col-sm-3">
+          <div class="col-sm-offset-1">
             <button type="button" ng-click="vm.addReward()" class="btn btn-default">
               Add Reward
             </button>
           </div>
+          <hr>
         </div>
 
-
-      <div class="form-group" ng-if="vm.contract.expectedPlayStyles.length > 0" show-errors>
+      <div class="form-group" ng-if="vm.contract.expectedPlayStyles.length > 0">
         <!-- Expected Playstyles -->
         <div class="row">
           <div class="col-sm-2">
-            <label class="control-label" for="rewards">Expected Playstyles</label>
+            <h4>Expected Playstyles</h4>
           </div>
         </div>
           <div ng-repeat="c in vm.contract.expectedPlayStyles track by $index">
             <div class="row">
               <div class="col-sm-9">
-                <span class="input-group" show-errors>
+                <p class="input-group">
                 <input type="text" ng-model="vm.contract.expectedPlayStyles[$index]" class="form-control" required>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="vm.removePlaystyle($index)">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   </button>
                 </span>
-              </span>
+              </p>
               </div>
             </div>
           </div>
+          <hr>
         </div>
-        <hr>
 
         <!-- Rewards -->
-        <div class="form-group" ng-if="vm.contract.rewards.length > 0" show-errors>
+        <div class="form-group" ng-if="vm.contract.rewards.length > 0">
           <div class="row">
             <div class="col-sm-2">
               <h4>Rewards</h4>
@@ -106,22 +117,20 @@
                 <input name="enabled" type="text" ng-model="c.unit" class="form-control" required>
               </div>
               <div class="col-sm-5">
-                <span class="input-group">
+                <p class="input-group">
                   <input name="enabled" type="text" ng-model="c.condition" class="form-control">
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="vm.removeReward($index)">
                       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
                   </span>
-                </span>
+                </p>
               </div>
             </div>
           </div>
         </div>
-
-
         <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.contract._id ? 'Update' : 'Create'}}</button>
+
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>
