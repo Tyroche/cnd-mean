@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <section>
   <div class="page-header">
     <h1>{{vm.profession._id ? 'Edit Class' : 'New Class'}}</h1>
@@ -17,9 +18,9 @@
           </div>
 
           <div class="col-sm-offset-1 col-sm-2">
-            <label class="control-label" for="c.hitDice">HD Type</label>
+            <label class="control-label" for="vm.profession.hitDice">HD Type</label>
             <input type="number"
-                   ng-model="c.hitDice"
+                   ng-model="vm.profession.hitDice"
                    class="form-control"
                    required>
          </div>
@@ -31,6 +32,7 @@
             <textarea name="enabled" ng-model="vm.profession.description" class="form-control" required
               pleaceholder="Enter some information about this class (used in the Help Area for Character Creation)">
             </textarea>
+            <br>
           </div>
         </div>
 
@@ -55,24 +57,32 @@
                     <a href ng-click="vm.addSkill(skill)">{{skill}}</a></li>
                 </ul>
             </div>
+            <br>
           </div>
         </div>
 
         <div class="row">
-          <p><b>Save Proficiencies</b></p>
-          <p><span class="proficiency-tag" ng-repeat="save in vm.profession.saveProficiencies">
-            {{save}} <i class="fa fa-times-circle-o"></i>
+          <div class="col-xs-10">
+            <p><b>Save Proficiencies</b></p>
+            <p><span class="proficiency-tag" ng-repeat="save in vm.profession.saveProficiencies">
+              {{save}} <a href ng-click="vm.removeSaveProficiency(save)" class="fa fa-times-circle-o"></a>
             </span></p>
+          </div>
         </div>
         <div class="row">
-          <p><b>Proficiency Options</b></p>
-          <p><span class="proficiency-tag" ng-repeat="skill in vm.profession.skillProficiencies">
-            {{skill}} <i class="fa fa-times-circle-o"></i>
-          </span></p>
+          <div class="col-xs-10">
+            <p><b>Proficiency Options</b></p>
+            <p><span class="proficiency-tag" ng-repeat="skill in vm.profession.skillProficiencies">
+              {{skill}} <a href ng-click="vm.removeSkillProficiency(skill)" class="fa fa-times-circle-o"></a>
+            </span></p>
+          </div>
         </div>
 
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.profession._id ? 'Update' : 'Create'}}</button>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <button type="button" ui-sref="professions.list" class="btn btn-danger">Cancel</button>
+            <button type="submit" class="btn btn-success">{{vm.profession._id ? 'Update' : 'Create'}}</button>
+          </div>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>

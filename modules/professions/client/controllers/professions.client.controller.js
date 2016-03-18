@@ -18,7 +18,9 @@
     vm.remove = remove;
     vm.save = save;
     vm.addSaveProficiency = addSaveProficiency;
+    vm.removeSaveProficiency = removeSaveProficiency;
     vm.addSkill = addSkill;
+    vm.removeSkillProficiency = removeSkillProficiency;
 
     vm.abilitySaves = [
       'Strength',
@@ -49,6 +51,15 @@
       'Perform',
       'Persuasion'
     ];
+
+    function removeSaveProficiency(save) {
+      var ind = vm.profession.saveProficiencies.indexOf(save);
+      vm.profession.saveProficiencies.splice(ind, 1);
+    }
+    function removeSkillProficiency(skill) {
+      var ind = vm.profession.skillProficiencies.indexOf(skill);
+      vm.profession.skillProficiencies.splice(ind, 1);
+    }
 
     function addSaveProficiency(save) {
       if(!vm.profession.saveProficiencies) { vm.profession.saveProficiencies = []; }
