@@ -110,7 +110,7 @@ var ConfigurationSchema = new Schema({
           'Charisma',
           'Choice'
         ]
-       },
+      },
       amount: { type: Number }
     }]
   }],

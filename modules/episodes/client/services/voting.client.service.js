@@ -29,7 +29,7 @@
       return user.roles.indexOf('consultant') > -1 || user.roles.indexOf('admin') > -1;
     }
 
-    function enableAttendance(episode, user, character ) {
+    function enableAttendance(episode, user, character) {
       if(!isUserAttendancePermitted(user)) { return; }
       episode.attendees.push({
         user: user._id,

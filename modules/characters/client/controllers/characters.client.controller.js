@@ -96,7 +96,7 @@
     function toModifier(attVal) {
       var modifier = Math.floor((attVal-10) / 2);
       if(modifier > 0) {
-        return "+" + modifier;
+        return '+' + modifier;
       }
       return modifier;
     }
