@@ -16,7 +16,14 @@
                   required>
           </div>
 
-        </div>
+          <div class="col-sm-offset-1 col-sm-2">
+            <label class="control-label" for="c.hitDice">HD Type</label>
+            <input type="number"
+                   ng-model="c.hitDice"
+                   class="form-control"
+                   required>
+         </div>
+       </div>
 
         <div class="row">
           <div class="col-sm-10">
@@ -28,16 +35,6 @@
         </div>
 
         <div class="row">
-          <div class="col-xs-4 col-xs-offset-2">
-            <div class="dropdown" dropdown>
-              <button type="button" class="btn btn-default" dropdown-toggle>
-                Add Proficiency Option <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li ng-repeat="skill in vm.skillsAvailable">
-                    <a href ng-click="vm.addSkill(skill)">{{skill}}</a></li>
-                </ul>
-            </div>
-          </div>
           <div class="col-xs-4">
             <div class="dropdown" dropdown>
               <button type="button" class="btn btn-default" dropdown-toggle>
@@ -46,6 +43,16 @@
                   <li ng-repeat="save in vm.abilitySaves">
                     <a href ng-click="vm.addSaveProficiency(save)">{{save}}</a>
                   </li>
+                </ul>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="dropdown" dropdown>
+              <button type="button" class="btn btn-default" dropdown-toggle>
+                Add Proficiency Option <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li ng-repeat="skill in vm.skillsAvailable">
+                    <a href ng-click="vm.addSkill(skill)">{{skill}}</a></li>
                 </ul>
             </div>
           </div>
