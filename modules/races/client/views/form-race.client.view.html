@@ -5,13 +5,66 @@
   <div class="col-md-12">
     <form name="vm.form.raceForm" class="form-horizontal" ng-submit="vm.save(vm.form.raceForm.$valid)" novalidate>
       <fieldset>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.race.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.raceForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Race name is required.</p>
+        <h4>Class Information</h4>
+        <div class="row">
+          <div class="col-sm-5">
+            <label class="control-label" for="vm.race.name">Name</label>
+            <input name="enabled"
+                  type="text"
+                  ng-model="vm.race.name"
+                  class="form-control"
+                  ng-click="$event.stopPropagation()"
+                  required>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-sm-10">
+            <label class="control-label" for="vm.race.description">Race Description</label>
+            <textarea name="enabled" ng-model="vm.race.description" class="form-control" required
+                ng-click="$event.stopPropagation()"
+                pleaceholder="Enter some information about this race (used in the Help Area for Character Creation)">
+            </textarea>
+          </div>
+        </div>
+        <hr>
+
+        <h4>Ability Increases</h4>
+        <div class="row"
+          ng-click="$event.stopPropagation()">
+          <div class="col-xs-3">
+            <b>STR</b>
+            <input class="form-control att-entry" type="number" ng-model="vm.race.abilityIncreases.strength">
+          </div>
+          <div class="col-xs-3">
+            <b>DEX</b>
+            <input class="form-control att-entry" type="number" ng-model="vm.race.abilityIncreases.dexterity">
+          </div>
+          <div class="col-xs-3">
+            <b>CON</b>
+            <input class="form-control att-entry" type="number" ng-model="vm.race.abilityIncreases.constitution">
+          </div>
+          <div class="col-xs-3">
+            <b>Choice</b>
+            <input class="form-control att-entry" type="number" ng-model="vm.race.abilityIncreases.choice">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <b>INT</b>
+            <input class="form-control att-entry" type="number" ng-model="vm.race.abilityIncreases.intelligence">
+          </div>
+          <div class="col-xs-3">
+            <b>WIS</b>
+            <input class="form-control att-entry" type="number" ng-model="vm.race.abilityIncreases.wisdom">
+          </div>
+          <div class="col-xs-3">
+            <b>CHA</b>
+            <input class="form-control att-entry" type="number" ng-model="vm.race.abilityIncreases.charisma"></input>
+          </div>
+        </div>
+        <hr>
+
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.race._id ? 'Update' : 'Create'}}</button>
         </div>

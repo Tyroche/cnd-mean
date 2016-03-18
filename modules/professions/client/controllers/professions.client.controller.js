@@ -17,6 +17,52 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.addSaveProficiency = addSaveProficiency;
+    vm.addSkill = addSkill;
+
+    vm.abilitySaves = [
+      'Strength',
+      'Dexterity',
+      'Constitution',
+      'Intelligence',
+      'Wisdom',
+      'Charisma'
+    ];
+
+    vm.skillsAvailable = [
+      'Athletics',
+      'Acrobatics',
+      'Sleight of Hand',
+      'Stealth',
+      'Arcana',
+      'History',
+      'Investigation',
+      'Nature',
+      'Religion',
+      'Animal Handling',
+      'Insight',
+      'Medicine',
+      'Perception',
+      'Survival',
+      'Deception',
+      'Intimidation',
+      'Perform',
+      'Persuasion'
+    ];
+
+    function addSaveProficiency(save) {
+      if(!vm.profession.saveProficiencies) { vm.profession.saveProficiencies = []; }
+      if(!vm.profession.saveProficiencies.some(function (s) { return s === save; })) {
+        vm.profession.saveProficiencies.push(save);
+      }
+    }
+
+    function addSkill(skill) {
+      if(!vm.profession.skillProficiencies) { vm.profession.skillProficiencies = []; }
+      if(!vm.profession.skillProficiencies.some(function (s) { return s === skill; })) {
+        vm.profession.skillProficiencies.push(skill);
+      }
+    }
 
     // Remove existing Profession
     function remove() {

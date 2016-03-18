@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('configurations', ['ui.bootstrap']);
+  app.registerModule('configurations');
 })(ApplicationConfiguration);
