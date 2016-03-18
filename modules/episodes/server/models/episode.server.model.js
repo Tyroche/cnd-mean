@@ -37,6 +37,10 @@ var EpisodeSchema = new Schema({
     character: {
       type: Schema.ObjectId,
       ref: 'Character'
+    },
+    contractVote: {
+      type: Schema.ObjectId,
+      ref: 'Contract'
     }
   }]
 });
