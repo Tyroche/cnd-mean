@@ -2,17 +2,16 @@
   'use strict';
 
   angular
-    .module('items')
+    .module('feats')
     .run(menuConfig);
 
   menuConfig.$inject = ['Menus'];
 
   function menuConfig(Menus) {
-    // Set top bar menu items
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'configurations', {
-      title: 'Manage Items',
-      state: 'items.list'
+      title: 'Manage Feats',
+      state: 'feats.list'
     });
   }
 })();

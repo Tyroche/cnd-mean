@@ -5,7 +5,7 @@ angular.module('users.admin').run(['Menus',
   function (Menus) {
 
     Menus.addSubMenuItem('topbar', 'configurations', {
-      title: 'Manage Players',
+      title: 'Manage Users',
       state: 'admin.users'
     });
   }

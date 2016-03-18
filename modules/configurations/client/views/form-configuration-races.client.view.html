@@ -8,11 +8,12 @@
     </div>
   </div>
   <hr style="padding-bottom: 0px; margin-bottom: 0px;"/>
-  <div ng-repeat="c in vm.configuration.races"  ng-click="vm.toggleRaceVisibility($index)">
+  <div class="well" ng-repeat="c in vm.configuration.races"  ng-click="vm.toggleRaceVisibility($index)">
+
 
       <div class="row" ng-show="raceHidden[$index]">
         <div class="col-sm-5">
-          <i ng-bind="c.name"></i>
+          <h3 ng-bind="c.name"></h3>
         </div>
         <div class="col-sm-offset-5 col-sm-1">
           <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
@@ -20,6 +21,7 @@
       </div>
 
       <div ng-show="!raceHidden[$index]">
+        <h4>Class Information</h4>
         <div class="row">
           <div class="col-sm-5">
             <label class="control-label" for="c.name">Name</label>
@@ -44,8 +46,43 @@
             </textarea>
           </div>
         </div>
-      </div>
-      <hr style="margin-top: 4px; margin-bottom: 4px;"/>
+        <hr>
 
+        <h4>Ability Increases</h4>
+        <div class="row"
+          ng-click="$event.stopPropagation()">
+          <div class="col-xs-3">
+            <b>STR</b>
+            <input class="form-control att-entry" type="number" ng-model="c.abilityIncreases.strength">
+          </div>
+          <div class="col-xs-3">
+            <b>DEX</b>
+            <input class="form-control att-entry" type="number" ng-model="c.abilityIncreases.dexterity">
+          </div>
+          <div class="col-xs-3">
+            <b>CON</b>
+            <input class="form-control att-entry" type="number" ng-model="c.abilityIncreases.constitution">
+          </div>
+          <div class="col-xs-3">
+            <b>Choice</b>
+            <input class="form-control att-entry" type="number" ng-model="c.abilityIncreases.choice">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <b>INT</b>
+            <input class="form-control att-entry" type="number" ng-model="c.abilityIncreases.intelligence">
+          </div>
+          <div class="col-xs-3">
+            <b>WIS</b>
+            <input class="form-control att-entry" type="number" ng-model="c.abilityIncreases.wisdom">
+          </div>
+          <div class="col-xs-3">
+            <b>CHA</b>
+            <input class="form-control att-entry" type="number" ng-model="c.abilityIncreases.charisma"></input>
+          </div>
+        </div>
+        <hr>
+      </div>
   </div>
 </div>

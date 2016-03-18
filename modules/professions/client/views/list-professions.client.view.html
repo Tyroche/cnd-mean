@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Classes</h1>
+  </div>
+  <div class="list-group">
+    <a data-ng-repeat="profession in vm.professions"
+       data-ui-sref="professions.view({ professionId: profession._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="profession.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="profession.user" data-ng-bind="profession.user.displayName"></span>
+        <span data-ng-if="!profession.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="profession.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.professions.$resolved && !vm.professions.length">
+    No Professions yet, why don't you <a data-ui-sref="professions.create">create one</a>?
+  </div>
+</section>
