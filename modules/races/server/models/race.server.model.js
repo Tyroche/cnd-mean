@@ -22,13 +22,13 @@ var RaceSchema = new Schema({
     type: String
   }],
   abilityIncreases: {
-    strength: { type: Number, default: 0 },
-    dexterity: { type: Number, default: 0 },
-    constitution: { type: Number, default: 0 },
-    intelligence: { type: Number, default: 0 },
-    wisdom: { type: Number, default: 0 },
-    charisma: { type: Number, default: 0 },
-    choice: { type: Number, default: 0 }
+    Strength: { type: Number, default: 0 },
+    Dexterity: { type: Number, default: 0 },
+    Constitution: { type: Number, default: 0 },
+    Intelligence: { type: Number, default: 0 },
+    Wisdom: { type: Number, default: 0 },
+    Charisma: { type: Number, default: 0 },
+    Choice: { type: Number, default: 0 }
   }
 });
 

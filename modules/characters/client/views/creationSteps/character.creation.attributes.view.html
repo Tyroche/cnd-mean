@@ -11,30 +11,46 @@
       <div class="col-sm-2 hidden-xs" tooltip="Strength measures your character's muscle and physical power">
         Strength
       </div>
+
+      <!-- Label -->
       <div class="col-xs-2 visible-xs">STR</div>
+
+      <!-- Point Buy -->
       <div class="col-xs-4 text-center">
-        <div class="input-group" ng-init="vm.character.attributes.strength=8">
+        <div class="input-group" ng-init="vm.character.attributes.Strength=8">
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.strength = vm.removePoint(vm.character.attributes.strength)"
+                ng-click="vm.character.attributes.Strength = vm.removePoint(vm.character.attributes.Strength)"
                 class="btn btn-default" ><i class="fa fa-minus"></i></button>
           </span>
           <input type="number"
-                ng-model="vm.character.attributes.strength"
+                ng-model="vm.character.attributes.Strength"
                 class="text-center att-entry form-control"
                 disabled></input>
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.strength = vm.addPoint(vm.character.attributes.strength)"
+                ng-click="vm.character.attributes.Strength = vm.addPoint(vm.character.attributes.Strength)"
                 class="btn btn-default" ><i class="fa fa-plus"></i></button>
           </span>
         </div>
       </div>
+
+      <!-- Racial Bonus -->
       <div class="col-xs-3 text-center">
-        +1 <input type="checkbox">
+        <!-- Check to see if there is a defined racial bonus-->
+        <div ng-if="vm.character.race.abilityIncreases.Strength > 0">
+          + {{vm.character.race.abilityIncreases.Strength}}
+        </div>
+        <div ng-if="vm.character.race.abilityIncreases.Strength <= 0">
+          <div ng-if="vm.character.race.abilityIncreases.Choice > 0">
+            +{{vm.character.race.abilityIncreases.Choice}} <input <input type="radio" name="attChoice">
+          </div>
+        </div>
       </div>
+
+      <!-- Total -->
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.strength}} ({{vm.toModifier(vm.character.attributes.strength)}})
+        {{vm.character.attributes.Strength}} ({{vm.toModifier(vm.character.attributes.Strength)}})
       </div>
     </div>
 
@@ -44,28 +60,39 @@
       </div>
       <div class="col-xs-2 visible-xs">DEX</div>
       <div class="col-xs-4 text-center">
-        <div class="input-group" ng-init="vm.character.attributes.dexterity=8">
+        <div class="input-group" ng-init="vm.character.attributes.Dexterity=8">
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.dexterity = vm.removePoint(vm.character.attributes.dexterity)"
+                ng-click="vm.character.attributes.Dexterity = vm.removePoint(vm.character.attributes.Dexterity)"
                 class="btn btn-default" ><i class="fa fa-minus"></i></button>
           </span>
           <input type="number"
-                ng-model="vm.character.attributes.dexterity"
+                ng-model="vm.character.attributes.Dexterity"
                 class="text-center att-entry form-control"
                 disabled></input>
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.dexterity = vm.addPoint(vm.character.attributes.dexterity)"
+                ng-click="vm.character.attributes.Dexterity = vm.addPoint(vm.character.attributes.Dexterity)"
                 class="btn btn-default" ><i class="fa fa-plus"></i></button>
           </span>
         </div>
       </div>
+
+      <!-- Racial Bonus -->
       <div class="col-xs-3 text-center">
-        +1 <input type="checkbox">
+        <!-- Check to see if there is a defined racial bonus-->
+        <div ng-if="vm.character.race.abilityIncreases.Dexterity > 0">
+          + {{vm.character.race.abilityIncreases.Dexterity}}
+        </div>
+        <div ng-if="vm.character.race.abilityIncreases.Dexterity <= 0">
+          <div ng-if="vm.character.race.abilityIncreases.Choice > 0">
+            +{{vm.character.race.abilityIncreases.Choice}} <input <input type="radio" name="attChoice">
+          </div>
+        </div>
       </div>
+
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.dexterity}} ({{vm.toModifier(vm.character.attributes.dexterity)}})
+        {{vm.character.attributes.Dexterity}} ({{vm.toModifier(vm.character.attributes.Dexterity)}})
       </div>
     </div>
 
@@ -75,28 +102,37 @@
       </div>
       <div class="col-xs-2 visible-xs">CON</div>
       <div class="col-xs-4 text-center">
-        <div class="input-group" ng-init="vm.character.attributes.constitution=8">
+        <div class="input-group" ng-init="vm.character.attributes.Constitution=8">
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.constitution = vm.removePoint(vm.character.attributes.constitution)"
+                ng-click="vm.character.attributes.Constitution = vm.removePoint(vm.character.attributes.Constitution)"
                 class="btn btn-default" ><i class="fa fa-minus"></i></button>
           </span>
           <input type="number"
-                ng-model="vm.character.attributes.constitution"
+                ng-model="vm.character.attributes.Constitution"
                 class="text-center att-entry form-control"
                 disabled></input>
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.constitution = vm.addPoint(vm.character.attributes.constitution)"
+                ng-click="vm.character.attributes.Constitution = vm.addPoint(vm.character.attributes.Constitution)"
                 class="btn btn-default" ><i class="fa fa-plus"></i></button>
           </span>
         </div>
       </div>
+      <!-- Racial Bonus -->
       <div class="col-xs-3 text-center">
-        +1 <input type="checkbox">
+        <!-- Check to see if there is a defined racial bonus-->
+        <div ng-if="vm.character.race.abilityIncreases.Constitution > 0">
+          + {{vm.character.race.abilityIncreases.Constitution}}
+        </div>
+        <div ng-if="vm.character.race.abilityIncreases.Constitution <= 0">
+          <div ng-if="vm.character.race.abilityIncreases.Choice > 0">
+            +{{vm.character.race.abilityIncreases.Choice}} <input <input type="radio" name="attChoice">
+          </div>
+        </div>
       </div>
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.constitution}} ({{vm.toModifier(vm.character.attributes.constitution)}})
+        {{vm.character.attributes.Constitution}} ({{vm.toModifier(vm.character.attributes.Constitution)}})
       </div>
     </div>
 
@@ -107,28 +143,37 @@
       </div>
       <div class="col-xs-2 visible-xs">INT</div>
       <div class="col-xs-4 text-center">
-        <div class="input-group" ng-init="vm.character.attributes.intelligence=8">
+        <div class="input-group" ng-init="vm.character.attributes.Intelligence=8">
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.intelligence = vm.removePoint(vm.character.attributes.intelligence)"
+                ng-click="vm.character.attributes.Intelligence = vm.removePoint(vm.character.attributes.Intelligence)"
                 class="btn btn-default" ><i class="fa fa-minus"></i></button>
           </span>
           <input type="number"
-                ng-model="vm.character.attributes.intelligence"
+                ng-model="vm.character.attributes.Intelligence"
                 class="text-center att-entry form-control"
                 disabled></input>
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.intelligence = vm.addPoint(vm.character.attributes.intelligence)"
+                ng-click="vm.character.attributes.Intelligence = vm.addPoint(vm.character.attributes.Intelligence)"
                 class="btn btn-default" ><i class="fa fa-plus"></i></button>
           </span>
         </div>
       </div>
+      <!-- Racial Bonus -->
       <div class="col-xs-3 text-center">
-        +1 <input type="checkbox">
+        <!-- Check to see if there is a defined racial bonus-->
+        <div ng-if="vm.character.race.abilityIncreases.Intelligence > 0">
+          + {{vm.character.race.abilityIncreases.Intelligence}}
+        </div>
+        <div ng-if="vm.character.race.abilityIncreases.Intelligence <= 0">
+          <div ng-if="vm.character.race.abilityIncreases.Choice > 0">
+            +{{vm.character.race.abilityIncreases.Choice}} <input <input type="radio" name="attChoice">
+          </div>
+        </div>
       </div>
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.intelligence}} ({{vm.toModifier(vm.character.attributes.intelligence)}})
+        {{vm.character.attributes.Intelligence}} ({{vm.toModifier(vm.character.attributes.Intelligence)}})
       </div>
     </div>
 
@@ -138,28 +183,37 @@
       </div>
       <div class="col-xs-2 visible-xs">WIS</div>
       <div class="col-xs-4 text-center">
-        <div class="input-group" ng-init="vm.character.attributes.wisdom=8">
+        <div class="input-group" ng-init="vm.character.attributes.Wisdom=8">
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.wisdom = vm.removePoint(vm.character.attributes.wisdom)"
+                ng-click="vm.character.attributes.Wisdom = vm.removePoint(vm.character.attributes.Wisdom)"
                 class="btn btn-default" ><i class="fa fa-minus"></i></button>
           </span>
           <input type="number"
-                ng-model="vm.character.attributes.wisdom"
+                ng-model="vm.character.attributes.Wisdom"
                 class="text-center att-entry form-control"
                 disabled></input>
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.wisdom = vm.addPoint(vm.character.attributes.wisdom)"
+                ng-click="vm.character.attributes.Wisdom = vm.addPoint(vm.character.attributes.Wisdom)"
                 class="btn btn-default" ><i class="fa fa-plus"></i></button>
           </span>
         </div>
       </div>
+      <!-- Racial Bonus -->
       <div class="col-xs-3 text-center">
-        +1 <input type="checkbox">
+        <!-- Check to see if there is a defined racial bonus-->
+        <div ng-if="vm.character.race.abilityIncreases.Wisdom > 0">
+          + {{vm.character.race.abilityIncreases.Wisdom}}
+        </div>
+        <div ng-if="vm.character.race.abilityIncreases.Wisdom <= 0">
+          <div ng-if="vm.character.race.abilityIncreases.Choice > 0">
+            +{{vm.character.race.abilityIncreases.Choice}} <input <input type="radio" name="attChoice">
+          </div>
+        </div>
       </div>
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.wisdom}} ({{vm.toModifier(vm.character.attributes.wisdom)}})
+        {{vm.character.attributes.Wisdom}} ({{vm.toModifier(vm.character.attributes.Wisdom)}})
       </div>
     </div>
 
@@ -169,28 +223,37 @@
       </div>
       <div class="col-xs-2 visible-xs">CHA</div>
       <div class="col-xs-4 text-center">
-        <div class="input-group" ng-init="vm.character.attributes.charisma=8">
+        <div class="input-group" ng-init="vm.character.attributes.Charisma=8">
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.charisma = vm.removePoint(vm.character.attributes.charisma)"
+                ng-click="vm.character.attributes.Charisma = vm.removePoint(vm.character.attributes.Charisma)"
                 class="btn btn-default" ><i class="fa fa-minus"></i></button>
           </span>
           <input type="number"
-                ng-model="vm.character.attributes.charisma"
+                ng-model="vm.character.attributes.Charisma"
                 class="text-center att-entry form-control"
                 disabled></input>
           <span class="input-group-btn">
             <button type="button"
-                ng-click="vm.character.attributes.charisma = vm.addPoint(vm.character.attributes.charisma)"
+                ng-click="vm.character.attributes.Charisma = vm.addPoint(vm.character.attributes.Charisma)"
                 class="btn btn-default" ><i class="fa fa-plus"></i></button>
           </span>
         </div>
       </div>
+      <!-- Racial Bonus -->
       <div class="col-xs-3 text-center">
-        +1 <input type="checkbox">
+        <!-- Check to see if there is a defined racial bonus-->
+        <div ng-if="vm.character.race.abilityIncreases.Charisma > 0">
+          + {{vm.character.race.abilityIncreases.Charisma}}
+        </div>
+        <div ng-if="vm.character.race.abilityIncreases.Charisma <= 0">
+          <div ng-if="vm.character.race.abilityIncreases.Choice > 0">
+            +{{vm.character.race.abilityIncreases.Choice}} <input <input type="radio" name="attChoice">
+          </div>
+        </div>
       </div>
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.charisma}} ({{vm.toModifier(vm.character.attributes.charisma)}})
+        {{vm.character.attributes.Charisma}} ({{vm.toModifier(vm.character.attributes.Charisma)}})
       </div>
     </div>
 
@@ -202,7 +265,13 @@
 
 <!-- Proficiencies -->
 <div class="row">
-    <h4>Saves</h4>
-
-    <h4>Skills</h4>
+  <div class="col-xs-4">
+    <b>Strength</b>
+  </div>
+  <div class="col-xs-4">
+    Save <p>{{vm.getSaveMod('Strength')}}</p>
+  </div>
+  <div class="col-xs-4">
+    Skills
+  </div>
 </div>

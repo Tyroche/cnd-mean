@@ -25,17 +25,19 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.step = 0;
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
+
     vm.toggleItem = toggleItem;
     vm.sumInventoryPrice = sumInventoryPrice;
-    vm.step = 0;
-    vm.points = 27;
 
+    vm.points = 27;
     vm.removePoint = removePoint;
     vm.addPoint = addPoint;
-    vm.toModifier = toModifier;
 
+    vm.toModifier = toModifier;
+    vm.getSaveMod = getSaveMod;
 
     init();
     function init() {
@@ -52,6 +54,7 @@
         return;
       }
       vm.playableClasses = res;
+      vm.character.playableClass = [ res[0] ];
     });
 
     raceService.query({}, function(res) {
@@ -60,6 +63,7 @@
         return;
       }
       vm.playableRaces = res;
+      vm.character.race = res[0];
     });
 
 
@@ -80,6 +84,18 @@
         }
         vm.items = res;
       });
+    }
+
+    function getSaveMod(attribute) {
+      var proficiency = vm.character.playableClass[0].saveProficiencies.indexOf(attribute) > -1;
+      var modifier = Math.floor((vm.character.attributes[attribute] -10) / 2);
+      if (proficiency) {
+         modifier += 2;
+      }
+      if(modifier > 0) {
+        return '+' + modifier;
+      }
+      return modifier;
     }
 
     function getPointCost(val) {

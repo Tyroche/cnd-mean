@@ -36,12 +36,12 @@ var CharacterSchema = new Schema({
     ref: 'Race'
   },
   attributes: {
-    strength: { type: Number, default: 10 },
-    dexterity: { type: Number, default: 10 },
-    constitution: { type: Number, default: 10 },
-    intelligence: { type: Number, default: 10 },
-    wisdom: { type: Number, default: 10 },
-    charisma: { type: Number, default: 10 }
+    Strength: { type: Number, default: 10 },
+    Dexterity: { type: Number, default: 10 },
+    Constitution: { type: Number, default: 10 },
+    Intelligence: { type: Number, default: 10 },
+    Wisdom: { type: Number, default: 10 },
+    Charisma: { type: Number, default: 10 }
   },
   saves: [{
     type: String,
