@@ -2,9 +2,13 @@
   <div class="page-header">
     <h1>Items</h1>
   </div>
+  <div>
+    <button type="button" class="btn btn-primary" data-ui-sref="items.create">Create a New Item</button>
+    <br>
+  </div>
   <div class="list-group">
     <a data-ng-repeat="item in vm.items"
-       data-ui-sref="items.view({ itemId: item._id })"
+       data-ui-sref="items.edit({ itemId: item._id })"
        class="list-group-item">
       <div class="row">
         <div class="col-sm-6">
@@ -17,8 +21,5 @@
         </div>
       </div>
     </a>
-  </div>
-  <div class="alert alert-warning text-center" data-ng-if="vm.items.$resolved && !vm.items.length">
-    No Items yet, why don't you <a data-ui-sref="items.create">create one</a>?
   </div>
 </section>
