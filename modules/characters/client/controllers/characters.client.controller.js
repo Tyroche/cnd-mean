@@ -12,9 +12,11 @@
     'Authentication',
     'characterResolve',
     'ConfigurationsService',
-    'ItemsService'];
+    'ItemsService',
+    'ProfessionsService',
+    'RacesService'];
 
-  function CharactersController ($scope, $state, Authentication, character, ConfigurationsService, itemsService) {
+  function CharactersController ($scope, $state, Authentication, character, ConfigurationsService, itemsService, classService, raceService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -25,8 +27,6 @@
     vm.save = save;
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
-    vm.getClassDescription = getClassDescription;
-    vm.getRaceDescription = getRaceDescription;
     vm.toggleItem = toggleItem;
     vm.sumInventoryPrice = sumInventoryPrice;
     vm.step = 0;
@@ -45,6 +45,23 @@
         vm.character.items = [];
       }
     }
+
+    classService.query({}, function(res) {
+      if (!res[0]) {
+        console.log('ERROR: No Classes found!!!');
+        return;
+      }
+      vm.playableClasses = res;
+    });
+
+    raceService.query({}, function(res) {
+      if (!res[0]) {
+        console.log('ERROR: No Races found!!!');
+        return;
+      }
+      vm.playableRaces = res;
+    });
+
 
     ConfigurationsService.query({ enabled: true }, function(res) {
       if (!res[0]) {
@@ -165,40 +182,6 @@
         return;
       }
       addItem(item);
-    }
-
-    function getClassDescription() {
-      // Check for missing config or missing classes
-      if(!vm.config || !vm.config.classes) {
-        return;
-      }
-
-      // Filter through classes to find our selection
-      var playableClass = vm.config.classes.filter(function(obj){
-        return obj.name === vm.character.playableClass;
-      });
-
-      // Return the description if a class existss
-      if (playableClass[0]) {
-        return playableClass[0].description;
-      }
-    }
-
-    function getRaceDescription() {
-      // Check for missing config or missing classes
-      if(!vm.config || !vm.config.races) {
-        return;
-      }
-
-      // Filter through classes to find our selection
-      var race = vm.config.races.filter(function(obj){
-        return obj.name === vm.character.race;
-      });
-
-      // Return the description if a class existss
-      if (race[0]) {
-        return race[0].description;
-      }
     }
 
     // Remove existing Character

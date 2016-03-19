@@ -21,13 +21,19 @@ var CharacterSchema = new Schema({
     default: 1,
     required: 'Level must be specified'
   },
-  playableClass: {
-    type: String,
-    default: 'Commoner'
-  },
+  playableClass: [{
+    profession: {
+      type: Schema.ObjectId,
+      ref: 'Profession'
+    },
+    level: {
+      type: Number,
+      default: 1
+    }
+  }],
   race: {
-    type: String,
-    default: 'Human'
+    type: Schema.ObjectId,
+    ref: 'Race'
   },
   attributes: {
     strength: { type: Number, default: 10 },

@@ -10,20 +10,30 @@
 
 <div class="row">
   <div class="col-md-5">
-    <div class="form-group" show-errors>
-        <label class="control-label" for="race">Characer's Race</label><br />
-        <select class="form-control" name="race" ng-model="vm.character.race" required>
-            <option ng-repeat="c in vm.config.races" value="{{c.name}}">{{c.name}}</option>
-        </select>
+    <label class="control-label">Character Race</label>
+    <div class="dropdown" dropdown>
+      <button type="button" class="btn btn-default" dropdown-toggle>
+        {{vm.character.race.name}} <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li ng-repeat="race in vm.playableRaces">
+            <a href ng-click="vm.character.race = race">{{race.name}}</a>
+          </li>
+        </ul>
     </div>
   </div>
 
   <div class="col-md-offset-1 col-md-4">
       <div class="form-group" show-errors>
-          <label class="control-label" for="playableClass">Character Class</label><br />
-          <select class="form-control" name="playableClass" ng-model="vm.character.playableClass" required>
-              <option ng-repeat="c in vm.config.classes" value="{{c.name}}">{{c.name}}</option>
-          </select>
+          <label class="control-label" for="playableClass">Character Class</label>
+          <div class="dropdown" dropdown>
+            <button type="button" class="btn btn-default" dropdown-toggle>
+              {{vm.character.playableClass[0].name}} <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li ng-repeat="prof in vm.playableClasses">
+                  <a href ng-click="vm.character.playableClass[0] = prof">{{prof.name}}</a>
+                </li>
+              </ul>
+          </div>
       </div>
   </div>
 </div>
