@@ -38,13 +38,22 @@
     vm.toModifier = toModifier;
     vm.getSaveMod = getSaveMod;
 
+    vm.randomizeBackground = randomizeBackground;
+
     init();
     function init() {
       if (!vm.character._id) {
         vm.character.funds = 100;
         vm.character.items = [];
+        vm.character.background = {};
         vm.loadedData = dataLoader.loadForCreation(vm.character);
       }
+    }
+
+    function randomizeBackground(type) {
+      var backgroundType = vm.chosenBackground[type + 's'];
+      var choice = Math.floor(Math.random() * backgroundType.length);
+      vm.character.background[type] = backgroundType[choice];
     }
 
     function getSaveMod(attribute) {
