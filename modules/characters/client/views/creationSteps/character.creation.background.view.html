@@ -1,5 +1,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+<div class="row form-group" show-errors>
+    <label class="control-label" for="playableClass">Background</label>
+    <div class="dropdown" dropdown>
+      <button type="button" class="btn btn-default" dropdown-toggle>
+        {{vm.chosenBackground.name}} <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li ng-repeat="bg in vm.loadedData.backgrounds">
+            <a href ng-click="vm.chosenBackground = bg">{{bg.name}}</a>
+          </li>
+        </ul>
+    </div>
+</div>
+
 <div class="row form-group">
   <label class="control-label" for="background.trait">Personality Trait</label>
   <p class="input-group" show-errors>

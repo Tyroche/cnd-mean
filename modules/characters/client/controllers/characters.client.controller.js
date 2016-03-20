@@ -12,10 +12,9 @@
     '$resource',
     'Authentication',
     'characterResolve',
-    'ProfessionsService',
-    'RacesService'];
+    'Dataloader'];
 
-  function CharactersController ($scope, $state, $resource, Authentication, character, classService, raceService) {
+  function CharactersController ($scope, $state, $resource, Authentication, character, dataLoader) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -25,6 +24,7 @@
     vm.remove = remove;
     vm.save = save;
     vm.step = 0;
+    vm.loadedData = {};
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
 
@@ -43,57 +43,20 @@
       if (!vm.character._id) {
         vm.character.funds = 100;
         vm.character.items = [];
-        loadItems();
-        loadClasses();
-        loadRaces();
+        vm.loadedData = dataLoader.loadForCreation(vm.character);
       }
-    }
-
-    function loadClasses() {
-      classService.query({}, function(res) {
-        if (!res[0]) {
-          console.log('ERROR: No Classes found!!!');
-          return;
-        }
-        vm.playableClasses = res;
-        vm.character.playableClass = [ res[0] ];
-      });
-    }
-
-    function loadRaces() {
-      raceService.query({}, function(res) {
-        if (!res[0]) {
-          console.log('ERROR: No Races found!!!');
-          return;
-        }
-        vm.playableRaces = res;
-        vm.character.race = res[0];
-      });}
-
-    function loadItems() {
-      // Actually Query now
-      $resource('api/common/items').query({}, function(res) {
-        if (!res[0]) {
-          console.log('ERROR: No Items found!!!');
-          return;
-        }
-        vm.items = res;
-      });
     }
 
     function getSaveMod(attribute) {
-      if (!vm.character.playableClass) {
+      if (!vm.character.playableClass || !vm.character.playableClass[0].profession) {
         return 0;
       }
-      var proficiency = vm.character.playableClass[0].saveProficiencies.indexOf(attribute) > -1;
+      var isProficient = vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute) > -1;
       var modifier = Math.floor((vm.character.attributes[attribute] -10) / 2);
-      if (proficiency) {
-         modifier += 2;
-      }
-      if(modifier > 0) {
-        return '+' + modifier;
-      }
-      return modifier;
+
+      modifier += isProficient ? 2 : 0;
+
+      return modifier > 0 ? '+' + modifier : modifier;
     }
 
     function getPointCost(val) {

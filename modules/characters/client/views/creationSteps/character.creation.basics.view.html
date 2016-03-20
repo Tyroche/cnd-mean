@@ -15,7 +15,7 @@
       <button type="button" class="btn btn-default" dropdown-toggle>
         {{vm.character.race.name}} <span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <li ng-repeat="race in vm.playableRaces">
+          <li ng-repeat="race in vm.loadedData.races">
             <a href ng-click="vm.character.race = race">{{race.name}}</a>
           </li>
         </ul>
@@ -27,10 +27,10 @@
           <label class="control-label" for="playableClass">Character Class</label>
           <div class="dropdown" dropdown>
             <button type="button" class="btn btn-default" dropdown-toggle>
-              {{vm.character.playableClass[0].name}} <span class="caret"></span></button>
+              {{vm.character.playableClass[0].profession.name}} <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <li ng-repeat="prof in vm.playableClasses">
-                  <a href ng-click="vm.character.playableClass[0] = prof">{{prof.name}}</a>
+                <li ng-repeat="prof in vm.loadedData.classes">
+                  <a href ng-click="vm.character.playableClass[0].profession = prof">{{prof.name}}</a>
                 </li>
               </ul>
           </div>
