@@ -9,14 +9,13 @@
   CharactersController.$inject = [
     '$scope',
     '$state',
+    '$resource',
     'Authentication',
     'characterResolve',
-    'ConfigurationsService',
-    'ItemsService',
     'ProfessionsService',
     'RacesService'];
 
-  function CharactersController ($scope, $state, Authentication, character, ConfigurationsService, itemsService, classService, raceService) {
+  function CharactersController ($scope, $state, $resource, Authentication, character, classService, raceService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -43,41 +42,36 @@
     function init() {
       if (!vm.character._id) {
         vm.character.funds = 100;
-        getItems();
-        vm.character.items = [];
+        loadItems();
+        loadClasses();
+        loadRaces();
       }
     }
 
-    classService.query({}, function(res) {
-      if (!res[0]) {
-        console.log('ERROR: No Classes found!!!');
-        return;
-      }
-      vm.playableClasses = res;
-      vm.character.playableClass = [ res[0] ];
-    });
+    function loadClasses() {
+      classService.query({}, function(res) {
+        if (!res[0]) {
+          console.log('ERROR: No Classes found!!!');
+          return;
+        }
+        vm.playableClasses = res;
+        vm.character.playableClass = [ res[0] ];
+      });
+    }
 
-    raceService.query({}, function(res) {
-      if (!res[0]) {
-        console.log('ERROR: No Races found!!!');
-        return;
-      }
-      vm.playableRaces = res;
-      vm.character.race = res[0];
-    });
+    function loadRaces() {
+      raceService.query({}, function(res) {
+        if (!res[0]) {
+          console.log('ERROR: No Races found!!!');
+          return;
+        }
+        vm.playableRaces = res;
+        vm.character.race = res[0];
+      });}
 
-
-    ConfigurationsService.query({ enabled: true }, function(res) {
-      if (!res[0]) {
-        console.log('ERROR: No Configuration found!!!');
-        return;
-      }
-      vm.config = res[0];
-    });
-
-    function getItems() {
+    function loadItems() {
       // Actually Query now
-      itemsService.query({ rarity: 'Common' }, function(res) {
+      $resource('api/common/items').query({}, function(res) {
         if (!res[0]) {
           console.log('ERROR: No Items found!!!');
           return;
@@ -87,6 +81,9 @@
     }
 
     function getSaveMod(attribute) {
+      if (!vm.character.playableClass[0]) {
+        return 0;
+      }
       var proficiency = vm.character.playableClass[0].saveProficiencies.indexOf(attribute) > -1;
       var modifier = Math.floor((vm.character.attributes[attribute] -10) / 2);
       if (proficiency) {

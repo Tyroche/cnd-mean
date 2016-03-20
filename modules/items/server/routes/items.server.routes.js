@@ -17,6 +17,9 @@ module.exports = function(app) {
     .put(items.update)
     .delete(items.delete);
 
+  app.route('/api/common/items')
+    .get(items.common);
+
   // Finish by binding the Item middleware
   app.param('itemId', items.itemByID);
 };

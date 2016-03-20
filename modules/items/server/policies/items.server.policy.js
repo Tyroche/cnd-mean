@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/items/:itemId',
       permissions: '*'
+    }, {
+      resources: '/api/common/items',
+      permissions: '*'
     }]
   }, {
     roles: ['consultant'],
@@ -28,6 +31,9 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get', 'post']
     }, {
       resources: '/api/items/:itemId',
+      permissions: ['get']
+    }, {
+      resources: '/api/common/items',
       permissions: ['get']
     }]
   }]);

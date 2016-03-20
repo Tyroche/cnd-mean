@@ -34,10 +34,6 @@ exports.read = function(req, res) {
   // convert mongoose document to JSON
   var item = req.item ? req.item.toJSON() : {};
 
-  // Add a custom field to the Article, for determining if the current User is the "owner".
-  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  item.isCurrentUserOwner = req.user && item.user && item.user._id.toString() === req.user._id.toString() ? true : false;
-
   res.jsonp(item);
 };
 
@@ -80,7 +76,7 @@ exports.delete = function(req, res) {
 /**
  * List of Items
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
   Item.find().sort('-created').populate('user', 'displayName').exec(function(err, items) {
     if (err) {
       return res.status(400).send({
@@ -113,5 +109,17 @@ exports.itemByID = function(req, res, next, id) {
     }
     req.item = item;
     next();
+  });
+};
+
+exports.common = function(req, res) {
+  Item.find({rarity: 'Common'}).exec(function(err, items) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(items);
+    }
   });
 };
