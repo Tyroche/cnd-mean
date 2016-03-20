@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Background Schema
  */
 var BackgroundSchema = new Schema({
-  generalization: {
+  name: {
     type: String,
     required: 'Background name must be defined'
   },
@@ -18,18 +18,14 @@ var BackgroundSchema = new Schema({
     type: String,
     required: 'Background description is required'
   },
-  traits: [{
-    type: String
-  }],
-  ideals: [{
-    type: String
-  }],
-  bonds: [{
-    type: String
-  }],
-  flaws: [{
-    type: String
-  }]
+  startingFunds: {
+    type: Number,
+    default: 10
+  },
+  traits: [{type: String }],
+  ideals: [{type: String }],
+  bonds: [{type: String }],
+  flaws: [{type: String }]
 });
 
 mongoose.model('Background', BackgroundSchema);

@@ -18,6 +18,15 @@
     vm.remove = remove;
     vm.save = save;
 
+    function init() {
+      if (!vm.background._id) {
+        vm.background.traits = [];
+        vm.background.ideals = [];
+        vm.background.bonds = [];
+        vm.background.flaws = [];
+      }
+    }
+
     // Remove existing Background
     function remove() {
       if (confirm('Are you sure you want to delete?')) {
@@ -49,5 +58,7 @@
         vm.error = res.data.message;
       }
     }
+
+    init();
   }
 })();

@@ -5,6 +5,7 @@
   <div class="col-md-12">
     <form name="vm.form.backgroundForm" class="form-horizontal" ng-submit="vm.save(vm.form.backgroundForm.$valid)" novalidate>
       <fieldset>
+
         <div class="form-group" show-errors>
           <label class="control-label" for="name">Name</label>
           <input name="name" type="text" ng-model="vm.background.name" id="name" class="form-control" placeholder="Name" required>
@@ -12,6 +13,77 @@
             <p class="help-block error-text" ng-message="required">Background name is required.</p>
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="control-label">Description</label>
+          <textarea type="text" ng-model="vm.background.description" class="form-control" placeholder="Background description" required>
+          </textarea>
+        </div>
+
+        <div class="row">
+          <button type="button" class="btn btn-default" ng-click="vm.background.traits.push('')">Add Trait</button>
+          <button type="button" class="btn btn-default" ng-click="vm.background.ideals.push('')">Add Ideal</button>
+          <button type="button" class="btn btn-default" ng-click="vm.background.bonds.push('')">Add Bond</button>
+          <button type="button" class="btn btn-default" ng-click="vm.background.flaws.push('')">Add Flaw</button>
+          <br>
+        </div>
+
+        <div class="row" ng-show="vm.background.traits.length > 0">
+          <h4>Traits</h4>
+          <div ng-repeat="trait in vm.background.traits track by $index">
+            <p class="input-group">
+              <input type="text" ng-model="trait" class="form-control">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.background.traits.splice($index, 1)">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="row" ng-show="vm.background.ideals.length > 0">
+          <h4>Ideals</h4>
+          <div ng-repeat="ideal in vm.background.ideals track by $index">
+            <p class="input-group">
+              <input type="text" ng-model="ideal" class="form-control">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.background.ideals.splice($index, 1)">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="row" ng-show="vm.background.bonds.length > 0">
+          <h4>Bonds</h4>
+          <div ng-repeat="bond in vm.background.bonds track by $index">
+            <p class="input-group">
+              <input type="text" ng-model="bond" class="form-control">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.background.bonds.splice($index, 1)">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="row" ng-show="vm.background.flaws.length > 0">
+          <h4>Flaws</h4>
+          <div ng-repeat="flaw in vm.background.flaws track by $index">
+            <p class="input-group">
+              <input type="text" ng-model="trait" class="form-control">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.background.flaws.splice($index, 1)">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+              </span>
+            </p>
+          </div>
+        </div>
+
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.background._id ? 'Update' : 'Create'}}</button>
         </div>
