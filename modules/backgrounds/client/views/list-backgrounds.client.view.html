@@ -1,22 +1,19 @@
 <section>
   <div class="page-header">
+    <div class="pull-right">
+      <button type="button" class="btn btn-primary" data-ui-sref="backgrounds.create">
+          <i class="glyphicon glyphicon-pencil"></i> Create a New Background</button>
+    </div>
     <h1>Backgrounds</h1>
   </div>
   <div class="list-group">
     <a data-ng-repeat="background in vm.backgrounds"
-       data-ui-sref="backgrounds.view({ backgroundId: background._id })"
+       data-ui-sref="backgrounds.edit({ backgroundId: background._id })"
        class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="background.created | date:'mediumDate'"></span>
-        by
-        <span data-ng-if="background.user" data-ng-bind="background.user.displayName"></span>
-        <span data-ng-if="!background.user">Deleted User</span>
-      </small>
       <h4 class="list-group-item-heading" data-ng-bind="background.name"></h4>
     </a>
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.backgrounds.$resolved && !vm.backgrounds.length">
-    No Backgrounds yet, why don't you <a data-ui-sref="backgrounds.create">create one</a>?
+    No Backgrounds have been created yet.
   </div>
 </section>

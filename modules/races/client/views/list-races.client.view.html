@@ -1,10 +1,10 @@
 <section>
   <div class="page-header">
+    <div class="pull-right">
+      <button type="button" class="btn btn-primary" data-ui-sref="races.create">
+          <i class="glyphicon glyphicon-pencil"></i> Create a New Race</button>
+    </div>
     <h1>Races</h1>
-  </div>
-  <div>
-    <button type="button" class="btn btn-primary" data-ui-sref="races.create">Create a New Race</button>
-    <br>
   </div>
   <div class="list-group">
     <a data-ng-repeat="race in vm.races"
@@ -12,5 +12,8 @@
        class="list-group-item">
       <h4 class="list-group-item-heading" data-ng-bind="race.name"></h4>
     </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.races.$resolved && !vm.races.length">
+    No Races have been created yet.
   </div>
 </section>

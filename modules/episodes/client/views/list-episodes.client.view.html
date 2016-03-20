@@ -2,6 +2,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
   <div class="page-header">
+    <div class="pull-right">
+      <button type="button" class="btn btn-primary" data-ui-sref="episodes.create">
+          <i class="glyphicon glyphicon-pencil"></i> Create a New Episode</button>
+    </div>
     <h1>Episodes</h1>
   </div>
   <div class="list-group">
@@ -31,7 +35,8 @@
     </a>
 
   </div>
+
   <div class="alert alert-warning text-center" data-ng-if="vm.episodes.$resolved && !vm.episodes.length">
-    No Episodes yet, why don't you <a data-ui-sref="episodes.create">create one</a>?
+    No Episodes have been created yet.
   </div>
 </section>

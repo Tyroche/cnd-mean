@@ -10,7 +10,7 @@
   function menuConfig(Menus) {
 
     // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', 'configurations', {
+    Menus.addSubMenuItem('topbar', 'admin', {
       title: 'Manage Classes',
       state: 'professions.list'
     });

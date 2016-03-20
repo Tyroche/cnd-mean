@@ -1,5 +1,9 @@
 <section>
   <div class="page-header">
+    <div class="pull-right">
+      <button type="button" class="btn btn-primary" data-ui-sref="characters.create">
+          <i class="glyphicon glyphicon-pencil"></i> Create a New Character</button>
+    </div>
     <h1>Characters</h1>
   </div>
   <div class="list-group">
@@ -16,13 +20,13 @@
       <div class="row">
         <div class="col-sm-4"><b ng-bind="character.name"></b></div>
         <div class="col-sm-2" ng-bind="character.level"></div>
-        <div class="col-sm-2" ng-bind="character.playableClass"></div>
-        <div class="col-sm-2" ng-bind="character.race"></div>
+        <div class="col-sm-2" ng-bind="character.playableClass[0].name"></div>
+        <div class="col-sm-2" ng-bind="character.race.name"></div>
         <div class="col-sm-2" ng-bind="character.numSessions"></div>
       </div>
     </a>
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.characters.$resolved && !vm.characters.length">
-    No Characters yet, why don't you <a data-ui-sref="characters.create">create one</a>?
+    No characters have been created yet.</a>
   </div>
 </section>

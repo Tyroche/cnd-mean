@@ -1,22 +1,19 @@
 <section>
   <div class="page-header">
-    <h1>Feats</h1>
+    <div class="pull-right">
+      <button type="button" class="btn btn-primary" data-ui-sref="feats.create">
+          <i class="glyphicon glyphicon-pencil"></i> Create a New Feat</button>
+    </div>
+    <h1>Backgrounds</h1>
   </div>
   <div class="list-group">
     <a data-ng-repeat="feat in vm.feats"
-       data-ui-sref="feats.view({ featId: feat._id })"
+       data-ui-sref="feats.edit({ featId: feat._id })"
        class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="feat.created | date:'mediumDate'"></span>
-        by
-        <span data-ng-if="feat.user" data-ng-bind="feat.user.displayName"></span>
-        <span data-ng-if="!feat.user">Deleted User</span>
-      </small>
       <h4 class="list-group-item-heading" data-ng-bind="feat.name"></h4>
     </a>
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.feats.$resolved && !vm.feats.length">
-    No Feats yet, why don't you <a data-ui-sref="feats.create">create one</a>?
+    No Feats have been created yet.
   </div>
 </section>

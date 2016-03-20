@@ -1,22 +1,20 @@
 <section>
   <div class="page-header">
+    <div class="pull-right">
+      <button type="button" class="btn btn-primary" data-ui-sref="contracts.create">
+          <i class="glyphicon glyphicon-pencil"></i> Create a New Contract</button>
+    </div>
     <h1>Contracts</h1>
   </div>
   <div class="list-group">
     <a data-ng-repeat="contract in vm.contracts"
        data-ui-sref="contracts.edit({ contractId: contract._id })"
        class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="contract.created | date:'mediumDate'"></span>
-        by
-        <span data-ng-if="contract.user" data-ng-bind="contract.user.displayName"></span>
-        <span data-ng-if="!contract.user">Deleted User</span>
-      </small>
       <h4 class="list-group-item-heading" data-ng-bind="contract.name"></h4>
     </a>
   </div>
+
   <div class="alert alert-warning text-center" data-ng-if="vm.contracts.$resolved && !vm.contracts.length">
-    No Contracts yet, why don't you <a data-ui-sref="contracts.create">create one</a>?
+    No Contracts have been created yet.
   </div>
 </section>

@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('backgrounds', ['configurations']);
+  app.registerModule('backgrounds', ['core.admin']);
 })(ApplicationConfiguration);

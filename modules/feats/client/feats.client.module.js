@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('feats', ['configurations']);
+  app.registerModule('feats', ['core.admin']);
 })(ApplicationConfiguration);

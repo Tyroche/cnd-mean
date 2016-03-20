@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('professions', ['configurations', 'ui.bootstrap']);
+  app.registerModule('professions', ['core.admin', 'ui.bootstrap']);
 })(ApplicationConfiguration);

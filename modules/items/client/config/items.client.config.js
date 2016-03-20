@@ -10,7 +10,7 @@
   function menuConfig(Menus) {
     // Set top bar menu items
     // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', 'configurations', {
+    Menus.addSubMenuItem('topbar', 'admin', {
       title: 'Manage Items',
       state: 'items.list'
     });

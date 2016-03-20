@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('items', ['configurations']);
+  app.registerModule('items', ['core.admin']);
 })(ApplicationConfiguration);
