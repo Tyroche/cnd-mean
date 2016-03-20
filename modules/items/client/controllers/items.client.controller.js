@@ -13,13 +13,18 @@
 
     vm.authentication = Authentication;
     vm.item = item;
-    item.price = 0;
-    item.rarity = 'Common';
-    item.classification = 'Weapon';
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    function init() {
+      if (!vm.item._id) {
+        item.price = 0;
+        item.rarity = 'Common';
+        item.classification = 'Weapon';
+      }
+    }
 
     // Remove existing Item
     function remove() {
@@ -43,14 +48,14 @@
       }
 
       function successCallback(res) {
-        $state.go('items.view', {
-          itemId: res._id
-        });
+        $state.go('items.list');
       }
 
       function errorCallback(res) {
         vm.error = res.data.message;
       }
     }
+
+    init();
   }
 })();

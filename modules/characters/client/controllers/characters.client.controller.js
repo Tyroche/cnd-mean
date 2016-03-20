@@ -42,6 +42,7 @@
     function init() {
       if (!vm.character._id) {
         vm.character.funds = 100;
+        vm.character.items = [];
         loadItems();
         loadClasses();
         loadRaces();
@@ -81,7 +82,7 @@
     }
 
     function getSaveMod(attribute) {
-      if (!vm.character.playableClass[0]) {
+      if (!vm.character.playableClass) {
         return 0;
       }
       var proficiency = vm.character.playableClass[0].saveProficiencies.indexOf(attribute) > -1;
