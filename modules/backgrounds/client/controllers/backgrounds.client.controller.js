@@ -41,6 +41,8 @@
         return false;
       }
 
+      console.log(vm.background);
+
       // TODO: move create/update logic to service
       if (vm.background._id) {
         vm.background.$update(successCallback, errorCallback);
