@@ -192,11 +192,8 @@
 
     // Save Character
     function save(isValid) {
-      if (!isValid) {
+      if (!isValid || !vm.character.playableClass[0].profession) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.characterForm');
-        return false;
-      }
-      if (!vm.character.playableClass[0].profession) {
         return false;
       }
 
@@ -208,6 +205,11 @@
       if (vm.character._id) {
         vm.character.$update(successCallback, errorCallback);
       } else {
+        // Get the actual attribute values
+        for(var att in vm.character.attributes) {
+          vm.character.attributes[att] = getActualValue(att);
+        }
+
         vm.character.$save(successCallback, errorCallback);
       }
 
