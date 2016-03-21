@@ -1,9 +1,6 @@
 <section>
     <link rel="stylesheet" href="modules/characters/client/css/characterCreation.css" />
-
-  <div class="page-header">
-    <h1>{{vm.character._id ? 'Edit Character' : 'Character Creation'}}</h1>
-  </div>
+  <br>
   <div class="col-md-12">
     <form name="vm.form.characterForm" class="form-vertical" ng-submit="vm.save(vm.form.characterForm.$valid)" novalidate>
       <fieldset>
