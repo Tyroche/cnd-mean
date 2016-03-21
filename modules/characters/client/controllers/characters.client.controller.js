@@ -12,9 +12,10 @@
     '$resource',
     'Authentication',
     'characterResolve',
+    'CharacterSourceService',
     'Dataloader'];
 
-  function CharactersController ($scope, $state, $resource, Authentication, character, dataLoader) {
+  function CharactersController ($scope, $state, $resource, Authentication, character, characterSources, dataLoader) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -42,34 +43,10 @@
 
     vm.randomizeBackground = randomizeBackground;
 
-    // To scrape out into service
-    vm.skills = [{
-        name: 'Strength',
-        skills: ['Athletics']
-      },
-      {
-        name: 'Dexterity',
-        skills: ['Acrobatics', 'Sleight of Hand', 'Stealth']
-      },
-      {
-        name: 'Constitution',
-        skills: []
-      },
-      {
-        name: 'Intelligence',
-        skills: ['Arcana', 'History', 'Investigation', 'Nature', 'Religion']
-      },
-      {
-        name: 'Wisdom',
-        skills: ['Animal Handling', 'Insight', 'Medicine', 'Perception', 'Survival']
-      },
-      {
-        name: 'Charisma',
-        skills: ['Deception', 'Intimidation', 'Perform', 'Persuasion']
-    }];
-
     init();
     function init() {
+      vm.skills = characterSources.getSkills();
+      
       if (!vm.character._id) {
         vm.character.funds = 100;
         vm.character.skills = [];
