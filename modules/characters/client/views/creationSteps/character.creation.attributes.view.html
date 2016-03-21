@@ -8,11 +8,11 @@
   </div>
 
     <div class="row att-row">
+      <!-- Label -->
       <div class="col-sm-2 hidden-xs" tooltip="Strength measures your character's muscle and physical power">
         Strength
       </div>
 
-      <!-- Label -->
       <div class="col-xs-2 visible-xs">STR</div>
 
       <!-- Point Buy -->
@@ -50,7 +50,7 @@
 
       <!-- Total -->
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.Strength}} ({{vm.toModifier(vm.character.attributes.Strength)}})
+        {{vm.getActualValue('Strength')}} ({{vm.toModifier(vm.getActualValue('Strength'))}})
       </div>
     </div>
 
@@ -92,7 +92,7 @@
       </div>
 
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.Dexterity}} ({{vm.toModifier(vm.character.attributes.Dexterity)}})
+        {{vm.getActualValue('Dexterity')}} ({{vm.toModifier(vm.getActualValue('Dexterity'))}})
       </div>
     </div>
 
@@ -132,7 +132,7 @@
         </div>
       </div>
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.Constitution}} ({{vm.toModifier(vm.character.attributes.Constitution)}})
+        {{vm.getActualValue('Constitution')}} ({{vm.toModifier(vm.getActualValue('Constitution'))}})
       </div>
     </div>
 

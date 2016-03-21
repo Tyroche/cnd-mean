@@ -1,0 +1,42 @@
+<!-- Label -->
+<div class="col-sm-2 hidden-xs" tooltip="Strength measures your character's muscle and physical power">
+  Strength
+</div>
+<!--
+<div class="col-xs-2 visible-xs">STR</div>
+
+<!-- Point Buy -->
+<div class="col-xs-4 text-center">
+  <div class="input-group">
+    <span class="input-group-btn">
+      <button type="button"
+          class="btn btn-default" ><i class="fa fa-minus"></i></button>
+    </span>
+    <input type="number"
+          ng-model="attribute"
+          class="text-center att-entry form-control"
+          disabled></input>
+    <span class="input-group-btn">
+      <button type="button"
+          class="btn btn-default" ><i class="fa fa-plus"></i></button>
+    </span>
+  </div>
+</div>
+
+<!-- Racial Bonus -->
+<div class="col-xs-3 text-center">
+  <!-- Check to see if there is a defined racial bonus-->
+  <div ng-if="attribute > 0">
+    + 2
+  </div>
+  <div ng-if="attribute <= 0">
+    <div ng-if="attribute > 0">
+      +3 <input <input type="radio" name="attChoice">
+    </div>
+  </div>
+</div>
+
+<!-- Total -->
+<div class="col-xs-3 text-center">
+  {{attribute}}
+</div>

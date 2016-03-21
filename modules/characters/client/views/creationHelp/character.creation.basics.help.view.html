@@ -6,17 +6,19 @@
   <div class="row">
     <div class="col-xs-1 glyphicon glyphicon-info-sign"></div>
     <div class="col-xs-11">
-      <b>{{vm.character.race.name}}</b><p>{{vm.character.race.description}}</p>
+      <b>{{vm.character.race.name}}</b>
+      <p>{{vm.character.race.description}}</p>
     </div>
   </div>
 </div>
 
 
-<div ng-show="vm.character.playableClass[0]">
+<div ng-show="vm.character.playableClass[0].profession">
   <div class="row">
     <div class="col-xs-1 glyphicon glyphicon-info-sign"></div>
     <div class="col-xs-11">
-      <b>{{vm.character.playableClass[0].name}}</b> <p>{{vm.character.playableClass[0].description}}</p>
+      <b>{{vm.character.playableClass[0].profession.name}}</b>
+      <p>{{vm.character.playableClass[0].profession.description}}</p>
     </div>
   </div>
 </div>

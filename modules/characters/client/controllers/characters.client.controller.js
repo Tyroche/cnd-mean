@@ -34,7 +34,7 @@
     vm.points = 27;
     vm.removePoint = removePoint;
     vm.addPoint = addPoint;
-
+    vm.getActualValue = getActualValue;
     vm.toModifier = toModifier;
     vm.getSaveMod = getSaveMod;
 
@@ -106,6 +106,14 @@
         return '+' + modifier;
       }
       return modifier;
+    }
+
+    function getActualValue(attribute) {
+      if(!vm.character.race) {
+        return vm.character.attributes[attribute];
+      }
+
+      return vm.character.attributes[attribute] + vm.character.race.abilityIncreases[attribute];
     }
 
     vm.creationSteps = [
