@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-xs-2"><b>Attribute</b></div>
+  <div class="col-xs-4 text-center"><b>Raw Score</b></div>
+  <div class="col-xs-3 text-center"><b>Racial Bonus</b></div>
+  <div class="col-xs-3 text-center"><b>Result</b></div>
+</div>
+
+<div class="row att-row" ng-repeat="attribute in vm.skills">
+  <!-- Label -->
+  <div class="col-sm-2 hidden-xs">
+    <span tooltip="{{attribute.description}}">{{attribute.name}}</span>
+  </div>
+
+  <div class="col-xs-2 visible-xs">{{attribute.name}}</div>
+
+  <!-- Point Buy -->
+  <div class="col-xs-4 text-center">
+    <div class="input-group" ng-init="vm.character.attributes[attribute.name]=8">
+      <span class="input-group-btn">
+        <button type="button"
+            ng-click="vm.character.attributes[attribute.name] = vm.removePoint(vm.character.attributes[attribute.name])"
+            class="btn btn-default" ><i class="fa fa-minus"></i></button>
+      </span>
+      <input type="number"
+            ng-model="vm.character.attributes[attribute.name]"
+            class="text-center att-entry form-control"
+            disabled></input>
+      <span class="input-group-btn">
+        <button type="button"
+            ng-click="vm.character.attributes[attribute.name] = vm.addPoint(vm.character.attributes[attribute.name])"
+            class="btn btn-default" ><i class="fa fa-plus"></i></button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Racial Bonus -->
+  <div class="col-xs-3 text-center">
+    <!-- Check to see if there is a defined racial bonus-->
+    <div ng-if="vm.character.race.abilityIncreases[attribute.name] > 0">
+      + {{vm.character.race.abilityIncreases[attribute.name]}}
+    </div>
+    <div ng-if="vm.character.race.abilityIncreases[attribute.name] <= 0">
+      <div ng-if="vm.character.race.abilityIncreases.Choice > 0">
+        +{{vm.character.race.abilityIncreases.Choice}} <input <input type="radio" name="attChoice">
+      </div>
+    </div>
+  </div>
+
+  <!-- Total -->
+  <div class="col-xs-3 text-center">
+    {{vm.getActualValue(attribute.name)}} ({{vm.toModifier(vm.getActualValue(attribute.name))}})
+  </div>
+</div>
