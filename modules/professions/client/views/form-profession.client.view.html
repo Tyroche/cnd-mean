@@ -18,12 +18,32 @@
           </div>
 
           <div class="col-sm-offset-1 col-sm-2">
-            <label class="control-label" for="vm.profession.hitDice">HD Type</label>
+            <label class="control-label" for="vm.profession.hitDice">Hit Die Type</label>
             <input type="number"
                    ng-model="vm.profession.hitDice"
-                   class="form-control"
+                   class="att-entry form-control"
                    required>
          </div>
+
+         <div class="col-sm-2">
+           <label class="control-label"># Skill Proficiencies</label>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <button type="button"
+                    ng-disabled="vm.profession.numSkillProficiencies === 0"
+                    ng-click="vm.profession.numSkillProficiencies = vm.profession.numSkillProficiencies - 1"
+                    class="btn btn-default" ><i class="fa fa-minus"></i></button>
+              </span>
+              <input type="number"
+                    ng-model="vm.profession.numSkillProficiencies"
+                    class="text-center att-entry form-control"></input>
+              <span class="input-group-btn">
+                <button type="button"
+                    ng-click="vm.profession.numSkillProficiencies = vm.profession.numSkillProficiencies + 1"
+                    class="btn btn-default" ><i class="fa fa-plus"></i></button>
+              </span>
+            </div>
+        </div>
        </div>
 
         <div class="row">

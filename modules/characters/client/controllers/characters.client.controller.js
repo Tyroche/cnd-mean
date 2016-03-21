@@ -46,7 +46,8 @@
     init();
     function init() {
       vm.skills = characterSources.getSkills();
-      
+      vm.creationSteps = characterSources.getSteps();
+
       if (!vm.character._id) {
         vm.character.funds = 100;
         vm.character.skills = [];
@@ -64,10 +65,6 @@
       var backgroundType = vm.chosenBackground[type + 's'];
       var choice = Math.floor(Math.random() * backgroundType.length);
       vm.character.background[type] = backgroundType[choice];
-    }
-
-    function getPointCost(val) {
-      return Math.max(0, (val-13)) + Math.max(0, val-8);
     }
 
     function getSkillMod(skill, attribute) {
@@ -93,6 +90,11 @@
       console.log(vm.character.skills);
     }
 
+
+    function getPointCost(val) {
+      return Math.max(0, (val-13)) + Math.max(0, val-8);
+    }
+
     function addPoint(att) {
       // hard cap of 15
       var maximumRawScore = 15;
@@ -116,7 +118,6 @@
       }
       return att;
     }
-
 
     function getSaveMod(attribute) {
       if (!vm.character.playableClass || !vm.character.playableClass[0].profession) {
@@ -146,43 +147,6 @@
       return vm.character.attributes[attribute] + vm.character.race.abilityIncreases[attribute];
     }
 
-    vm.creationSteps = [
-      {
-        title: 'Basics',
-        template: 'modules/characters/client/views/creationSteps/character.creation.basics.view.html',
-        help:'modules/characters/client/views/creationHelp/character.creation.basics.help.view.html'
-      },
-      {
-        title: 'Attributes',
-        template: 'modules/characters/client/views/creationSteps/character.creation.attributes.view.html' ,
-        help:'modules/characters/client/views/creationHelp/character.creation.attributes.help.view.html'
-      },
-      {
-        title: 'Background',
-        template: 'modules/characters/client/views/creationSteps/character.creation.background.view.html' ,
-        help:'modules/characters/client/views/creationHelp/character.creation.background.help.view.html'
-      },
-      {
-        title: 'Inventory',
-        template: 'modules/characters/client/views/creationSteps/character.creation.inventory.view.html' ,
-        help:'modules/characters/client/views/creationHelp/character.creation.inventory.help.view.html'
-      }
-    ];
-
-    function sumInventoryPrice() {
-      if (!vm.character.items || vm.character.items.length === 0) {
-        return 0;
-      }
-
-      if (vm.character.items.length === 1) {
-        return vm.character.items[0].price;
-      }
-
-      return vm.character.items.reduce(function(prev, cur) {
-        return prev.price + cur.price;
-      });
-    }
-
     function nextStep() {
       vm.step = Math.min(vm.creationSteps.length, vm.step + 1);
     }
@@ -191,6 +155,7 @@
       vm.step = Math.max(0, vm.step - 1);
     }
 
+    // To inventory.client.service
     function addItem(item) {
       if(vm.character.funds - item.price >= 0) {
         vm.character.items.push(item);
@@ -210,6 +175,20 @@
         return;
       }
       addItem(item);
+    }
+
+    function sumInventoryPrice() {
+      if (!vm.character.items || vm.character.items.length === 0) {
+        return 0;
+      }
+
+      if (vm.character.items.length === 1) {
+        return vm.character.items[0].price;
+      }
+
+      return vm.character.items.reduce(function(prev, cur) {
+        return prev.price + cur.price;
+      });
     }
 
     // Remove existing Character

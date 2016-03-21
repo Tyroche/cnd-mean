@@ -52,6 +52,12 @@
       'Persuasion'
     ];
 
+    function init() {
+      if (!vm.profession._id) {
+        vm.profession.numSkillProficiencies = 2;
+      }
+    }
+
     function removeSaveProficiency(save) {
       var ind = vm.profession.saveProficiencies.indexOf(save);
       vm.profession.saveProficiencies.splice(ind, 1);
