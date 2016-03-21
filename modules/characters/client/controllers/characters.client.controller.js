@@ -44,6 +44,10 @@
     function init() {
       if (!vm.character._id) {
         vm.character.funds = 100;
+        vm.character.playableClass = [{
+          profession: undefined,
+          level: 1
+        }];
         vm.character.items = [];
         vm.character.background = {};
         vm.loadedData = dataLoader.loadForCreation(vm.character);

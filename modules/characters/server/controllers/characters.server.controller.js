@@ -82,9 +82,6 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) {
   Character.find().populate('race').populate('playableClass.profession', 'name').exec(function(err, characters) {
-    console.log('Executed LIST');
-    console.log(characters);
-
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -106,7 +103,7 @@ exports.characterByID = function(req, res, next, id) {
     });
   }
 
-  Character.findById(id).populate('user', 'displayName', 'race','items').exec(function (err, character) {
+  Character.findById(id).populate('user', 'displayName').populate('race').exec(function (err, character) {
     if (err) {
       return next(err);
     } else if (!character) {
