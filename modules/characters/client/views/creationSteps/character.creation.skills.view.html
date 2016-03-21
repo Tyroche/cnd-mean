@@ -12,15 +12,11 @@
     </div>
   </div>
 
-  <div class="row list-group-item">
-    <div class="col-sm-3">
-      Strength
-    </div>
-    <div class="col-sm-3">
-      {{vm.getSaveMod('Strength')}}
-    </div>
+  <div ng-repeat="attribute in vm.skills" class="row list-group-item">
+    <div class="col-sm-3" ng-bind="attribute.name"></div>
+    <div class="col-sm-3" ng-bind="vm.getSaveMod(attribute.name)"></div>
     <div class="col-sm-6">
-      <div ng-repeat="skill in ['Athletics']" class="row">
+      <div ng-repeat="skill in attribute.skills" class="row">
         <div class="col-xs-2">
           <input type="checkbox"
             ng-model="attsEnabled[skill]"
@@ -28,107 +24,7 @@
             ng-disabled="vm.character.skills.indexOf(skill) === -1 && vm.character.skills.length >= vm.character.playableClass[0].profession.numSkillProficiencies"
             ng-click="vm.toggleProficiency(skill)">
         </div>
-        <div class="col-xs-2">({{vm.getSkillMod(skill, 'Strength')}})</div>
-        <div class="col-xs-8 check-no-margin">{{skill}}</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row list-group-item">
-    <div class="col-sm-3">
-      Dexterity
-    </div>
-    <div class="col-sm-3">
-      {{vm.getSaveMod('Dexterity')}}
-    </div>
-    <div class="col-sm-6">
-      <div ng-repeat="skill in ['Acrobatics', 'Sleight of Hand', 'Stealth']" class="row">
-        <div class="col-xs-2">
-          <input type="checkbox"
-            ng-model="attsEnabled[skill]"
-            ng-if="vm.character.playableClass[0].profession.skillProficiencies.indexOf(skill) > -1"
-            ng-disabled="vm.character.skills.indexOf(skill) === -1 && vm.character.skills.length >= vm.character.playableClass[0].profession.numSkillProficiencies"
-            ng-click="vm.toggleProficiency(skill)">
-        </div>
-        <div class="col-xs-2">({{vm.getSkillMod(skill, 'Dexterity')}})</div>
-        <div class="col-xs-8 check-no-margin">{{skill}}</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row list-group-item">
-    <div class="col-xs-3">
-      Constitution
-    </div>
-    <div class="col-xs-3">
-      {{vm.getSaveMod('Constitution')}}
-    </div>
-    <div class="col-xs-4">
-    </div>
-  </div>
-
-  <div class="row list-group-item">
-    <div class="col-sm-3">
-      Intelligence
-    </div>
-    <div class="col-sm-3">
-      {{vm.getSaveMod('Intelligence')}}
-    </div>
-    <div class="col-sm-6">
-      <div ng-repeat="skill in ['Arcana', 'History', 'Investigation', 'Nature', 'Religion']" class="row">
-        <div class="col-xs-2">
-          <input type="checkbox"
-            ng-model="attsEnabled[skill]"
-            ng-if="vm.character.playableClass[0].profession.skillProficiencies.indexOf(skill) > -1"
-            ng-disabled="vm.character.skills.indexOf(skill) === -1 && vm.character.skills.length >= vm.character.playableClass[0].profession.numSkillProficiencies"
-            ng-click="vm.toggleProficiency(skill)">
-        </div>
-        <div class="col-xs-2">({{vm.getSkillMod(skill, 'Intelligence')}})</div>
-        <div class="col-xs-8 check-no-margin">{{skill}}</div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="row list-group-item">
-    <div class="col-sm-3">
-      Wisdom
-    </div>
-    <div class="col-sm-3">
-      {{vm.getSaveMod('Wisdom')}}
-    </div>
-    <div class="col-sm-6">
-      <div ng-repeat="skill in ['Animal Handling', 'Insight', 'Medicine', 'Perception', 'Survival']" class="row">
-        <div class="col-xs-2">
-          <input type="checkbox"
-            ng-model="attsEnabled[skill]"
-            ng-if="vm.character.playableClass[0].profession.skillProficiencies.indexOf(skill) > -1"
-            ng-disabled="vm.character.skills.indexOf(skill) === -1 && vm.character.skills.length >= vm.character.playableClass[0].profession.numSkillProficiencies"
-            ng-click="vm.toggleProficiency(skill)">
-        </div>
-        <div class="col-xs-2">({{vm.getSkillMod(skill, 'Wisdom')}})</div>
-        <div class="col-xs-8 check-no-margin">{{skill}}</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row list-group-item">
-    <div class="col-sm-3">
-      Charisma
-    </div>
-    <div class="col-sm-3">
-      {{vm.getSaveMod('Charisma')}}
-    </div>
-    <div class="col-sm-6">
-      <div ng-repeat="skill in ['Deception', 'Intimidation', 'Perform', 'Persuasion']" class="row">
-        <div class="col-xs-2">
-          <input type="checkbox"
-            ng-model="attsEnabled[skill]"
-            ng-if="vm.character.playableClass[0].profession.skillProficiencies.indexOf(skill) > -1"
-            ng-disabled="vm.character.skills.indexOf(skill) === -1 && vm.character.skills.length >= vm.character.playableClass[0].profession.numSkillProficiencies"
-            ng-click="vm.toggleProficiency(skill)">
-        </div>
-        <div class="col-xs-2">({{vm.getSkillMod(skill, 'Charisma')}})</div>
+        <div class="col-xs-2">({{vm.getSkillMod(skill, attribute.name)}})</div>
         <div class="col-xs-8 check-no-margin">{{skill}}</div>
       </div>
     </div>
