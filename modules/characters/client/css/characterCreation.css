@@ -35,3 +35,9 @@
 .att-row {
   padding-bottom: 4px;
 }
+
+.underlined-row {
+   border-bottom-style: solid;
+   border-width: 1px;
+   border-color: dark-gray;
+}
