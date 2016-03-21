@@ -103,7 +103,7 @@ exports.characterByID = function(req, res, next, id) {
     });
   }
 
-  Character.findById(id).populate('user', 'displayName').populate('race').exec(function (err, character) {
+  Character.findById(id).populate('race').populate('playableClass.profession').exec(function (err, character) {
     if (err) {
       return next(err);
     } else if (!character) {

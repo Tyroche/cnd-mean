@@ -1,0 +1,21 @@
+<!-- Proficiencies -->
+<div class="list-group">
+  <div class="row list-group-item">
+    <div class="col-sm-3"><b>Attribute</b></div>
+    <div class="col-sm-2 text-center"><b>Modifier</b></div>
+    <div class="col-sm-2 text-center"><b>Saves</b></div>
+    <div class="col-sm-5"><b class="col-xs-offset-4 col-xs-8">Skills</b></div>
+  </div>
+
+  <div ng-repeat="attribute in vm.skills" class="row list-group-item">
+    <div class="col-sm-3" ng-bind="attribute.name"></div>
+    <div class="col-sm-2 text-center"> {{vm.character.attributes[attribute.name]}} ({{vm.toModifier(vm.character.attributes[attribute.name])}})</div>
+    <div class="col-sm-2 text-center" ng-bind="vm.getSaveMod(attribute.name)"></div>
+    <div class="col-sm-5">
+      <div ng-repeat="skill in attribute.skills" class="row">
+        <div class="col-xs-offset-2 col-xs-2">({{vm.getSkillMod(skill, attribute.name)}})</div>
+        <div class="col-xs-8 check-no-margin">{{skill}}</div>
+      </div>
+    </div>
+  </div>
+</div>

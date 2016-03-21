@@ -43,10 +43,6 @@ var CharacterSchema = new Schema({
     Wisdom: { type: Number, default: 10 },
     Charisma: { type: Number, default: 10 }
   },
-  saves: [{
-    type: String,
-    default: ''
-  }],
   skills: [{
     type: String,
     default: ''

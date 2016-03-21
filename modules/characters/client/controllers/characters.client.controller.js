@@ -45,6 +45,8 @@
 
     init();
     function init() {
+
+      console.log(vm.character);
       vm.skills = characterSources.getSkills();
       vm.creationSteps = characterSources.getSteps();
       vm.racialBonus = '';
@@ -60,6 +62,7 @@
         vm.character.background = {};
         vm.loadedData = dataLoader.loadForCreation(vm.character);
       }
+            console.log(vm.character);
     }
 
     function randomizeBackground(type) {
@@ -144,7 +147,7 @@
         return vm.character.attributes[attribute];
       }
       if(vm.racialBonus === attribute) {
-        return vm.character.attributes[attribute] + vm.character.race.abilityIncreases['Choice'];
+        return vm.character.attributes[attribute] + vm.character.race.abilityIncreases.Choice;
       }
 
       return vm.character.attributes[attribute] + vm.character.race.abilityIncreases[attribute];

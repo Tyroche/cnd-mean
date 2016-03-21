@@ -12,15 +12,11 @@
       <i class="glyphicon glyphicon-trash"></i>
     </a>
   </div>
-  <small>
-    <em class="text-muted">
-      Posted on
-      <span data-ng-bind="vm.character.created | date:'mediumDate'"></span>
-      by
-      <span data-ng-if="vm.character.user"
-            data-ng-bind="vm.character.user.displayName"></span>
-      <span data-ng-if="!vm.character.user">Deleted User</span>
-    </em>
-  </small>
-  <p class="lead" data-ng-bind="vm.character.content"></p>
+
+  <div class="row">
+    <div class="col-md-offset-6 col-md-6">
+      <div ng-include="'modules/characters/client/views/character-sheet/skills.subview.html'"></div>
+  </div>
+</div>
+
 </section>
