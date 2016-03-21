@@ -10,6 +10,8 @@
   function CharactersListController(CharactersService) {
     var vm = this;
 
-    vm.characters = CharactersService.query();
+    vm.characters = CharactersService.query({}, function(res) {
+      console.log(vm.characters[0].playableClass);
+    });
   }
 })();

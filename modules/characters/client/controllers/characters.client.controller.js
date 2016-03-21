@@ -183,6 +183,9 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.form.characterForm');
         return false;
       }
+      if (!vm.character.playableClass[0].profession) {
+        return false;
+      }
 
       if (!vm.character.player) {
         vm.character.player = Authentication.user;
