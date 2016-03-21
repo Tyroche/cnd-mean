@@ -47,6 +47,7 @@
     function init() {
       vm.skills = characterSources.getSkills();
       vm.creationSteps = characterSources.getSteps();
+      vm.racialBonus = '';
 
       if (!vm.character._id) {
         vm.character.funds = 100;
@@ -89,7 +90,6 @@
       vm.character.skills.push(skill);
       console.log(vm.character.skills);
     }
-
 
     function getPointCost(val) {
       return Math.max(0, (val-13)) + Math.max(0, val-8);
@@ -142,6 +142,9 @@
     function getActualValue(attribute) {
       if(!vm.character.race) {
         return vm.character.attributes[attribute];
+      }
+      if(vm.racialBonus === attribute) {
+        return vm.character.attributes[attribute] + vm.character.race.abilityIncreases['Choice'];
       }
 
       return vm.character.attributes[attribute] + vm.character.race.abilityIncreases[attribute];

@@ -41,7 +41,7 @@
     </div>
     <div ng-if="vm.character.race.abilityIncreases[attribute.name] <= 0">
       <div ng-if="vm.character.race.abilityIncreases.Choice > 0">
-        +{{vm.character.race.abilityIncreases.Choice}} <input <input type="radio" name="attChoice">
+        <input type="radio" ng-model="racialBonusIs[attribute.name]" ng-click="vm.racialBonus = attribute.name" name="attChoice"> +{{vm.character.race.abilityIncreases.Choice}} 
       </div>
     </div>
   </div>
