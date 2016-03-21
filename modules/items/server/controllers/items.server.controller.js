@@ -113,7 +113,7 @@ exports.itemByID = function(req, res, next, id) {
 };
 
 exports.common = function(req, res) {
-  Item.find({rarity: 'Common'}).exec(function(err, items) {
+  Item.find({ rarity: 'Common' }).exec(function(err, items) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

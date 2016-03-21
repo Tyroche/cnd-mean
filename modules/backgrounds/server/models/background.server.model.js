@@ -22,10 +22,10 @@ var BackgroundSchema = new Schema({
     type: Number,
     default: 10
   },
-  traits: [{type: String }],
-  ideals: [{type: String }],
-  bonds: [{type: String }],
-  flaws: [{type: String }]
+  traits: [{ type: String }],
+  ideals: [{ type: String }],
+  bonds: [{ type: String }],
+  flaws: [{ type: String }]
 });
 
 mongoose.model('Background', BackgroundSchema);
