@@ -60,18 +60,6 @@
       vm.character.background[type] = backgroundType[choice];
     }
 
-    function getSaveMod(attribute) {
-      if (!vm.character.playableClass || !vm.character.playableClass[0].profession) {
-        return 0;
-      }
-      var isProficient = vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute) > -1;
-      var modifier = Math.floor((vm.character.attributes[attribute] -10) / 2);
-
-      modifier += isProficient ? 2 : 0;
-
-      return modifier > 0 ? '+' + modifier : modifier;
-    }
-
     function getPointCost(val) {
       return Math.max(0, (val-13)) + Math.max(0, val-8);
     }
@@ -98,6 +86,19 @@
         return att - 1;
       }
       return att;
+    }
+
+
+    function getSaveMod(attribute) {
+      if (!vm.character.playableClass || !vm.character.playableClass[0].profession) {
+        return 0;
+      }
+      var isProficient = vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute) > -1;
+      var modifier = Math.floor((getActualValue(attribute) -10) / 2);
+
+      modifier += isProficient ? 2 : 0;
+
+      return modifier > 0 ? '+' + modifier : modifier;
     }
 
     function toModifier(attVal) {

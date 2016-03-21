@@ -173,7 +173,7 @@
         </div>
       </div>
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.Intelligence}} ({{vm.toModifier(vm.character.attributes.Intelligence)}})
+        {{vm.getActualValue('Intelligence')}} ({{vm.toModifier(vm.getActualValue('Intelligence'))}})
       </div>
     </div>
 
@@ -213,7 +213,7 @@
         </div>
       </div>
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.Wisdom}} ({{vm.toModifier(vm.character.attributes.Wisdom)}})
+        {{vm.getActualValue('Wisdom')}} ({{vm.toModifier(vm.getActualValue('Wisdom'))}})
       </div>
     </div>
 
@@ -253,25 +253,105 @@
         </div>
       </div>
       <div class="col-xs-3 text-center">
-        {{vm.character.attributes.Charisma}} ({{vm.toModifier(vm.character.attributes.Charisma)}})
+        {{vm.getActualValue('Charisma')}} ({{vm.toModifier(vm.getActualValue('Charisma'))}})
       </div>
     </div>
 
     <div class="row text-center">
       <p>You have <b>{{vm.points}}</b> points available.</p>
     </div>
-
 </div>
 
 <!-- Proficiencies -->
 <div class="row">
-  <div class="col-xs-4">
-    <b>Strength</b>
+  <div class="col-xs-offset-3 col-xs-3">
+    <b>Save Mod</b>
   </div>
   <div class="col-xs-4">
-    Save <p>{{vm.getSaveMod('Strength')}}</p>
+    <b>Skills</b>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3">
+    Strength
+  </div>
+  <div class="col-xs-3">
+    {{vm.getSaveMod('Strength')}}
   </div>
   <div class="col-xs-4">
-    Skills
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Athletics</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3">
+    Dexterity
+  </div>
+  <div class="col-xs-3">
+    {{vm.getSaveMod('Dexterity')}}
+  </div>
+  <div class="col-xs-4">
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Acrobatics</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Sleight of Hand</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Stealth</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3">
+    Constitution
+  </div>
+  <div class="col-xs-3">
+    {{vm.getSaveMod('Constitution')}}
+  </div>
+  <div class="col-xs-4">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3">
+    Intelligence
+  </div>
+  <div class="col-xs-3">
+    {{vm.getSaveMod('Intelligence')}}
+  </div>
+  <div class="col-xs-4">
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Arcana</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> History</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Investigation</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Nature</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Religion</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3">
+    Wisdom
+  </div>
+  <div class="col-xs-3">
+    {{vm.getSaveMod('Wisdom')}}
+  </div>
+  <div class="col-xs-4">
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Animal Handling</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Insight</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Medicine</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Perception</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Survival</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3">
+    Charisma
+  </div>
+  <div class="col-xs-3">
+    {{vm.getSaveMod('Charisma')}}
+  </div>
+  <div class="col-xs-4">
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Deception</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Intimidation</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Performance</div>
+     <div style="margin-top: 0; margin-bottom: 0;" class="checkbox"><input type="checkbox"> Persuasion</div>
   </div>
 </div>
