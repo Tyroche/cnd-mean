@@ -37,6 +37,8 @@
     vm.getActualValue = getActualValue;
     vm.toModifier = toModifier;
     vm.getSaveMod = getSaveMod;
+    vm.getSkillMod = getSkillMod;
+    vm.toggleProficiency = toggleProficiency;
 
     vm.randomizeBackground = randomizeBackground;
 
@@ -44,6 +46,7 @@
     function init() {
       if (!vm.character._id) {
         vm.character.funds = 100;
+        vm.character.skills = [];
         vm.character.playableClass = [{
           profession: undefined,
           level: 1
@@ -62,6 +65,29 @@
 
     function getPointCost(val) {
       return Math.max(0, (val-13)) + Math.max(0, val-8);
+    }
+
+    function getSkillMod(skill, attribute) {
+      var mod =  Math.floor((vm.getActualValue(attribute)-10) / 2);
+      if(vm.character.skills.indexOf(skill) > -1) {
+        return getProficiency() + mod;
+      }
+      return mod;
+    }
+
+    function getProficiency() {
+      return 2;
+    }
+
+    function toggleProficiency(skill) {
+      var skillIndex = vm.character.skills.indexOf(skill);
+      if(skillIndex > -1) {
+        vm.character.skills.splice(skillIndex, 1);
+        console.log(vm.character.skills);
+        return;
+      }
+      vm.character.skills.push(skill);
+      console.log(vm.character.skills);
     }
 
     function addPoint(att) {

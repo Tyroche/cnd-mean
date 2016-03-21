@@ -45,6 +45,10 @@ var ProfessionSchema = new Schema({
       'Persuasion'
     ]
   }],
+  numSkillProficiencies: {
+    type: Number,
+    default: 2
+  },
   saveProficiencies: [{
     type: String,
     enum: [
