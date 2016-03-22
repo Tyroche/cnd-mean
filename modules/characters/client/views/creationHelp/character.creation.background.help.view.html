@@ -1,7 +1,11 @@
-Here you can add data about your character's personality and history.
-<br />
-<ol>
-  <li>Enter a custom <b>Generalization</b> or pick one of the available options</li>
-  <li>Enter custom flaws, traits, etc. or hit the die icon to randomly select one to your generalization (if not custom).</li>
-  <li>Write a sentence or two (or even an essay) about how your character came to be at Consultants and Dragons.</li>
-</ol>
+<p>Here you will determine your character's personality. Pick a <b>Generalization</b> at the top, then either use the <i class="fa fa-random"></i> button to randomize a trait, bond, ideal, or flaw, or enter in your own. After you're satisfied, enter in a short history about your character and how they came to be where they currently are.</p>
+<br>
+<div ng-show="vm.chosenBackground">
+  <div class="row">
+    <div class="col-xs-1 glyphicon glyphicon-info-sign"></div>
+    <div class="col-xs-11">
+      <b>{{vm.chosenBackground.name}}</b>
+      <p>{{vm.chosenBackground.description}}</p>
+    </div>
+  </div>
+</div>
