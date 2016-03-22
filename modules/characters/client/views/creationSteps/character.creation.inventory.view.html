@@ -16,13 +16,11 @@
     <div class="col-sm-1" ng-click="vm.infoItem = item">
       <span class="glyphicon glyphicon-info-sign can-select" aria-hidden="true"></span>
     </div>
-    <div class="col-sm-1" ng-click="vm.toggleItem(item)">
-      <span class="glyphicon"
-      ng-class="{'glyphicon-minus-sign': vm.character.items.indexOf(item) > -1,
-                 'glyphicon-plus-sign': vm.character.items.indexOf(item) === -1,
-                 'insufficient-funds': vm.character.items.indexOf(item) === -1 && (vm.character.funds - item.price) < 0,
-                 'can-select': (vm.character.funds - item.price) >= 0 || vm.character.items.indexOf(item) > -1}"
-      aria-hidden="true"></span>
+    <div class="col-sm-1" ng-click="vm.addItem(item)">
+      <span class="glyphicon glyphicon-plus-sign"
+        ng-class="{'insufficient-funds': (vm.character.funds - item.price) < 0,
+                   'can-select': (vm.character.funds - item.price) >= 0}"
+        aria-hidden="true"></span>
     </div>
   </div>
 </div>

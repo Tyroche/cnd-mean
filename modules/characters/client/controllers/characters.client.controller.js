@@ -29,7 +29,8 @@
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
 
-    vm.toggleItem = toggleItem;
+    vm.addItem = addItem;
+    vm.removeItem = removeItem;
     vm.sumInventoryPrice = sumInventoryPrice;
 
     vm.points = 27;
