@@ -73,11 +73,11 @@
         vm.character.background = {};
         vm.loadedData = dataLoader.loadForCreation(vm.character);
       }
-            console.log(vm.character);
     }
 
     function randomizeBackground(type) {
-      var backgroundType = vm.chosenBackground[type + 's'];
+      if(!vm.character.background.generalization) { return 'Can\'t randomize'; }
+      var backgroundType = vm.character.background.generalization[type + 's'];
       var choice = Math.floor(Math.random() * backgroundType.length);
       vm.character.background[type] = backgroundType[choice];
     }
@@ -101,8 +101,6 @@
         return;
       }
       vm.character.skills.push(skill);
-      console.log(vm.character.skills.length);
-      console.log(parseInt(vm.character.playableClass[0].profession.numSkillProficiencies) + parseInt(vm.character.race.numSkillProficiencies));
     }
 
     function getPointCost(val) {
