@@ -53,6 +53,14 @@
       vm.racialBonus = '';
 
       if (!vm.character._id) {
+        vm.character.attributes = {
+          strength: 8,
+          dexterity: 8,
+          constitution: 8,
+          intelligence: 8,
+          wisdom: 8,
+          charisma: 8
+        };
         vm.character.funds = 100;
         vm.character.skills = [];
         vm.character.playableClass = [{
