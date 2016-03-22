@@ -48,20 +48,19 @@
 
     init();
     function init() {
-
-      console.log(vm.character);
+      vm.loadedData = dataLoader.loadForCreation(vm.character);
       vm.skills = characterSources.getSkills();
       vm.creationSteps = characterSources.getSteps();
       vm.racialBonus = '';
 
       if (!vm.character._id) {
         vm.character.attributes = {
-          strength: 8,
-          dexterity: 8,
-          constitution: 8,
-          intelligence: 8,
-          wisdom: 8,
-          charisma: 8
+          Strength: 8,
+          Dexterity: 8,
+          Constitution: 8,
+          Intelligence: 8,
+          Wisdom: 8,
+          Charisma: 8
         };
         vm.character.funds = 100;
         vm.character.skills = [];
@@ -71,7 +70,6 @@
         }];
         vm.character.items = [];
         vm.character.background = {};
-        vm.loadedData = dataLoader.loadForCreation(vm.character);
       }
     }
 

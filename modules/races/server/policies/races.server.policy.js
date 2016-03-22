@@ -22,7 +22,7 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }]
   }, {
-    roles: ['user'],
+    roles: ['consultant'],
     allows: [{
       resources: '/api/races',
       permissions: ['get', 'post']
