@@ -32,24 +32,24 @@
     ];
 
     vm.skillsAvailable = [
-      'Athletics',
       'Acrobatics',
-      'Sleight of Hand',
-      'Stealth',
-      'Arcana',
-      'History',
-      'Investigation',
-      'Nature',
-      'Religion',
       'Animal Handling',
-      'Insight',
+      'Arcana',
+      'Athletics',
+      'Deception',
+      'History',
       'Medicine',
       'Perception',
-      'Survival',
-      'Deception',
+      'Insight',
       'Intimidation',
+      'Investigation',
+      'Nature',
       'Perform',
-      'Persuasion'
+      'Persuasion',
+      'Religion',
+      'Sleight of Hand',
+      'Stealth',
+      'Survival'
     ];
 
     function init() {
