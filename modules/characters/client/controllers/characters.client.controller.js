@@ -40,7 +40,7 @@
     vm.getSaveMod = getSaveMod;
     vm.getSkillMod = getSkillMod;
     vm.toggleProficiency = toggleProficiency;
-
+    vm.numberProficiencies = numberProficiencies;
     vm.randomizeBackground = randomizeBackground;
 
     init();
@@ -87,15 +87,19 @@
       var skillIndex = vm.character.skills.indexOf(skill);
       if(skillIndex > -1) {
         vm.character.skills.splice(skillIndex, 1);
-        console.log(vm.character.skills);
         return;
       }
       vm.character.skills.push(skill);
-      console.log(vm.character.skills);
+      console.log(vm.character.skills.length);
+      console.log(parseInt(vm.character.playableClass[0].profession.numSkillProficiencies) + parseInt(vm.character.race.numSkillProficiencies));
     }
 
     function getPointCost(val) {
       return Math.max(0, (val-13)) + Math.max(0, val-8);
+    }
+
+    function numberProficiencies() {
+      return parseInt(vm.character.playableClass[0].profession.numSkillProficiencies) + parseInt(vm.character.race.numSkillProficiencies);
     }
 
     function addPoint(att) {

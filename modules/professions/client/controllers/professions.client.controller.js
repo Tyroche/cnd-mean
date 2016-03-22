@@ -52,6 +52,7 @@
       'Survival'
     ];
 
+    init();
     function init() {
       if (!vm.profession._id) {
         vm.profession.numSkillProficiencies = 2;

@@ -29,7 +29,11 @@ var RaceSchema = new Schema({
     Wisdom: { type: Number, default: 0 },
     Charisma: { type: Number, default: 0 },
     Choice: { type: Number, default: 0 }
-  }
+  },
+  numSkillProficiencies: [{
+    type: Number,
+    default: 0
+  }]
 });
 
 mongoose.model('Race', RaceSchema);
