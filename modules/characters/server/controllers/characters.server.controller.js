@@ -103,7 +103,16 @@ exports.characterByID = function(req, res, next, id) {
     });
   }
 
-  Character.findById(id).populate('player', '_id').populate('race').populate('playableClass.profession').populate('items').populate('background.generalization').exec(function (err, character) {
+  Character.findById(id)
+    .populate({
+      path: 'player',
+      select: 'firstName lastName _id'
+    })
+    .populate('race')
+    .populate('playableClass.profession')
+    .populate('items')
+    .populate('background.generalization')
+    .exec(function (err, character) {
     if (err) {
       return next(err);
     } else if (!character) {

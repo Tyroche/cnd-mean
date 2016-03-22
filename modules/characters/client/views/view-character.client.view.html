@@ -1,17 +1,21 @@
 <section>
 
   <div class="page-header">
-    <div class="pull-right"
-         data-ng-show="vm.character.player._id === vm.authentication.user._id || vm.authentication.user.roles.indexOf('admin') > -1">
-      <a class="btn btn-primary"
-         data-ui-sref="characters.edit({ characterId: vm.character._id })">
-        <i class="glyphicon glyphicon-edit"></i>
-      </a>
-      <a class="btn btn-primary" data-ng-click="vm.remove()">
-        <i class="glyphicon glyphicon-trash"></i>
-      </a>
+    <div class="pull-right">
+      <div ng-if="vm.character.player._id === vm.authentication.user._id || vm.authentication.user.roles.indexOf('admin') > -1">
+        <a class="btn btn-primary"
+           data-ui-sref="characters.edit({ characterId: vm.character._id })">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="vm.remove()">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+      <div ng-if="vm.character.player._id !== vm.authentication.user._id && vm.authentication.user.roles.indexOf('admin') === -1">
+        <h3>{{vm.character.player.firstName}} {{vm.character.player.lastName}}</h3>
+      </div>
     </div>
-      <h1 data-ng-bind="vm.character.name"></h1>
+    <h1 data-ng-bind="vm.character.name"></h1>
   </div>
 
 
