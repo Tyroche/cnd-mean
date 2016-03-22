@@ -32,12 +32,14 @@
     vm.addItem = addItem;
     vm.removeItem = removeItem;
     vm.sumInventoryPrice = sumInventoryPrice;
+    vm.accountForMultiples = accountForMultiples;
 
     vm.points = 27;
     vm.removePoint = removePoint;
     vm.addPoint = addPoint;
     vm.getActualValue = getActualValue;
     vm.toModifier = toModifier;
+    vm.toModifierRaw = toModifierRaw;
     vm.getSaveMod = getSaveMod;
     vm.getSkillMod = getSkillMod;
     vm.toggleProficiency = toggleProficiency;
@@ -147,8 +149,12 @@
       return modifier > 0 ? '+' + modifier : modifier;
     }
 
+    function toModifierRaw(attVal) {
+      return Math.floor((attVal-10) / 2);
+    }
+
     function toModifier(attVal) {
-      var modifier = Math.floor((attVal-10) / 2);
+      var modifier = toModifierRaw(attVal);
       if(modifier > 0) {
         return '+' + modifier;
       }
@@ -172,6 +178,14 @@
 
     function previousStep() {
       vm.step = Math.max(0, vm.step - 1);
+    }
+
+    function accountForMultiples(item) {
+      var multiples = vm.character.items.reduce(function(n, val) {
+        return n + (val._id === item._id ? 1: 0);
+      },0);
+
+      return (multiples > 0) ? " x" + multiples : "";
     }
 
     // To inventory.client.service
@@ -210,6 +224,14 @@
       });
     }
 
+    function finalize() {
+      for(var att in vm.character.attributes) {
+        vm.character.attributes[att] = getActualValue(att);
+      }
+
+      vm.character.hitpoints = vm.character.playableClass[0].profession.hitDice + toModifierRaw(vm.character.attributes.Constitution);
+    }
+
     // Remove existing Character
     function remove() {
       if (confirm('Are you sure you want to delete?')) {
@@ -232,11 +254,7 @@
       if (vm.character._id) {
         vm.character.$update(successCallback, errorCallback);
       } else {
-        // Get the actual attribute values
-        for(var att in vm.character.attributes) {
-          vm.character.attributes[att] = getActualValue(att);
-        }
-
+        finalize();
         vm.character.$save(successCallback, errorCallback);
       }
 

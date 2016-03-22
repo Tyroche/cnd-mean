@@ -43,6 +43,10 @@ var CharacterSchema = new Schema({
     Wisdom: { type: Number, default: 10 },
     Charisma: { type: Number, default: 10 }
   },
+  hitpoints: {
+    type: Number,
+    default: 1
+  },
   skills: [{
     type: String,
     default: ''
@@ -60,9 +64,9 @@ var CharacterSchema = new Schema({
     ref: 'Item'
   }],
   background: {
+    generalization: { type: Schema.ObjectId, ref: 'Background' },
     appearance : { type: String },
     backstory: { type: String },
-    generalization: { type: String },
     trait: { type: String },
     ideal: { type: String },
     bond: { type: String },

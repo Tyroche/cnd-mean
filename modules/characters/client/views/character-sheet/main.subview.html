@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-6">
+    <div class="row">
+      <div class="col-xs-6 col-md-2">HP:</div>
+      <div class="col-xs-6 col-md-3" ng-bind="vm.character.hitpoints"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 col-md-2">AC:</div>
+      <div class="col-xs-6 col-md-3" ng-bind="10 + vm.toModifierRaw(vm.character.attributes.Dexterity)"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 col-md-2">Speed:</div>
+      <div class="col-xs-6 col-md-3">30 feet</div>
+    </div>
+  </div>
+  <div class="col-xs-6">
+    <div class="row">
+      <div class="col-xs-12 text-right">
+        {{vm.character.race.name}} {{vm.character.background.generalization}}
+      </div>
+    </div>
+    <div class="row" ng-repeat="prof in vm.character.playableClass">
+      <div class="col-xs-12 text-right">Level {{prof.level}} {{prof.profession.name}}</div>
+    </div>
+  </div>
+</div>
+<br>

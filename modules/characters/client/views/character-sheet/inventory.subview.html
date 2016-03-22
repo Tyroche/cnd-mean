@@ -4,15 +4,15 @@
 </div>
   <div class="list-group" ng-if="vm.character.items.length > 0">
     <div class="row"><b>
-      <div class="col-sm-4">Name</div>
+      <div class="col-sm-5">Name</div>
       <div class="col-sm-3">Type</div>
-      <div class="col-sm-3">Price</div>
+      <div class="col-sm-2">Price</div>
     </b></div>
     <div style="overflow: auto; overflow-x: hidden; max-height: 250px;">
-      <div class="list-group-item row" ng-repeat="item in vm.character.items track by $index" >
-        <div class="col-sm-4" ng-bind="item.name"></div>
+      <div class="list-group-item row" ng-repeat="item in vm.character.items | unique: '_id' track by $index" >
+        <div class="col-sm-5">{{item.name}}{{vm.accountForMultiples(item)}}</div>
         <div class="col-sm-3" ng-bind="item.classification"></div>
-        <div class="col-sm-3">{{item.price}} ℝ</div>
+        <div class="col-sm-2">{{item.price}} ℝ</div>
         <div class="col-sm-1" ng-click="vm.infoItem = item">
           <span class="glyphicon glyphicon-info-sign can-select" aria-hidden="true"></span>
         </div>

@@ -4,10 +4,10 @@
     <label class="control-label">Background Generalization</label>
     <div class="dropdown" dropdown>
       <button type="button" class="btn btn-default" dropdown-toggle>
-        {{vm.chosenBackground.name}} <span class="caret"></span></button>
+        {{vm.character.background.generalization.name}} <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li ng-repeat="bg in vm.loadedData.backgrounds">
-            <a href ng-click="vm.chosenBackground = bg">{{bg.name}}</a>
+            <a href ng-click="vm.character.background.generalization = bg">{{bg.name}}</a>
           </li>
         </ul>
     </div>
