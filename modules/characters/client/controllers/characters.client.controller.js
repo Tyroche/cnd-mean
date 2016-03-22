@@ -248,7 +248,12 @@
 
       // TODO: move create/update logic to service
       if (vm.character._id) {
-        vm.character.$update(successCallback, errorCallback);
+        if(vm.character.player._id === Authentication.user._id || Authentication.user.roles.indexOf('admin') > -1) {
+            vm.character.$update(successCallback, errorCallback);
+            return;
+        }
+        console.log('User is not authorized to edit this character');
+        return false;
       } else {
         finalize();
         vm.character.$save(successCallback, errorCallback);

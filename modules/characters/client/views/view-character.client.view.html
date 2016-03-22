@@ -1,17 +1,20 @@
 <section>
+
   <div class="page-header">
-    <h1 data-ng-bind="vm.character.name"></h1>
+    <div class="pull-right"
+         data-ng-show="vm.character.player._id === vm.authentication.user._id || vm.authentication.user.roles.indexOf('admin') > -1">
+      <a class="btn btn-primary"
+         data-ui-sref="characters.edit({ characterId: vm.character._id })">
+        <i class="glyphicon glyphicon-edit"></i>
+      </a>
+      <a class="btn btn-primary" data-ng-click="vm.remove()">
+        <i class="glyphicon glyphicon-trash"></i>
+      </a>
+    </div>
+      <h1 data-ng-bind="vm.character.name"></h1>
   </div>
-  <div class="pull-right"
-       data-ng-show="vm.character.isCurrentUserOwner">
-    <a class="btn btn-primary"
-       data-ui-sref="characters.edit({ characterId: vm.character._id })">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" data-ng-click="vm.remove()">
-      <i class="glyphicon glyphicon-trash"></i>
-    </a>
-  </div>
+
+
 
   <div class="row">
     <div class="col-md-6">
