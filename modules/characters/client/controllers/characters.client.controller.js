@@ -83,7 +83,7 @@
     }
 
     function getSkillMod(skill, attribute) {
-      var mod =  Math.floor((vm.getActualValue(attribute)-10) / 2);
+      var mod = toModifierRaw(vm.character.attributes[attribute]);
       if(vm.character.skills.indexOf(skill) > -1) {
         return getProficiency() + mod;
       }
@@ -140,7 +140,7 @@
         return 0;
       }
       var isProficient = vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute) > -1;
-      var modifier = Math.floor((getActualValue(attribute) -10) / 2);
+      var modifier = toModifierRaw(vm.character.attributes[attribute]);
 
       modifier += isProficient ? 2 : 0;
 
@@ -183,7 +183,7 @@
         return n + (val._id === item._id ? 1: 0);
       },0);
 
-      return (multiples > 0) ? " x" + multiples : "";
+      return (multiples > 0) ? ' x' + multiples : '';
     }
 
     // To inventory.client.service

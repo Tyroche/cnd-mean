@@ -36,31 +36,38 @@
       },
 
       getSkills: function () {
-        return [{
+        return [
+          {
             name: 'Strength',
             tooltip: 'Strength measures your character\'s muscle and physical power',
             skills: ['Athletics']
-          }, {
+          },
+          {
             name: 'Dexterity',
             tooltip: 'Strength measures your character\'s muscle and physical power',
             skills: ['Acrobatics', 'Sleight of Hand', 'Stealth']
-          }, {
+          },
+          {
             name: 'Constitution',
             tooltip: 'Strength measures your character\'s muscle and physical power',
             skills: []
-          }, {
+          },
+          {
             name: 'Intelligence',
             tooltip: 'Strength measures your character\'s muscle and physical power',
             skills: ['Arcana', 'History', 'Investigation', 'Nature', 'Religion']
-          }, {
+          },
+          {
             name: 'Wisdom',
             tooltip: 'Strength measures your character\'s muscle and physical power',
             skills: ['Animal Handling', 'Insight', 'Medicine', 'Perception', 'Survival']
-          }, {
+          },
+          {
             name: 'Charisma',
             tooltip: 'Strength measures your character\'s muscle and physical power',
             skills: ['Deception', 'Intimidation', 'Perform', 'Persuasion']
-        }];
+          }
+        ];
       }
     };
   }
