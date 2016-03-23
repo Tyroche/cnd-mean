@@ -6,13 +6,6 @@
     <a data-ng-repeat="wiki in vm.wikis"
        data-ui-sref="wikis.view({ wikiId: wiki._id })"
        class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="wiki.created | date:'mediumDate'"></span>
-        by
-        <span data-ng-if="wiki.user" data-ng-bind="wiki.user.displayName"></span>
-        <span data-ng-if="!wiki.user">Deleted User</span>
-      </small>
       <h4 class="list-group-item-heading" data-ng-bind="wiki.name"></h4>
     </a>
   </div>
