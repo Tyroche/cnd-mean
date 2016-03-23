@@ -25,11 +25,19 @@
           </div>
 
           <div class="col-md-offset-1 col-md-1">
-            <label for="maxAttendees">Attendees</label>
+            <label for="maxAttendees">Players</label>
             <input type="number"
               ng-model="vm.episode.maxAttendees"
               id="maxAttendees"
               class="form-control att-entry">
+          </div>
+
+          <div class="col-md-offset-1 col-sm-3">
+            <span class="glyphicon glyphicon-check can-select"
+                  ng-click="vm.episode.isOpen = !vm.episode.isOpen"
+                  ng-class="{'glyphicon-unchecked': !vm.episode.isOpen,
+                            'glyphicon-check': vm.episode.isOpen}">
+            </span> Enable Attendance
           </div>
         </div>
 

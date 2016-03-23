@@ -102,6 +102,9 @@
     }
 
     function contractIsEnabled(contract) {
+      // bandaid
+      if(!contract) { return; }
+
       return vm.episode.contracts && vm.episode.contracts.some(function(val) {
         return val._id === contract._id;
       });

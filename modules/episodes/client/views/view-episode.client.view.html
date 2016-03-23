@@ -31,7 +31,7 @@
         <div class="col-md-4">
           <div class="dropdown" dropdown>
             <button type="button" class="btn btn-default" dropdown-toggle>
-              Select Player<span class="caret"></span></button>
+              {{vm.chosenCharacter.name}}<span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <li ng-repeat="pc in vm.playerCharacters">
                   <a href ng-click="vm.chosenCharacter = pc">{{pc.name}}</a></li>
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="col-md-3">
-          <button class="btn btn-default" ng-click="vm.toggleAttendance()">
+          <button class="btn btn-default" ng-disabled="!vm.chosenCharacter && !vm.isUserPlaying()" ng-click="vm.toggleAttendance()">
             {{ vm.isUserPlaying() ? 'I will not attend' : 'I will attend' }}
           </button>
         </div>
