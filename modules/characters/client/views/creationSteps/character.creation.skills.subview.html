@@ -18,6 +18,7 @@
       <div ng-repeat="skill in attribute.skills" class="row">
         <div class="col-xs-2">
           <input type="checkbox"
+            ng-init="attsEnabled[skill] = vm.character.skills.indexOf(skill) > -1"
             ng-model="attsEnabled[skill]"
             ng-if="vm.character.playableClass[0].profession.skillProficiencies.indexOf(skill) > -1
                   || (vm.character.race.numSkillProficiencies > 0 && vm.character.skills.length < vm.character.race.numSkillProficiencies)
