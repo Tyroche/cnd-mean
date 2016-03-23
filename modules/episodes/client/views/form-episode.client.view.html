@@ -9,29 +9,36 @@
         <div class="row">
           <div class="col-md-3 form-group" show-errors>
             <label for="sessionDate">Session Date</label>
-              <p class="input-group">
-                <input datepicker-popup
-                      type="text"
-                      id="sessionDate"
-                      ng-model="vm.episode.sessionDate"
-                      is-open="calendar.opened"
-                      class="form-control">
-                <span class="input-group-btn" />
-                  <button type="button" class="btn btn-default" ng-click="openCalendar()">
-                    <i class="glyphicon glyphicon-calendar"></i>
-                  </button>
-                </span>
-              </p>
-            </div>
-
-            <div class="col-md-offset-1 col-md-1">
-              <label for="maxAttendees">Attendees</label>
-              <input type="number"
-                ng-model="vm.episode.maxAttendees"
-                id="maxAttendees"
-                class="form-control att-entry">
-            </div>
+            <p class="input-group">
+              <input datepicker-popup
+                    type="text"
+                    id="sessionDate"
+                    ng-model="vm.episode.sessionDate"
+                    is-open="calendar.opened"
+                    class="form-control">
+              <span class="input-group-btn" />
+                <button type="button" class="btn btn-default" ng-click="openCalendar()">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </p>
           </div>
+
+          <div class="col-md-offset-1 col-md-1">
+            <label for="maxAttendees">Attendees</label>
+            <input type="number"
+              ng-model="vm.episode.maxAttendees"
+              id="maxAttendees"
+              class="form-control att-entry">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label class="control-label">Episode Summary</label><br />
+            <textarea type="text" ng-model="vm.episode.summary" class="form-control" placeholder="Enter a brief episode summary"></textarea>
+          </div>
+        </div>
 
         <h3>Contracts</h3>
         <div class="row">

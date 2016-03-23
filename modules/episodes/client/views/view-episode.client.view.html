@@ -1,16 +1,26 @@
 <section>
   <div class="page-header">
+    <div class="pull-right" ng-show="vm.authentication.user.roles.indexOf('admin') > -1">
+      <a class="btn btn-primary"
+         data-ui-sref="episodes.edit({ episodeId: vm.episode._id })">
+        <i class="glyphicon glyphicon-edit"></i>
+      </a>
+      <a class="btn btn-primary" data-ng-click="vm.remove()">
+        <i class="glyphicon glyphicon-trash"></i>
+      </a>
+    </div>
     <h1>Session on {{vm.episode.sessionDate | date: 'MM/dd/yy'}}</h1>
   </div>
-  <div class="pull-right" ng-show="vm.authentication.user.roles.indexOf('admin') > -1">
-    <a class="btn btn-primary"
-       data-ui-sref="episodes.edit({ episodeId: vm.episode._id })">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" data-ng-click="vm.remove()">
-      <i class="glyphicon glyphicon-trash"></i>
-    </a>
+  <div ng-if="vm.episode.summary.length > 0">
+    <div class="row" >
+      <div class="col-md-12">
+        <h3>Summary</h3>
+        <p ng-bind="vm.episode.summary"></p>
+      </div>
+    </div>
+    <hr>
   </div>
+
 
   <!-- Player Signup -->
   <div class="form-group">
@@ -42,7 +52,6 @@
       </div>
     </div>
   </div>
-  <hr>
 
   <h3>Attendees</h3>
   <div ng-show="!vm.episode"><i>Loading...</i></div>

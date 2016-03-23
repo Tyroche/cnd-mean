@@ -21,7 +21,10 @@
     // Check to see if a user is playing in an episode
     function isUserPlayingInEpisode(episode, user) {
       return episode.attendees.some(function(cv) {
-        return cv.user === user._id;
+        if(cv.user._id) {
+          return cv.user._id === user._id;
+        }
+        return cv.user === user;
       });
     }
 
@@ -40,7 +43,10 @@
 
     function disableAttendance(episode, user, character, contracts) {
       var attendees = episode.attendees.filter(function (obj) {
-        return obj.user === user._id;
+        if(obj.user._id) {
+          return obj.user._id === user._id;
+        }
+        return obj.user === user;
       });
 
       if (attendees.length > 0) {
