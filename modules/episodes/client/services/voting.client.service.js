@@ -32,8 +32,8 @@
     function enableAttendance(episode, user, character) {
       if(!isUserAttendancePermitted(user)) { return; }
       episode.attendees.push({
-        user: user._id,
-        character: character._id
+        user: user,
+        character: character
       });
       episode.$update();
     }

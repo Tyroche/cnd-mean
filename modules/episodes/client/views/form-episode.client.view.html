@@ -50,18 +50,27 @@
         </div>
         <br/>
 
-        <div ng-repeat="c in vm.contracts" class="row">
+        <div ng-repeat="contract in vm.formEnabledContracts" class="row">
           <div class="col-sm-1">
-            <input type="checkbox" ng-model="enabled[$index]"/>
+
+            <!-- Enabled Contract -->
+            <div ng-if="vm.contractIsEnabled(contract)">
+                <span class="glyphicon glyphicon-check can-select" ng-click="vm.removeContract(contract)"></span>
+            </div>
+
+            <!-- Not Enabled -->
+            <div ng-if="!vm.contractIsEnabled(contract)">
+              <span class="glyphicon glyphicon-unchecked can-select" ng-click="vm.episode.contracts.push(contract)"></span>
+            </div>
           </div>
           <div class="col-sm-4">
-            {{c.name}}
+            {{contract.name}}
           </div>
           <div class="col-sm-3">
-            {{ vm.sumRewards(c) }}
+            {{ vm.sumRewards(contract) }}
           </div>
           <div class="col-sm-3">
-            {{c.voters.length}}
+            {{contract.voters.length}}
           </div>
         </div>
         <hr/>

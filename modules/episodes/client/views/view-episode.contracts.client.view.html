@@ -6,7 +6,7 @@
 </div>
 
 <div ng-show="vm.episode.contracts.length > 0">
-  <div ng-repeat="contract in vm.formEnabledContracts"
+  <div ng-repeat="contract in vm.episode.contracts"
         class="well xs-well"
         ng-class="vm.getPlayerVotedContract()._id === contract._id ? 'voted-contract' : 'regular-contract'"
         ng-click="vm.voteFor($index)">

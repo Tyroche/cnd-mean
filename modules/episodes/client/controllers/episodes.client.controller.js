@@ -9,13 +9,12 @@
   EpisodesController.$inject = [
     '$scope',
     '$state',
+    '$resource',
     'Authentication',
     'episodeResolve',
-    'ConfigurationsService',
-    'ContractsService',
     'ContractVotingService'];
 
-  function EpisodesController ($scope, $state, Authentication, episode, ConfigurationsService, ContractsService, contractVotingService) {
+  function EpisodesController ($scope, $state, $resource, Authentication, episode, contractVotingService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -28,31 +27,39 @@
     vm.remove = remove;
     vm.save = save;
     vm.sumRewards = sumRewards;
-    vm.getRemainingSlots = getRemainingSlots;
     vm.isUserPlaying = isUserPlaying;
     vm.toggleAttendance = toggleAttendance;
     vm.voteFor = voteFor;
     vm.getPlayerVotedContract = getPlayerVotedContract;
-    vm.getUser = getUser;
+    vm.removeContract = removeContract;
+    vm.contractIsEnabled = contractIsEnabled;
 
     init();
     function init() {
       if (!vm.episode.contracts) { vm.episode.contracts = []; }
 
+      // Offload later
+      if($state.current.name === 'episodes.edit' || $state.current.name === 'episodes.create') {
+        $resource('api/contracts').query({}, function(res) {
+          if (!res[0]) {
+            console.log('ERROR: No Contracts found!!!');
+            return [];
+          }
+          vm.formEnabledContracts = res;
+        });
+      }
+
       vm.formEnabledContracts.forEach(function(obj) {
-        if (!obj.voters) { obj.voters = []; }
         if (!obj.rewards) { obj.rewards = []; }
       });
+
+      getPlayerCharacters();
     }
 
     //--View Accessible Ops-----------------------------------------------------
     // Player is in session
     function isUserPlaying() {
       return contractVotingService.isUserPlaying(vm.episode, Authentication.user);
-    }
-
-    function getRemainingSlots() {
-      return vm.episode.maxAttendees - vm.episode.attendees.length;
     }
 
     function toggleAttendance() {
@@ -68,13 +75,38 @@
       return contractVotingService.getVotedContract(vm.formEnabledContracts, Authentication.user);
     }
 
-    function getUser(attendee) {
-      if(!vm.users) { return; }
+    function getPlayerCharacters(player) {
+      if (vm.playerCharacters) { return; }
 
-      return vm.users.filter(function(obj) {
-        return obj._id === attendee.user;
-      })[0];
+      $resource('api/characters').query({}, function(res) {
+        if (!res[0]) {
+          console.log('ERROR: No Characters found!!!');
+          return [];
+        }
+        vm.playerCharacters = res.filter(function(char) {
+          return char.player === Authentication.user._id;
+        });
+      });
     }
+
+    function removeContract(contract) {
+      var res = null;
+      vm.episode.contracts.some(function(curVal, index) {
+        if(curVal._id === contract._id){
+          res = index;
+          return true;
+        }
+        return false;
+      });
+      vm.episode.contracts.splice(res, 1);
+    }
+
+    function contractIsEnabled(contract) {
+      return vm.episode.contracts && vm.episode.contracts.some(function(val) {
+        return val._id === contract._id;
+      });
+    }
+
 
     // Summarize all monetary rewards for this contract
     function sumRewards(contract) {
@@ -113,28 +145,6 @@
       $scope.calendar.opened = true;
     };
 
-    //--DB Ops------------------------------------------------------------------
-    // Get possible configurations
-    ConfigurationsService.query({ enabled: true }, function(res) {
-      if (!vm.episode.maxAttendees || vm.episode.maxAttendees === 0){
-        vm.episode.maxAttendees = res[0].maximumSessionSize;
-      }
-    });
-
-    // Get possible contracts
-    ContractsService.query({}, function(res) {
-      // Get All contracts
-      vm.contracts = res;
-
-      var contractEnabled = function (obj){
-        return vm.episode.contracts.indexOf(obj._id) > -1;
-      };
-
-      // Match enabled Contracts and figure out which are enabled in scope
-      vm.formEnabledContracts = vm.contracts.filter(contractEnabled);
-      $scope.enabled = vm.contracts.map(contractEnabled);
-    });
-
     //--CRUD--------------------------------------------------------------------
     // Remove existing Episode
     function remove() {
@@ -149,10 +159,6 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.form.episodeForm');
         return false;
       }
-
-      vm.episode.contracts = vm.contracts.filter(function (contract){
-        return $scope.enabled[vm.contracts.indexOf(contract)];
-      });
 
       if (vm.episode._id) {
         vm.episode.$update(successCallback, errorCallback);

@@ -103,7 +103,7 @@ exports.episodeByID = function(req, res, next, id) {
     });
   }
 
-  Episode.findById(id).populate('user', 'displayName').populate('attendees', 'contracts').exec(function (err, episode) {
+  Episode.findById(id).populate('attendees.user', 'firstName lastName').populate('contracts attendees.character').exec(function (err, episode) {
     if (err) {
       return next(err);
     } else if (!episode) {

@@ -19,10 +19,14 @@
 
       <div ng-if="vm.episode.isOpen">
         <div class="col-md-4">
-          <select class="form-control" ng-model="vm.chosenCharacter">
-              <option>Vorenus Magnus</option>
-              <option>Browr Trowr</option>
-          </select>
+          <div class="dropdown" dropdown>
+            <button type="button" class="btn btn-default" dropdown-toggle>
+              Select Player<span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li ng-repeat="pc in vm.playerCharacters">
+                  <a href ng-click="vm.chosenCharacter = pc">{{pc.name}}</a></li>
+              </ul>
+          </div>
         </div>
         <div class="col-md-3">
           <button class="btn btn-default" ng-click="vm.toggleAttendance()">
@@ -41,18 +45,19 @@
   <hr>
 
   <h3>Attendees</h3>
-  <div ng-show="!vm.users"><i>Loading...</i></div>
-  <div ng-show="vm.users">
-    <div ng-show="!vm.episode.attendees">
+  <div ng-show="!vm.episode"><i>Loading...</i></div>
+  <div ng-show="vm.episode.attendees">
+    <div ng-show="vm.episode.attendees.length === 0">
       <p>There are no players signed up currently.</p>
     </div>
-    <div ng-show="vm.episode.attendees">
+    <div ng-show="vm.episode.attendees.length > 0">
       <div ng-repeat="c in vm.episode.attendees">
-        {{vm.getUser(c)}}
+        {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}}
       </div>
     </div>
   </div>
-  <p>There are <b>{{vm.getRemainingSlots()}} player slots</b> available for this session.</p>
+  <br>
+  <p>There are <b>{{vm.episode.maxAttendees - vm.episode.attendees.length}} open player slots</b> remaining for this session.</p>
   <hr>
 
 <div ng-include="'modules/episodes/client/views/view-episode.contracts.client.view.html'"></div>
