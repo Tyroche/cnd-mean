@@ -28,9 +28,14 @@
       });
     }
 
-    function loadItems() {
+    function loadItems(user) {
+      var itemQuery = 'api/common/items';
+      if(user.roles.indexOf('admin') > -1) {
+        itemQuery = '/api/items';
+      }
+
       // Actually Query now
-      return $resource('api/common/items').query({}, function(res) {
+      return $resource(itemQuery).query({}, function(res) {
         if (!res[0]) {
           console.log('ERROR: No Items found!!!');
           return [];
@@ -51,9 +56,9 @@
     }
 
     return {
-      loadForCreation: function () {
+      loadData: function (character, user) {
         return {
-          items: loadItems(),
+          items: loadItems(user),
           races: loadRaces(),
           classes: loadClasses(),
           backgrounds: loadBackgrounds()

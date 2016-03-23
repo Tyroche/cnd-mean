@@ -48,7 +48,7 @@
 
     init();
     function init() {
-      vm.loadedData = dataLoader.loadForCreation(vm.character);
+      vm.loadedData = dataLoader.loadData(vm.character, Authentication.user);
       vm.skills = characterSources.getSkills();
       vm.creationSteps = characterSources.getSteps();
       vm.racialBonus = '';

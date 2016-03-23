@@ -20,8 +20,14 @@
     <div class="col-sm-2 text-center" ng-bind="vm.getSaveMod(attribute.name)"></div>
     <div class="col-sm-5">
       <div ng-repeat="skill in attribute.skills" class="row">
-        <div class="col-xs-offset-2 col-xs-2">({{vm.getSkillMod(skill, attribute.name)}})</div>
-        <div class="col-xs-8 check-no-margin">{{skill}}</div>
+        <b ng-if="vm.character.skills.indexOf(skill) > -1" style="margin-top: 0; margin-bottom: 0;">
+          <div class="col-xs-2"><span ng-if="vm.getSkillMod(skill, attribute.name) >0">+</span>{{vm.getSkillMod(skill, attribute.name)}}</div>
+          <div class="col-xs-8 check-no-margin">{{skill}}*</div>
+        </b>
+        <span ng-if="vm.character.skills.indexOf(skill) === -1">
+          <div class="col-xs-2"><span ng-if="vm.getSkillMod(skill, attribute.name) >0">+</span>{{vm.getSkillMod(skill, attribute.name)}}</div>
+          <div class="col-xs-8 check-no-margin">{{skill}}</div>
+        </span>
       </div>
     </div>
   </div>
