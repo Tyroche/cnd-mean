@@ -30,6 +30,7 @@ var RaceSchema = new Schema({
     Charisma: { type: Number, default: 0 },
     Choice: { type: Number, default: 0 }
   },
+  skillProficiencies: [{ type: String }],
   numSkillProficiencies: [{
     type: Number,
     default: 0

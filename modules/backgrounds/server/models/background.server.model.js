@@ -22,6 +22,7 @@ var BackgroundSchema = new Schema({
     type: Number,
     default: 10
   },
+  skillProficiencies: [{ type: String }],
   traits: [{ type: String }],
   ideals: [{ type: String }],
   bonds: [{ type: String }],

@@ -17,6 +17,29 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.removeSkillProficiency = removeSkillProficiency;
+    vm.addSkill = addSkill;
+
+    vm.skillsAvailable = [
+      'Acrobatics',
+      'Animal Handling',
+      'Arcana',
+      'Athletics',
+      'Deception',
+      'History',
+      'Medicine',
+      'Insight',
+      'Intimidation',
+      'Investigation',
+      'Nature',
+      'Perception',
+      'Perform',
+      'Persuasion',
+      'Religion',
+      'Sleight of Hand',
+      'Stealth',
+      'Survival'
+    ];
 
     function init() {
       if (!vm.background._id) {
@@ -24,6 +47,18 @@
         vm.background.ideals = [];
         vm.background.bonds = [];
         vm.background.flaws = [];
+      }
+    }
+
+    function removeSkillProficiency(skill) {
+      var ind = vm.background.skillProficiencies.indexOf(skill);
+      vm.background.skillProficiencies.splice(ind, 1);
+    }
+
+    function addSkill(skill) {
+      if(!vm.background.skillProficiencies) { vm.background.skillProficiencies = []; }
+      if(!vm.background.skillProficiencies.some(function (s) { return s === skill; })) {
+        vm.background.skillProficiencies.push(skill);
       }
     }
 
