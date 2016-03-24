@@ -81,7 +81,12 @@ exports.delete = function(req, res) {
  * List of Characters
  */
 exports.list = function(req, res) {
-  Character.find().populate('race').populate('playableClass.profession', 'name').exec(function(err, characters) {
+  Character.find()
+    .populate('race', 'name')
+    .populate('player', 'firstName lastName')
+    .populate('background.generalization', 'name')
+    .populate('playableClass.profession', 'name')
+    .exec(function(err, characters) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

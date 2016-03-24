@@ -8,25 +8,25 @@
   </div>
   <div class="list-group">
     <div class="row">
-      <div class="col-sm-4"><b>Character Name</b></div>
-      <div class="col-sm-2 text-center"><b>Level</b></div>
+      <div class="col-sm-3"><b>Character Name</b></div>
+      <div class="col-sm-3"><b>Player Name</b></div>
       <div class="col-sm-2"><b>Class</b></div>
       <div class="col-sm-2"><b>Race</b></div>
-      <div class="col-sm-2 text-center"><b>Sessions</b></div>
+      <div class="col-sm-2"><b>Background</b></div>
     </div>
     <a data-ng-repeat="character in vm.characters"
        data-ui-sref="characters.view({ characterId: character._id })"
        class="list-group-item">
       <div class="row">
-        <div class="col-sm-4"><b ng-bind="character.name"></b></div>
-        <div class="col-sm-2 text-center" ng-bind="character.level"></div>
+        <div class="col-sm-3"><b ng-bind="character.name"></b></div>
+        <div class="col-sm-3">{{character.player.firstName}} {{character.player.lastName}}</div>
         <div class="col-sm-2">
           <div ng-repeat="prof in character.playableClass">
             <p>{{prof.profession.name}} {{prof.level}}</p>
           </div>
         </div>
         <div class="col-sm-2" ng-bind="character.race.name"></div>
-        <div class="col-sm-2 text-center" ng-bind="character.numSessions"></div>
+        <div class="col-sm-2" ng-bind="character.background.generalization.name"></div>
       </div>
     </a>
   </div>

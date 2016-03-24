@@ -73,6 +73,8 @@
       }
     }
 
+
+
     function randomizeBackground(type) {
       if(!vm.character.background.generalization) { return 'Can\'t randomize'; }
       var backgroundType = vm.character.background.generalization[type + 's'];
