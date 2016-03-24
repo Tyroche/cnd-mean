@@ -5,3 +5,17 @@
 <h4>Skills</h4>
 <p>Skills determine how well your character is able to perform certain tasks, such as persuading people to his cause or healing others. Your race and class each dictate how many and in which skills you may become proficient. Proficiency in a skill adds a certain bonus modifier to all skill checks of that type; this bonus is a function of your level and starts at +2. If your race provides additional proficiencies, choose those first, then your profession's skills will be the only ones to remain available for selection past that.</p>
 <p>For more information on a skill, mouse-over the skill for a brief description of each.</p>
+<div ng-if="vm.character.background.generalization.skillProficiencies.length > 1">
+  <p>Your background, {{vm.character.background.generalization.name}}, provides the following Skill Proficiencies:
+    <b ng-repeat="skill in vm.character.background.generalization.skillProficiencies track by $index">
+      {{skill}}{{($index < vm.character.background.generalization.skillProficiencies.length-1) ? ', ': ''}}
+    </b>
+  </p>
+</div>
+<div ng-if="vm.character.playableClass[0].profession.skillProficiencies.length > 1">
+  <p>Your class, {{vm.character.playableClass[0].profession.name}}, offers the following Skill Proficiency options:
+    <b ng-repeat="skill in vm.character.playableClass[0].profession.skillProficiencies track by $index">
+      {{skill}}{{($index < vm.character.playableClass[0].profession.skillProficiencies.length-1) ? ', ': ''}}
+    </b>
+  </p>
+</div>

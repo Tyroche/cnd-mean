@@ -6,6 +6,7 @@
     <div class="col-xs-offset-2 col-xs-4"><b>Skills</b></div>
   </div>
 
+  <!-- this all needs to be put into a directive so we can extract some of the logic -->
   <div ng-repeat="attribute in vm.skills" class="row list-group-item">
     <div class="col-sm-3">
       <b ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) > -1">
@@ -21,17 +22,20 @@
             ng-init="attsEnabled[skill] = vm.character.skills.indexOf(skill) > -1"
             ng-model="attsEnabled[skill]"
             ng-if="vm.character.playableClass[0].profession.skillProficiencies.indexOf(skill) > -1
-                  || (vm.character.race.numSkillProficiencies > 0 && vm.character.skills.length < vm.character.race.numSkillProficiencies)
+                  || (vm.character.race.numSkillProficiencies > 0
+                      && vm.character.skills.length < vm.character.race.numSkillProficiencies)
                   || vm.character.skills.indexOf(skill) > -1"
-            ng-disabled="vm.character.skills.indexOf(skill) === -1
-                  && vm.character.skills.length >= vm.numberProficiencies()"
+            ng-disabled="vm.character.background.generalization.skillProficiencies.indexOf(skill) > -1
+                  || (vm.character.skills.indexOf(skill) === -1
+                      && vm.character.skills.length >= vm.numberProficiencies())"
             ng-click="vm.toggleProficiency(skill)">
         </div>
-        <b ng-if="vm.character.skills.indexOf(skill) > -1" style="margin-top: 0; margin-bottom: 0;">
+        <b ng-if="vm.character.skills.indexOf(skill) > -1 || vm.character.background.generalization.skillProficiencies.indexOf(skill) > -1"
+            style="margin-top: 0; margin-bottom: 0;">
           <div class="col-xs-2"><span ng-if="vm.getSkillMod(skill, attribute.name) >0">+</span>{{vm.getSkillMod(skill, attribute.name)}}</div>
           <div class="col-xs-8 check-no-margin">{{skill}}*</div>
         </b>
-        <span ng-if="vm.character.skills.indexOf(skill) === -1">
+        <span ng-if="vm.character.skills.indexOf(skill) === -1 && vm.character.background.generalization.skillProficiencies.indexOf(skill) === -1">
           <div class="col-xs-2"><span ng-if="vm.getSkillMod(skill, attribute.name) >0">+</span>{{vm.getSkillMod(skill, attribute.name)}}</div>
           <div class="col-xs-8 check-no-margin">{{skill}}</div>
         </span>

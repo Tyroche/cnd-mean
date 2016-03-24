@@ -82,7 +82,7 @@
 
     function getSkillMod(skill, attribute) {
       var mod = toModifierRaw(vm.character.attributes[attribute]);
-      if(vm.character.skills.indexOf(skill) > -1) {
+      if(vm.character.skills.indexOf(skill) > -1 || vm.character.background.generalization.skillProficiencies.indexOf(skill) > -1) {
         return getProficiency() + mod;
       }
       return mod;

@@ -18,14 +18,14 @@
             help:'modules/characters/client/views/creationHelp/character.creation.basics.help.view.html'
           },
           {
-            title: 'Attributes',
-            template: 'modules/characters/client/views/creationSteps/character.creation.attributes.view.html' ,
-            help:'modules/characters/client/views/creationHelp/character.creation.attributes.help.view.html'
-          },
-          {
             title: 'Background',
             template: 'modules/characters/client/views/creationSteps/character.creation.background.view.html' ,
             help:'modules/characters/client/views/creationHelp/character.creation.background.help.view.html'
+          },
+          {
+            title: 'Attributes',
+            template: 'modules/characters/client/views/creationSteps/character.creation.attributes.view.html' ,
+            help:'modules/characters/client/views/creationHelp/character.creation.attributes.help.view.html'
           },
           {
             title: 'Inventory',
