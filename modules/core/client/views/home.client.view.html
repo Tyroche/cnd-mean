@@ -1,22 +1,32 @@
 <section ng-controller="HomeController">
-  <div class="jumbotron">
-    <div class="row">
-      <div class="col-md-3 col-sm-3 col-xs-12">
-        <img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/client/img/brand/cndemblem.png" />
-      </div>
-      <div class="col-md-8 col-md-offset-1 col-sm-8 col-sm-offset-1">
-        <h2>Consultants & Dragons</h2>
-        <div class="row" ng-if="!authentication.user" >
-            Embark on an adventure into the world of Dungeons and Dragons. Enlist today!<br /><br />
-            <a class="btn btn-primary btn-lg" href="authentication/signup" target="_blank">Enlist</a>
-        </div>
-        <div class="row" ng-if="authentication.user">
-          Welcome to the Consultants and Dragons home.
+  <div class="visible-lg">
+    <div class="left-panel">
+      <img alt="Consultants and Dragons" class="img-responsive text-center" src="modules/core/client/img/brand/cndemblem.png" />
+    </div>
+    <div class="right-panel" style="margin-top: 64px;">
+      <h1>Consultants and Dragons</h1>
+      <p>Do stuff here</p>
+      <hr>
+
+      <div>
+        <h3>Latest News</h3>
+        <div ng-repeat="article in news">
+          <a href="/articles/{{article._id}}">{{article.title}}</a> ({{article.created}})<br>
         </div>
       </div>
     </div>
-    <br>
   </div>
-  <h3>Other things I guess</h3>
-  <p> Stuff down here</p>
+  <div class="hidden-lg">
+    <h1>Consultants and Dragons</h1>
+    <p>Do stuff here</p>
+    <hr>
+
+    <div>
+      <h3>Latest News</h3>
+      <div ng-repeat="article in news">
+        <a href="/articles/{{article._id}}">{{article.title}}</a> ({{article.created}})<br>
+      </div>
+    </div>
+  </div>
+
 </section>

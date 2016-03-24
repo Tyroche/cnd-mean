@@ -42,3 +42,22 @@ a:hover .header-profile-image {
     margin: 0;
     -moz-appearance: textfield;
 }
+
+.left-panel {
+  position: absolute;
+  float: left;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  margin-left: 16px;
+  max-height: 85%
+}
+
+.right-panel {
+  position: absolute;
+  float: right;
+  width: 50%;
+  height: 100%;
+  right: 0;
+  max-height: 85%
+}
