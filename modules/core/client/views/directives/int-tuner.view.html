@@ -1,0 +1,18 @@
+<div class="input-group">
+  <span class="input-group-btn">
+    <button type="button"
+        ng-disabled="vm.tunerValue <= vm.min"
+        ng-click="vm.adjust(-1)"
+        class="btn btn-default" ><span class="glyphicon glyphicon-minus"></span></button>
+  </span>
+  <input type="number"
+        ng-model="vm.tunerValue"
+        disabled
+        class="text-center att-entry form-control"></input>
+  <span class="input-group-btn">
+    <button type="button"
+        ng-disabled="vm.tunerValue >= vm.max"
+        ng-click="vm.adjust(1)"
+        class="btn btn-default" ><span class="glyphicon glyphicon-plus"></span></button>
+  </span>
+</div>
