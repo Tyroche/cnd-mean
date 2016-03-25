@@ -29,11 +29,6 @@
     vm.nextStep = nextStep;
     vm.previousStep = previousStep;
 
-    vm.addItem = addItem;
-    vm.removeItem = removeItem;
-    vm.sumInventoryPrice = sumInventoryPrice;
-    vm.accountForMultiples = accountForMultiples;
-
     vm.points = 27;
     vm.removePoint = removePoint;
     vm.addPoint = addPoint;
@@ -42,6 +37,17 @@
     vm.toModifierRaw = toModifierRaw;
     vm.getSaveMod = getSaveMod;
     vm.randomizeBackground = randomizeBackground;
+    vm.addItem = addItem;
+
+    // To inventory.client.service
+    function addItem(item) {
+      if(vm.character.funds - item.price >= 0) {
+        vm.character.items.push(item);
+        vm.character.funds -= item.price;
+        vm.character.$update();
+      }
+    }
+
 
     init();
     function init() {
@@ -155,50 +161,6 @@
 
     function previousStep() {
       vm.step = Math.max(0, vm.step - 1);
-    }
-
-    function accountForMultiples(item) {
-      var multiples = vm.character.items.reduce(function(n, val) {
-        return n + (val._id === item._id ? 1: 0);
-      },0);
-
-      return (multiples > 0) ? ' x' + multiples : '';
-    }
-
-    // To inventory.client.service
-    function addItem(item) {
-      if(vm.character.funds - item.price >= 0) {
-        vm.character.items.push(item);
-        vm.character.funds -= item.price;
-      }
-    }
-
-    function removeItem(item) {
-      var ind = vm.character.items.indexOf(item);
-      vm.character.items.splice(ind, 1);
-      vm.character.funds += item.price;
-    }
-
-    function toggleItem(item) {
-      if(vm.character.items.indexOf(item) > -1){
-        removeItem(item);
-        return;
-      }
-      addItem(item);
-    }
-
-    function sumInventoryPrice() {
-      if (!vm.character.items || vm.character.items.length === 0) {
-        return 0;
-      }
-
-      if (vm.character.items.length === 1) {
-        return vm.character.items[0].price;
-      }
-
-      return vm.character.items.reduce(function(prev, cur) {
-        return prev.price + cur.price;
-      });
     }
 
     function finalize() {

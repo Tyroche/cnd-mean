@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('characters', ['professions', 'races', 'users']);
+  app.registerModule('characters', ['items', 'professions', 'races', 'users']);
 })(ApplicationConfiguration);

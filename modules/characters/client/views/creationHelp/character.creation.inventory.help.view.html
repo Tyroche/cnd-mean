@@ -1,3 +1,4 @@
 <h4>Item Purchasing</h4>
 <p>Here you will select your starting inventory. Some items come pre-added thanks in part to your race, profession, and background. You also have a certain amount of funds available to you dictacted by your class or background, whichever is greater.</p>
-<div ng-include="'modules/characters/client/views/character-sheet/inventory.subview.html'"></div>
+
+<player-inventory can-sell="true" character="vm.character"></player-inventory>
