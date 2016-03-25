@@ -37,18 +37,7 @@
     vm.toModifierRaw = toModifierRaw;
     vm.getSaveMod = getSaveMod;
     vm.randomizeBackground = randomizeBackground;
-    vm.addItem = addItem;
-
-    // To inventory.client.service
-    function addItem(item) {
-      if(vm.character.funds - item.price >= 0) {
-        vm.character.items.push(item);
-        vm.character.funds -= item.price;
-        vm.character.$update();
-      }
-    }
-
-
+    
     init();
     function init() {
       vm.loadedData = dataLoader.loadData(vm.character, Authentication.user);
