@@ -77,7 +77,7 @@ exports.delete = function(req, res) {
  * List of Items
  */
 exports.list = function(req, res) {
-  Item.find().sort('-created').populate('user', 'displayName').exec(function(err, items) {
+  Item.find().sort('name').populate('user', 'displayName').exec(function(err, items) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -113,7 +113,7 @@ exports.itemByID = function(req, res, next, id) {
 };
 
 exports.common = function(req, res) {
-  Item.find({ rarity: 'Common' }).exec(function(err, items) {
+  Item.find({ rarity: 'Common' }).sort('name').exec(function(err, items) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
