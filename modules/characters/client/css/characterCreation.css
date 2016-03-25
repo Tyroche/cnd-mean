@@ -17,6 +17,10 @@
   list-style-type: none;
 }
 
+.can-select: {
+  color: #000;
+}
+
 .can-select:hover {
   color: #f71;
   cursor: pointer;

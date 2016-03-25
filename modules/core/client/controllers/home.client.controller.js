@@ -14,8 +14,7 @@ angular.module('core').controller('HomeController', ['$scope', '$resource', 'Aut
           console.log('ERROR: No News found!!!');
           return [];
         }
-        $scope.news = res;
-        console.log(vm.news);
+        $scope.news = res.slice(0, 3);
       });
     }
   }

@@ -1,32 +1,14 @@
 <section ng-controller="HomeController">
-  <div class="visible-lg">
+  <div class="visible-lg" >
     <div class="left-panel">
       <img alt="Consultants and Dragons" class="img-responsive text-center" src="modules/core/client/img/brand/cndemblem.png" />
     </div>
     <div class="right-panel" style="margin-top: 64px;">
-      <h1>Consultants and Dragons</h1>
-      <p>Do stuff here</p>
-      <hr>
-
-      <div>
-        <h3>Latest News</h3>
-        <div ng-repeat="article in news">
-          <a href="/articles/{{article._id}}">{{article.title}}</a> ({{article.created}})<br>
-        </div>
-      </div>
+      <div ng-include="'modules/core/client/views/landing.client.view.html'"></div>
     </div>
   </div>
   <div class="hidden-lg">
-    <h1>Consultants and Dragons</h1>
-    <p>Do stuff here</p>
-    <hr>
-
-    <div>
-      <h3>Latest News</h3>
-      <div ng-repeat="article in news">
-        <a href="/articles/{{article._id}}">{{article.title}}</a> ({{article.created}})<br>
-      </div>
-    </div>
+    <div ng-include="'modules/core/client/views/landing.client.view.html'"></div>
   </div>
 
 </section>
