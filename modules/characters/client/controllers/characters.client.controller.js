@@ -41,9 +41,6 @@
     vm.toModifier = toModifier;
     vm.toModifierRaw = toModifierRaw;
     vm.getSaveMod = getSaveMod;
-    vm.getSkillMod = getSkillMod;
-    vm.toggleProficiency = toggleProficiency;
-    vm.numberProficiencies = numberProficiencies;
     vm.randomizeBackground = randomizeBackground;
 
     init();
@@ -82,34 +79,16 @@
       vm.character.background[type] = backgroundType[choice];
     }
 
-    function getSkillMod(skill, attribute) {
-      var mod = toModifierRaw(vm.character.attributes[attribute]);
-      if(vm.character.skills.indexOf(skill) > -1 || vm.character.background.generalization.skillProficiencies.indexOf(skill) > -1) {
-        return getProficiency() + mod;
-      }
-      return mod;
-    }
-
     function getProficiency() {
       return 2;
     }
 
-    function toggleProficiency(skill) {
-      var skillIndex = vm.character.skills.indexOf(skill);
-      if(skillIndex > -1) {
-        vm.character.skills.splice(skillIndex, 1);
-        return;
-      }
-      vm.character.skills.push(skill);
-    }
+
 
     function getPointCost(val) {
       return Math.max(0, (val-13)) + Math.max(0, val-8);
     }
 
-    function numberProficiencies() {
-      return parseInt(vm.character.playableClass[0].profession.numSkillProficiencies) + parseInt(vm.character.race.numSkillProficiencies);
-    }
 
     function addPoint(att) {
       // hard cap of 15

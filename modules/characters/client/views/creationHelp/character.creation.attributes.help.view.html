@@ -13,7 +13,7 @@
   </p>
 </div>
 <div ng-if="vm.character.playableClass[0].profession.skillProficiencies.length > 1">
-  <p>Your class, {{vm.character.playableClass[0].profession.name}}, offers the following Skill Proficiency options:
+  <p>Your class, {{vm.character.playableClass[0].profession.name}}, offers you {{vm.character.playableClass[0].profession.numSkillProficiencies}} of the following Skill Proficiency options:
     <b ng-repeat="skill in vm.character.playableClass[0].profession.skillProficiencies track by $index">
       {{skill}}{{($index < vm.character.playableClass[0].profession.skillProficiencies.length-1) ? ', ': ''}}
     </b>

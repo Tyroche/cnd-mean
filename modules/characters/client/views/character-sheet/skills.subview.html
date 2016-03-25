@@ -1,35 +1,4 @@
 <div class="row">
   <div class="col-xs-6"><h4>Stats and Skills</h4></div>
 </div>
-<div class="list-group">
-  <div class="row">
-    <div class="col-sm-3"><b>Attribute</b></div>
-    <div class="col-sm-2 text-center"><b>Modifier</b></div>
-    <div class="col-sm-2 text-center"><b>Saves</b></div>
-    <div class="col-sm-5"><b class="col-xs-offset-4 col-xs-8">Skills</b></div>
-  </div>
-
-  <div ng-repeat="attribute in vm.skills" class="row list-group-item">
-    <div class="col-sm-3">
-      <b ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) > -1">
-        {{attribute.name}}*
-      </b>
-      <span ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) === -1" ng-bind="attribute.name"></span>
-    </div>
-    <div class="col-sm-2 text-center"> {{vm.character.attributes[attribute.name]}} ({{vm.toModifier(vm.character.attributes[attribute.name])}})</div>
-    <div class="col-sm-2 text-center" ng-bind="vm.getSaveMod(attribute.name)"></div>
-    <div class="col-sm-5">
-      <div ng-repeat="skill in attribute.skills" class="row">
-        <b ng-if="vm.character.skills.indexOf(skill) > -1 || vm.character.background.generalization.skillProficiencies.indexOf(skill) > -1"
-            style="margin-top: 0; margin-bottom: 0;">
-          <div class="col-xs-2"><span ng-if="vm.getSkillMod(skill, attribute.name) >0">+</span>{{vm.getSkillMod(skill, attribute.name)}}</div>
-          <div class="col-xs-8 check-no-margin">{{skill}}*</div>
-        </b>
-        <span ng-if="vm.character.skills.indexOf(skill) === -1 && vm.character.background.generalization.skillProficiencies.indexOf(skill) === -1">
-          <div class="col-xs-2"><span ng-if="vm.getSkillMod(skill, attribute.name) >0">+</span>{{vm.getSkillMod(skill, attribute.name)}}</div>
-          <div class="col-xs-8 check-no-margin">{{skill}}</div>
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
+<skills-display can-select="false" character="vm.character"></skills-display>
