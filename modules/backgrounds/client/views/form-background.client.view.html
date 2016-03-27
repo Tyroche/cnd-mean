@@ -31,7 +31,8 @@
                 </ul>
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-9">
+            <button type="button" class="btn btn-default" ng-click="vm.background.specifications.push('')">Add Specification</button>
             <button type="button" class="btn btn-default" ng-click="vm.background.traits.push('')">Add Trait</button>
             <button type="button" class="btn btn-default" ng-click="vm.background.ideals.push('')">Add Ideal</button>
             <button type="button" class="btn btn-default" ng-click="vm.background.bonds.push('')">Add Bond</button>
@@ -40,13 +41,36 @@
         </div>
         <br>
 
+        <div class="row" ng-show="vm.background.specifications.length > 0">
+          <h4><span class="glyphicon glyphicon-eye-open can-select"
+                ng-class="{'glyphicon-eye-open': !isHidden['specifications'],
+                           'glyphicon-eye-close': isHidden['specifications']}"
+                ng-click="isHidden['specifications'] = !isHidden['specifications']"></span> Specifications</h4>
+            <p class="input-group">
+              <span class="input-group-addon">Specification Type</span>
+              <input type="text" ng-model="vm.background.specificiation" class="form-control">
+            </p>
+          <div ng-if="!isHidden['specifications']" ng-repeat="specification in vm.background.specifications track by $index">
+            <p class="input-group">
+              <span class="input-group-addon" ng-bind="$index+1"></span>
+              <input type="text" ng-model="vm.background.specifications[$index]" class="form-control">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.background.specifications.splice($index, 1)">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+              </span>
+            </p>
+          </div>
+        </div>
+
         <div class="row" ng-show="vm.background.traits.length > 0">
           <h4><span class="glyphicon glyphicon-eye-open can-select"
-                ng-class="{'glyphicon-eye-open': !isHidden['tracks'],
-                           'glyphicon-eye-close': isHidden['tracks']}"
-                ng-click="isHidden['tracks'] = !isHidden['tracks']"></span> Traits</h4>
-          <div ng-if="!isHidden['tracks']" ng-repeat="trait in vm.background.traits track by $index">
+                ng-class="{'glyphicon-eye-open': !isHidden['traits'],
+                           'glyphicon-eye-close': isHidden['traits']}"
+                ng-click="isHidden['traits'] = !isHidden['traits']"></span> Traits</h4>
+          <div ng-if="!isHidden['traits']" ng-repeat="trait in vm.background.traits track by $index">
             <p class="input-group">
+              <span class="input-group-addon" ng-bind="$index+1"></span>
               <input type="text" ng-model="vm.background.traits[$index]" class="form-control">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="vm.background.traits.splice($index, 1)">
@@ -64,6 +88,7 @@
                 ng-click="isHidden['ideals'] = !isHidden['ideals']"></span> Ideals</h4>
           <div ng-if="!isHidden['ideals']"  ng-repeat="ideal in vm.background.ideals track by $index">
             <p class="input-group">
+              <span class="input-group-addon" ng-bind="$index+1"></span>
               <input type="text" ng-model="vm.background.ideals[$index]" class="form-control">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="vm.background.ideals.splice($index, 1)">
@@ -81,6 +106,7 @@
                 ng-click="isHidden['bonds'] = !isHidden['bonds']"></span> Bonds</h4>
           <div ng-if="!isHidden['bonds']" ng-repeat="bond in vm.background.bonds track by $index">
             <p class="input-group">
+              <span class="input-group-addon" ng-bind="$index+1"></span>
               <input type="text" ng-model="vm.background.bonds[$index]" class="form-control">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="vm.background.bonds.splice($index, 1)">
@@ -98,6 +124,7 @@
                 ng-click="isHidden['flaws'] = !isHidden['flaws']"></span> Flaws</h4>
           <div ng-if="!isHidden['flaws']" ng-repeat="flaw in vm.background.flaws track by $index">
             <p class="input-group">
+              <span class="input-group-addon" ng-bind="$index+1"></span>
               <input type="text" ng-model="vm.background.flaws[$index]" class="form-control">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="vm.background.flaws.splice($index, 1)">

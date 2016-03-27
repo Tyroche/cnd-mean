@@ -37,11 +37,14 @@ var ItemSchema = new Schema({
     type: String,
     enum: [
       'Armor',
+      'Component',
+      'Currency',
       'Kit',
       'Potion',
       'Ring',
       'Scroll',
       'Staff',
+      'Tool',
       'Wand',
       'Weapon',
       'Wondrous Item'
