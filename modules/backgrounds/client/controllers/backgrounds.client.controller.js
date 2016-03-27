@@ -43,6 +43,7 @@
 
     function init() {
       if (!vm.background._id) {
+        vm.background.specifications = [];
         vm.background.traits = [];
         vm.background.ideals = [];
         vm.background.bonds = [];
