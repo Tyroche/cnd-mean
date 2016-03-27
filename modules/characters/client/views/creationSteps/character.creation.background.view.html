@@ -13,6 +13,16 @@
     </div>
 </div>
 
+<div class="row form-group" ng-if="vm.character.background.generalization.specification">
+  <label class="control-label" ng-bind="vm.character.background.generalization.specification"></label>
+  <p class="input-group">
+    <input name="trait" type="text" ng-model="vm.character.background.specification" id="trait" class="form-control" placeholder="Specification"></input>
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default"  ng-click="vm.randomizeBackground('specification')"><i class="fa fa-random"></i></button>
+    </span>
+  </p>
+</div>
+
 <div class="row form-group">
   <label class="control-label">Personality Trait</label>
   <p class="input-group">

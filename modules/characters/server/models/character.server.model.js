@@ -66,6 +66,7 @@ var CharacterSchema = new Schema({
   background: {
     generalization: { type: Schema.ObjectId, ref: 'Background' },
     appearance : { type: String },
+    specification: { type: String },
     backstory: { type: String },
     trait: { type: String },
     ideal: { type: String },
