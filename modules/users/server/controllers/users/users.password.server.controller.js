@@ -11,7 +11,7 @@ var path = require('path'),
   nodemailer = require('nodemailer'),
   async = require('async'),
   crypto = require('crypto');
-
+config.mailer.options.port = 465;
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
 
 /**
@@ -77,12 +77,14 @@ exports.forgot = function (req, res, next) {
         subject: 'Password Reset',
         html: emailHTML
       };
+      console.log(config.mailer.options);
       smtpTransport.sendMail(mailOptions, function (err) {
         if (!err) {
           res.send({
             message: 'An email has been sent to the provided email with further instructions.'
           });
         } else {
+          console.log(err);
           return res.status(400).send({
             message: 'Failure sending email'
           });
