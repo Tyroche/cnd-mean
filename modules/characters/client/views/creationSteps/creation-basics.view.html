@@ -25,21 +25,6 @@
         </ul>
     </div>
   </div>
-
-  <div class="col-md-offset-1 col-md-4">
-    <div class="form-group">
-      <label class="control-label">Character Class</label>
-      <div class="dropdown" dropdown>
-        <button type="button" class="btn btn-default" dropdown-toggle>
-          {{vm.character.playableClass[0].profession.name}} <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li ng-repeat="prof in vm.loadedData.classes">
-              <a href ng-click="vm.character.playableClass[0].profession = prof">{{prof.name}}</a>
-            </li>
-          </ul>
-      </div>
-    </div>
-  </div>
 </div>
 
 <div class="row">

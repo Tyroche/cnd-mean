@@ -14,7 +14,7 @@
   <label class="control-label">Name</label>
   <input type="text" class="form-control" ng-disabled="$index === 0" ng-model="vm.profession.archetypes[$index].title"></input>
   <label class="control-label">Description</label>
-  <textarea required
+  <textarea
       ng-disabled="$index === 0"
       ng-model="vm.profession.archetypes[$index].description"
       class="form-control">
@@ -55,7 +55,7 @@
 
     </div>
     <label class="control-label">Trait Description</label>
-    <textarea required
+    <textarea
         ng-model="vm.profession.archetypes[$parent.$index].traits[$index].description"
         class="form-control">
     </textarea>

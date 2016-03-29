@@ -26,7 +26,7 @@ var CharacterSchema = new Schema({
       type: Schema.ObjectId,
       ref: 'Profession'
     },
-    archetype: { type: String },
+    archetype: { type: Number },
     traitChoices: [{
       archetype: { type: String },
       level: { type: Number },

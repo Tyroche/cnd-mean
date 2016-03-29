@@ -14,22 +14,27 @@
         return [
           {
             title: 'Basics',
-            template: 'modules/characters/client/views/creationSteps/character.creation.basics.view.html',
+            template: 'modules/characters/client/views/creationSteps/creation-basics.view.html',
+            help:'modules/characters/client/views/creationHelp/character.creation.basics.help.view.html'
+          },
+          {
+            title: 'Class',
+            template: 'modules/characters/client/views/creationSteps/creation-class.view.html',
             help:'modules/characters/client/views/creationHelp/character.creation.basics.help.view.html'
           },
           {
             title: 'Background',
-            template: 'modules/characters/client/views/creationSteps/character.creation.background.view.html' ,
+            template: 'modules/characters/client/views/creationSteps/creation-background.view.html' ,
             help:'modules/characters/client/views/creationHelp/character.creation.background.help.view.html'
           },
           {
             title: 'Attributes',
-            template: 'modules/characters/client/views/creationSteps/character.creation.attributes.view.html' ,
+            template: 'modules/characters/client/views/creationSteps/creation-attributes.view.html' ,
             help:'modules/characters/client/views/creationHelp/character.creation.attributes.help.view.html'
           },
           {
             title: 'Inventory',
-            template: 'modules/characters/client/views/creationSteps/character.creation.inventory.view.html' ,
+            template: 'modules/characters/client/views/creationSteps/creation-inventory.view.html' ,
             help:'modules/characters/client/views/creationHelp/character.creation.inventory.help.view.html'
           }
         ];

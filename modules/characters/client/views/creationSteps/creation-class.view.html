@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label class="control-label">Character Class</label>
+      <div class="dropdown" dropdown>
+        <button type="button" class="btn btn-default" dropdown-toggle>
+          {{vm.character.playableClass[0].profession.name}} <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li ng-repeat="prof in vm.loadedData.classes">
+              <a href ng-click="vm.character.playableClass[0].profession = prof">{{prof.name}}</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6" ng-if="vm.character.playableClass[0].profession.archetypeLevelRequirement <= vm.character.playableClass[0].level">
+    <div class="form-group">
+      <label class="control-label">Archetype</label>
+      <div class="dropdown" dropdown>
+        <button type="button" class="btn btn-default" dropdown-toggle>
+          {{vm.character.playableClass[0].profession.archetypes[vm.character.playableClass[0].archetype].title}} <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li ng-repeat="archetype in vm.character.playableClass[0].profession.archetypes" ng-if="archetype.title !== 'Universal'">
+              <a href ng-click="vm.character.playableClass[0].archetype = $index">{{archetype.title}}</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 ng-bind="vm.character.playableClass[0].profession.name"></h3>
+<p ng-bind="vm.character.playableClass[0].profession.description"></p><br>
+<div ng-repeat="trait in vm.character.playableClass[0].profession.archetypes[0].traits" ng-if="trait.levelRequirement <= vm.character.playableClass[0].level">
+  <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
+  <p ng-bind="trait.description"></p>
+</div>
+<hr>
+
+<h4 ng-bind="vm.character.playableClass[0].profession.archetypes[vm.character.playableClass[0].archetype].title"></h4>
+<p ng-bind="vm.character.playableClass[0].profession.archetypes[vm.character.playableClass[0].archetype].description"></p>
+<div ng-repeat="trait in vm.character.playableClass[0].profession.archetypes[vm.character.playableClass[0].archetype].traits" ng-if="trait.levelRequirement <= vm.character.playableClass[0].level">
+  <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
+  <p ng-bind="trait.description"></p>
+</div>
