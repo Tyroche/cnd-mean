@@ -49,7 +49,7 @@ exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
   // If an Character is being processed and the current user created it then allow any manipulation
-  if (req.user.roles.indexOf('admin') > -1 || (req.character && req.user && req.character.player && req.character.player._id === req.user._id)) {
+  if (roles.indexOf('admin') > -1 || (req.character && req.user && req.character.player && req.character.player._id === req.user._id)) {
     return next();
   }
 

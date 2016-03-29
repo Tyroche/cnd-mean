@@ -30,7 +30,7 @@
 
     function loadItems(user) {
       var itemQuery = 'api/common/items';
-      if(user.roles.indexOf('admin') > -1) {
+      if(user.roles && user.roles.indexOf('admin') > -1) {
         itemQuery = '/api/items';
       }
 

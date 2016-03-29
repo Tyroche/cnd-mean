@@ -37,7 +37,7 @@
     vm.toModifierRaw = toModifierRaw;
     vm.getSaveMod = getSaveMod;
     vm.randomizeBackground = randomizeBackground;
-    
+
     init();
     function init() {
       vm.loadedData = dataLoader.loadData(vm.character, Authentication.user);
@@ -180,13 +180,15 @@
 
       // TODO: move create/update logic to service
       if (vm.character._id) {
+        // Make sure the user can do this action
         if(vm.character.player._id === Authentication.user._id || Authentication.user.roles.indexOf('admin') > -1) {
             vm.character.$update(successCallback, errorCallback);
             return;
         }
         console.log('User is not authorized to edit this character');
         return false;
-      } else {
+      }
+      else {
         finalize();
         vm.character.$save(successCallback, errorCallback);
       }

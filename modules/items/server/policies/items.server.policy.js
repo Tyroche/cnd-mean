@@ -36,6 +36,18 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/common/items',
       permissions: ['get']
     }]
+  }, {
+    roles: ['user', 'guest'],
+    allows: [{
+      resources: '/api/items',
+      permissions: ['get']
+    }, {
+      resources: '/api/items/:itemId',
+      permissions: ['get']
+    }, {
+      resources: '/api/common/items',
+      permissions: ['get']
+    }]
   }]);
 };
 
