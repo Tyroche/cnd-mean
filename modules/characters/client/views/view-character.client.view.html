@@ -29,13 +29,16 @@
       <div class="col-md-10" ng-include="'modules/characters/client/views/character-sheet/skills.subview.html'"></div>
     </div>
     <hr>
-      <div class="row">
-        <div class="col-md-10" ng-include="'modules/characters/client/views/character-sheet/background.subview.html'"></div>
-      </div>
-      <hr>
-      <div class="row">
-        <player-inventory class="col-md-10" can-equip="{{vm.authentication.user._id === vm.character.player._id}}" character="vm.character"></player-inventory>
-      </div>
+    <div class="row">
+      <player-inventory
+        class="col-md-10"
+        can-equip="{{vm.authentication.user._id === vm.character.player._id}}"
+        character="vm.character">
+      </player-inventory>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-10" ng-include="'modules/characters/client/views/character-sheet/background.subview.html'"></div>
     </div>
   </div>
 
