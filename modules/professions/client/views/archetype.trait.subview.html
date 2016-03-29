@@ -1,0 +1,64 @@
+<h4>
+  <div class="pull-right">
+    <button tooltip="Permanently remove this archetype" type="button" ng-if="$index > 0" ng-click="vm.profession.archetypes.splice($index, 1)" class="btn btn-danger">
+      <span class="glyphicon glyphicon-trash"></span>
+    </button>
+  </div>
+  <span ng-click="archetypeVisible[$index] = !archetypeVisible[$index]"
+    tooltip="Show or Hide the contents of this archetype"
+    class="glyphicon glyphicon-eye-open can-select"></span>
+  <span ng-if="archetype.title" ng-bind="archetype.title"></span><span ng-if="!archetype.title">New Archetype</span>
+</h4>
+
+<div ng-if="archetypeVisible[$index]">
+  <label class="control-label">Name</label>
+  <input type="text" class="form-control" ng-disabled="$index === 0" ng-model="vm.profession.archetypes[$index].title"></input>
+  <label class="control-label">Description</label>
+  <textarea required
+      ng-disabled="$index === 0"
+      ng-model="vm.profession.archetypes[$index].description"
+      class="form-control">
+  </textarea>
+  <br>
+
+  <button type="button" ng-click="archetype.traits.push({levelRequirement: 1})" class="btn btn-success">
+    <span class="glyphicon glyphicon-plus"></span> Add New Trait
+  </button>
+  <div ng-repeat="trait in archetype.traits">
+    <div class="row">
+      <div class="col-sm-6 ">
+        <label class="control-label">Trait Name</label>
+        <input type="text" class="form-control" ng-model="vm.profession.archetypes[$parent.$index].traits[$index].title"></input>
+      </div>
+
+      <!-- Trait Level Requirement -->
+      <div class="col-md-offset-3 col-sm-3">
+        <label class="control-label" tooltip="The level requirement for the character to receive this trait">Level Requirement</label>
+         <div class="input-group">
+           <span class="input-group-btn">
+             <button type="button"
+                 ng-disabled="trait.levelRequirement === 1"
+                 ng-click="vm.profession.archetypes[$parent.$index].traits[$index].levelRequirement = trait.levelRequirement - 1"
+                 class="btn btn-default" ><i class="fa fa-minus"></i></button>
+           </span>
+           <input type="number"
+                 ng-model="trait.levelRequirement"
+                 class="text-center att-entry form-control"></input>
+           <span class="input-group-btn">
+             <button type="button"
+                 ng-disabled="trait.levelRequirement === 20"
+                 ng-click="vm.profession.archetypes[$parent.$index].traits[$index].levelRequirement = trait.levelRequirement + 1"
+                 class="btn btn-default" ><i class="fa fa-plus"></i></button>
+           </span>
+         </div>
+       </div>
+
+    </div>
+    <label class="control-label">Trait Description</label>
+    <textarea required
+        ng-model="vm.profession.archetypes[$parent.$index].traits[$index].description"
+        class="form-control">
+    </textarea>
+    <hr>
+  </div>
+</div>

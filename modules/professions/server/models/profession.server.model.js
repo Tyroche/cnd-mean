@@ -22,6 +22,10 @@ var ProfessionSchema = new Schema({
     type: Number,
     required: 'HD must be defined'
   },
+  archetypeLevelRequirement: {
+    type: Number,
+    default: 3
+  },
   archetypes: [{
     title: {
       type: String,
@@ -31,13 +35,10 @@ var ProfessionSchema = new Schema({
       type: String,
       default: 'The generic archetype; all archetypes benefit from traits here'
     },
-    levelRequirement: {
-      type: Number,
-      default: 3
-    },
     traits: [{
       title: { type: String },
       description: { type: String },
+      levelRequirement: { type: Number },
       numChoices: { type: Number },
       choices: [{
         title: { type: String },

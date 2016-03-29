@@ -55,7 +55,12 @@
     init();
     function init() {
       if (!vm.profession._id) {
+        vm.profession.archetypes.push({
+          title: "Universal",
+          description: 'The generic archetype; all archetypes benefit from traits here.'
+        });
         vm.profession.numSkillProficiencies = 2;
+        vm.profession.archetypeLevelRequirement = 3;
       }
     }
 
