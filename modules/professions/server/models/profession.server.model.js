@@ -22,6 +22,29 @@ var ProfessionSchema = new Schema({
     type: Number,
     required: 'HD must be defined'
   },
+  archetypes: [{
+    title: {
+      type: String,
+      default: 'Universal'
+    },
+    description: {
+      type: String,
+      default: 'The generic archetype; all archetypes benefit from traits here'
+    },
+    levelRequirement: {
+      type: Number,
+      default: 3
+    },
+    traits: [{
+      title: { type: String },
+      description: { type: String },
+      numChoices: { type: Number },
+      choices: [{
+        title: { type: String },
+        description: { type: String }
+      }]
+    }]
+  }],
   skillProficiencies: [{
     type: String,
     enum: [
