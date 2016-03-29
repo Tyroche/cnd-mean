@@ -88,7 +88,6 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <button type="button" class="btn btn-default" ng-click="vm.profession.archetypes.push({})">New Archetype</button>
             <span class="dropdown" dropdown>
               <button type="button" class="btn btn-default" dropdown-toggle>
                 Add Save Proficiency<span class="caret"></span></button>
@@ -129,7 +128,14 @@
         </div>
 
         <div class="row">
-          <h3>Archetypes</h3>
+          <h3>
+            <div class="pull-right">
+              <button type="button" class="btn btn-info" ng-click="vm.profession.archetypes.push({})">
+                <span class="glyphicon glyphicon-plus"></span> Add New Archetype
+              </button>
+            </div>
+            Archetypes
+          </h3>
           <div ng-repeat="archetype in vm.profession.archetypes"
               class="col-sm-12 well"
               ng-init="archetypeVisible[$index] = true"
