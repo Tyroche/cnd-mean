@@ -1,22 +1,28 @@
 <h3>{{vm.name}}</h3>
 
 <div class="row">
-  <div class="col-sm-4"><b>Name</b></div>
-  <div class="col-sm-3"><b>Type</b></div>
-  <div class="col-sm-3"><b>Raw Value</b></div>
+  <div class="col-md-offset-2 col-md-8" style="margin-top: 2em">
+    <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.determineDisplayedItems()" />
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-4"><b>Name</b></div>
+  <div class="col-xs-3"><b>Type</b></div>
+  <div class="col-xs-3"><b>Raw Value</b></div>
 </div>
 
 <div class="list-group">
-  <div ng-repeat="item in vm.inventory" class="row list-group-item">
-    <div class="col-sm-4">
+  <div ng-repeat="item in vm.pagedItems" class="row list-group-item">
+    <div class="col-xs-4">
       {{item.name}}
     </div>
-    <div class="col-sm-3" ng-bind="item.classification"></div>
-    <div class="col-sm-3">{{item.price}} riphons</div>
-    <div class="col-sm-1" ng-click="vm.infoItem = item">
+    <div class="col-xs-3" ng-bind="item.classification"></div>
+    <div class="col-xs-3">{{item.price}} riphons</div>
+    <div class="col-xs-1" ng-click="vm.infoItem = item">
       <span class="glyphicon glyphicon-info-sign can-select" aria-hidden="true"></span>
     </div>
-    <div class="col-sm-1" ng-click="vm.addItem(item)">
+    <div class="col-xs-1" ng-click="vm.addItem(item)">
       <span class="glyphicon glyphicon-plus-sign"
         ng-class="{'insufficient-funds': (vm.character.funds - item.price) < 0,
                    'can-select': (vm.character.funds - item.price) >= 0}"
@@ -24,6 +30,10 @@
     </div>
   </div>
 </div>
+<div class="col-xs-offset-2 col-xs-8">
+  <pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></pagination>
+</div>
+
 <div ng-if="vm.infoItem" class="well">
   <div class="row" style="margin-top: 4px; margin-bottom: 0;">
     <div class="col-xs-1 glyphicon glyphicon-info-sign" style="margin-top: 12px"></div>

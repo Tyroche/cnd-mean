@@ -25,6 +25,8 @@
       }
 
       function getSaveMod(attribute) {
+        if(!vm.character.playableClass[0].profession) { return 0; }
+
         var mod = toMod(vm.character.attributes[attribute]);
         if(vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute) > -1) {
           return getProficiency() + mod;
