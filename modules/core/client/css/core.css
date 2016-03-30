@@ -43,27 +43,36 @@ a:hover .header-profile-image {
     -moz-appearance: textfield;
 }
 
-.left-panel {
-  position: absolute;
-  float: left;
-  width: 50%;
-  height: 90%;
-  max-width: 48%;
-  top: 6.8%;
-  left: 16px;
-  max-height: 80%
+@media only screen and (min-width: 1170px ) {
+  .left-panel {
+    position: absolute;
+    float: left;
+    width: 50%;
+    height: 90%;
+    max-width: 48%;
+    top: 6.8%;
+    left: 16px;
+    max-height: 80%
+  }
 }
 
-.right-panel {
-  position: absolute;
-  float: right;
-  width: 50%;
-  max-width: 48%;
-  height: 100%;
-  right: 0;
-  max-height: 80%
+@media only screen and (max-width: 1169px) {
+  .left-panel {
+    display: none;
+  }
 }
 
+@media only screen and (min-width: 1170px ) {
+  .right-panel {
+    position: absolute;
+    float: right;
+    width: 50%;
+    max-width: 48%;
+    height: 100%;
+    right: 0;
+    max-height: 80%
+  }
+}
 
 body {
   overflow-x: hidden;

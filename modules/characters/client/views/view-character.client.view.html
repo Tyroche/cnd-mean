@@ -1,47 +1,50 @@
 <section>
 
-  <div class="page-header">
-    <div class="pull-right">
-      <div ng-if="vm.character.player._id === vm.authentication.user._id || vm.authentication.user.roles.indexOf('admin') > -1">
-        <level-up-button level="{{vm.character.level}}" professions="{{vm.character.playableClass}}"></level-up-button>
-        <a class="btn btn-primary"
-           data-ui-sref="characters.edit({ characterId: vm.character._id })">
-          <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn btn-danger" data-ng-click="vm.remove()">
-          <i class="glyphicon glyphicon-trash"></i>
-        </a>
-      </div>
-      <div ng-if="vm.character.player._id !== vm.authentication.user._id && vm.authentication.user.roles.indexOf('admin') === -1">
-        <h3>{{vm.character.player.firstName}} {{vm.character.player.lastName}}</h3>
-      </div>
-    </div>
-    <h1 data-ng-bind="vm.character.name"></h1>
+  <div class="left-panel text-center">
+    <img alt="Portrait" class="img-responsive" src="modules/core/client/img/classportraits/wizard.jpg" />
   </div>
 
+  <div class="right-panel">
+    <div class="page-header col-xs-12 col-lg-10">
+      <div class="pull-right">
+        <div ng-if="vm.character.player._id === vm.authentication.user._id || vm.authentication.user.roles.indexOf('admin') > -1">
+          <level-up-button level="{{vm.character.level}}" professions="{{vm.character.playableClass}}"></level-up-button>
+          <a class="btn btn-primary"
+             data-ui-sref="characters.edit({ characterId: vm.character._id })">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+          <a class="btn btn-danger" data-ng-click="vm.remove()">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </div>
+        <div ng-if="vm.character.player._id !== vm.authentication.user._id && vm.authentication.user.roles.indexOf('admin') === -1">
+          <h3>{{vm.character.player.firstName}} {{vm.character.player.lastName}}</h3>
+        </div>
+      </div>
+      <h1 data-ng-bind="vm.character.name"></h1>
+    </div>
 
-  <div class="col-md-12">
     <div class="row">
-      <div class="col-md-10" ng-include="'modules/characters/client/views/character-sheet/main.subview.html'"></div>
+      <div class="col-lg-10 col-xs-12" ng-include="'modules/characters/client/views/character-sheet/main.subview.html'"></div>
     </div>
     <hr>
     <div class="row">
-      <div class="col-md-10" ng-include="'modules/characters/client/views/character-sheet/skills.subview.html'"></div>
+      <div class="col-lg-10 col-xs-12" ng-include="'modules/characters/client/views/character-sheet/skills.subview.html'"></div>
     </div>
     <hr>
     <div class="row">
-      <div class="col-md-10" ng-include="'modules/characters/client/views/character-sheet/class-traits.subview.html'"></div>
+      <div class="col-lg-10 col-xs-12" ng-include="'modules/characters/client/views/character-sheet/class-traits.subview.html'"></div>
     </div>
     <div class="row">
       <player-inventory
-        class="col-md-10"
+        class="col-lg-10 col-xs-12"
         can-equip="{{vm.authentication.user._id === vm.character.player._id}}"
         character="vm.character">
       </player-inventory>
     </div>
     <hr>
     <div class="row">
-      <div class="col-md-10" ng-include="'modules/characters/client/views/character-sheet/background.subview.html'"></div>
+      <div class="col-lg-10 col-xs-12" ng-include="'modules/characters/client/views/character-sheet/background.subview.html'"></div>
     </div>
   </div>
 

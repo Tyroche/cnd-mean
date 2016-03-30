@@ -19,7 +19,8 @@ var WikiSchema = new Schema({
   sections: [{
     title: { type: String },
     content: { type: String }
-  }]
+  }],
+  tags: [{ type: String }]
 });
 
 mongoose.model('Wiki', WikiSchema);
