@@ -1,0 +1,18 @@
+<div ng-repeat="prof in vm.character.playableClass">
+  <h3 ng-bind="prof.profession.name"></h3>
+  <p ng-bind="prof.profession.description"></p><br>
+  <div ng-repeat="trait in prof.profession.archetypes[0].traits" ng-if="trait.levelRequirement <= prof.level">
+    <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
+    <p ng-bind="trait.description"></p>
+  </div>
+  <hr>
+
+  <h4 ng-bind="prof.profession.archetypes[prof.archetype].title"></h4>
+  <p ng-bind="prof.profession.archetypes[prof.archetype].description"></p>
+  <div ng-repeat="trait in prof.profession.archetypes[prof.archetype].traits" ng-if="trait.levelRequirement <= prof.level">
+    <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
+    <p ng-bind="trait.description"></p>
+  </div>
+
+  <hr>
+</div>

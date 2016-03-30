@@ -29,7 +29,8 @@ var ItemSchema = new Schema({
       'Rare',
       'Very Rare',
       'Legendary',
-      'Artifact'
+      'Artifact',
+      'Unique'
     ],
     default: 'Common'
   },
