@@ -25,7 +25,25 @@
     }
 
     function getHighestVotedContract(episode) {
-      return votingService.getHighestVotedContract(episode, vm.contracts);
+      var mostPopularContract = {
+        contract: episode.contracts[0] ? episode.contracts[0] : {name: 'None'},
+        numVotes: 0
+      };
+
+      episode.contracts.forEach(function(contract) {
+        var numVotes = episode.attendees.filter(function (attendee) {
+          return contract._id === attendee.contractVote;
+        }).length;
+
+        if(numVotes > mostPopularContract.numVotes) {
+          mostPopularContract = {
+            contract: contract,
+            numVotes: numVotes
+          };
+        }
+      });
+
+      return mostPopularContract.contract.name;
     }
   }
 })();

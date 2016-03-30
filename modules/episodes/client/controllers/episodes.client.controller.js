@@ -26,7 +26,6 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-    vm.sumRewards = sumRewards;
     vm.isUserPlaying = isUserPlaying;
     vm.toggleAttendance = toggleAttendance;
     vm.voteFor = voteFor;
@@ -68,7 +67,7 @@
     }
 
     function voteFor(index) {
-      contractVotingService.voteForContract(vm.episode, Authentication.user, vm.formEnabledContracts, index);
+      
     }
 
     function getPlayerVotedContract() {
@@ -109,36 +108,6 @@
       return vm.episode.contracts && vm.episode.contracts.some(function(val) {
         return val._id === contract._id;
       });
-    }
-
-
-    // Summarize all monetary rewards for this contract
-    function sumRewards(contract) {
-      if (contract.rewards.length === 0) {
-        return 'No rewards';
-      }
-
-      if (contract.rewards.length === 1) {
-        return '' + contract.rewards[0].amount + ' riphons';
-      }
-
-      var rewards = contract.rewards.reduce(function(prev, curr) {
-        if (curr.unit.toLowerCase() === 'riphons') {
-          if (!prev.unit) {
-            return prev + curr.amount;
-          }
-
-          if (prev.unit.toLowerCase() === 'riphons') {
-            return prev.amount + curr.amount;
-          }
-          return curr.amount;
-        }
-
-        // Default: Return the amount of the previous if it exists or 0
-        return prev.unit ? prev.amount : 0;
-      });
-
-      return '' + rewards + ' riphons';
     }
 
     //--CALENDAR----------------------------------------------------------------
