@@ -42,16 +42,17 @@
     }
 
     function disableAttendance(episode, user, character, contracts) {
-      var attendees = episode.attendees.filter(function (obj) {
+      var attendee  = episode.attendees.filter(function (obj) {
         if(obj.user._id) {
           return obj.user._id === user._id;
         }
         return obj.user === user;
-      });
+      })[0];
 
-      if (attendees.length > 0) {
-        var attendanceIndex = episode.attendees.indexOf(attendees[0]);
-        episode.attendees.splice(attendanceIndex, 1);
+      var attendeeIndex = episode.attendees.indexOf(attendee);
+
+      if (attendeeIndex > -1) {
+        episode.attendees.splice(attendeeIndex, 1);
         removeVote(contracts, user);
         episode.$update();
       }

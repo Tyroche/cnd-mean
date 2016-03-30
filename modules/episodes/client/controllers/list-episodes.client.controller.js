@@ -26,7 +26,7 @@
 
     function getHighestVotedContract(episode) {
       var mostPopularContract = {
-        contract: episode.contracts[0] ? episode.contracts[0] : {name: 'None'},
+        contract: episode.contracts[0] ? episode.contracts[0] : { name: 'None' },
         numVotes: 0
       };
 

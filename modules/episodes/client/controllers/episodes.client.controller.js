@@ -28,7 +28,6 @@
     vm.save = save;
     vm.isUserPlaying = isUserPlaying;
     vm.toggleAttendance = toggleAttendance;
-    vm.voteFor = voteFor;
     vm.getPlayerVotedContract = getPlayerVotedContract;
     vm.removeContract = removeContract;
     vm.contractIsEnabled = contractIsEnabled;
@@ -64,10 +63,6 @@
     function toggleAttendance() {
       // Prevent non-consultants from enlisting
       contractVotingService.toggleAttendance(vm.episode, Authentication.user, vm.chosenCharacter, vm.formEnabledContracts);
-    }
-
-    function voteFor(index) {
-      
     }
 
     function getPlayerVotedContract() {
