@@ -84,8 +84,9 @@
           return [];
         }
         vm.playerCharacters = res.filter(function(char) {
-          return char.player === Authentication.user._id;
+          return char.player._id === Authentication.user._id;
         });
+
       });
     }
 
