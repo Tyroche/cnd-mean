@@ -18,6 +18,13 @@
     vm.remove = remove;
     vm.save = save;
 
+    init();
+    function init() {
+      if (!vm.wiki._id) {
+        vm.wiki.sections = [{}];
+      }
+    }
+
     // Remove existing Wiki
     function remove() {
       if (confirm('Are you sure you want to delete?')) {

@@ -16,14 +16,10 @@ var WikiSchema = new Schema({
     required: 'Please fill Wiki name',
     trim: true
   },
-  created: {
-    type: Date,
-    default: Date.now
-  },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  }
+  sections: [{
+    title: { type: String },
+    content: { type: String }
+  }]
 });
 
 mongoose.model('Wiki', WikiSchema);

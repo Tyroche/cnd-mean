@@ -21,6 +21,24 @@ var CharacterSchema = new Schema({
     default: 1,
     required: 'Level must be specified'
   },
+  equipment: {
+    mainHand: {
+      type: Schema.ObjectId,
+      ref: 'Item'
+    },
+    offHand: {
+      type: Schema.ObjectId,
+      ref: 'Item'
+    },
+    armor: {
+      type: Schema.ObjectId,
+      ref: 'Item'
+    },
+    attuned: [{
+      type: Schema.ObjectId,
+      ref: 'Item'
+    }]
+  },
   playableClass: [{
     profession: {
       type: Schema.ObjectId,
