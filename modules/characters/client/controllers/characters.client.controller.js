@@ -50,6 +50,7 @@
         return;
       }
 
+      // If editing, set the points (PBuy) to the appropriate values
       if(vm.character._id) {
         for (var attr in vm.character.attributes) {
           var rawVal = vm.character.attributes[attr] - vm.character.race.abilityIncreases[attr];
@@ -59,6 +60,7 @@
         return;
       }
 
+      // Character creation, default everything
       vm.character.attributes = {
         Strength: 8,
         Dexterity: 8,
@@ -87,8 +89,6 @@
     function getProficiency() {
       return 2;
     }
-
-
 
     function getPointCost(val) {
       return Math.max(0, (val-13)) + Math.max(0, val-8);

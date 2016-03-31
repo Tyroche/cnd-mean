@@ -8,7 +8,11 @@
     <div class="page-header col-xs-12 col-lg-10">
       <div class="pull-right">
         <div ng-if="vm.character.player._id === vm.authentication.user._id || vm.authentication.user.roles.indexOf('admin') > -1">
-          <level-up-button level="{{vm.character.level}}" professions="{{vm.character.playableClass}}"></level-up-button>
+          <level-up-button
+              level="{{vm.character.level}}"
+              character="{{vm.character._id}}"
+              professions="{{vm.character.playableClass}}">
+          </level-up-button>
           <a class="btn btn-primary"
              data-ui-sref="characters.edit({ characterId: vm.character._id })">
             <i class="glyphicon glyphicon-edit"></i>

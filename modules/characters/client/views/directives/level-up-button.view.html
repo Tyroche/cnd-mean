@@ -1,6 +1,6 @@
 <a class="btn btn-success"
   popover="Level Up Available"
   popover-trigger="mouseenter"
-  ng-if="vm.hasLevelUp()">
+  data-ui-sref="characters.levelup({ characterId: vm.characterId })">
     <i class="glyphicon glyphicon-arrow-up"></i>
 </a>
