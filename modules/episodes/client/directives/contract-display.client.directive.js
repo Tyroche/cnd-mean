@@ -5,7 +5,7 @@
     .module('characters')
     .directive('contractDisplay', contractDisplay);
 
-  contractDisplay.$inject = [  ];
+  contractDisplay.$inject = [];
 
   function contractDisplay() {
     var controller = function($scope) {
@@ -53,7 +53,10 @@
         // Change the player's contract vote to this one.
         if (playerSlotIndex > -1) {
           vm.episode.attendees[playerSlotIndex].contractVote = vm.contract;
-          vm.episode.$update();
+          vm.episode.$update({
+            user: vm.player,
+            vote: vm.contract._id
+          });
         }
       }
     };

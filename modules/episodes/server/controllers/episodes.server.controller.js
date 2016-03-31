@@ -46,11 +46,22 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
   var episode = req.episode ;
-
   episode = _.extend(episode , req.body);
 
-  episode.save(function(err) {
+  if(req.query.user && req.query.vote) {
+    updateVote(episode, req.query, res);
+    return;
+  }
+  fullUpdate(episode, res);
+};
+
+function updateVote(episode, query, res) {
+  Episode.update(
+    { '_id': episode._id, 'attendees.user': query.user },
+    { '$set': { 'attendees.$.contractVote': query.vote } },
+    function(err) {
     if (err) {
+      console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -58,13 +69,28 @@ exports.update = function(req, res) {
       res.jsonp(episode);
     }
   });
-};
+}
+
+function fullUpdate(episode, res) {
+  // Check to see what the user's request state is
+  episode.save(function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+
+      res.jsonp(episode);
+    }
+  });
+}
 
 /**
  * Delete an Episode
  */
 exports.delete = function(req, res) {
   var episode = req.episode ;
+
 
   episode.remove(function(err) {
     if (err) {

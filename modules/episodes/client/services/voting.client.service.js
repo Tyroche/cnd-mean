@@ -42,7 +42,7 @@
     }
 
     function disableAttendance(episode, user, character, contracts) {
-      var attendee  = episode.attendees.filter(function (obj) {
+      var attendee = episode.attendees.filter(function (obj) {
         if(obj.user._id) {
           return obj.user._id === user._id;
         }
