@@ -1,4 +1,78 @@
-<section ng-if="vm.character.level > vm.totalCharacterLevel()">
+<section ng-if="vm.canLevel">
   <h1>Level Up</h1>
   <p>You have gained the necessary qualifications to advance to <b>Level {{vm.totalCharacterLevel() + 1}}</b></p>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="control-label">Character Class</label>
+        <div class="dropdown" dropdown>
+          <button type="button" class="btn btn-default" dropdown-toggle>
+            {{vm.chosenProfession ? vm.chosenProfession.name + ' Level ' + vm.getProfessionLevel(): 'Choose Profession'}} <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="prof in vm.loadedData">
+                <a href ng-click="vm.chosenProfession = prof">{{prof.name}}</a>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6" ng-if="vm.chosenProfession && vm.chosenProfession.archetypeLevelRequirement <= vm.getProfessionLevel()">
+      <div class="form-group">
+        <label class="control-label">Archetype</label>
+        <div class="dropdown" dropdown>
+          <button type="button" class="btn btn-default" dropdown-toggle>
+            {{vm.chosenProfession.archetypes[vm.chosenArchetype].title}} <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="archetype in vm.chosenProfession.archetypes" ng-if="archetype.title !== 'Universal'">
+                <a href ng-click="vm.chosenArchetype = $index">{{archetype.title}}</a>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <label>Roll HP (Warning: You will lock all selections)</label>
+    <div class="input-group col-md-4">
+      <span class="input-group-addon">Hit Points</span>
+      <input type="number"
+          class="form-control att-entry"
+          disabled ng-model="vm.character.hitpoints"></input>
+      <span class="input-group-btn"
+          tooltip="Roll {{vm.chosenProfession.name}}'s HitDie: d{{vm.chosenProfession.hitDice}}+{{vm.constitutionModifier()}}"
+          ng-if="vm.chosenProfession">
+        <button type="button"
+            class="btn btn-default"
+            ng-click="vm.rollHitDie()"
+            ng-disabled="vm.hitDieLock" >
+          <span class="glyphicon glyphicon-random"></span>
+        </button>
+      </span>
+      <span class="input-group-btn"
+            tooltip="Take Average {{vm.chosenProfession.name}}'s d{{vm.chosenProfession.hitDice}}+{{vm.constitutionModifier()}} HitDie"
+            ng-if="vm.chosenProfession">
+        <button type="button"
+            ng-click="vm.takeAverageHitDie()"
+            ng-disabled="vm.hitDieLock"
+            class="btn btn-default">½</button>
+      </span>
+    </div>
+  </div>
+
+  <h3 ng-bind="vm.chosenProfession.name"></h3>
+  <p ng-bind="vm.chosenProfession.description"></p><br>
+  <div ng-repeat="trait in vm.chosenProfession.archetypes[0].traits" ng-if="trait.levelRequirement === vm.getProfessionLevel()">
+    <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
+    <p ng-bind="trait.description"></p>
+  </div>
+  <hr>
+
+  <h4 ng-bind="vm.chosenProfession.archetypes[vm.chosenArchetype].title"></h4>
+  <p ng-bind="vm.chosenProfession.archetypes[vm.chosenArchetype].description"></p>
+  <div ng-repeat="trait in vm.chosenProfession.archetypes[vm.chosenArchetype].traits" ng-if="trait.levelRequirement === vm.getProfessionLevel()">
+    <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
+    <p ng-bind="trait.description"></p>
+  </div>
+
 </section>

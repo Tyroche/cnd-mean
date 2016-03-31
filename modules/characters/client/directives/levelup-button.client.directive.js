@@ -10,12 +10,13 @@
   function levelUpButton() {
     var controller = function($scope) {
       var vm = this;
-      console.log($scope);
       vm.level = parseInt($scope.level);
       vm.professions = JSON.parse($scope.professions);
       vm.characterId = $scope.character;
       vm.totalLevel = -1;
       vm.hasLevelUp = hasLevelUp;
+
+      console.log(getTotalCharacterLevel());
 
       function hasLevelUp() {
         return vm.level > getTotalCharacterLevel();
