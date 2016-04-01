@@ -1,0 +1,39 @@
+.rarity-commmon{
+  font-size: 16px;
+  color: white;
+}
+
+.rarity-uncommmon{
+  font-size: 16px;
+  color: #00cc00;
+}
+
+.rarity-rare{
+  font-size: 16px;
+  color: #0066ff;
+}
+
+.rarity-very-rare{
+  font-size: 16px;
+  color: #9900ff;
+}
+
+.rarity-legendary{
+  font-size: 16px;
+  color: #ff9933;
+}
+
+.rarity-artifact{
+  font-size: 16px;
+  color: #cc0000;
+}
+
+.rarity-unique{
+  font-size: 16px;
+  color: #996633;
+}
+
+.bold-item-name{
+  font-weight: bold;
+  font-size: 20px;
+}
