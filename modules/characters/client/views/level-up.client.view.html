@@ -64,7 +64,7 @@
   <p ng-bind="vm.chosenProfession.description"></p><br>
   <div ng-repeat="trait in vm.chosenProfession.archetypes[0].traits" ng-if="trait.levelRequirement === vm.getProfessionLevel()">
     <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
-    <p ng-bind="trait.description"></p>
+    <p class="line-breaker" ng-bind="trait.description"></p>
   </div>
   <hr>
 
@@ -72,7 +72,7 @@
   <p ng-bind="vm.chosenProfession.archetypes[vm.chosenArchetype].description"></p>
   <div ng-repeat="trait in vm.chosenProfession.archetypes[vm.chosenArchetype].traits" ng-if="trait.levelRequirement === vm.getProfessionLevel()">
     <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
-    <p ng-bind="trait.description"></p>
+    <p class="line-breaker" ng-bind="trait.description"></p>
   </div>
 
 </section>

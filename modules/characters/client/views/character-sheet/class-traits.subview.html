@@ -3,7 +3,7 @@
   <p ng-bind="prof.profession.description"></p><br>
   <div ng-repeat="trait in prof.profession.archetypes[0].traits" ng-if="trait.levelRequirement <= prof.level">
     <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
-    <p ng-bind="trait.description"></p>
+    <p class="line-breaker" ng-bind="trait.description"></p>
   </div>
   <hr>
 
@@ -11,7 +11,7 @@
   <p ng-bind="prof.profession.archetypes[prof.archetype].description"></p>
   <div ng-repeat="trait in prof.profession.archetypes[prof.archetype].traits" ng-if="trait.levelRequirement <= prof.level">
     <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
-    <p ng-bind="trait.description"></p>
+    <p class="line-breaker" ng-bind="trait.description"></p>
   </div>
 
   <hr>

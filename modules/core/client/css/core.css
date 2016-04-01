@@ -77,3 +77,7 @@ a:hover .header-profile-image {
 body {
   overflow-x: hidden;
 }
+
+.line-breaker {
+  white-space: pre-wrap;
+}
