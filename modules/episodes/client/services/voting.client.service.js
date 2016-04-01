@@ -38,7 +38,10 @@
         user: user,
         character: character
       });
-      episode.$update();
+      episode.$update({
+        user: user._id,
+        character: character._id
+      });
     }
 
     function disableAttendance(episode, user, character, contracts) {
@@ -54,7 +57,7 @@
       if (attendeeIndex > -1) {
         episode.attendees.splice(attendeeIndex, 1);
         removeVote(contracts, user);
-        episode.$update();
+        episode.$update({ user: user._id });
       }
     }
 

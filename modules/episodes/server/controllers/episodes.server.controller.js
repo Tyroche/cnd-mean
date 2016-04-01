@@ -48,18 +48,63 @@ exports.update = function(req, res) {
   var episode = req.episode ;
   episode = _.extend(episode , req.body);
 
-  if(req.query.user && req.query.vote) {
-    updateVote(episode, req.query, res);
+  if(req.query.user) {
+    // If the user is voting, the query will have a VOTE
+    if (req.query.vote) {
+      updateVote(episode, req.query, res);
+      return;
+    }
+
+    // if the user is adding his attendance, the query will have a CHARACTER
+    if(req.query.character) {
+      addAttendance(episode, req.query, res);
+      return;
+    }
+
+    // If the user is removing his attendance, the query will only have USER
+    removeAttendance(episode, req.query.user, res);
     return;
   }
+
   fullUpdate(episode, res);
 };
 
+// Called when the user wants to partial update; Add Attendance
+function addAttendance(episode, query, res) {
+  console.log('Adding');
+  partialUpdate(
+    { '_id': episode._id },
+    {
+      '$push': {
+        'attendees': {
+          user: query.user,
+          character: query.character
+        }
+      }
+    },
+    episode, res);
+}
+
+// Called when the user wants to partial update; Remove Attendance
+function removeAttendance(episode, user, res) {
+  console.log('Removing');
+  partialUpdate(
+    { '_id': episode._id },
+    { '$pull': { 'attendees': { user: user } } },
+    episode, res);
+}
+
+// Called when the user wants to partial update; Cast Attendance
 function updateVote(episode, query, res) {
-  Episode.update(
+  console.log('Update');
+  partialUpdate(
     { '_id': episode._id, 'attendees.user': query.user },
     { '$set': { 'attendees.$.contractVote': query.vote } },
-    function(err) {
+    episode, res);
+}
+
+function partialUpdate(query, setter, episode, res) {
+  Episode.update(query, setter, function(err) {
     if (err) {
       console.log(err);
       return res.status(400).send({
@@ -91,7 +136,6 @@ function fullUpdate(episode, res) {
 exports.delete = function(req, res) {
   var episode = req.episode ;
 
-
   episode.remove(function(err) {
     if (err) {
       return res.status(400).send({
@@ -122,7 +166,6 @@ exports.list = function(req, res) {
  * Episode middleware
  */
 exports.episodeByID = function(req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'Episode is invalid'

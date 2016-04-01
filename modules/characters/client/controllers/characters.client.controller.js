@@ -45,27 +45,39 @@
       vm.creationSteps = characterSources.getSteps();
       vm.racialBonus = '';
 
-      if (!vm.character._id) {
-        vm.character.attributes = {
-          Strength: 8,
-          Dexterity: 8,
-          Constitution: 8,
-          Intelligence: 8,
-          Wisdom: 8,
-          Charisma: 8
-        };
-        vm.character.funds = 100;
-        vm.character.skills = [];
-        vm.character.playableClass = [{
-          profession: undefined,
-          level: 1
-        }];
-        vm.character.items = [];
-        vm.character.background = {};
+      // No need to do anything for Character Sheet
+      if($state.current.name === 'characters.view') {
+        return;
       }
+
+      // If editing, set the points (PBuy) to the appropriate values
+      if(vm.character._id) {
+        for (var attr in vm.character.attributes) {
+          var rawVal = vm.character.attributes[attr] - vm.character.race.abilityIncreases[attr];
+          vm.character.attributes[attr] = rawVal;
+          vm.points -= getPointCost(rawVal);
+        }
+        return;
+      }
+
+      // Character creation, default everything
+      vm.character.attributes = {
+        Strength: 8,
+        Dexterity: 8,
+        Constitution: 8,
+        Intelligence: 8,
+        Wisdom: 8,
+        Charisma: 8
+      };
+      vm.character.funds = 100;
+      vm.character.skills = [];
+      vm.character.playableClass = [{
+        profession: undefined,
+        level: 1
+      }];
+      vm.character.items = [];
+      vm.character.background = {};
     }
-
-
 
     function randomizeBackground(type) {
       if(!vm.character.background.generalization) { return 'Can\'t randomize'; }
@@ -77,8 +89,6 @@
     function getProficiency() {
       return 2;
     }
-
-
 
     function getPointCost(val) {
       return Math.max(0, (val-13)) + Math.max(0, val-8);
@@ -157,7 +167,9 @@
         vm.character.attributes[att] = getActualValue(att);
       }
 
-      vm.character.hitpoints = vm.character.playableClass[0].profession.hitDice + toModifierRaw(vm.character.attributes.Constitution);
+      if(!vm.character.hitpoints) {
+        vm.character.hitpoints = vm.character.playableClass[0].profession.hitDice + toModifierRaw(vm.character.attributes.Constitution);
+      }
     }
 
     // Remove existing Character
@@ -174,6 +186,7 @@
         return false;
       }
 
+      finalize();
       if (!vm.character.player) {
         vm.character.player = Authentication.user;
       }
@@ -189,7 +202,6 @@
         return false;
       }
       else {
-        finalize();
         vm.character.$save(successCallback, errorCallback);
       }
 

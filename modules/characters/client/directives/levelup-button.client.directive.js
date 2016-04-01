@@ -12,8 +12,11 @@
       var vm = this;
       vm.level = parseInt($scope.level);
       vm.professions = JSON.parse($scope.professions);
+      vm.characterId = $scope.character;
       vm.totalLevel = -1;
       vm.hasLevelUp = hasLevelUp;
+
+      console.log(getTotalCharacterLevel());
 
       function hasLevelUp() {
         return vm.level > getTotalCharacterLevel();
@@ -32,7 +35,8 @@
       controllerAs: 'vm',
       scope: {
         level: '@',
-        professions: '@'
+        professions: '@',
+        character: '@'
       }
     };
   }

@@ -33,7 +33,7 @@
 <p ng-bind="vm.character.playableClass[0].profession.description"></p><br>
 <div ng-repeat="trait in vm.character.playableClass[0].profession.archetypes[0].traits" ng-if="trait.levelRequirement <= vm.character.playableClass[0].level">
   <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
-  <p ng-bind="trait.description"></p>
+  <p class="line-breaker" ng-bind="trait.description"></p>
 </div>
 <hr>
 
@@ -41,5 +41,5 @@
 <p ng-bind="vm.character.playableClass[0].profession.archetypes[vm.character.playableClass[0].archetype].description"></p>
 <div ng-repeat="trait in vm.character.playableClass[0].profession.archetypes[vm.character.playableClass[0].archetype].traits" ng-if="trait.levelRequirement <= vm.character.playableClass[0].level">
   <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
-  <p ng-bind="trait.description"></p>
+  <p class="line-breaker" ng-bind="trait.description"></p>
 </div>

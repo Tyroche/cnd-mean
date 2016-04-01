@@ -8,7 +8,7 @@
   Dataloader.$inject = ['$resource'];
 
   function Dataloader($resource) {
-    function loadClasses() {
+    function loadProfessions() {
       return $resource('api/professions').query({}, function(res) {
         if (!res[0]) {
           console.log('ERROR: No Classes found!!!');
@@ -56,11 +56,14 @@
     }
 
     return {
+      loadClasses: function() {
+        return loadProfessions();
+      },
       loadData: function (character, user) {
         return {
           items: loadItems(user),
           races: loadRaces(),
-          classes: loadClasses(),
+          classes: loadProfessions(),
           backgrounds: loadBackgrounds()
         };
       }

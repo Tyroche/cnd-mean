@@ -49,6 +49,15 @@
           pageTitle: 'Edit Character {{ characterResolve.name }}'
         }
       })
+      .state('characters.levelup', {
+        url: '/:characterId/levelup',
+        templateUrl: 'modules/characters/client/views/level-up.client.view.html',
+        controller: 'LevelUpController',
+        controllerAs: 'vm',
+        resolve: {
+          characterResolve: getCharacter
+        }
+      })
       .state('characters.view', {
         url: '/:characterId',
         templateUrl: 'modules/characters/client/views/view-character.client.view.html',
