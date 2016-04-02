@@ -5,6 +5,7 @@
   <div class="col-md-12">
     <form name="vm.form.featForm" class="form-horizontal" ng-submit="vm.save(vm.form.featForm.$valid)" novalidate>
       <fieldset>
+
         <div class="form-group" show-errors>
           <label class="control-label" for="name">Name</label>
           <input name="name" type="text" ng-model="vm.feat.name" id="name" class="form-control" placeholder="Name" required>
@@ -12,6 +13,16 @@
             <p class="help-block error-text" ng-message="required">Feat name is required.</p>
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="control-label" for="description">Description</label>
+          <textarea name="description" ng-model="vm.feat.description" id="description" class="form-control" cols="30" rows="20" placeholder="Feat Description"></textarea>
+          <div ng-messages="vm.form.featForm.description.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Feat description is required.</p>
+          </div>
+        </div>
+
+
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.feat._id ? 'Update' : 'Create'}}</button>
         </div>
