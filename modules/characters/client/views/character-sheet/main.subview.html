@@ -1,21 +1,44 @@
 <div class="row">
-  <div class="col-xs-6">
-    <div class="row">
-      <div class="col-xs-6 col-md-2">HP:</div>
-      <div class="col-xs-6 col-md-3" ng-bind="vm.character.hitpoints"></div>
+  <div class="col-xs-6 col-md-9">
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Hit Points</div>
+        <div class="panel-body">
+          <div ng-bind="vm.character.hitpoints" style="display: inline-block"></div>
+          <div style="display:inline-block">
+            <img src="modules\characters\client\images\heart_attempt.png"/>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-6 col-md-2">AC:</div>
-      <div class="col-xs-6 col-md-3" ng-bind="10 + vm.toModifierRaw(vm.character.attributes.Dexterity)"></div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">AC</div>
+        <div class="panel-body">
+          <div ng-bind="10 + vm.toModifierRaw(vm.character.attributes.Dexterity)" style="display: inline-block"></div>
+          <div style="display:inline-block">
+            <img width='20px' height='20px'src="modules\characters\client\images\shield_attempt.png"/>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-6 col-md-2">Speed:</div>
-      <div class="col-xs-6 col-md-3">30 feet</div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Speed</div>
+        <div class="panel-body">
+          <div style="display: inline-block">30 ft.</div>
+          <div style="display:inline-block">
+            <img width='20px' height='20px'src="modules\characters\client\images\boot_attempt.png"/>
+          </div>
+        </div>
+      </div>
     </div>
+
   </div>
-  <div class="col-xs-6">
+  <div class="col-md-3 col-xs-6">
     <div class="row">
       <div class="col-xs-12 text-right">
         <b>{{vm.character.race.name}} {{vm.character.background.generalization.name}}</b>
@@ -26,4 +49,3 @@
     </div>
   </div>
 </div>
-<br>
