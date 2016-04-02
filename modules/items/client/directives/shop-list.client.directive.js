@@ -62,36 +62,11 @@
 
       function renderTooltip(item){
 
-        var rarity = '';
+        var style = "rarity-" + item.rarity.toLowerCase().replace(' ', '-');
+
+        var rarity = '<hr><span class="' + style + '">' + item.rarity + '</span><hr>';
         var name   = '<span class="bold-item-name">' + item.name + '</span>';
         var description = item.description;
-
-        switch(item.rarity){
-          case "Common":
-            rarity = '<hr/><span class="rarity-commmon">Common</span><hr/>';
-            break;
-          case "Uncommon":
-            rarity = '<hr/><span class="rarity-uncommmon">Uncommon</span><hr/>';
-            break;
-          case "Rare":
-            rarity = '<hr/><span class="rarity-rare">Rare</span><hr/>';
-            break;
-          case "Very Rare":
-            rarity = '<hr/><span class="rarity-very-rare">Very Rare</span><hr/>';
-            break;
-          case "Legendary":
-            rarity = '<hr/><span class="rarity-legendary">Legendary</span><hr/>';
-            break;
-          case "Artifact":
-            rarity = '<hr/><span class="rarity-artifact">Artifact</span><hr/>';
-            break;
-          case "Unique":
-            rarity = '<hr/><span class="rarity-unique">Unique</span><hr/>';
-            break;
-          default:
-            rarity = '<hr/><span class="rarity-commmon">Unknown</span><hr/>';
-            break;
-        }
 
         var finalResult = name + rarity + description;
 
