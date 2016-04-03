@@ -1,0 +1,9 @@
+<section>
+  <div class="form-group">
+    <input type="text"
+        ng-keypress="$event.key === 'Enter' && vm.postMessage()"
+        ng-model="vm.message.contents" 
+        class="form-control" 
+        placeholder="Message"></input>
+  </div>
+</section>
