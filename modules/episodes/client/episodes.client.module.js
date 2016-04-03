@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('episodes', ['contracts', 'users', 'ui.bootstrap']);
+  app.registerModule('episodes', ['characters', 'users', 'ui.bootstrap']);
 })(ApplicationConfiguration);

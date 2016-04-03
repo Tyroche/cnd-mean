@@ -11,16 +11,9 @@
     // Set top bar menu items
 
     // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', 'episodes', {
-      title: 'List Episodes',
+    Menus.addSubMenuItem('topbar', 'characters', {
+      title: 'Episodes',
       state: 'episodes.list'
-    });
-
-    // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'episodes', {
-      title: 'Create Episode',
-      state: 'episodes.create',
-      roles: ['admin']
     });
   }
 })();

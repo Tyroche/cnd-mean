@@ -1,9 +1,12 @@
 <section>
-  <div class="form-group">
+  <div class="input-group">
     <input type="text"
-        ng-keypress="$event.key === 'Enter' && vm.postMessage()"
-        ng-model="vm.message.contents" 
-        class="form-control" 
+        ng-keydown="$event.key === 'Enter' && vm.postMessage()"
+        ng-model="vm.message.contents"
+        class="form-control"
         placeholder="Message"></input>
+      <span class="input-group-btn">
+        <button type="button" ng-click="vm.postMessage()" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span></button>
+      </span>
   </div>
 </section>
