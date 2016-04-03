@@ -1,7 +1,7 @@
 <section>
   <div class="input-group">
     <input type="text"
-        ng-keydown="$event.key === 'Enter' && vm.postMessage()"
+        ng-keydown="$event.keyCode === 13 && vm.postMessage()"
         ng-model="vm.message.contents"
         class="form-control"
         placeholder="Message"></input>

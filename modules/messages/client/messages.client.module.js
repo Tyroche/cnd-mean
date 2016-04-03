@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('messages');
+  app.registerModule('messages', ['core']);
 })(ApplicationConfiguration);

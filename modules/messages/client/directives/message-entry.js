@@ -12,16 +12,26 @@
       var vm = this;
       var Message = $resource('/api/messages/:messageId');
 
+      // Resolve the Socket Promise
+      $scope.socket.then(function(sock) {
+        vm.socket = sock;
+      });
+
       init();
       function init() {
         vm.context = JSON.parse($scope.context);
+        vm.user = JSON.parse($scope.user);
         createNew();
       }
 
       // Create a new message that will be sent
       function createNew() {
         vm.message = new Message();
-        vm.message.sender = $scope.user;
+        vm.message.sender = {
+          _id: vm.user._id,
+          firstName: vm.user.firstName,
+          lastName: vm.user.lastName
+        };
         vm.message.publicity = Boolean($scope.private) ? 'private' : 'public';
         vm.message.context = vm.context._id;
         if($scope.character) {
@@ -31,9 +41,12 @@
 
       // Load a message
       vm.postMessage = postMessage;
-      function postMessage($event) {
+      function postMessage() {
         // Evaluate what's happening
         vm.message.$save(successCallback, errorCallback);
+        if(vm.socket) {
+          vm.socket.emit('postMessage', vm.message);
+        }
         createNew();
       }
 
@@ -51,6 +64,7 @@
       controller: controller,
       controllerAs: 'vm',
       scope: {
+        socket: '=',
         user: '@',
         character: '@',
         public: '@',
