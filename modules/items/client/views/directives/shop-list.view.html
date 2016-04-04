@@ -20,7 +20,7 @@
     <div class="col-xs-3" ng-bind="item.classification"></div>
     <div class="col-xs-3">{{item.price}} riphons</div>
     <div class="col-xs-1">
-      <span class="glyphicon glyphicon-info-sign can-select" aria-hidden="true" ng-mouseenter="vm.renderTooltip(item)" tooltip-html="vm.tooltipString" tooltip-trigger="mouseenter" tooltip-placement="right"></span>
+      <span class="glyphicon glyphicon-info-sign can-select" aria-hidden="true" tooltip-template="'modules/items/client/views/directives/shop-tooltip.view.html'" tooltip-trigger="mouseenter" tooltip-placement="right"></span>
     </div>
     <div class="col-xs-1" ng-click="vm.addItem(item)">
       <span class="glyphicon glyphicon-plus-sign"

@@ -19,7 +19,6 @@
       vm.buildPager = buildPager;
       vm.determineDisplayedItems = determineDisplayedItems;
       vm.pageChanged = pageChanged;
-      vm.renderTooltip = renderTooltip;
 
       function init() {
         buildPager();
@@ -58,19 +57,6 @@
           vm.character.funds -= item.price;
           vm.character.$update();
         }
-      }
-
-      function renderTooltip(item){
-
-        var style = "rarity-" + item.rarity.toLowerCase().replace(' ', '-');
-
-        var rarity = '<hr><span class="' + style + '">' + item.rarity + '</span><hr>';
-        var name   = '<span class="bold-item-name">' + item.name + '</span>';
-        var description = item.description;
-
-        var finalResult = name + rarity + description;
-
-        vm.tooltipString = $sce.trustAsHtml(finalResult);
       }
 
       init();
