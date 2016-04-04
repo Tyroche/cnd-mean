@@ -1,4 +1,11 @@
 <section>
-<b>{{vm.message.sender.firstName}} {{vm.message.sender.lastName}}</b><br>
-{{vm.message.contents}}
+<div class="row">
+  <div class="col-xs-2 col-sm-1 col-md-2">
+    <img ng-if="vm.message.sender.profileImageURL" ng-src="{{vm.message.sender.profileImageURL}}" class="header-profile-image" />
+  </div>
+  <div class="col-xs-10 col-sm-11 col-md-10">
+    <b>{{vm.message.sender.firstName}} {{vm.message.sender.lastName}}</b><br>
+    {{vm.message.contents}}
+  </div>
+</div>
 </section>

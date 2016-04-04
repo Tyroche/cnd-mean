@@ -10,10 +10,10 @@
   function messageView($resource) {
     var controller = function($scope) {
       var vm = this;
-      vm.message = JSON.parse($scope.message);
 
       init();
       function init() {
+        vm.message = JSON.parse($scope.message);
       }
     };
 

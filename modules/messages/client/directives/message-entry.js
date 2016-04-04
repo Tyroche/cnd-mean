@@ -30,7 +30,8 @@
         vm.message.sender = {
           _id: vm.user._id,
           firstName: vm.user.firstName,
-          lastName: vm.user.lastName
+          lastName: vm.user.lastName,
+          profileImageURL: vm.user.profileImageURL
         };
         vm.message.publicity = Boolean($scope.private) ? 'private' : 'public';
         vm.message.context = vm.context._id;

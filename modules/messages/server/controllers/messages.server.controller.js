@@ -134,7 +134,7 @@ function messagesByContextSinceTime(req, res, since) {
 
 // Run a query for multiple messages
 function getSpecificMessages(query, req, res) {
-  Message.find(query).populate('sender', 'firstName lastName').exec(function (err, messages) {
+  Message.find(query).populate('sender', 'firstName lastName profileImageURL').exec(function (err, messages) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
