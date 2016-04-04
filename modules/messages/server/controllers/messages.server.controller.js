@@ -86,7 +86,7 @@ exports.list = function(req, res) {
     $or: [
       { sender: req.user._id },
       { publicity: 'public' },
-      { participants: { "$in": [req.user._id] } }
+      { participants: { '$in': [req.user._id] } }
     ]
   }).sort('-created').populate('user', 'displayName').exec(function(err, messages) {
     if (err) {
@@ -111,7 +111,7 @@ exports.messagesByContext = function(req, res) {
       { $or: [
         { sender: req.user._id },
         { publicity: 'public' },
-        { participants: { "$in": [req.user._id] } }
+        { participants: { '$in': [req.user._id] } }
       ]
     }]
   }, req, res);
@@ -122,11 +122,11 @@ function messagesByContextSinceTime(req, res, since) {
   getSpecificMessages({
     $and: [
       { context: req.contextId },
-      { created: { $gt: since} },
+      { created: { $gt: since } },
       { $or: [
         { sender: req.user._id },
         { publicity: 'public' },
-        { participants: { "$in": [req.user._id] } }
+        { participants: { '$in': [req.user._id] } }
       ]
     }]
   }, req, res);

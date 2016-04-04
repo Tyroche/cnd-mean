@@ -22,7 +22,7 @@
         <h2>Latest News</h2>
         <div ng-repeat="article in news|limitTo:3">
           <h4><a class="can-select" href="/news/{{article._id}}">{{article.title}}</a></h4>
-          <p class="line-breaker">{{article.content}}</p>
+          <p class="line-breaker" ng-bind="article.content"></p>
           <hr>
         </div>
       </div>
