@@ -1,6 +1,6 @@
 <section>
   <div ng-if="vm.messages">
-    <div ng-repeat="msg in vm.messages | limitTo: display | orderBy:'$index':reverse">
+    <div ng-repeat="msg in vm.messages | limitTo: '-'+display">
       <message-view message="{{msg}}"></message-view>
       <br>
     </div>
