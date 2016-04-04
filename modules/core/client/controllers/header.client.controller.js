@@ -19,5 +19,10 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     $scope.$on('$stateChangeSuccess', function () {
       $scope.isCollapsed = false;
     });
+
+    $scope.notifications = [{
+      description: "Level Up",
+      sref: "characters.levelup({ characterId: '56faba793a7aad20000b47e6' })"
+    }];
   }
 ]);

@@ -1,14 +1,33 @@
 <section ng-controller="HomeController">
-  <div class="visible-lg" >
-    <div class="left-panel">
-      <img alt="Consultants and Dragons" class="img-responsive text-center" src="modules/core/client/img/brand/cndemblem.png" />
-    </div>
-    <div class="right-panel" style="margin-top: 64px;">
-      <div ng-include="'modules/core/client/views/landing.client.view.html'"></div>
-    </div>
+  <div class="left-panel">
+    <img alt="Consultants and Dragons" class="img-responsive text-center" src="modules/core/client/img/brand/cndemblem.png" />
   </div>
-  <div class="hidden-lg">
-    <div ng-include="'modules/core/client/views/landing.client.view.html'"></div>
+  <div class="right-panel" style="margin-top: 32px;">
+    <div class="row">
+      <div class="col-md-10">
+        <div ng-if="authentication.user">
+          <h1>Welcome, {{authentication.user.firstName}} {{authentication.user.lastName}}</h1>
+          <p>Thank you for participating in Consultants and Dragons!</p>
+        </div>
+        <div ng-if="!authentication.user">
+          <h1>Welcome to the Kingdom of Iuria</h1>
+          <p>Welcome to the main site for the Tolmea Campaign Setting as well as Consultants and Dragons. Here you can <a class="can-select" ui-sref="authentication.signup">enlist</a> to  join the Consultants and Dragons adventurer's guild or browse in game news and view information about the Campaign Setting. Once enlisted, you can create a character sheet and participate in out-of-session events with your character and the Dungeon Master.</p>
+        </div>
+
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10">
+        <h2>Latest News</h2>
+        <div ng-repeat="article in news|limitTo:3">
+          <h4><a class="can-select" href="/news/{{article._id}}">{{article.title}}</a></h4>
+          <p class="line-breaker">{{article.content}}</p>
+          <hr>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </section>
