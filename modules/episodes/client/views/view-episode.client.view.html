@@ -60,7 +60,12 @@
       <p>There are no players signed up currently.</p>
     </div>
     <div ng-repeat="c in vm.episode.attendees">
-      {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}}
+      <b ng-if="c.selected">
+        {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}} (Confirmed)
+      </b>
+      <span ng-if="!c.selected">
+        {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}}
+      </span>
     </div>
   </div>
   <div ng-if="!vm.episode.isOpen">

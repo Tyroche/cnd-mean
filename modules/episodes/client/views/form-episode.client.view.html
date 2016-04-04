@@ -48,6 +48,38 @@
           </div>
         </div>
 
+        <div ng-if="vm.episode.attendees">
+          <h3>Attendees</h3>
+          <div class="row">
+            <div class="col-xs-1">
+                <label class="control-label">Selected</label>
+            </div>
+            <div class="col-xs-4">
+                <label class="control-label">Name</label>
+            </div>
+            <div class="col-xs-4">
+                <label class="control-label">Character</label>
+            </div>
+          </div>
+
+          <div ng-repeat="attendee in vm.episode.attendees" class="row">
+            <!-- Selector -->
+            <div class="col-sm-1">
+                <span class="glyphicon glyphicon-check can-select"
+                    ng-class="{'glyphicon-unchecked': !vm.episode.attendees[$index].selected,
+                               'glyphicon-check': vm.episode.attendees[$index].selected}"
+                    ng-click="vm.episode.attendees[$index].selected = !vm.episode.attendees[$index].selected"></span>
+            </div>
+            <div class="col-xs-4">
+              {{attendee.user.firstName}} {{attendee.user.lastName}}
+            </div>
+            <div class="col-xs-4">
+              {{attendee.character.name}}
+            </div>
+          </div>
+          <hr/>
+        </div>
+
         <h3>Contracts</h3>
         <div class="row">
           <div class="col-sm-1">
