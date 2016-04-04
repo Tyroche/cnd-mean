@@ -42,11 +42,14 @@
       // Load a message
       vm.postMessage = postMessage;
       function postMessage() {
-        // Evaluate what's happening
         vm.message.$save(successCallback, errorCallback);
+
+        // Send a post message if the socket exists
         if(vm.socket) {
           vm.socket.emit('postMessage', vm.message);
         }
+
+        // Recreate a new Message
         createNew();
       }
 

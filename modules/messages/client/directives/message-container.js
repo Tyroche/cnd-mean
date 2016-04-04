@@ -34,10 +34,7 @@
 
       // When we receive a new message, append it to our list
       socket.on('pushUpdate', function(message) {
-        if(message.context === vm.context._id) {
-          console.log('Received push update');
-          vm.messages.push(message);
-        }
+        vm.messages.push(message);
       });
 
       // Cancel the $interval on navigation away from container
@@ -56,15 +53,15 @@
 
         vm.ctxMessages.query({}, function(res) {
           vm.messages = $filter('orderBy')(res,'created');
-          console.log(vm.messages);
         });
       }
 
       function init() {
         // Connect the socket for push notifications
-        if(!socket.socket) {
-          socket.connect();
-        }
+        if(!socket.socket) { socket.connect(); }
+
+        // Tell the server that we want to subscribe to this context
+        socket.emit('subscribe', vm.context._id);
         getFirstMessages();
       }
     };
