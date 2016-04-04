@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('contracts', ['characters']);
+  app.registerModule('messages', ['core']);
 })(ApplicationConfiguration);

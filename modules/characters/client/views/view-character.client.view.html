@@ -28,7 +28,9 @@
 
         <!-- Non-User Info -->
         <div class="row" ng-if="vm.character.player._id !== vm.authentication.user._id && vm.authentication.user.roles.indexOf('admin') === -1">
-          <h3>{{vm.character.player.firstName}} {{vm.character.player.lastName}}</h3>
+          <div class="pull-right" style="margin-bottom: 4px;">
+            <h3>{{vm.character.player.firstName}} {{vm.character.player.lastName}}</h3>
+          </div>
         </div>
         <div class="row">
           <button type="button" class="btn btn-default" ng-click="selection = 0" ng-disabled="selection === 0">Scores </button>

@@ -53,20 +53,34 @@
     </div>
   </div>
 
-  <h3>Attendees</h3>
-  <div ng-show="!vm.episode"><i>Loading...</i></div>
-  <div ng-show="vm.episode.attendees">
-    <div ng-show="vm.episode.attendees.length === 0">
+  <!-- Show Attendees -->
+  <div ng-if="vm.episode.isOpen">
+    <h3>Attendees Currently Signed Up</h3>
+    <div ng-show="!vm.episode.attendees || vm.episode.attendees.length === 0">
       <p>There are no players signed up currently.</p>
     </div>
-    <div ng-show="vm.episode.attendees.length > 0">
-      <div ng-repeat="c in vm.episode.attendees">
+    <div ng-repeat="c in vm.episode.attendees">
+      <b ng-if="c.selected">
+        {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}} (Confirmed)
+      </b>
+      <span ng-if="!c.selected">
         {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}}
-      </div>
+      </span>
     </div>
   </div>
+  <div ng-if="!vm.episode.isOpen">
+    <h3>Selected Attendees</h3>
+    <div ng-repeat="c in vm.episode.attendees | filter:{selected: true}">
+      {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}}
+    </div>
+  </div>
+
   <br>
-  <p>There are <b>{{vm.episode.maxAttendees - vm.episode.attendees.length}} open player slots</b> remaining for this session.</p>
+
+  <p ng-init="numSlots = vm.episode.maxAttendees - vm.episode.attendees.length">
+    <span ng-if="numSlots > 0">There are <b>{{numSlots}} open player slots</b> remaining for this session.</span>
+    <span ng-if="numSlots <= 0">Attendance is full<span ng-if="vm.episode.isOpen">, but signups are still open. Players will be selected according to episode relevance and and attendance in previous sessions. Players who are selected will be notified once the session's attendance is locked, typically 3 days before the session date.</span><span ng-if="!vm.episode.isOpen"> and players have been selected for attendance in this session.</span></span>
+  </p>
   <hr>
 
 <div ng-include="'modules/episodes/client/views/view-episode.contracts.client.view.html'"></div>
