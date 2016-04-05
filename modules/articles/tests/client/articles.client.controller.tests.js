@@ -127,7 +127,7 @@
         expect(scope.content).toEqual('');
 
         // Test URL redirection after the article was created
-        expect($location.path.calls.mostRecent().args[0]).toBe('articles/' + mockArticle._id);
+        expect($location.path.calls.mostRecent().args[0]).toBe('news/' + mockArticle._id);
       }));
 
       it('should set scope.error if save error', function () {
@@ -158,7 +158,7 @@
         $httpBackend.flush();
 
         // Test URL location to new object
-        expect($location.path()).toBe('/articles/' + mockArticle._id);
+        expect($location.path()).toBe('/news/' + mockArticle._id);
       }));
 
       it('should set scope.error to error response message', inject(function (Articles) {
@@ -203,7 +203,7 @@
       });
 
       it('should redirect to articles', function () {
-        expect($location.path).toHaveBeenCalledWith('articles');
+        expect($location.path).toHaveBeenCalledWith('news');
       });
     });
   });
