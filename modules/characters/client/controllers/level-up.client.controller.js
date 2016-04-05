@@ -48,7 +48,7 @@
     vm.takeAverageHitDie = takeAverageHitDie;
     function takeAverageHitDie() {
       if (vm.chosenProfession) {
-        vm.character.hitpoints += Math.max(1, Math.ceil(vm.chosenProfession.hitDice/2) + constitutionModifier());
+        vm.character.hitpoints += Math.max(1, Math.ceil(vm.chosenProfession.hitDice/2) + 0.5 + constitutionModifier());
         finalize();
       }
     }
