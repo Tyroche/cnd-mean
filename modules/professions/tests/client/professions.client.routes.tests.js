@@ -98,7 +98,11 @@
           $templateCache.put('modules/professions/client/views/form-profession.client.view.html', '');
 
           // create mock Profession
-          mockProfession = new ProfessionsService();
+          mockProfession = new ProfessionsService({
+            _id: '525a8422f6d0f87f0e407a33',
+            name: 'Profession Name',
+            archetypes: []
+          });
 
           //Initialize Controller
           ProfessionsController = $controller('ProfessionsController as vm', {
@@ -122,7 +126,6 @@
 
         it('should attach an Profession to the controller scope', function () {
           expect($scope.vm.profession._id).toBe(mockProfession._id);
-          expect($scope.vm.profession._id).toBe(undefined);
         });
 
         it('Should not be abstract', function () {
