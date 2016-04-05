@@ -1,14 +1,14 @@
 <section ng-if="vm.canLevel">
-  <h1>Level Up</h1>
-  <p>You have gained the necessary qualifications to advance to <b>Level {{vm.totalCharacterLevel() + 1}}</b></p>
+  <h1>Level Up {{vm.hitDieLock ? 'Complete' : ''}}</h1>
+  <p>You have gained the necessary qualifications to advance to <b ng-init="lvl = vm.totalCharacterLevel() + 1">Level {{lvl}}</b></p>
 
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
         <label class="control-label">Character Class</label>
         <div class="dropdown" dropdown>
-          <button type="button" class="btn btn-default" dropdown-toggle>
-            {{vm.chosenProfession ? vm.chosenProfession.name + ' Level ' + vm.getProfessionLevel(): 'Choose Profession'}} <span class="caret"></span></button>
+          <button type="button" ng-disabled="vm.hitDieLock" class="btn btn-default" dropdown-toggle>
+            {{vm.chosenProfession ? vm.chosenProfession.name + ' Level ' + (vm.hitDieLock ? vm.getProfessionLevel()-1: vm.getProfessionLevel()) : 'Choose Profession'}} <span class="caret"></span></button>
             <ul class="dropdown-menu">
               <li ng-repeat="prof in vm.loadedData">
                 <a href ng-click="vm.chosenProfession = prof">{{prof.name}}</a>
@@ -21,7 +21,7 @@
       <div class="form-group">
         <label class="control-label">Archetype</label>
         <div class="dropdown" dropdown>
-          <button type="button" class="btn btn-default" dropdown-toggle>
+          <button type="button" ng-disabled="vm.hitDieLock" class="btn btn-default" dropdown-toggle>
             {{vm.chosenProfession.archetypes[vm.chosenArchetype].title}} <span class="caret"></span></button>
             <ul class="dropdown-menu">
               <li ng-repeat="archetype in vm.chosenProfession.archetypes" ng-if="archetype.title !== 'Universal'">
@@ -62,7 +62,7 @@
 
   <h3 ng-bind="vm.chosenProfession.name"></h3>
   <p ng-bind="vm.chosenProfession.description"></p><br>
-  <div ng-repeat="trait in vm.chosenProfession.archetypes[0].traits" ng-if="trait.levelRequirement === vm.getProfessionLevel()">
+  <div ng-repeat="trait in vm.chosenProfession.archetypes[0].traits" ng-if="trait.levelRequirement === lvl-1">
     <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
     <p class="line-breaker" ng-bind="trait.description"></p>
   </div>
@@ -70,7 +70,7 @@
 
   <h4 ng-bind="vm.chosenProfession.archetypes[vm.chosenArchetype].title"></h4>
   <p ng-bind="vm.chosenProfession.archetypes[vm.chosenArchetype].description"></p>
-  <div ng-repeat="trait in vm.chosenProfession.archetypes[vm.chosenArchetype].traits" ng-if="trait.levelRequirement === vm.getProfessionLevel()">
+  <div ng-repeat="trait in vm.chosenProfession.archetypes[vm.chosenArchetype].traits" ng-if="trait.levelRequirement === lvl-1">
     <label>Level {{trait.levelRequirement}}: {{trait.title}}</label>
     <p class="line-breaker" ng-bind="trait.description"></p>
   </div>

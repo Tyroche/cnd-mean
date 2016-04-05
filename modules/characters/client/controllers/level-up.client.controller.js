@@ -93,6 +93,7 @@
           return;
       }
 
+      vm.preLevel = vm.totalCharacterLevel();
       vm.loadedData = dataloader.loadClasses();
     }
   }
