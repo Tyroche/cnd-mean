@@ -92,7 +92,7 @@
     <div class="col-md-4 well" ng-if="vm.authentication.user.roles.indexOf('consultant') > -1 || vm.authentication.user.roles.indexOf('admin') > -1">
       <div style="margin-left: 4px;">
         <span class="text-center"><u><h4>Comments</h4></u></span>
-        <message-container user="{{vm.authentication.user}}" display=10 context="vm.episode"></message-container>
+        <comment-container user="{{vm.authentication.user}}" display=10 context="vm.episode"></comment-container>
       </div>
     </div>
   </div>
