@@ -76,6 +76,7 @@
       it('should send a GET request and return all Episodes', inject(function (EpisodesService) {
         // Set POST response
         $httpBackend.expectGET('api/episodes').respond(mockEpisodeList);
+        $httpBackend.expectGET('api/contracts').respond([{}]);
 
 
         $httpBackend.flush();
