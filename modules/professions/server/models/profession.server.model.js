@@ -35,10 +35,26 @@ var ProfessionSchema = new Schema({
       type: String,
       default: 'The generic archetype; all archetypes benefit from traits here'
     },
+    spellcasting: {
+      isSpellCaster: { type: Boolean },
+      spells: [{ type: Schema.ObjectId, ref: 'Spell' }],
+      ability: {
+        type: String,
+        enum: [
+          'Strength',
+          'Dexterity',
+          'Constitution',
+          'Intelligence',
+          'Wisdom',
+          'Charisma'
+        ]
+      }
+    },
     traits: [{
       title: { type: String },
       description: { type: String },
       levelRequirement: { type: Number },
+      obsoleteAtLevel: { type: Number, default: 0 },
       numChoices: { type: Number },
       choices: [{
         title: { type: String },
