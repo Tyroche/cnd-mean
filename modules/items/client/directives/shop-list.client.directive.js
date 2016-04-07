@@ -9,7 +9,7 @@
 
   // This assumes that you will pass the inventory to it
   function shopList(auth) {
-    var controller = function($scope, $filter) {
+    var controller = function($scope, $filter, $sce) {
       var vm = this;
       vm.character = $scope.character;
       vm.inventory = $scope.inventory;

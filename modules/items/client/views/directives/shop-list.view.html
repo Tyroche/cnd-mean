@@ -19,8 +19,8 @@
     </div>
     <div class="col-xs-3" ng-bind="item.classification"></div>
     <div class="col-xs-3">{{item.price}} riphons</div>
-    <div class="col-xs-1" ng-click="vm.infoItem = item">
-      <span class="glyphicon glyphicon-info-sign can-select" aria-hidden="true"></span>
+    <div class="col-xs-1">
+      <span class="glyphicon glyphicon-info-sign can-select" aria-hidden="true" tooltip-template="'modules/items/client/views/directives/shop-tooltip.view.html'" tooltip-trigger="mouseenter" tooltip-placement="right"></span>
     </div>
     <div class="col-xs-1" ng-click="vm.addItem(item)">
       <span class="glyphicon glyphicon-plus-sign"
@@ -32,13 +32,4 @@
 </div>
 <div class="col-xs-offset-2 col-xs-8">
   <pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></pagination>
-</div>
-<div ng-if="vm.infoItem" class="well">
-  <div class="row" style="margin-top: 4px; margin-bottom: 0;">
-    <div class="col-xs-1 glyphicon glyphicon-info-sign" style="margin-top: 12px"></div>
-    <div class="col-xs-11">
-      <h5><b>{{vm.infoItem.name}}</b></h5>
-      <span class="line-breaker">{{vm.infoItem.description}}</span>
-    </div>
-  </div>
 </div>
