@@ -1,14 +1,15 @@
-'use strict';
-
 (function () {
-  // Backgrounds create Controller Spec
-  describe('Backgrounds create Controller Tests', function () {
+  'use strict';
+
+  describe('Spells List Controller Tests', function () {
     // Initialize global variables
-    var BackgroundsCreateController,
+    var SpellsListController,
       $scope,
       $httpBackend,
-      $stateParams,
-      $location;
+      $state,
+      Authentication,
+      SpellsService,
+      mockSpell;
 
     // The $resource service augments the response object with methods for updating and deleting the resource.
     // If we were to use the standard toEqual matcher, our tests would fail because the test values would not match
@@ -35,24 +36,56 @@
     // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
     // This allows us to inject a service but then attach it to a variable
     // with the same name as the service.
-    beforeEach(inject(function ($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
+    beforeEach(inject(function ($controller, $rootScope, _$state_, _$httpBackend_, _Authentication_, _SpellsService_) {
       // Set a new global scope
       $scope = $rootScope.$new();
 
       // Point global variables to injected services
-      $stateParams = _$stateParams_;
       $httpBackend = _$httpBackend_;
-      $location = _$location_;
+      $state = _$state_;
+      Authentication = _Authentication_;
+      SpellsService = _SpellsService_;
 
-      // Initialize the Backgrounds create controller.
-      BackgroundsCreateController = $controller('BackgroundsCreateController', {
+      // create mock article
+      mockSpell = new SpellsService({
+        _id: '525a8422f6d0f87f0e407a33',
+        name: 'Spell Name'
+      });
+
+      // Mock logged in user
+      Authentication.user = {
+        roles: ['user']
+      };
+
+      // Initialize the Spells List controller.
+      SpellsListController = $controller('SpellsListController as vm', {
         $scope: $scope
       });
+
+      //Spy on state go
+      spyOn($state, 'go');
     }));
 
-    it('Should do some controller test', inject(function () {
-      // The test logic
-      // ...
-    }));
+    describe('Instantiate', function () {
+      var mockSpellList;
+
+      beforeEach(function () {
+        mockSpellList = [mockSpell, mockSpell];
+      });
+
+      it('should send a GET request and return all Spells', inject(function (SpellsService) {
+        // Set POST response
+        $httpBackend.expectGET('api/spells').respond(mockSpellList);
+
+
+        $httpBackend.flush();
+
+        // Test form inputs are reset
+        expect($scope.vm.spells.length).toEqual(2);
+        expect($scope.vm.spells[0]).toEqual(mockSpell);
+        expect($scope.vm.spells[1]).toEqual(mockSpell);
+
+      }));
+    });
   });
-}());
+})();

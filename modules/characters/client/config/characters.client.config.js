@@ -19,15 +19,8 @@
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'characters', {
-      title: 'View Guild Members',
+      title: 'Characters',
       state: 'characters.list'
-    });
-
-    // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'characters', {
-      title: 'Create Character',
-      state: 'characters.create',
-      roles: ['admin', 'consultant']
     });
   }
 })();

@@ -49,7 +49,8 @@
       // create mock Profession
       mockProfession = new ProfessionsService({
         _id: '525a8422f6d0f87f0e407a33',
-        name: 'Profession Name'
+        name: 'Profession Name',
+        archetypes: []
       });
 
       // Mock logged in user
@@ -60,7 +61,7 @@
       // Initialize the Professions controller.
       ProfessionsController = $controller('ProfessionsController as vm', {
         $scope: $scope,
-        professionResolve: {}
+        professionResolve: mockProfession
       });
 
       //Spy on state go
@@ -73,7 +74,8 @@
       beforeEach(function () {
         // Create a sample Profession object
         sampleProfessionPostData = new ProfessionsService({
-          name: 'Profession Name'
+          name: 'Profession Name',
+          archetypes: []
         });
 
         $scope.vm.profession = sampleProfessionPostData;

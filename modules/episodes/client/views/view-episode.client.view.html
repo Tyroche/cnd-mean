@@ -11,63 +11,89 @@
     </div>
     <h1>Session on {{vm.episode.sessionDate | date: 'MM/dd/yy'}}</h1>
   </div>
-  <div ng-if="vm.episode.summary.length > 0">
-    <div class="row" >
-      <div class="col-md-12">
-        <h3>Summary</h3>
-        <p class="line-breaker" ng-bind="vm.episode.summary"></p>
-      </div>
-    </div>
-    <hr>
-  </div>
-
-
-  <!-- Player Signup -->
-  <div class="form-group">
-    <label class="control-label">Character Selection</label><br />
-    <div class="row">
-
-      <div ng-if="vm.episode.isOpen">
-        <div class="col-md-4">
-          <div class="dropdown" dropdown>
-            <button type="button" class="btn btn-default" dropdown-toggle>
-              {{vm.chosenCharacter.name}}<span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li ng-repeat="pc in vm.playerCharacters">
-                  <a href ng-click="vm.chosenCharacter = pc">{{pc.name}}</a></li>
-              </ul>
+  <div class="row">
+    <div class="col-md-8">
+      <div ng-if="vm.episode.summary.length > 0">
+        <div class="row" >
+          <div class="col-md-12">
+            <h3>Summary</h3>
+            <p class="line-breaker" ng-bind="vm.episode.summary"></p>
           </div>
         </div>
-        <div class="col-md-3">
-          <button class="btn btn-default" ng-disabled="!vm.chosenCharacter && !vm.isUserPlaying()" ng-click="vm.toggleAttendance()">
-            {{ vm.isUserPlaying() ? 'I will not attend' : 'I will attend' }}
-          </button>
+        <hr>
+      </div>
+
+
+      <!-- Player Signup -->
+      <div class="form-group">
+        <label class="control-label">Character Selection</label><br />
+        <div class="row">
+
+          <div ng-if="vm.episode.isOpen">
+            <div class="col-md-4">
+              <div class="dropdown" dropdown>
+                <button type="button" class="btn btn-default" dropdown-toggle>
+                  {{vm.chosenCharacter.name}}<span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li ng-repeat="pc in vm.playerCharacters">
+                      <a href ng-click="vm.chosenCharacter = pc">{{pc.name}}</a></li>
+                  </ul>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-default" ng-disabled="!vm.chosenCharacter && !vm.isUserPlaying()" ng-click="vm.toggleAttendance()">
+                {{ vm.isUserPlaying() ? 'I will not attend' : 'I will attend' }}
+              </button>
+            </div>
+          </div>
+
+          <div ng-if="!vm.episode.isOpen">
+            <div class="col-md-10">
+              <p>You cannot sign up for this session because it is locked.</p>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- Show Attendees -->
+      <div ng-if="vm.episode.isOpen">
+        <h3>Attendees Currently Signed Up</h3>
+        <div ng-show="!vm.episode.attendees || vm.episode.attendees.length === 0">
+          <p>There are no players signed up currently.</p>
+        </div>
+        <div ng-repeat="c in vm.episode.attendees">
+          <b ng-if="c.selected">
+            {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}} (Confirmed)
+          </b>
+          <span ng-if="!c.selected">
+            {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}}
+          </span>
+        </div>
+      </div>
       <div ng-if="!vm.episode.isOpen">
-        <div class="col-md-10">
-          <p>You cannot sign up for this session because it is locked.</p>
+        <h3>Selected Attendees</h3>
+        <div ng-repeat="c in vm.episode.attendees | filter:{selected: true}">
+          {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}}
         </div>
       </div>
-    </div>
-  </div>
 
-  <h3>Attendees</h3>
-  <div ng-show="!vm.episode"><i>Loading...</i></div>
-  <div ng-show="vm.episode.attendees">
-    <div ng-show="vm.episode.attendees.length === 0">
-      <p>There are no players signed up currently.</p>
+      <br>
+
+      <p>
+        <span ng-if="vm.episode.maxAttendees - vm.episode.attendees.length > 0">There are <b>{{vm.episode.maxAttendees - vm.episode.attendees.length}} open player slots</b> remaining for this session.</span>
+        <span ng-if="vm.episode.maxAttendees - vm.episode.attendees.length <= 0">Attendance is full<span ng-if="vm.episode.isOpen">, but signups are still open. Players will be selected according to episode relevance and and attendance in previous sessions. Players who are selected will be notified once the session's attendance is locked, typically 3 days before the session date.</span><span ng-if="!vm.episode.isOpen"> and players have been selected for attendance in this session.</span></span>
+      </p>
+      <hr>
+
+    <div ng-include="'modules/episodes/client/views/view-episode.contracts.client.view.html'"></div>
     </div>
-    <div ng-show="vm.episode.attendees.length > 0">
-      <div ng-repeat="c in vm.episode.attendees">
-        {{$index + 1}}. {{c.user.firstName}} {{c.user.lastName}} as {{c.character.name}}
+
+    <!-- Comments -->
+    <div class="col-md-4 well" ng-if="vm.authentication.user.roles.indexOf('consultant') > -1 || vm.authentication.user.roles.indexOf('admin') > -1">
+      <div style="margin-left: 4px;">
+        <span class="text-center"><u><h4>Comments</h4></u></span>
+        <comment-container user="{{vm.authentication.user}}" display=10 context="vm.episode"></comment-container>
       </div>
     </div>
   </div>
-  <br>
-  <p>There are <b>{{vm.episode.maxAttendees - vm.episode.attendees.length}} open player slots</b> remaining for this session.</p>
-  <hr>
-
-<div ng-include="'modules/episodes/client/views/view-episode.contracts.client.view.html'"></div>
 </section>

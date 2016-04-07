@@ -81,6 +81,7 @@
 
       it('should send a POST request with the form input values and then locate to new object URL', inject(function (EpisodesService) {
         // Set POST response
+        $httpBackend.expectGET('api/characters').respond([{ player: { id: 5 } }]);
         $httpBackend.expectPOST('api/episodes', sampleEpisodePostData).respond(mockEpisode);
 
         // Run controller functionality
@@ -95,6 +96,7 @@
 
       it('should set $scope.vm.error if error', function () {
         var errorMessage = 'this is an error message';
+        $httpBackend.expectGET('api/characters').respond([{ player: { id: 5 } }]);
         $httpBackend.expectPOST('api/episodes', sampleEpisodePostData).respond(400, {
           message: errorMessage
         });
@@ -114,6 +116,7 @@
 
       it('should update a valid Episode', inject(function (EpisodesService) {
         // Set PUT response
+        $httpBackend.expectGET('api/characters').respond([{ player: { id: 5 } }]);
         $httpBackend.expectPUT(/api\/episodes\/([0-9a-fA-F]{24})$/).respond();
 
         // Run controller functionality
@@ -128,6 +131,7 @@
 
       it('should set $scope.vm.error if error', inject(function (EpisodesService) {
         var errorMessage = 'error';
+        $httpBackend.expectGET('api/characters').respond([{ player: { id: 5 } }]);
         $httpBackend.expectPUT(/api\/episodes\/([0-9a-fA-F]{24})$/).respond(400, {
           message: errorMessage
         });
@@ -149,6 +153,7 @@
         //Return true on confirm message
         spyOn(window, 'confirm').and.returnValue(true);
 
+        $httpBackend.expectGET('api/characters').respond([{ player: { id: 5 } }]);
         $httpBackend.expectDELETE(/api\/episodes\/([0-9a-fA-F]{24})$/).respond(204);
 
         $scope.vm.remove();

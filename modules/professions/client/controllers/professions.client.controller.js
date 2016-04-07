@@ -6,9 +6,9 @@
     .module('professions')
     .controller('ProfessionsController', ProfessionsController);
 
-  ProfessionsController.$inject = ['$scope', '$state', 'Authentication', 'professionResolve'];
+  ProfessionsController.$inject = ['$scope', '$state', '$resource', 'Authentication', 'professionResolve'];
 
-  function ProfessionsController ($scope, $state, Authentication, profession) {
+  function ProfessionsController ($scope, $state, $resource, Authentication, profession) {
     var vm = this;
 
     vm.authentication = Authentication;

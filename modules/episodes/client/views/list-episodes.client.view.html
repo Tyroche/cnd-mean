@@ -29,7 +29,8 @@
         <div class="col-sm-2 list-group-item-heading">
           <b>{{episode.sessionDate | date: 'MM/dd/yy'}}</b>
         </div>
-        <div class="col-sm-2">{{episode.maxAttendees - episode.attendees.length}} slots</div>
+        <div class="col-sm-2" ng-init="numslots[episode._id] = episode.maxAttendees - episode.attendees.length">
+            {{numslots[episode._id] > 0 ? numslots[episode._id]+' slots' : 'Full'}}</div>
         <div class="col-sm-7" ng-bind="vm.getHighestVotedContract(episode)"></div>
       </div>
     </a>

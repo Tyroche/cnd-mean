@@ -1,0 +1,12 @@
+<section>
+  <div class="input-group">
+    <input type="text"
+        ng-keydown="$event.keyCode === 13 && vm.postMessage()"
+        ng-model="vm.message.contents"
+        class="form-control"
+        placeholder="Message"></input>
+      <span class="input-group-btn">
+        <button type="button" ng-click="vm.postMessage()" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span></button>
+      </span>
+  </div>
+</section>

@@ -49,6 +49,19 @@
           pageTitle: 'Edit Profession {{ professionResolve.name }}'
         }
       })
+      .state('professions.spells', {
+        url: '/:professionId/spells',
+        templateUrl: 'modules/professions/client/views/spells.client.view.html',
+        controller: 'ArchetypeSpellsController',
+        controllerAs: 'vm',
+        resolve: {
+          professionResolve: getProfession
+        },
+        data: {
+          roles: ['admin'],
+          pageTitle: 'Edit {{ professionResolve.name }} Spells'
+        }
+      })
       .state('professions.view', {
         url: '/:professionId',
         templateUrl: 'modules/professions/client/views/view-profession.client.view.html',

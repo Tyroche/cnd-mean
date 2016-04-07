@@ -58,7 +58,11 @@ module.exports = function (app, db) {
     server = http.createServer(app);
   }
   // Create a new Socket.io server
-  var io = socketio.listen(server);
+  var io = socketio.listen(server, {
+    port: 4443,
+    serveClient: true,
+    path: '/socket.io'
+  });
 
   // Create a MongoDB storage object
   var mongoStore = new MongoStore({

@@ -41,7 +41,8 @@ var EpisodeSchema = new Schema({
     contractVote: {
       type: Schema.ObjectId,
       ref: 'Contract'
-    }
+    },
+    selected: { type: Boolean }
   }]
 });
 

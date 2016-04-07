@@ -1,5 +1,14 @@
 <section ng-controller="ArticlesController" ng-init="findOne()">
   <div class="page-header">
+    <div class="pull-right" ng-show="authentication.user.roles.indexOf('admin') > -1">
+      <a class="btn btn-primary" ui-sref="articles.edit({articleId: article._id})">
+        <i class="glyphicon glyphicon-edit"></i>
+      </a>
+      <a class="btn btn-primary" ng-click="remove();">
+        <i class="glyphicon glyphicon-trash"></i>
+      </a>
+    </div>
+
     <h1 ng-bind="article.title"></h1>
     <small>
       <em class="text-muted">
@@ -8,13 +17,18 @@
       </em>
     </small>
   </div>
-  <div class="pull-right" ng-show="authentication.user.roles.indexOf('admin') > -1">
-    <a class="btn btn-primary" ui-sref="articles.edit({articleId: article._id})">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" ng-click="remove();">
-      <i class="glyphicon glyphicon-trash"></i>
-    </a>
+
+  <div class="row">
+    <div class="col-md-8">
+      <p class="line-breaker" ng-bind="article.content"></p>
+    </div>
+
+    <!-- Comments -->
+    <div class="col-md-4 well" ng-if="article.$resolved && (authentication.user.roles.indexOf('consultant') > -1 || authentication.user.roles.indexOf('admin') > -1)">
+      <span class="text-center"><u><h4>Comments</h4></u></span>
+      <comment-container user="{{authentication.user}}" display=10 context="article"></comment-container>
+    </div>
   </div>
-  <p class="line-breaker" ng-bind="article.content"></p>
+
+
 </section>
