@@ -1,29 +1,38 @@
 <div class="row">
-  <div class="col-xs-6">
-    <div class="row">
-      <div class="col-xs-6 col-md-2">HP:</div>
-      <div class="col-xs-6 col-md-3" ng-bind="vm.character.hitpoints"></div>
-    </div>
+  <div class="col-xs-6 col-md-10">
 
-    <div class="row">
-      <div class="col-xs-6 col-md-2">AC:</div>
-      <div class="col-xs-6 col-md-3" ng-bind="10 + vm.toModifierRaw(vm.character.attributes.Dexterity)"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-6 col-md-2">Speed:</div>
-      <div class="col-xs-6 col-md-3">30 feet</div>
-    </div>
-  </div>
-  <div class="col-xs-6">
-    <div class="row">
-      <div class="col-xs-12 text-right">
-        <b>{{vm.character.race.name}} {{vm.character.background.generalization.name}}</b>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><img src="modules/characters/client/images/heart_attempt.png"/> Hit Points</div>
+        <div class="panel-body">
+          <div ng-bind="vm.character.hitpoints" class="stat-panels"></div>
+        </div>
       </div>
     </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">  <img width='18px' height='18px'src="modules/characters/client/images/shield_attempt.png"/> AC</div>
+        <div class="panel-body">
+          <div ng-bind="10 + vm.toModifierRaw(vm.character.attributes.Dexterity)" class="stat-panels"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><img width='20px' height='20px'src="modules/characters/client/images/boot_attempt.png"> Speed</div>
+        <div class="panel-body">
+          <div class="stat-panels">30 ft.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-2 col-xs-6">
+    <h5 class="classes-header">Classes</h5>
     <div class="row" ng-repeat="prof in vm.character.playableClass">
-      <div class="col-xs-12 text-right">Level {{prof.level}} {{prof.profession.name}}</div>
+        <h1 class="label label-default">Level {{prof.level}} {{prof.profession.name}}</h1>
     </div>
   </div>
 </div>
-<br>
