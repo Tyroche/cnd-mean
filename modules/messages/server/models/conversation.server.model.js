@@ -16,14 +16,11 @@ var ConversationSchema = new Schema({
     required: 'Please fill Conversation name',
     trim: true
   },
-  created: {
-    type: Date,
-    default: Date.now
-  },
-  user: {
+  isPrivate: { type: Boolean, default: true },
+  participants: [{
     type: Schema.ObjectId,
     ref: 'User'
-  }
+  }]
 });
 
 mongoose.model('Conversation', ConversationSchema);
