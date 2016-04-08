@@ -48,7 +48,7 @@
       // Initialize the Level up controller.
       LevelUpController = $controller('LevelUpController', {
         $scope: $scope,
-        characterResolve: {playableClass: ['Rogue']}
+        characterResolve: { playableClass: ['Rogue'] }
       });
     }));
 
