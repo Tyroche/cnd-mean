@@ -21,6 +21,13 @@ var RaceSchema = new Schema({
   traits: [{
     type: String
   }],
+  speed: {
+    ground: { type: Number, default: 30 },
+    other: [{
+      name: { type: String },
+      value: { type: Number }
+    }]
+  },
   abilityIncreases: {
     Strength: { type: Number, default: 0 },
     Dexterity: { type: Number, default: 0 },

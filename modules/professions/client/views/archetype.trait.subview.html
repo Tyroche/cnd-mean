@@ -11,8 +11,41 @@
 </h4>
 
 <div ng-if="archetypeVisible[$index]">
-  <label class="control-label">Name</label>
-  <input type="text" class="form-control" ng-disabled="$index === 0" ng-model="vm.profession.archetypes[$index].title"></input>
+  <div class="row">
+    <!-- Name -->
+    <div class="col-md-6">
+      <label class="control-label">Name</label>
+      <input type="text" class="form-control" ng-disabled="$index === 0" ng-model="vm.profession.archetypes[$index].title"></input>
+    </div>
+
+    <div class="col-md-6">
+      <!-- Spellcaster stuff -->
+      <div class="row">
+        <div class="col-xs-6">
+          <label class="control-label">Is Spell Caster</label><br>
+          <input type="checkbox" ng-model="vm.profession.archetypes[$index].spellcasting.isSpellCaster">
+        </div>
+
+        <div class="col-xs-6">
+          <label class="control-label">Spell Ability</label>
+          <div class="dropdown" dropdown>
+            <button type="button" ng-disabled="!vm.profession.archetypes[$index].spellcasting.isSpellCaster" class="btn btn-default" dropdown-toggle>
+              {{vm.profession.archetypes[$index].spellcasting.ability}} <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href ng-click="vm.profession.archetypes[$index].spellcasting.ability = 'Strength'">Strength</a></li>
+                <li><a href ng-click="vm.profession.archetypes[$index].spellcasting.ability = 'Dexterity'">Dexterity</a></li>
+                <li><a href ng-click="vm.profession.archetypes[$index].spellcasting.ability = 'Constitution'">Constitution</a></li>
+                <li><a href ng-click="vm.profession.archetypes[$index].spellcasting.ability = 'Intelligence'">Intelligence</a></li>
+                <li><a href ng-click="vm.profession.archetypes[$index].spellcasting.ability = 'Wisdom'">Wisdom</a></li>
+                <li><a href ng-click="vm.profession.archetypes[$index].spellcasting.ability = 'Charisma'">Charisma</a></li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   <label class="control-label">Description</label>
   <textarea
       ng-disabled="$index === 0"
