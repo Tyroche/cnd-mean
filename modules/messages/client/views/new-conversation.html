@@ -13,10 +13,11 @@
       </li>
     </ul>
   </div>
+
   <div class="pull-right">
-    <button type="button" ng-click="vm.newConvoPlayer = null" ng-disabled="!vm.newConvoPlayer" class="btn btn-success">
+    <button type="button" ng-click="vm.createConversation()" ng-disabled="!vm.newConvoPlayer" class="btn btn-success">
       <span ng-if="!vm.newConvoPlayer">Select a player</span>
-      <span ng-if="vm.newConvoPlayer">Add {{vm.newConvoPlayer.qualifier}}{{vm.newConvoPlayer.firstName}} {{vm.newConvoPlayer.lastName}}<span>
+      <span ng-if="vm.newConvoPlayer">Message {{vm.newConvoPlayer.qualifier}}{{vm.newConvoPlayer.firstName}} {{vm.newConvoPlayer.lastName}}<span>
     </button>
   </div>
 </div>

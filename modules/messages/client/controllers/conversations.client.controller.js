@@ -8,11 +8,31 @@
   ConversationsController.$inject = [
     '$scope',
     '$resource',
-    '$filter'
+    '$filter',
+    'Authentication'
   ];
 
-  function ConversationsController($scope, $resource, $filter) {
+  function ConversationsController($scope, $resource, $filter, auth) {
     var vm = this;
+    var Conversation = $resource('/api/conversations/:conversationId');
+
+    // Create a new conversation
+    vm.createConversation = createConversation;
+    function createConversation() {
+      if (!vm.newConvoPlayer) { return; }
+
+      vm.selectedConversation = new Conversation();
+      vm.selectedConversation.name = "New Convo";
+      vm.selectedConversation.isPrivate = true;
+      vm.selectedConversation.participants = [
+        auth.user,
+        vm.newConvoPlayer
+      ];
+      vm.selectedConversation.$save();
+      vm.newConvoPlayer = null;
+
+      // Need to receive a message on the socket
+    }
 
     init();
     function init() {

@@ -26,7 +26,8 @@
 
       <!-- All of the existing Conversations -->
       <a data-ng-repeat="conversation in vm.conversations"
-         class="list-group-item">
+        ng-click="vm.selectedConversation = conversation"
+        class="list-group-item">
           <h4 class="list-group-item-heading" data-ng-bind="conversation.name"></h4>
       </a>
     </div>
