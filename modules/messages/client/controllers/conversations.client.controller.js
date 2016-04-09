@@ -19,19 +19,41 @@
     // Create a new conversation
     vm.createConversation = createConversation;
     function createConversation() {
-      if (!vm.newConvoPlayer) { return; }
+      if (!vm.newConvoTargets[0]) { return; }
 
+      // Create the model
       vm.selectedConversation = new Conversation();
       vm.selectedConversation.name = "New Convo";
       vm.selectedConversation.isPrivate = true;
-      vm.selectedConversation.participants = [
-        auth.user,
-        vm.newConvoPlayer
-      ];
+      vm.selectedConversation.participants = [ auth.user ];
+      vm.newConvoTargets.forEach(function (target) {
+        vm.selectedConversation.participants.push(target);
+      });
+
       vm.selectedConversation.$save();
-      vm.newConvoPlayer = null;
+      vm.newConvoPlayer = [];
 
       // Need to receive a message on the socket
+    }
+
+    // Provide a list of names of people participating in a conversation
+    vm.conversationParticipants = conversationParticipants;
+    function conversationParticipants(conversation) {
+      // Intersect participants and players... not pretty but works.
+      var participants = vm.players.filter(function(player) {
+        return conversation.participants.some(function(participant) {
+          return participant === player._id;
+        });
+      });
+
+      // Return a list of names separated by commas
+      return participants.reduce(function(cur, next) {
+        var name = next.firstName + ' ' + next.lastName;
+        if(participants.indexOf(next) > 0) {
+          return cur + ', ' + name;
+        }
+        return name;
+      }, '');
     }
 
     init();
@@ -41,9 +63,13 @@
         return res;
       });
 
-      vm.players = $resource('api/users').query({}, function(res) {
-        return res.filter(function(result) {
-          if (result.roles.indexOf('admin') > -1){
+      vm.newConvoTargets = [];
+      vm.players = [];
+      $resource('api/users').query({}, function(res) {
+        vm.players = res.filter(function(result) {
+          if (result._id === auth.user._id) { return;}
+
+          if (result.roles.indexOf('admin') > -1) {
             result.qualifier = '(GM) ';
             return true;
           }

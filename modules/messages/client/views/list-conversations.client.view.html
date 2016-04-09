@@ -28,7 +28,8 @@
       <a data-ng-repeat="conversation in vm.conversations"
         ng-click="vm.selectedConversation = conversation"
         class="list-group-item">
-          <h4 class="list-group-item-heading" data-ng-bind="conversation.name"></h4>
+          <h4 class="list-group-item-heading">{{conversation.name}}</h4>
+          <small ng-bind="vm.conversationParticipants(conversation)"></small>
       </a>
     </div>
   </div>
