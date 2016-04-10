@@ -38,7 +38,7 @@
     vm.getSaveMod = getSaveMod;
     vm.randomizeBackground = randomizeBackground;
     init();
-
+    
     function init() {
       vm.loadedData = dataLoader.loadData(vm.character, Authentication.user);
       vm.skills = characterSources.getSkills();
