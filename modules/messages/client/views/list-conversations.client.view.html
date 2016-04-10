@@ -1,18 +1,5 @@
 <section>
   <div class="page-header">
-    <div class="pull-right">
-      <div class="col-xs-4 dropdown" dropdown>
-        <button type="button" class="btn btn-default" dropdown-toggle>
-          <span class="visible-xs">Character</span>
-          <span class="hidden-xs">Your Character</span>
-        </button>
-        <ul class="dropdown-menu">
-          <li ng-repeat="player in vm.players | orderBy:['-qualifier','lastName']">
-            <a href ng-click="newConvoPlayer = player">{{player.qualifier}}{{player.firstName}} {{player.lastName}}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
     <h1>Conversations</h1>
   </div>
 
@@ -37,7 +24,7 @@
   <div class="col-sm-offset-1 col-sm-7">
     <!-- Subview here -->
     <!-- New Conversation Button -->
-    <div ng-include="'modules/messages/client/views/new-conversation.html'"></div>
+    <div ng-include="'modules/messages/client/views/view-conversation.html'"></div>
   </div>
 
 </section>

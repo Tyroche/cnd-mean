@@ -15,6 +15,7 @@
   function ConversationsController($scope, $resource, $filter, auth) {
     var vm = this;
     var Conversation = $resource('/api/conversations/:conversationId');
+    vm.auth = auth;
 
     // Create a new conversation
     vm.createConversation = createConversation;

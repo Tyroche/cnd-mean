@@ -19,6 +19,7 @@
 
       init();
       function init() {
+      console.log($scope);
         vm.context = JSON.parse($scope.context);
         vm.user = JSON.parse($scope.user);
         createNew();
@@ -55,6 +56,8 @@
       }
 
       function successCallback(res) {
+        console.log('Created successfully');
+        console.log(res);
         createNew();
       }
 

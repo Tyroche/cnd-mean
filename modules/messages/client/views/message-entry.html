@@ -1,5 +1,17 @@
 <section>
   <div class="input-group">
+    <div class="input-group-btn">
+      <div class="dropdown" dropdown>
+        <button type="button" class="btn btn-default" dropdown-toggle>
+          <span class="visible-xs">{{character ? character : 'Character'}}</span>
+          <span class="hidden-xs">{{character ? character : 'Your Character'}}</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href ng-click="character = 'Vorenus Magnus'">Vorenus Magnus</a></li>
+        </ul>
+      </div>
+    </div>
+
     <input type="text"
         ng-keydown="$event.keyCode === 13 && vm.postMessage()"
         ng-model="vm.message.contents"
