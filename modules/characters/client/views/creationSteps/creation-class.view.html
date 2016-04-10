@@ -1,4 +1,6 @@
 <div class="row">
+
+  <!-- character class -->
   <div class="col-sm-6">
     <div class="form-group">
       <label class="control-label">Character Class</label>
@@ -13,6 +15,8 @@
       </div>
     </div>
   </div>
+
+  <!-- Archetype -->
   <div class="col-sm-6" ng-if="vm.character.playableClass[0].profession.archetypeLevelRequirement <= vm.character.playableClass[0].level">
     <div class="form-group">
       <label class="control-label">Archetype</label>
@@ -29,6 +33,7 @@
   </div>
 </div>
 
+<!-- Show traits for Profession -->
 <h3 ng-bind="vm.character.playableClass[0].profession.name"></h3>
 <p ng-bind="vm.character.playableClass[0].profession.description"></p><br>
 <div ng-repeat="trait in vm.character.playableClass[0].profession.archetypes[0].traits" ng-if="trait.levelRequirement <= vm.character.playableClass[0].level">
@@ -37,6 +42,7 @@
 </div>
 <hr>
 
+<!-- Show traits for chosen archetype -->
 <h4 ng-bind="vm.character.playableClass[0].profession.archetypes[vm.character.playableClass[0].archetype].title"></h4>
 <p ng-bind="vm.character.playableClass[0].profession.archetypes[vm.character.playableClass[0].archetype].description"></p>
 <div ng-repeat="trait in vm.character.playableClass[0].profession.archetypes[vm.character.playableClass[0].archetype].traits" ng-if="trait.levelRequirement <= vm.character.playableClass[0].level">

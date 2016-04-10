@@ -1,0 +1,7 @@
+<section>
+  <h3>Edit {{vm.profession.name}} Spells</h3>
+  <hr>
+  <div class="col-md-10 col-md-offset-1" ng-if="vm.spells">
+    <spell-book profession="vm.profession" spells="{{vm.spells}}"></spell-book>
+  </div>
+</section>

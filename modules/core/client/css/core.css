@@ -81,3 +81,11 @@ body {
 .line-breaker {
   white-space: pre-wrap;
 }
+
+.has-notifications>* {
+  color: #f71;
+}
+
+.has-notifications:hover>* {
+  color: #fa1;
+}

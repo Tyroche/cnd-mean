@@ -11,6 +11,14 @@
       CharactersService,
       mockCharacter;
 
+    var fakeMultipleGetResponses = function(){
+      // Dummy GET responses
+      $httpBackend.expectGET('api/common/items').respond([{}]);
+      $httpBackend.expectGET('api/races').respond([{}]);
+      $httpBackend.expectGET('api/professions').respond([{}]);
+      $httpBackend.expectGET('api/backgrounds').respond([{}]);
+    };
+
     // The $resource service augments the response object with methods for updating and deleting the resource.
     // If we were to use the standard toEqual matcher, our tests would fail because the test values would not match
     // the responses exactly. To solve the problem, we define a new toEqualData Jasmine matcher.
@@ -49,7 +57,24 @@
       // create mock Character
       mockCharacter = new CharactersService({
         _id: '525a8422f6d0f87f0e407a33',
-        name: 'Character Name'
+        name: 'Character Name',
+        playableClass: [{
+          profession: {
+            name: 'Baker',
+            hitDice: 6
+          },
+          attributes: {
+            Constitution: 5
+          }
+        }],
+        attributes: {
+          Strength: 8,
+          Dexterity: 8,
+          Constitution: 8,
+          Intelligence: 8,
+          Wisdom: 8,
+          Charisma: 8
+        }
       });
 
       // Mock logged in user
@@ -73,13 +98,33 @@
       beforeEach(function () {
         // Create a sample Character object
         sampleCharacterPostData = new CharactersService({
-          name: 'Character Name'
+          name: 'Character Name',
+          playableClass: [{
+            profession: {
+              name: 'Baker',
+              hitDice: 6
+            },
+            attributes: {
+              Constitution: 5
+            }
+          }],
+          attributes: {
+            Strength: 8,
+            Dexterity: 8,
+            Constitution: 8,
+            Intelligence: 8,
+            Wisdom: 8,
+            Charisma: 8
+          }
         });
 
         $scope.vm.character = sampleCharacterPostData;
       });
 
       it('should send a POST request with the form input values and then locate to new object URL', inject(function (CharactersService) {
+
+        fakeMultipleGetResponses();
+
         // Set POST response
         $httpBackend.expectPOST('api/characters', sampleCharacterPostData).respond(mockCharacter);
 
@@ -95,6 +140,9 @@
 
       it('should set $scope.vm.error if error', function () {
         var errorMessage = 'this is an error message';
+
+        fakeMultipleGetResponses();
+
         $httpBackend.expectPOST('api/characters', sampleCharacterPostData).respond(400, {
           message: errorMessage
         });
@@ -113,6 +161,9 @@
       });
 
       it('should update a valid Character', inject(function (CharactersService) {
+
+        fakeMultipleGetResponses();
+
         // Set PUT response
         $httpBackend.expectPUT(/api\/characters\/([0-9a-fA-F]{24})$/).respond();
 
@@ -128,6 +179,9 @@
 
       it('should set $scope.vm.error if error', inject(function (CharactersService) {
         var errorMessage = 'error';
+
+        fakeMultipleGetResponses();
+
         $httpBackend.expectPUT(/api\/characters\/([0-9a-fA-F]{24})$/).respond(400, {
           message: errorMessage
         });
@@ -148,6 +202,8 @@
       it('should delete the Character and redirect to Characters', function () {
         //Return true on confirm message
         spyOn(window, 'confirm').and.returnValue(true);
+
+        fakeMultipleGetResponses();
 
         $httpBackend.expectDELETE(/api\/characters\/([0-9a-fA-F]{24})$/).respond(204);
 

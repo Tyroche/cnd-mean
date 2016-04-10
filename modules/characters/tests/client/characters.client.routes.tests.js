@@ -4,7 +4,8 @@
   describe('Characters Route Tests', function () {
     // Initialize global variables
     var $scope,
-      CharactersService;
+      CharactersService,
+      Authentication;
 
     //We can start by loading the main application module
     beforeEach(module(ApplicationConfiguration.applicationModuleName));
@@ -12,10 +13,11 @@
     // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
     // This allows us to inject a service but then attach it to a variable
     // with the same name as the service.
-    beforeEach(inject(function ($rootScope, _CharactersService_) {
+    beforeEach(inject(function ($rootScope, _CharactersService_, _Authentication_) {
       // Set a new global scope
       $scope = $rootScope.$new();
       CharactersService = _CharactersService_;
+      Authentication = _Authentication_;
     }));
 
     describe('Route Config', function () {
@@ -50,8 +52,32 @@
           // create mock Character
           mockCharacter = new CharactersService({
             _id: '525a8422f6d0f87f0e407a33',
-            name: 'Character Name'
+            name: 'Character Name',
+            playableClass: [{
+              profession: {
+                name: 'Baker',
+                hitDice: 6
+              },
+              attributes: {
+                Constitution: 5
+              }
+            }],
+            attributes: {
+              Strength: 8,
+              Dexterity: 8,
+              Constitution: 8,
+              Intelligence: 8,
+              Wisdom: 8,
+              Charisma: 8
+            },
+            race: {
+              abilityIncreases: []
+            }
           });
+
+          Authentication.user = {
+            roles: ['user']
+          };
 
           //Initialize Controller
           CharactersController = $controller('CharactersController as vm', {
@@ -93,12 +119,39 @@
           CharactersController,
           mockCharacter;
 
-        beforeEach(inject(function ($controller, $state, $templateCache) {
+        beforeEach(inject(function ($controller, $state, $templateCache, Authentication) {
           createstate = $state.get('characters.create');
           $templateCache.put('modules/characters/client/views/form-character.client.view.html', '');
 
           // create mock Character
-          mockCharacter = new CharactersService();
+          mockCharacter = new CharactersService({
+            _id: '525a8422f6d0f87f0e407a33',
+            name: 'Character Name',
+            playableClass: [{
+              profession: {
+                name: 'Baker',
+                hitDice: 6
+              },
+              attributes: {
+                Constitution: 5
+              }
+            }],
+            attributes: {
+              Strength: 8,
+              Dexterity: 8,
+              Constitution: 8,
+              Intelligence: 8,
+              Wisdom: 8,
+              Charisma: 8
+            },
+            race: {
+              abilityIncreases: []
+            }
+          });
+
+          Authentication.user = {
+            roles: ['user']
+          };
 
           //Initialize Controller
           CharactersController = $controller('CharactersController as vm', {
@@ -122,7 +175,6 @@
 
         it('should attach an Character to the controller scope', function () {
           expect($scope.vm.character._id).toBe(mockCharacter._id);
-          expect($scope.vm.character._id).toBe(undefined);
         });
 
         it('Should not be abstract', function () {
@@ -139,7 +191,7 @@
           CharactersController,
           mockCharacter;
 
-        beforeEach(inject(function ($controller, $state, $templateCache) {
+        beforeEach(inject(function ($controller, $state, $templateCache, Authentication) {
           editstate = $state.get('characters.edit');
           $templateCache.put('modules/characters/client/views/form-character.client.view.html', '');
 
@@ -148,6 +200,10 @@
             _id: '525a8422f6d0f87f0e407a33',
             name: 'Character Name'
           });
+
+          Authentication.user = {
+            roles: ['user']
+          };
 
           //Initialize Controller
           CharactersController = $controller('CharactersController as vm', {
@@ -183,7 +239,7 @@
           expect(editstate.templateUrl).toBe('modules/characters/client/views/form-character.client.view.html');
         });
 
-        xit('Should go to unauthorized route', function () {
+        it('Should go to unauthorized route', function () {
 
         });
       });

@@ -1,0 +1,43 @@
+<section>
+  <div class="page-header">
+    <div class="pull-right">
+      <div class="col-xs-4 dropdown" dropdown>
+        <button type="button" class="btn btn-default" dropdown-toggle>
+          <span class="visible-xs">Character</span>
+          <span class="hidden-xs">Your Character</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li ng-repeat="player in vm.players | orderBy:['-qualifier','lastName']">
+            <a href ng-click="newConvoPlayer = player">{{player.qualifier}}{{player.firstName}} {{player.lastName}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <h1>Conversations</h1>
+  </div>
+
+
+  <!-- Display Conversations -->
+  <div class="col-sm-4">
+    <div ng-if="!vm.conversations[0]">
+      <h4>You are not in any conversations</h4>
+    </div>
+    <div class="list-group">
+
+      <!-- All of the existing Conversations -->
+      <a data-ng-repeat="conversation in vm.conversations"
+        ng-click="vm.selectedConversation = conversation"
+        class="list-group-item">
+          <h4 class="list-group-item-heading">{{conversation.name}}</h4>
+          <small ng-bind="vm.conversationParticipants(conversation)"></small>
+      </a>
+    </div>
+  </div>
+
+  <div class="col-sm-offset-1 col-sm-7">
+    <!-- Subview here -->
+    <!-- New Conversation Button -->
+    <div ng-include="'modules/messages/client/views/new-conversation.html'"></div>
+  </div>
+
+</section>

@@ -3,9 +3,9 @@
 
   angular
     .module('messages')
-    .directive('messageContainer', messageContainer);
+    .directive('conversationContainer', conversationContainer);
 
-  messageContainer.$inject = [
+  conversationContainer.$inject = [
     '$resource',
     '$timeout',
     '$filter',
@@ -13,7 +13,7 @@
     'Socket'
   ];
 
-  function messageContainer($resource, $timeout, $filter, $interval, socket) {
+  function conversationContainer($resource, $timeout, $filter, $interval, socket) {
     var controller = function($scope) {
       var vm = this;
       vm.messages = [];
@@ -67,7 +67,7 @@
     };
 
     return {
-      templateUrl: 'modules/messages/client/views/message-container.html',
+      templateUrl: 'modules/messages/client/views/comment-container.html',
       controller: controller,
       controllerAs: 'vm',
       scope: {

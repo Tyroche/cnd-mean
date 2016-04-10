@@ -21,6 +21,7 @@
         <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
       </li>
     </ul>
+
     <ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
       <li ui-sref-active="active">
         <a ui-sref="authentication.signup">Sign Up</a>
@@ -30,7 +31,23 @@
         <a ui-sref="authentication.signin">Sign In</a>
       </li>
     </ul>
+
     <ul class="nav navbar-nav navbar-right" ng-show="authentication.user">
+      <li class="dropdown" dropdown>
+        <a ng-class="{'has-notifications': notifications.length > 0}" class="dropdown-toggle user-header-dropdown-toggle" dropdown-toggle role="button">
+          <span style="margin-top: 6px" class="glyphicon glyphicon-inbox"></span><span> {{notifications.length}}</span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-if="!notifications[0]">
+            <a style="color: #aaa">No notifications</a>
+          </li>
+          <li ng-repeat="notification in notifications" ui-sref-active="active">
+            <a ui-sref="{{notification.sref}}" ng-bind="notification.description"></a>
+          </li>
+        </ul>
+      </li>
+
+
       <li class="dropdown" dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" dropdown-toggle role="button">
           <img ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.displayName}}" class="header-profile-image" />

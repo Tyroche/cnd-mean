@@ -1,15 +1,15 @@
 (function () {
   'use strict';
 
-  describe('Messages List Controller Tests', function () {
+  describe('Spells List Controller Tests', function () {
     // Initialize global variables
-    var MessagesListController,
+    var SpellsListController,
       $scope,
       $httpBackend,
       $state,
       Authentication,
-      MessagesService,
-      mockMessage;
+      SpellsService,
+      mockSpell;
 
     // The $resource service augments the response object with methods for updating and deleting the resource.
     // If we were to use the standard toEqual matcher, our tests would fail because the test values would not match
@@ -36,7 +36,7 @@
     // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
     // This allows us to inject a service but then attach it to a variable
     // with the same name as the service.
-    beforeEach(inject(function ($controller, $rootScope, _$state_, _$httpBackend_, _Authentication_, _MessagesService_) {
+    beforeEach(inject(function ($controller, $rootScope, _$state_, _$httpBackend_, _Authentication_, _SpellsService_) {
       // Set a new global scope
       $scope = $rootScope.$new();
 
@@ -44,12 +44,12 @@
       $httpBackend = _$httpBackend_;
       $state = _$state_;
       Authentication = _Authentication_;
-      MessagesService = _MessagesService_;
+      SpellsService = _SpellsService_;
 
       // create mock article
-      mockMessage = new MessagesService({
+      mockSpell = new SpellsService({
         _id: '525a8422f6d0f87f0e407a33',
-        name: 'Message Name'
+        name: 'Spell Name'
       });
 
       // Mock logged in user
@@ -57,8 +57,8 @@
         roles: ['user']
       };
 
-      // Initialize the Messages List controller.
-      MessagesListController = $controller('MessagesListController as vm', {
+      // Initialize the Spells List controller.
+      SpellsListController = $controller('SpellsListController as vm', {
         $scope: $scope
       });
 
@@ -67,23 +67,23 @@
     }));
 
     describe('Instantiate', function () {
-      var mockMessageList;
+      var mockSpellList;
 
       beforeEach(function () {
-        mockMessageList = [mockMessage, mockMessage];
+        mockSpellList = [mockSpell, mockSpell];
       });
 
-      it('should send a GET request and return all Messages', inject(function (MessagesService) {
+      it('should send a GET request and return all Spells', inject(function (SpellsService) {
         // Set POST response
-        $httpBackend.expectGET('api/messages').respond(mockMessageList);
+        $httpBackend.expectGET('api/spells').respond(mockSpellList);
 
 
         $httpBackend.flush();
 
         // Test form inputs are reset
-        expect($scope.vm.messages.length).toEqual(2);
-        expect($scope.vm.messages[0]).toEqual(mockMessage);
-        expect($scope.vm.messages[1]).toEqual(mockMessage);
+        expect($scope.vm.spells.length).toEqual(2);
+        expect($scope.vm.spells[0]).toEqual(mockSpell);
+        expect($scope.vm.spells[1]).toEqual(mockSpell);
 
       }));
     });

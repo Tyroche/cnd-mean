@@ -6,7 +6,9 @@
   <div class="col-md-12">
     <form name="vm.form.raceForm" class="form-horizontal" ng-submit="vm.save(vm.form.raceForm.$valid)" novalidate>
       <fieldset>
-        <h4>Class Information</h4>
+
+        <!-- Basics -->
+        <h4>Race Information</h4>
         <div class="row">
           <div class="col-sm-5">
             <label class="control-label" for="vm.race.name">Name</label>
@@ -17,6 +19,8 @@
                   ng-click="$event.stopPropagation()"
                   required>
           </div>
+
+          <!-- Racial Skill Proficiencies -->
           <div class="col-sm-offset-3 col-sm-2">
             <label class="control-label"># Skill Proficiencies</label>
              <div class="input-group">
@@ -49,6 +53,7 @@
         </div>
         <hr>
 
+        <!-- ToDo: improve this-->
         <h4>Ability Increases</h4>
         <div class="row"
           ng-click="$event.stopPropagation()">

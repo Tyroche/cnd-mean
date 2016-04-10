@@ -51,6 +51,25 @@ var ItemSchema = new Schema({
       'Wondrous Item'
     ]
   },
+  weaponProperties: {
+    damage: { type: String, default: '1d4' },
+    damageBonusAbilityType: {
+      type: String,
+      enum: [
+        'Strength',
+        'Dexterity',
+        'Constitution',
+        'Intelligence',
+        'Wisdom',
+        'Charisma'
+      ]
+    }
+  },
+  armorProperties: {
+    armorBonus: { type: Number, default: 10 },
+    maxDexBonus: { type: Number, default: 0 },
+    stealthDisadvantage: { type: Boolean, default: false }
+  },
   creator: {
     type: String,
     default: ''

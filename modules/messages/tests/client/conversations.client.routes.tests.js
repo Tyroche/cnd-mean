@@ -1,10 +1,10 @@
 (function () {
   'use strict';
 
-  describe('Messages Route Tests', function () {
+  describe('Conversations Route Tests', function () {
     // Initialize global variables
     var $scope,
-      MessagesService;
+      ConversationsService;
 
     //We can start by loading the main application module
     beforeEach(module(ApplicationConfiguration.applicationModuleName));
@@ -12,21 +12,21 @@
     // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
     // This allows us to inject a service but then attach it to a variable
     // with the same name as the service.
-    beforeEach(inject(function ($rootScope, _MessagesService_) {
+    beforeEach(inject(function ($rootScope, _ConversationsService_) {
       // Set a new global scope
       $scope = $rootScope.$new();
-      MessagesService = _MessagesService_;
+      ConversationsService = _ConversationsService_;
     }));
 
     describe('Route Config', function () {
       describe('Main Route', function () {
         var mainstate;
         beforeEach(inject(function ($state) {
-          mainstate = $state.get('messages');
+          mainstate = $state.get('conversations');
         }));
 
         it('Should have the correct URL', function () {
-          expect(mainstate.url).toEqual('/messages');
+          expect(mainstate.url).toEqual('/conversations');
         });
 
         it('Should be abstract', function () {
@@ -40,43 +40,43 @@
 
       describe('View Route', function () {
         var viewstate,
-          MessagesController,
-          mockMessage;
+          ConversationsController,
+          mockConversation;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
-          viewstate = $state.get('messages.view');
-          $templateCache.put('modules/messages/client/views/view-message.client.view.html', '');
+          viewstate = $state.get('conversations.view');
+          $templateCache.put('modules/messages/client/views/view-conversation.client.view.html', '');
 
-          // create mock Message
-          mockMessage = new MessagesService({
+          // create mock Conversation
+          mockConversation = new ConversationsService({
             _id: '525a8422f6d0f87f0e407a33',
-            name: 'Message Name'
+            name: 'Conversation Name'
           });
 
           //Initialize Controller
-          MessagesController = $controller('MessagesController as vm', {
+          ConversationsController = $controller('ConversationsController as vm', {
             $scope: $scope,
-            messageResolve: mockMessage
+            conversationResolve: mockConversation
           });
         }));
 
         it('Should have the correct URL', function () {
-          expect(viewstate.url).toEqual('/:messageId');
+          expect(viewstate.url).toEqual('/:conversationId');
         });
 
         it('Should have a resolve function', function () {
           expect(typeof viewstate.resolve).toEqual('object');
-          expect(typeof viewstate.resolve.messageResolve).toEqual('function');
+          expect(typeof viewstate.resolve.conversationResolve).toEqual('function');
         });
 
         it('should respond to URL', inject(function ($state) {
           expect($state.href(viewstate, {
-            messageId: 1
-          })).toEqual('/messages/1');
+            conversationId: 1
+          })).toEqual('/conversations/1');
         }));
 
-        it('should attach an Message to the controller scope', function () {
-          expect($scope.vm.message._id).toBe(mockMessage._id);
+        it('should attach an Conversation to the controller scope', function () {
+          expect($scope.vm.conversation._id).toBe(mockConversation._id);
         });
 
         it('Should not be abstract', function () {
@@ -84,26 +84,26 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(viewstate.templateUrl).toBe('modules/messages/client/views/view-message.client.view.html');
+          expect(viewstate.templateUrl).toBe('modules/messages/client/views/view-conversation.client.view.html');
         });
       });
 
       describe('Create Route', function () {
         var createstate,
-          MessagesController,
-          mockMessage;
+          ConversationsController,
+          mockConversation;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
-          createstate = $state.get('messages.create');
-          $templateCache.put('modules/messages/client/views/form-message.client.view.html', '');
+          createstate = $state.get('conversations.create');
+          $templateCache.put('modules/messages/client/views/form-conversation.client.view.html', '');
 
-          // create mock Message
-          mockMessage = new MessagesService();
+          // create mock Conversation
+          mockConversation = new ConversationsService();
 
           //Initialize Controller
-          MessagesController = $controller('MessagesController as vm', {
+          ConversationsController = $controller('ConversationsController as vm', {
             $scope: $scope,
-            messageResolve: mockMessage
+            conversationResolve: mockConversation
           });
         }));
 
@@ -113,16 +113,16 @@
 
         it('Should have a resolve function', function () {
           expect(typeof createstate.resolve).toEqual('object');
-          expect(typeof createstate.resolve.messageResolve).toEqual('function');
+          expect(typeof createstate.resolve.conversationResolve).toEqual('function');
         });
 
         it('should respond to URL', inject(function ($state) {
-          expect($state.href(createstate)).toEqual('/messages/create');
+          expect($state.href(createstate)).toEqual('/conversations/create');
         }));
 
-        it('should attach an Message to the controller scope', function () {
-          expect($scope.vm.message._id).toBe(mockMessage._id);
-          expect($scope.vm.message._id).toBe(undefined);
+        it('should attach an Conversation to the controller scope', function () {
+          expect($scope.vm.conversation._id).toBe(mockConversation._id);
+          expect($scope.vm.conversation._id).toBe(undefined);
         });
 
         it('Should not be abstract', function () {
@@ -130,49 +130,49 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(createstate.templateUrl).toBe('modules/messages/client/views/form-message.client.view.html');
+          expect(createstate.templateUrl).toBe('modules/messages/client/views/form-conversation.client.view.html');
         });
       });
 
       describe('Edit Route', function () {
         var editstate,
-          MessagesController,
-          mockMessage;
+          ConversationsController,
+          mockConversation;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
-          editstate = $state.get('messages.edit');
-          $templateCache.put('modules/messages/client/views/form-message.client.view.html', '');
+          editstate = $state.get('conversations.edit');
+          $templateCache.put('modules/messages/client/views/form-conversation.client.view.html', '');
 
-          // create mock Message
-          mockMessage = new MessagesService({
+          // create mock Conversation
+          mockConversation = new ConversationsService({
             _id: '525a8422f6d0f87f0e407a33',
-            name: 'Message Name'
+            name: 'Conversation Name'
           });
 
           //Initialize Controller
-          MessagesController = $controller('MessagesController as vm', {
+          ConversationsController = $controller('ConversationsController as vm', {
             $scope: $scope,
-            messageResolve: mockMessage
+            conversationResolve: mockConversation
           });
         }));
 
         it('Should have the correct URL', function () {
-          expect(editstate.url).toEqual('/:messageId/edit');
+          expect(editstate.url).toEqual('/:conversationId/edit');
         });
 
         it('Should have a resolve function', function () {
           expect(typeof editstate.resolve).toEqual('object');
-          expect(typeof editstate.resolve.messageResolve).toEqual('function');
+          expect(typeof editstate.resolve.conversationResolve).toEqual('function');
         });
 
         it('should respond to URL', inject(function ($state) {
           expect($state.href(editstate, {
-            messageId: 1
-          })).toEqual('/messages/1/edit');
+            conversationId: 1
+          })).toEqual('/conversations/1/edit');
         }));
 
-        it('should attach an Message to the controller scope', function () {
-          expect($scope.vm.message._id).toBe(mockMessage._id);
+        it('should attach an Conversation to the controller scope', function () {
+          expect($scope.vm.conversation._id).toBe(mockConversation._id);
         });
 
         it('Should not be abstract', function () {
@@ -180,7 +180,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(editstate.templateUrl).toBe('modules/messages/client/views/form-message.client.view.html');
+          expect(editstate.templateUrl).toBe('modules/messages/client/views/form-conversation.client.view.html');
         });
 
         xit('Should go to unauthorized route', function () {
