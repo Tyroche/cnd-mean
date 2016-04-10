@@ -20,8 +20,27 @@
       vm.getSaveMod = getSaveMod;
       vm.getMod = getMod;
 
+      /* When editing/creating */
+      vm.getTempSaveMod = getTempSaveMod;
+      vm.getTempMod = getTempMod;
+      vm.getTempModPoints = getTempModPoints;
+      vm.getTempSkillMod = getTempSkillMod;
+
+
       function getMod(attribute) {
         return toMod(vm.character.attributes[attribute]);
+      }
+
+      function getTempMod(attribute) {
+        if(vm.character.race){
+          return toMod(vm.character.attributes[attribute] + vm.character.race.abilityIncreases[attribute]);
+        }
+      }
+
+      function getTempModPoints(attribute) {
+        if(vm.character.race){
+          return vm.character.attributes[attribute] + vm.character.race.abilityIncreases[attribute];
+        }
       }
 
       function getSaveMod(attribute) {
@@ -34,8 +53,26 @@
         return mod;
       }
 
+      function getTempSaveMod(attribute) {
+        if(!vm.character.playableClass[0].profession) { return 0; }
+
+        var mod = getTempMod(attribute);
+        if(vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute) > -1) {
+          return getProficiency() + mod;
+        }
+        return mod;
+      }
+
       function getSkillMod(skill, attribute) {
         var mod = toMod(vm.character.attributes[attribute]);
+        if(vm.character.skills.indexOf(skill) > -1 || vm.character.background.generalization.skillProficiencies.indexOf(skill) > -1) {
+          return getProficiency() + mod;
+        }
+        return mod;
+      }
+
+      function getTempSkillMod(skill, attribute) {
+        var mod = getTempMod(attribute);
         if(vm.character.skills.indexOf(skill) > -1 || vm.character.background.generalization.skillProficiencies.indexOf(skill) > -1) {
           return getProficiency() + mod;
         }

@@ -7,17 +7,35 @@
   </div>
 
   <div ng-repeat="attribute in vm.skills" class="row list-group-item">
-    <div class="col-sm-3">
-      <b ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) > -1">
-        {{attribute.name}}*
-      </b>
-      <span ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) === -1" ng-bind="attribute.name"></span>
+
+    <div ng-if="!vm.canSelect">
+      <div class="col-sm-3" >
+        <b ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) > -1">
+          {{attribute.name}}*
+        </b>
+        <span ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) === -1" ng-bind="attribute.name"></span>
+      </div>
+      <div class="col-sm-2 text-center">
+        {{vm.character.attributes[attribute.name]}} (<span ng-if="vm.getMod(attribute.name) > 0">+</span>{{vm.getMod(attribute.name)}})
+      </div>
+      <div class="col-sm-2 text-center">
+        <span ng-if="vm.getSaveMod(attribute.name)>0">+</span>{{vm.getSaveMod(attribute.name)}}
+      </div>
     </div>
-    <div class="col-sm-2 text-center">
-      {{vm.character.attributes[attribute.name]}} (<span ng-if="vm.getMod(attribute.name) > 0">+</span>{{vm.getMod(attribute.name)}})
-    </div>
-    <div class="col-sm-2 text-center">
-      <span ng-if="vm.getSaveMod(attribute.name)>0">+</span>{{vm.getSaveMod(attribute.name)}}
+
+    <div ng-if="vm.canSelect">
+      <div class="col-sm-3" ng-if="vm.canSelect">
+        <b ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) > -1">
+          {{attribute.name}}*
+        </b>
+        <span ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) === -1" ng-bind="attribute.name"></span>
+      </div>
+      <div class="col-sm-2 text-center">
+        {{vm.getTempModPoints(attribute.name)}} (<span ng-if="vm.getTempMod(attribute.name) > 0">+</span>{{vm.getTempMod(attribute.name)}})
+      </div>
+      <div class="col-sm-2 text-center">
+        <span ng-if="vm.getSaveMod(attribute.name)>0">+</span>{{vm.getTempSaveMod(attribute.name)}}
+      </div>
     </div>
 
     <!-- Character Sheet Mode -->
@@ -53,11 +71,11 @@
           </div>
           <b ng-if="vm.character.skills.indexOf(skill) > -1 || vm.character.background.generalization.skillProficiencies.indexOf(skill) > -1"
               style="margin-top: 0; margin-bottom: 0;">
-            <div class="col-xs-2"><span ng-if="vm.getSkillMod(skill, attribute.name) >0">+</span>{{vm.getSkillMod(skill, attribute.name)}}</div>
+            <div class="col-xs-2"><span ng-if="vm.getSkillMod(skill, attribute.name) >0">+</span>{{vm.getTempSkillMod(skill, attribute.name)}}</div>
             <div class="col-xs-8 check-no-margin">{{skill}}*</div>
           </b>
           <span ng-if="vm.character.skills.indexOf(skill) === -1 && vm.character.background.generalization.skillProficiencies.indexOf(skill) === -1">
-            <div class="col-xs-2"><span ng-if="vm.getSkillMod(skill, attribute.name) >0">+</span>{{vm.getSkillMod(skill, attribute.name)}}</div>
+            <div class="col-xs-2"><span ng-if="vm.getSkillMod(skill, attribute.name) >0">+</span>{{vm.getTempSkillMod(skill, attribute.name)}}</div>
             <div class="col-xs-8 check-no-margin">{{skill}}</div>
           </span>
         </div>
