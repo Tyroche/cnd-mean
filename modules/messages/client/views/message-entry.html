@@ -1,5 +1,10 @@
 <section>
   <div class="input-group">
+    <input type="text"
+        ng-keydown="$event.keyCode === 13 && vm.postMessage()"
+        ng-model="vm.message.contents"
+        class="form-control"
+        placeholder="Message"></input>
     <div class="input-group-btn">
       <div class="dropdown" dropdown>
         <button type="button" class="btn btn-default" dropdown-toggle>
@@ -7,18 +12,10 @@
           <span class="hidden-xs">{{character ? character : 'Your Character'}}</span>
         </button>
         <ul class="dropdown-menu">
-          <li><a href ng-click="character = 'Vorenus Magnus'">Vorenus Magnus</a></li>
+          <li><a href ng-click="character = 'N/A'">Not Available</a></li>
         </ul>
       </div>
     </div>
 
-    <input type="text"
-        ng-keydown="$event.keyCode === 13 && vm.postMessage()"
-        ng-model="vm.message.contents"
-        class="form-control"
-        placeholder="Message"></input>
-      <span class="input-group-btn">
-        <button type="button" ng-click="vm.postMessage()" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span></button>
-      </span>
   </div>
 </section>

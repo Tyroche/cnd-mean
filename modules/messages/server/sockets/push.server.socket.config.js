@@ -18,6 +18,6 @@ module.exports = function(io, socket) {
       context: received.context
     };
 
-    io.to(received.context).emit('pushUpdate', broadcast);
+    io.sockets.in(received.context).emit('pushUpdate', broadcast);
   });
 };

@@ -57,7 +57,7 @@
 
       <div class="col-lg-10 col-xs-12" ng-if="selection === 1" ng-include="'modules/characters/client/views/character-sheet/class-traits.subview.html'"></div>
 
-      <div class="col-lg-10 col-xs-12" ng-if="selection === 2">
+      <div class="col-lg-9 col-xs-12" ng-if="selection === 2">
         <player-inventory
           can-equip="{{vm.authentication.user._id === vm.character.player._id}}"
           character="vm.character">

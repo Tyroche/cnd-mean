@@ -67,6 +67,9 @@
     function init() {
       // Get the conversations by calling api/conversations
       vm.conversations = $resource('api/conversations').query({}, function(res) {
+        if(res[0]) {
+          vm.selectedConversation = res[0];
+        }
         return res;
       });
 
