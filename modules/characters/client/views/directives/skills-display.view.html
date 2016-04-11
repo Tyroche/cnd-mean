@@ -1,27 +1,27 @@
 <div class="list-group">
   <div class="row">
-    <div class="col-sm-3"><b>Attribute</b></div>
-    <div class="col-sm-2 text-center"><b>Modifier</b></div>
-    <div class="col-sm-2 text-center"><b>Saves</b></div>
-    <div class="col-sm-5"><b class="col-xs-offset-4 col-xs-8">Skills</b></div>
+    <div class="col-xs-3"><b>Attribute</b></div>
+    <div class="col-xs-2 text-center"><b>Modifier</b></div>
+    <div class="col-xs-2 text-center"><b>Saves</b></div>
+    <div class="col-xs-5"><b class="col-xs-offset-4 col-xs-8">Skills</b></div>
   </div>
 
   <div ng-repeat="attribute in vm.skills" class="row list-group-item">
-    <div class="col-sm-3">
+    <div class="col-xs-3">
       <b ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) > -1">
         {{attribute.name}}*
       </b>
       <span ng-if="vm.character.playableClass[0].profession.saveProficiencies.indexOf(attribute.name) === -1" ng-bind="attribute.name"></span>
     </div>
-    <div class="col-sm-2 text-center">
+    <div class="col-xs-2 text-center">
       {{vm.character.attributes[attribute.name]}} (<span ng-if="vm.getMod(attribute.name) > 0">+</span>{{vm.getMod(attribute.name)}})
     </div>
-    <div class="col-sm-2 text-center">
+    <div class="col-xs-2 text-center">
       <span ng-if="vm.getSaveMod(attribute.name)>0">+</span>{{vm.getSaveMod(attribute.name)}}
     </div>
 
     <!-- Character Sheet Mode -->
-    <div class="col-sm-5">
+    <div class="col-xs-5">
       <div ng-if="!vm.canSelect">
         <div ng-repeat="skill in attribute.skills" class="row">
           <b ng-if="vm.character.skills.indexOf(skill) > -1 || vm.character.background.generalization.skillProficiencies.indexOf(skill) > -1"

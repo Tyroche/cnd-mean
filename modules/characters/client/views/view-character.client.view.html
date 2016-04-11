@@ -1,11 +1,7 @@
 <section>
 
-  <div class="left-panel text-center">
-    <img alt="Portrait" class="img-responsive" src="modules/core/client/img/classportraits/wizard.jpg" />
-  </div>
-
-  <div class="right-panel" ng-init="selection=0">
-    <div class="page-header col-xs-12 col-lg-10">
+  <div ng-init="selection=0">
+    <div class="page-header col-xs-12">
       <div class="pull-right">
 
         <!-- User Specific Buttons-->
@@ -45,29 +41,30 @@
       <div>
         {{vm.character.race.name}} {{vm.character.background.generalization.name}}
       </div>
+      <!-- Classes -->
+      <div ng-repeat="prof in vm.character.playableClass">
+          <h1 class="label label-default">Level {{prof.level}} {{prof.profession.name}}</h1>
+      </div>
     </div>
 
-    <div class="row">
-      <div class="col-lg-10 col-xs-12" ng-include="'modules/characters/client/views/character-sheet/main.subview.html'"></div>
+    <div class="col-sm-4 col-md-3">
+      <div ng-include="'modules/characters/client/views/character-sheet/main.subview.html'"></div>
     </div>
-    <hr>
 
-    <div class="row">
-      <div class="col-lg-10 col-xs-12" ng-if="selection === 0" ng-include="'modules/characters/client/views/character-sheet/skills.subview.html'"></div>
-
-      <div class="col-lg-10 col-xs-12" ng-if="selection === 1" ng-include="'modules/characters/client/views/character-sheet/class-traits.subview.html'"></div>
-
-      <div class="col-lg-9 col-xs-12" ng-if="selection === 2">
+    <div class="col-sm-8 col-md-9 col-xs-12">
+      <div ng-if="selection === 0" ng-include="'modules/characters/client/views/character-sheet/skills.subview.html'"></div>
+      <div ng-if="selection === 1" ng-include="'modules/characters/client/views/character-sheet/class-traits.subview.html'"></div>
+      <div ng-if="selection === 2">
         <player-inventory
           can-equip="{{vm.authentication.user._id === vm.character.player._id}}"
           character="vm.character">
         </player-inventory>
       </div>
-
-      <div class="col-lg-10 col-xs-12" ng-if="selection === 3">
+      <div ng-if="selection === 3">
         <div ng-include="'modules/characters/client/views/character-sheet/background.subview.html'"></div>
       </div>
     </div>
   </div>
+</div>
 
 </section>
