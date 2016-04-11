@@ -17,6 +17,7 @@
     var Conversation = $resource('/api/conversations/:conversationId');
     vm.auth = auth;
 
+
     // Create a new conversation
     vm.createConversation = createConversation;
     function createConversation() {
@@ -48,7 +49,6 @@
     // Provide a list of names of people participating in a conversation
     vm.conversationParticipants = conversationParticipants;
     function conversationParticipants(conversation) {
-
       // Return a list of names separated by commas
       return conversation.participants.reduce(function(res, current) {
         if(current._id === auth.user._id) { return res; }
@@ -60,6 +60,7 @@
         return name;
       }, '');
     }
+
 
     // Initialize
     init();
