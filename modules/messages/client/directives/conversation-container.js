@@ -42,6 +42,11 @@
         socket.removeListener('pushUpdate');
       });
 
+      $scope.$on('selectConvo', function(req) {
+        vm.context = req.targetScope.vm.selectedConversation;
+        getFirstMessages();
+      });
+
       // Get the first messages (or look for them if there are none so far)
       function getFirstMessages() {
         if (!vm.context) { return; }
@@ -53,6 +58,7 @@
 
         vm.ctxMessages.query({}, function(res) {
           vm.messages = $filter('orderBy')(res,'created');
+          console.log(vm.messages);
         });
       }
 
@@ -67,7 +73,7 @@
     };
 
     return {
-      templateUrl: 'modules/messages/client/views/comment-container.html',
+      templateUrl: 'modules/messages/client/views/conversation-container.html',
       controller: controller,
       controllerAs: 'vm',
       scope: {

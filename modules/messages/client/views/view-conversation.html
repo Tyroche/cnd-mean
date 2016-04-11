@@ -35,6 +35,6 @@
 <hr>
 
 <!-- The below will go to content container -->
-<div class="row" style="max-height: 60vh; min-height: 60vh; overflow-y: auto" ng-if="vm.selectedConversation">
+<div class="row" ng-if="vm.selectedConversation">
   <conversation-container user="{{vm.auth.user}}" context="vm.selectedConversation"></conversation-container>
 </div>

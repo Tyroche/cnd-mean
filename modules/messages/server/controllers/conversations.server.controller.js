@@ -77,11 +77,18 @@ exports.delete = function(req, res) {
   });
 };
 
+
 /**
- * List of Conversations
+ * List of Messages
  */
-exports.list = function(req, res) { 
-  Conversation.find().sort('-created').populate('user', 'displayName').exec(function(err, conversations) {
+exports.list = function(req, res) {
+  // find only messages that we can see
+  Conversation.find({
+    $or: [
+      { publicity: 'public' },
+      { participants: { '$in': [req.user._id] } }
+    ]
+  }).sort('-name').populate('participants', 'firstName lastName').exec(function(err, conversations) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

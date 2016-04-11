@@ -20,6 +20,7 @@
     // Create a new conversation
     vm.createConversation = createConversation;
     function createConversation() {
+      // Validate that we have targets... if not, kill the process.
       if (!vm.newConvoTargets[0]) { return; }
 
       // Create the model
@@ -31,32 +32,36 @@
         vm.selectedConversation.participants.push(target);
       });
 
+      // Save and clear out newConvoTargets
       vm.selectedConversation.$save();
-      vm.newConvoPlayer = [];
-
-      // Need to receive a message on the socket
+      vm.newConvoTargets = [];
     }
+
+    // Select a conversation for loading
+    vm.select = select;
+    function select(conversation) {
+      vm.selectedConversation = conversation;
+      $scope.$broadcast('selectConvo', conversation);
+    }
+
 
     // Provide a list of names of people participating in a conversation
     vm.conversationParticipants = conversationParticipants;
     function conversationParticipants(conversation) {
-      // Intersect participants and players... not pretty but works.
-      var participants = vm.players.filter(function(player) {
-        return conversation.participants.some(function(participant) {
-          return participant === player._id;
-        });
-      });
 
       // Return a list of names separated by commas
-      return participants.reduce(function(cur, next) {
-        var name = next.firstName + ' ' + next.lastName;
-        if(participants.indexOf(next) > 0) {
-          return cur + ', ' + name;
+      return conversation.participants.reduce(function(res, current) {
+        if(current._id === auth.user._id) { return res; }
+
+        var name = current.firstName + ' ' + current.lastName;
+        if(conversation.participants.indexOf(current) > 0) {
+          return res + ', ' + name;
         }
         return name;
       }, '');
     }
 
+    // Initialize
     init();
     function init() {
       // Get the conversations by calling api/conversations
@@ -64,6 +69,7 @@
         return res;
       });
 
+      // Populate Player Targets
       vm.newConvoTargets = [];
       vm.players = [];
       $resource('api/users').query({}, function(res) {

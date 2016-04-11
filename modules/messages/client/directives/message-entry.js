@@ -19,8 +19,7 @@
 
       init();
       function init() {
-      console.log($scope);
-        vm.context = JSON.parse($scope.context);
+        vm.context = $scope.context;
         vm.user = JSON.parse($scope.user);
         createNew();
       }
@@ -75,7 +74,7 @@
         user: '@',
         character: '@',
         public: '@',
-        context: '@'
+        context: '='
       }
     };
   }
