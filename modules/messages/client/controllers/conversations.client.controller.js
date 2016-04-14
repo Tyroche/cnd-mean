@@ -26,7 +26,7 @@
 
       // Create the model
       vm.selectedConversation = new Conversation();
-      vm.selectedConversation.name = "New Convo";
+      vm.selectedConversation.name = 'New Convo';
       vm.selectedConversation.isPrivate = true;
       vm.selectedConversation.participants = [ auth.user ];
       vm.newConvoTargets.forEach(function (target) {
@@ -45,20 +45,19 @@
       $scope.$broadcast('selectConvo', conversation);
     }
 
-
     // Provide a list of names of people participating in a conversation
     vm.conversationParticipants = conversationParticipants;
     function conversationParticipants(conversation) {
       // Return a list of names separated by commas
-      return conversation.participants.reduce(function(res, current) {
-        if(current._id === auth.user._id) { return res; }
+      var notMe = conversation.participants.filter(function(current) {
+        return current._id !== auth.user._id;
+      });
 
-        var name = current.firstName + ' ' + current.lastName;
-        if(conversation.participants.indexOf(current) > 0) {
-          return res + ', ' + name;
-        }
-        return name;
-      }, '');
+      notMe = notMe.map(function(current) {
+        return current.firstName + ' ' + current.lastName;
+      });
+
+      return notMe.join(', ');
     }
 
 

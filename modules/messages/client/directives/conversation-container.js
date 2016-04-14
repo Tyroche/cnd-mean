@@ -58,7 +58,6 @@
 
         vm.ctxMessages.query({}, function(res) {
           vm.messages = $filter('orderBy')(res,'created');
-          console.log(vm.messages);
         });
       }
 
