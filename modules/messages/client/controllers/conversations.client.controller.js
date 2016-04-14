@@ -9,14 +9,14 @@
     '$scope',
     '$resource',
     '$filter',
-    'Authentication'
+    'Authentication',
+    'Socket'
   ];
 
-  function ConversationsController($scope, $resource, $filter, auth) {
+  function ConversationsController($scope, $resource, $filter, auth, socket) {
     var vm = this;
     var Conversation = $resource('/api/conversations/:conversationId');
     vm.auth = auth;
-
 
     // Create a new conversation
     vm.createConversation = createConversation;
@@ -36,6 +36,9 @@
       // Save and clear out newConvoTargets
       vm.selectedConversation.$save();
       vm.newConvoTargets = [];
+
+      // Query for new conversations
+      queryConvos();
     }
 
     // Select a conversation for loading
@@ -68,16 +71,20 @@
     }
 
 
-    // Initialize
-    init();
-    function init() {
-      // Get the conversations by calling api/conversations
+    function queryConvos() {
       vm.conversations = $resource('api/conversations').query({}, function(res) {
         if(res[0]) {
           vm.selectedConversation = res[0];
         }
         return res;
       });
+    }
+
+    // Initialize
+    init();
+    function init() {
+      // Get the conversations by calling api/conversations
+      queryConvos();
 
       // Populate Player Targets
       vm.newConvoTargets = [];

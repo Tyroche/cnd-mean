@@ -33,13 +33,13 @@
       });
 
       // When we receive a new message, append it to our list
-      socket.on('pushUpdate', function(message) {
+      socket.on('newMessage', function(message) {
         vm.messages.push(message);
       });
 
       // Cancel the $interval on navigation away from container
       $scope.$on('$destroy', function() {
-        socket.removeListener('pushUpdate');
+        socket.removeListener('newMessage');
       });
 
       // Get the first messages (or look for them if there are none so far)

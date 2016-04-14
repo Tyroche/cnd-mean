@@ -19,7 +19,6 @@
 
       init();
       function init() {
-        vm.context = $scope.context;
         vm.user = JSON.parse($scope.user);
         createNew();
       }
@@ -78,7 +77,6 @@
           profileImageURL: vm.user.profileImageURL
         };
         vm.message.publicity = Boolean($scope.private) ? 'private' : 'public';
-        vm.message.context = vm.context._id;
         if($scope.character) {
           vm.message.character = JSON.parse($scope.character)._id;
         }
@@ -87,11 +85,12 @@
       // Load a message
       vm.postMessage = postMessage;
       function postMessage() {
-        // Assign at Post, just in case this changed at all
+        // Assign these at Post, just in case this changed at all
+        vm.message.context = $scope.context._id;
         vm.message.participants = $scope.participants ? $scope.participants : [];
-        vm.message.$save(successCallback, errorCallback);
 
         // Send a post message if the socket exists
+        vm.message.$save(successCallback, errorCallback);
         if(vm.socket) {
           vm.socket.emit('postMessage', vm.message);
         }
@@ -104,7 +103,7 @@
 
       function successCallback(res) {
         console.log('Created successfully');
-        console.log(res);
+        //console.log(res);
         createNew();
       }
 

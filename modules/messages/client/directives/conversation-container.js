@@ -9,11 +9,10 @@
     '$resource',
     '$timeout',
     '$filter',
-    '$interval',
     'Socket'
   ];
 
-  function conversationContainer($resource, $timeout, $filter, $interval, socket) {
+  function conversationContainer($resource, $timeout, $filter, socket) {
     var controller = function($scope) {
       var vm = this;
       vm.messages = [];
@@ -33,18 +32,18 @@
       });
 
       // When we receive a new message, append it to our list
-      socket.on('pushUpdate', function(message) {
+      socket.on('newMessage', function(message) {
         vm.messages.push(message);
       });
 
-      // Cancel the $interval on navigation away from container
       $scope.$on('$destroy', function() {
-        socket.removeListener('pushUpdate');
+        socket.removeListener('newMessage');
       });
 
       $scope.$on('selectConvo', function(req) {
         vm.context = req.targetScope.vm.selectedConversation;
-        getFirstMessages();
+        console.log('context is now ' + vm.context._id);
+        updateRooms();
       });
 
       // Get the first messages (or look for them if there are none so far)
@@ -61,13 +60,17 @@
         });
       }
 
-      function init() {
+      function updateRooms() {
         // Connect the socket for push notifications
         if(!socket.socket) { socket.connect(); }
 
         // Tell the server that we want to subscribe to this context
         socket.emit('subscribe', vm.context._id);
         getFirstMessages();
+      }
+
+      function init() {
+        updateRooms();
       }
     };
 
