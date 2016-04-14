@@ -26,7 +26,7 @@
     <!-- Comments -->
     <div class="col-md-4 well" ng-if="article.$resolved && (authentication.user.roles.indexOf('consultant') > -1 || authentication.user.roles.indexOf('admin') > -1)">
       <span class="text-center"><u><h4>Comments</h4></u></span>
-      <comment-container user="{{authentication.user}}" display=10 context="article"></comment-container>
+      <comment-container user="{{authentication.user}}" private="false" context="article"></comment-container>
     </div>
   </div>
 

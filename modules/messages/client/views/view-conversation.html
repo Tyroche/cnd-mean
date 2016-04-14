@@ -1,7 +1,7 @@
 <!-- Dropdown for selecting your character -->
 <div class="row">
   <label clss="form-control-label">Conversation Name</label>
-  <input class="form-control" type="text" placeholder="New Conversation Name">
+  <input class="form-control" type="text" ng-blur="vm.update()" ng-model="vm.selectedConversation.name">
 </div>
 <hr>
 

@@ -23,7 +23,7 @@
         createNew();
       }
 
-      // Evaluate input to determine type
+      // Evaluate input to determine type; mutates message contents
       function evaluateMessageType() {
         // Check for a roll
         if (vm.message.contents.substring(0, 6) === '/roll ') {
@@ -61,12 +61,14 @@
             return value + current;
           }, modifier);
 
-          console.log(results.join(', ') + ' + ' + modifier + " --> " + total);
+          vm.message.contents = 'rolls ' + vm.message.contents.substring(6) + ', yielding ' + results.join(', ') + ' + ' + modifier + " --> " + total;
+          vm.message.format = 'roll';
         }
 
         // check for an emote
         if (['/me ','/em '].indexOf(vm.message.contents.substring(0, 4)) > -1) {
-          return;
+          vm.message.contents = vm.message.contents.substring(4);
+          vm.message.format = 'emote';
         }
       }
 
@@ -92,6 +94,7 @@
         // Assign these at Post, just in case this changed at all
         vm.message.context = $scope.context._id;
         vm.message.participants = $scope.participants ? $scope.participants : [];
+        evaluateMessageType();
 
         // Send a post message if the socket exists
         vm.message.$save(successCallback, errorCallback);
@@ -99,15 +102,12 @@
           vm.socket.emit('postMessage', vm.message);
         }
 
-        evaluateMessageType();
-
         // Recreate a new Message
         createNew();
       }
 
       function successCallback(res) {
         console.log('Created successfully');
-        console.log(res);
         createNew();
       }
 

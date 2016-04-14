@@ -45,6 +45,7 @@ var MessageSchema = new Schema({
     type: String,
     enum: [
       'roll',
+      'emote',
       'message'
     ]
   },

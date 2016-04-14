@@ -34,6 +34,7 @@
 
       // When we receive a new message, append it to our list
       socket.on('newMessage', function(message) {
+        console.log(message);
         vm.messages.push(message);
         scrollToBottom();
       });

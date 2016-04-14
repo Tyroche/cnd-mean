@@ -15,7 +15,13 @@
 
   function ConversationsController($scope, $resource, $filter, auth, socket) {
     var vm = this;
-    var Conversation = $resource('/api/conversations/:conversationId');
+    var Conversation = $resource('/api/conversations/:conversationId', {
+        conversationId: '@_id'
+      }, {
+      update: {
+        method: 'PUT'
+      }
+    });
     vm.auth = auth;
 
     // Create a new conversation
@@ -41,11 +47,19 @@
       queryConvos();
     }
 
+    // Update the conversation (if players are added, name changes, etc)
+    vm.update = update;
+    function update() {
+      vm.selectedConversation.$update();
+      queryConvos();
+    }
+
     // Select a conversation for loading
     vm.select = select;
     function select(conversation) {
+      // Hmm... How do we do this better?
       vm.selectedConversation = conversation;
-      $scope.$broadcast('selectConvo', conversation);
+      $scope.$broadcast('selectConvo', vm.selectedConversation);
     }
 
     vm.unaddedConvoTargets = unaddedConvoTargets;
@@ -72,7 +86,7 @@
 
 
     function queryConvos() {
-      vm.conversations = $resource('api/conversations').query({}, function(res) {
+      vm.conversations = Conversation.query({}, function(res) {
         if(res[0]) {
           vm.selectedConversation = res[0];
         }
