@@ -9,10 +9,11 @@
     '$resource',
     '$timeout',
     '$filter',
-    'Socket'
+    '$window',
+    'Socket',
   ];
 
-  function conversationContainer($resource, $timeout, $filter, socket) {
+  function conversationContainer($resource, $timeout, $filter, $window, socket) {
     var controller = function($scope) {
       var vm = this;
       vm.messages = [];
@@ -34,17 +35,27 @@
       // When we receive a new message, append it to our list
       socket.on('newMessage', function(message) {
         vm.messages.push(message);
+        scrollToBottom();
       });
 
+      // Calls when the user navigates away
       $scope.$on('$destroy', function() {
         socket.removeListener('newMessage');
       });
 
+      // Called when the user selects a conversation
       $scope.$on('selectConvo', function(req) {
         vm.context = req.targetScope.vm.selectedConversation;
-        console.log('context is now ' + vm.context._id);
         updateRooms();
       });
+
+      // Scrolls to the bottom, delaying 10 msec to allow the div to populate
+      function scrollToBottom() {
+        $timeout(function() {
+          var msgContainer = angular.element(document.querySelectorAll('#msg-container'));
+          msgContainer.scrollTop(msgContainer[0].scrollHeight);
+        }, 10);
+      }
 
       // Get the first messages (or look for them if there are none so far)
       function getFirstMessages() {
@@ -57,6 +68,7 @@
 
         vm.ctxMessages.query({}, function(res) {
           vm.messages = $filter('orderBy')(res,'created');
+          scrollToBottom();
         });
       }
 
@@ -80,6 +92,7 @@
       controllerAs: 'vm',
       scope: {
         context: '=',
+        private: '=',
         display: '@',
         user: '@'
       }

@@ -28,7 +28,9 @@
         // Check for a roll
         if (vm.message.contents.substring(0, 6) === '/roll ') {
           // replace with regex
-          var [numDice, predicate] = vm.message.contents.substring(6).split('d');
+          var splits = vm.message.contents.substring(6).split('d');
+          var numDice = splits[0];
+          var predicate = splits[1];
           var modifier = 0;
 
            // Malformed, send as message instead
@@ -36,14 +38,16 @@
 
           // Get Modifier: Positive
           if(predicate.indexOf('+') > -1) {
-            [predicate, modifier] = predicate.split('+');
-            modifier = parseInt(modifier);
+            splits = predicate.split('+');
+            predicate = splits[0];
+            modifier = parseInt(splits[1]);
           }
 
           // Get Modifier: Negative
           if(predicate.indexOf('-') > -1) {
-            [predicate, modifier] = predicate.split('-');
-            modifier = parseInt(modifier) * -1;
+            splits = predicate.split('-');
+            predicate = splits[0];
+            modifier = parseInt(splits[1]) * -1;
           }
 
           // Actually do the rolls
@@ -103,7 +107,7 @@
 
       function successCallback(res) {
         console.log('Created successfully');
-        //console.log(res);
+        console.log(res);
         createNew();
       }
 
