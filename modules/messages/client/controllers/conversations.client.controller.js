@@ -45,6 +45,13 @@
       $scope.$broadcast('selectConvo', conversation);
     }
 
+    vm.unaddedConvoTargets = unaddedConvoTargets;
+    function unaddedConvoTargets() {
+      return vm.players.filter(function (target) {
+        return vm.newConvoTargets.indexOf(target) === -1;
+      });
+    }
+
     // Provide a list of names of people participating in a conversation
     vm.conversationParticipants = conversationParticipants;
     function conversationParticipants(conversation) {

@@ -1,37 +1,8 @@
 <!-- Dropdown for selecting your character -->
 <div class="row">
-  <div class="col-xs-5">
-    <label clss="form-control-label">Conversation Name</label>
-    <input class="form-control" type="text" placeholder="New Conversation Name">
-  </div>
-
-  <!-- Dropdown for adding a player to a conversation -->
-  <div class="pull-right">
-    <br>
-    <div class="col-xs-6">
-      <div class="dropdown" dropdown>
-        <button type="button" class="btn btn-default" dropdown-toggle>
-          <span class="visible-xs">Player</span>
-          <span class="hidden-xs">Select Player</span>
-        </button>
-        <ul class="dropdown-menu">
-          <li ng-repeat="player in vm.players | orderBy:['-qualifier','lastName']">
-            <a href ng-click="vm.newConvoTargets.push(player)">{{player.qualifier}}{{player.firstName}} {{player.lastName}}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="col-xs-6">
-      <button type="button" ng-click="vm.createConversation()" ng-disabled="!vm.newConvoTargets[0]" class="btn btn-success">
-        <span>Start Conversation<span>
-      </button>
-    </div>
-  </div>
+  <label clss="form-control-label">Conversation Name</label>
+  <input class="form-control" type="text" placeholder="New Conversation Name">
 </div>
-<span ng-repeat="participant in vm.newConvoTargets track by $index" class="label label-info">
-  {{participant.firstName}} {{participant.lastName}} <span ng-click="vm.newConvoTargets.splice($index, 1)" class="can-select glyphicon glyphicon-trash"></span>
-</span>
 <hr>
 
 <!-- The below will go to content container -->

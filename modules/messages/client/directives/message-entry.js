@@ -122,7 +122,7 @@
         user: '@',
         character: '@',
         participants: '=',
-        public: '@',
+        private: '@',
         context: '='
       }
     };
