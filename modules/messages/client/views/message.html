@@ -1,12 +1,12 @@
 <section>
 <div class="row">
-  <div class="col-xs-2 col-sm-1 col-md-2">
+  <div class="col-xs-2 col-sm-1 col-md-1">
     <img ng-if="vm.message.sender.profileImageURL" ng-src="{{vm.message.sender.profileImageURL}}" class="header-profile-image" />
   </div>
-  <div class="col-xs-10 col-sm-11 col-md-10">
+  <div style="margin-right: 24px; margin-left: 52px;">
     <i><small class="pull-right" ng-bind="vm.message.created | date:'short'"></small></i>
-    <b>{{vm.message.sender.firstName}} {{vm.message.sender.lastName}}</b><br>
-    {{vm.message.contents}}
+    <b>{{vm.message.sender.firstName}} {{vm.message.sender.lastName}}</b>
+    <p>{{vm.message.contents}}</p>
   </div>
 </div>
 </section>
